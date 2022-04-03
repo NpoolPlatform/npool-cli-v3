@@ -1,11 +1,8 @@
 // user modal
-import { getName, Person, Detail } from './user'
-// goods modal
-import { getAddress, Book, ISN } from './goods'
-
+export * from './user'
+// setting modal
+import { useSettingStore } from './setting'
 
 export {
-    getName, getAddress,
-    Person, Detail,
-    Book, ISN
+  useSettingStore
 }

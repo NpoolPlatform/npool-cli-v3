@@ -24,7 +24,7 @@ declare module 'vue-router' {
   }
 }
 
-const loginInterceptor = (api: AxiosInstance, to: RouteLocationNormalized, next: NavigationGuardNext) => {
+const loginInterceptor = (api: AxiosInstance, signInPath: string, to: RouteLocationNormalized, next: NavigationGuardNext) => {
   const setting = useSettingStore()
   setting.ShowHeaderAnnouncement = to.meta.ShowHeaderAnnouncement
   setting.ShowMainHeader = to.meta.ShowMainHeader
@@ -43,7 +43,7 @@ const loginInterceptor = (api: AxiosInstance, to: RouteLocationNormalized, next:
   const token = Cookies.get('X-App-Login-Token')
   if (!userID || !token || userID.length === 0 || token.length === 0) {
     if (to.meta && to.meta.NeedLogined) {
-      next({ path: '/signin', replace: true })
+      next({ path: signInPath, replace: true })
     } else {
       next()
     }
@@ -58,13 +58,13 @@ const loginInterceptor = (api: AxiosInstance, to: RouteLocationNormalized, next:
     .then((resp: AxiosResponse<LoginedResponse>) => {
       logined.LoginedUser = resp.data.Info
       if (!logined.LoginedUser && to.meta && to.meta.NeedLogined) {
-        next({ path: '/signin', replace: true })
+        next({ path: signInPath, replace: true })
         return
       }
       next()
     }).catch(() => {
       if (to.meta && to.meta.NeedLogined) {
-        next({ path: '/signin', replace: true })
+        next({ path: signInPath, replace: true })
       } else {
         next()
       }

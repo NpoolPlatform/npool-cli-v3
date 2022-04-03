@@ -7,7 +7,7 @@ import {
   NavigationGuardNext,
   RouteLocationNormalized
 } from 'vue-router'
-import { API as UserAPI } from '@store/users/const'
+import { API as UserAPI } from '@store/users'
 
 interface RouteMetaImpl {
   ShowHeaderAnnouncement: boolean

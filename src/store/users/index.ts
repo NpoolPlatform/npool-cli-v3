@@ -28,7 +28,7 @@ import {
   LoginHistory
 } from './types'
 
-export const useUserStore = (api: AxiosInstance) => defineStore('user', {
+const useUserStore = (api: AxiosInstance) => defineStore('user', {
   state: (): UserState => ({
     SignupUser: undefined,
     PasswordUpdated: false,
@@ -152,3 +152,8 @@ export const useUserStore = (api: AxiosInstance) => defineStore('user', {
     }
   }
 })
+
+export {
+  useUserStore,
+  API
+}

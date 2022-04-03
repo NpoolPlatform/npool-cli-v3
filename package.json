@@ -1,6 +1,6 @@
 {
   "name": "npool-cli-v2",
-  "version": "0.0.29",
+  "version": "0.0.33",
   "private": false,
   "license": "ISC",
   "description": "Npool Client SDK",
@@ -64,6 +64,7 @@
     "@typescript-eslint/parser": "^5.17.0",
     "acorn": "^8.7.0",
     "ansi-styles": "^3.2.1",
+    "axios": "^0.26.1",
     "balanced-match": "^1.0.2",
     "brace-expansion": "^1.1.11",
     "buffer-from": "^1.1.2",
@@ -113,6 +114,7 @@
     "pinia": "^2.0.13",
     "pkg-dir": "^5.0.0",
     "pnpm": "^6.32.4",
+    "quasar": "^2.6.5",
     "randombytes": "^2.1.0",
     "resolve": "^1.22.0",
     "rollup-plugin-terser": "^7.0.2",
@@ -131,6 +133,7 @@
     "typescript": "^4.6.3",
     "universalify": "^2.0.0",
     "upath2": "^3.1.12",
+    "vue-router": "^4.0.14",
     "wrappy": "^1.0.2",
     "yocto-queue": "^0.1.0"
   }

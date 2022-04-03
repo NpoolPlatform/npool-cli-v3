@@ -1,2 +1,2 @@
-// user modal
 export * from './setting'
+export * from './users'

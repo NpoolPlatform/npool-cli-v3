@@ -18,16 +18,17 @@ import {
   UpdateKYCResponse
 } from './types'
 
-export const useKYCStore = (api: AxiosInstance) => defineStore('kyc', {
+export const useKYCStore = defineStore('kyc', {
   state: (): KYCState => ({
     Images: new Map<ImageType, KYCImage>(),
-    KYC: undefined as unknown as KYC
+    KYC: undefined as unknown as KYC,
+    APIInstance: undefined as unknown as AxiosInstance
   }),
   getters: {},
   actions: {
     uploadImage (req: UpdateKYCImageRequest, done: (error: boolean) => void) {
       doActionWithError<UpdateKYCImageRequest, UpdateKYCImageResponse>(
-        api,
+        this.APIInstance,
         API.UPLOAD_IMAGE,
         req,
         req.Message,
@@ -44,7 +45,7 @@ export const useKYCStore = (api: AxiosInstance) => defineStore('kyc', {
     },
     createKYC (req: CreateKYCRequest, done: (error: boolean) => void) {
       doActionWithError<CreateKYCRequest, CreateKYCResponse>(
-        api,
+        this.APIInstance,
         API.CREATE_KYC,
         req,
         req.Message,
@@ -57,7 +58,7 @@ export const useKYCStore = (api: AxiosInstance) => defineStore('kyc', {
     },
     updateKYC (req: UpdateKYCRequest) {
       doAction<UpdateKYCRequest, UpdateKYCResponse>(
-        api,
+        this.APIInstance,
         API.UPDATE_KYC,
         req,
         req.Message,
@@ -67,7 +68,7 @@ export const useKYCStore = (api: AxiosInstance) => defineStore('kyc', {
     },
     getKYC (req: GetKYCRequest, done: () => void) {
       doAction<GetKYCRequest, GetKYCResponse>(
-        api,
+        this.APIInstance,
         API.UPDATE_KYC,
         req,
         req.Message,
@@ -78,7 +79,7 @@ export const useKYCStore = (api: AxiosInstance) => defineStore('kyc', {
     },
     getKYCImage (req: GetKYCImageRequest, done: () => void) {
       doAction<GetKYCImageRequest, GetKYCImageResponse>(
-        api,
+        this.APIInstance,
         API.GET_KYC_IMAGE,
         req,
         req.Message,

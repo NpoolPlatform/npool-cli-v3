@@ -22,6 +22,8 @@ const useNotificationStore = defineStore('notification', {
   }
 })
 
+export * from './helper'
+
 export {
   useNotificationStore,
   NotificationType

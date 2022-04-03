@@ -1,4 +1,5 @@
 import { ReqMessage } from '../notifications/types'
+import { State } from '../state'
 
 interface Coin {
   ID?: string
@@ -19,7 +20,7 @@ interface GetCoinsResponse {
   Infos: Array<Coin>
 }
 
-interface CoinState {
+interface CoinState extends State {
   Coins: Array<Coin>
 }
 

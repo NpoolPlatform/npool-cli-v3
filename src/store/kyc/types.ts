@@ -1,5 +1,6 @@
 import { ReqMessage } from '../notifications/types'
 import { DocumentType, ImageType, State } from './const'
+import { State as BaseState } from '../state'
 
 interface KYCImage {
   Type: ImageType
@@ -69,7 +70,7 @@ interface GetKYCImageResponse {
   Info: string
 }
 
-interface KYCState {
+interface KYCState extends BaseState {
   Images: Map<ImageType, KYCImage>
   KYC: KYC
 }

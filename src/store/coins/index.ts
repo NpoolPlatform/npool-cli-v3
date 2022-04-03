@@ -5,9 +5,10 @@ import { doAction } from '../action'
 import { API } from './const'
 import { Coin, CoinState, GetCoinsRequest, GetCoinsResponse } from './types'
 
-export const useCoinStore = (api: AxiosInstance) => defineStore('coin', {
+export const useCoinStore = defineStore('coin', {
   state: (): CoinState => ({
-    Coins: []
+    Coins: [],
+    APIInstance: undefined as unknown as AxiosInstance
   }),
   getters: {
     getCoinLogo (): (coin: Coin) => string {
@@ -33,7 +34,7 @@ export const useCoinStore = (api: AxiosInstance) => defineStore('coin', {
   actions: {
     getCoins (req: GetCoinsRequest) {
       doAction<GetCoinsRequest, GetCoinsResponse>(
-        api,
+        this.APIInstance,
         API.GET_COINS,
         req,
         req.Message,

@@ -1,4 +1,5 @@
 import { ReqMessage } from '../notifications/types'
+import { State } from '../state'
 
 interface Account {
   ID: string
@@ -48,7 +49,7 @@ interface SetWithdrawAddressResponse {
   Info: WithdrawAccount
 }
 
-interface AccountState {
+interface AccountState extends State {
   Accounts: Array<WithdrawAccount>
 }
 

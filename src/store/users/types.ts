@@ -1,4 +1,5 @@
 import { ReqMessage } from '../notifications/types'
+import { State } from '../state'
 
 interface AppUser {
   ID?: string
@@ -168,7 +169,7 @@ interface UpdateAppUserExtraResponse {
   Info: AppUserExtra
 }
 
-interface UserState {
+interface UserState extends State {
   SignupUser?: AppUser
   PasswordUpdated: boolean
   LoginHistories: Array<LoginHistory>

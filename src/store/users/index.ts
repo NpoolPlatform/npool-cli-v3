@@ -28,19 +28,20 @@ import {
   LoginHistory
 } from './types'
 
-const useUserStore = (api: AxiosInstance) => defineStore('user', {
+const useUserStore = defineStore('user', {
   state: (): UserState => ({
     SignupUser: undefined,
     PasswordUpdated: false,
     LoginHistories: [] as Array<LoginHistory>,
     GoogleOTPAuth: '',
-    GoogleSecret: ''
+    GoogleSecret: '',
+    APIInstance: undefined as unknown as AxiosInstance
   }),
   getters: {},
   actions: {
     signup (req: SignupRequest) {
       doAction<SignupRequest, SignupResponse>(
-        api,
+        this.APIInstance,
         API.SIGNUP,
         req,
         req.Message,
@@ -50,12 +51,12 @@ const useUserStore = (api: AxiosInstance) => defineStore('user', {
     },
     signin (req: LoginRequest) {
       doAction<LoginRequest, LoginResponse>(
-        api,
+        this.APIInstance,
         API.LOGIN,
         req,
         req.Message,
         (resp: LoginResponse): void => {
-          const headers = api.defaults.headers as unknown as Record<string, string>
+          const headers = this.APIInstance.defaults.headers as unknown as Record<string, string>
 
           headers['X-User-ID'] = resp.Info.User?.ID as string
           headers['X-App-Login-Token'] = resp.Token
@@ -69,7 +70,7 @@ const useUserStore = (api: AxiosInstance) => defineStore('user', {
     resetPassword (req: ResetPasswordRequest) {
       this.PasswordUpdated = false
       doAction<ResetPasswordRequest, ResetPasswordResponse>(
-        api,
+        this.APIInstance,
         API.RESET_PASSWORD,
         req,
         req.Message,
@@ -79,7 +80,7 @@ const useUserStore = (api: AxiosInstance) => defineStore('user', {
     },
     updatePassword (req: UpdatePasswordRequest) {
       doAction<UpdatePasswordRequest, UpdatePasswordResponse>(
-        api,
+        this.APIInstance,
         API.UPDATE_PASSWORD,
         req,
         req.Message,
@@ -89,7 +90,7 @@ const useUserStore = (api: AxiosInstance) => defineStore('user', {
     },
     getLoginHistories (req: GetLoginHistoriesRequest) {
       doAction<GetLoginHistoriesRequest, GetLoginHistoriesResponse>(
-        api,
+        this.APIInstance,
         API.GET_LOGIN_HISTORIES,
         req,
         req.Message,
@@ -99,7 +100,7 @@ const useUserStore = (api: AxiosInstance) => defineStore('user', {
     },
     setupGoogleAuthentication (req: SetupGoogleAuthenticationRequest) {
       doAction<SetupGoogleAuthenticationRequest, SetupGoogleAuthenticationResponse>(
-        api,
+        this.APIInstance,
         API.SETUP_GOOGLE_AUTHENTICATION,
         req,
         req.Message,
@@ -110,7 +111,7 @@ const useUserStore = (api: AxiosInstance) => defineStore('user', {
     },
     updateAccount (req: UpdateAccountRequest, done: () => void) {
       doAction<UpdateAccountRequest, UpdateAccountResponse>(
-        api,
+        this.APIInstance,
         API.UPDATE_ACCOUNT,
         req,
         req.Message,
@@ -122,7 +123,7 @@ const useUserStore = (api: AxiosInstance) => defineStore('user', {
     },
     createExtra (req: CreateAppUserExtraRequest, done: (error: boolean) => void) {
       doActionWithError<CreateAppUserExtraRequest, CreateAppUserExtraResponse>(
-        api,
+        this.APIInstance,
         API.CREATE_EXTRA,
         req,
         req.Message,
@@ -137,7 +138,7 @@ const useUserStore = (api: AxiosInstance) => defineStore('user', {
     },
     updateExtra (req: UpdateAppUserExtraRequest, done: (error: boolean) => void) {
       doActionWithError<UpdateAppUserExtraRequest, UpdateAppUserExtraResponse>(
-        api,
+        this.APIInstance,
         API.UPDATE_EXTRA,
         req,
         req.Message,

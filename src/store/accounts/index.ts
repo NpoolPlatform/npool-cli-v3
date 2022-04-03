@@ -10,15 +10,16 @@ import {
   SetWithdrawAddressResponse
 } from './types'
 
-export const useAccountStore = (api: AxiosInstance) => defineStore('account', {
+export const useAccountStore = defineStore('account', {
   state: (): AccountState => ({
-    Accounts: []
+    Accounts: [],
+    APIInstance: undefined as unknown as AxiosInstance
   }),
   getters: {},
   actions: {
     getWithdrawAccounts (req: GetWithdrawAccountsRequest) {
       doAction<GetWithdrawAccountsRequest, GetWithdrawAccountsResponse>(
-        api,
+        this.APIInstance,
         API.GET_WITHDRAW_ACCOUNTS,
         req,
         req.Message,
@@ -29,7 +30,7 @@ export const useAccountStore = (api: AxiosInstance) => defineStore('account', {
 
     setWithdrawAddress (req: SetWithdrawAddressRequest) {
       doAction<SetWithdrawAddressRequest, SetWithdrawAddressResponse>(
-        api,
+        this.APIInstance,
         API.SET_WITHDRAW_ADDRESS,
         req,
         req.NotifyMessage,

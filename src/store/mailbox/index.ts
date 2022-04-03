@@ -10,16 +10,17 @@ import {
   MailboxState
 } from './types'
 
-export const useMailboxStore = (api: AxiosInstance) => defineStore('mailbox', {
+export const useMailboxStore = defineStore('mailbox', {
   state: (): MailboxState => ({
     Announcements: [],
-    Notifications: []
+    Notifications: [],
+    APIInstance: undefined as unknown as AxiosInstance
   }),
   getters: {},
   actions: {
     getAnnouncements (req: GetAnnouncementsRequest) {
       doAction<GetAnnouncementsRequest, GetAnnouncementsResponse>(
-        api,
+        this.APIInstance,
         API.GET_ANNOUNCEMENTS,
         req,
         req.Message,
@@ -29,7 +30,7 @@ export const useMailboxStore = (api: AxiosInstance) => defineStore('mailbox', {
     },
     getNotifications (req: GetNotificationsRequest) {
       doAction<GetNotificationsRequest, GetNotificationsResponse>(
-        api,
+        this.APIInstance,
         API.GET_NOTIFICATIONS,
         req,
         req.Message,

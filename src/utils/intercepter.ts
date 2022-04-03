@@ -72,6 +72,6 @@ const loginInterceptor = (api: AxiosInstance, to: RouteLocationNormalized, next:
 }
 
 export {
-  RouteMetaImpl,
-  loginInterceptor
+  loginInterceptor,
+  RouteMetaImpl
 }

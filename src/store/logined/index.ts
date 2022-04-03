@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia'
 import { LoginedUserState } from './types'
+import { API } from './const'
 
-export const useLoginedUserStore = defineStore('logineduser', {
+const useLoginedUserStore = defineStore('logineduser', {
   state: (): LoginedUserState => ({
     LoginedUser: undefined
   }),
@@ -10,3 +11,10 @@ export const useLoginedUserStore = defineStore('logineduser', {
   },
   actions: {}
 })
+
+export * from './types'
+
+export {
+  useLoginedUserStore,
+  API as LoginedAPI
+}

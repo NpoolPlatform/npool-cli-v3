@@ -1,13 +1,11 @@
 import { AxiosInstance, AxiosResponse } from 'axios'
 import { Cookies } from 'quasar'
-import { useLoginedUserStore } from '../store/logined'
-import { LoginedResponse } from '../store/logined/types'
+import { useLoginedUserStore, LoginedAPI, LoginedResponse } from '../store/logined'
 import { useSettingStore } from '../store/setting'
 import {
   NavigationGuardNext,
   RouteLocationNormalized
 } from 'vue-router'
-import { API as UserAPI } from '../store/users'
 
 interface RouteMetaImpl {
   ShowHeaderAnnouncement: boolean
@@ -54,7 +52,7 @@ const loginInterceptor = (api: AxiosInstance, signInPath: string, to: RouteLocat
   headers['X-User-ID'] = userID
   headers['X-App-Login-Token'] = token
 
-  api.post<unknown, AxiosResponse<LoginedResponse>>(UserAPI.LOGINED)
+  api.post<unknown, AxiosResponse<LoginedResponse>>(LoginedAPI.LOGINED)
     .then((resp: AxiosResponse<LoginedResponse>) => {
       logined.LoginedUser = resp.data.Info
       if (!logined.LoginedUser && to.meta && to.meta.NeedLogined) {

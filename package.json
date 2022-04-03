@@ -1,6 +1,6 @@
 {
   "name": "npool-cli-v2",
-  "version": "0.0.9",
+  "version": "0.0.23",
   "private": false,
   "license": "ISC",
   "description": "Npool Client SDK",
@@ -17,13 +17,14 @@
     "url": "https://github.com/NpoolPlatform/npool-cli/issues"
   },
   "homepage": "https://github.com/NpoolPlatform/npool-cli#README",
-  "main": "dist/cjs/index.js",
+  "main": "dist/index.js",
   "module": "dist/esm5/index.js",
   "es2015": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
+      "import": "./dist/cjs/index.js",
       "node": "./dist/cjs/index.js",
       "require": "./dist/cjs/index.js",
       "es2015": "./dist/esm/index.js",
@@ -45,9 +46,10 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "build:dts": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.esm5.json ./tsconfig.types.json && yarn lint:dts",
+    "build:dts": "yarn build && tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.esm5.json ./tsconfig.types.json && yarn lint:dts",
     "lint:dts": "eslint --fix --ext .ts dist",
-    "build:types": "tsc -b ./tsconfig.types.json"
+    "build:types": "tsc -b ./tsconfig.types.json",
+    "build": "npx tsc"
   },
   "pre-commit": [
     "lint"
@@ -110,6 +112,7 @@
     "picomatch": "^2.3.1",
     "pinia": "^2.0.13",
     "pkg-dir": "^5.0.0",
+    "pnpm": "^6.32.4",
     "randombytes": "^2.1.0",
     "resolve": "^1.22.0",
     "rollup-plugin-terser": "^7.0.2",

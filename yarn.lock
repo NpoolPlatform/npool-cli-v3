@@ -993,6 +993,11 @@ pkg-dir@^4.1.0:
   dependencies:
     find-up "^4.0.0"
 
+pnpm@^6.32.4:
+  version "6.32.4"
+  resolved "https://registry.npmmirror.com/pnpm/-/pnpm-6.32.4.tgz#74d486f3563d8e4476141b43af18dd08c9291961"
+  integrity sha512-rOG+VpOzs6g/MR5HWc8KTlLAx3ljdRJCMQwSg1DE/hzAaqF/Y2zIHH0u6dZw/XnRb9w1U8rOs9MJT9jMt7e+Qw==
+
 prelude-ls@^1.2.1:
   version "1.2.1"
   resolved "https://registry.npmmirror.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"

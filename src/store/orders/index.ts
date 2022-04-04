@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios'
 import { defineStore } from 'pinia'
 import { InvalidID } from '../../const'
-import { remain } from 'src/utils/timer'
+import { remain } from '../../utils/timer'
 import { doAction, doActionWithError } from '../action'
 import { API, OrderTimeoutSeconds, PaymentState } from './const'
 import {

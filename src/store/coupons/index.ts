@@ -1,4 +1,3 @@
-import { AxiosInstance } from 'axios'
 import { defineStore } from 'pinia'
 import { doAction } from '../action'
 import { API } from './const'
@@ -17,8 +16,7 @@ export const useCouponStore = defineStore('coupon', {
     Allocateds: [],
     FixAmounts: new Map<string, FixAmount>(),
     Discounts: new Map<string, Discount>(),
-    SpecialOffers: [],
-    APIInstance: undefined as unknown as AxiosInstance
+    SpecialOffers: []
   }),
   getters: {
     getFixAmountByID (): (id: string) => FixAmount {
@@ -35,7 +33,6 @@ export const useCouponStore = defineStore('coupon', {
   actions: {
     getCoupons (req: GetCouponsRequest) {
       doAction<GetCouponsRequest, GetCouponsResponse>(
-        this.APIInstance,
         API.GET_COUPONS,
         req,
         req.Message,
@@ -57,7 +54,6 @@ export const useCouponStore = defineStore('coupon', {
 
     getSpecialOffers (req: GetSpecialOffersRequest) {
       doAction<GetSpecialOffersRequest, GetSpecialOffersResponse>(
-        this.APIInstance,
         API.GET_SPECIAL_OFFERS,
         req,
         req.Message,

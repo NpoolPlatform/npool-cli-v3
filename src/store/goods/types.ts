@@ -1,6 +1,5 @@
 import { Coin } from '../coins/types'
 import { ReqMessage } from '../notifications/types'
-import { State } from '../state'
 
 interface DeviceInfo {
   ID?: string
@@ -162,7 +161,7 @@ interface GetAppGoodsResponse {
   Infos: Array<AppGood>
 }
 
-interface GoodState extends State {
+interface GoodState {
   Goods: Array<Good>
   Recommends: Array<RecommendGood>
   Promotions: Array<Promotion>

@@ -11,15 +11,13 @@ import {
 } from './types'
 import { doAction } from '../action'
 import { API } from './const'
-import { AxiosInstance } from 'axios'
 
 export const useLangStore = defineStore('lang', {
   state: (): LanguageState => ({
     Languages: [],
     Messages: {},
     CurLang: undefined,
-    Countries: [],
-    APIInstance: undefined as unknown as AxiosInstance
+    Countries: []
   }),
   getters: {
     getCountryByID (): (id: string) => Country {
@@ -36,7 +34,6 @@ export const useLangStore = defineStore('lang', {
   actions: {
     getLangs (req: GetLangsRequest) {
       doAction<GetLangsRequest, GetLangsResponse>(
-        this.APIInstance,
         API.GET_LANGS,
         req,
         req.Message,
@@ -52,7 +49,6 @@ export const useLangStore = defineStore('lang', {
     },
     getLangMessages (req: GetLangMessagesRequest) {
       doAction<GetLangMessagesRequest, GetLangMessagesResponse>(
-        this.APIInstance,
         API.GET_LANG_MESSAGES,
         req,
         req.Message,
@@ -69,7 +65,6 @@ export const useLangStore = defineStore('lang', {
     },
     getCountries (req: GetCountriesRequest, done: () => void) {
       doAction<GetCountriesRequest, GetCountriesResponse>(
-        this.APIInstance,
         API.GET_COUNTRIES,
         req,
         req.Message,

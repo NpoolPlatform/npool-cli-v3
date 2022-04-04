@@ -1,4 +1,3 @@
-import { AxiosInstance } from 'axios'
 import { defineStore } from 'pinia'
 import { Cookies } from 'quasar'
 import { doAction, doActionWithError } from '../action'
@@ -34,14 +33,12 @@ export const useUserStore = defineStore('user', {
     PasswordUpdated: false,
     LoginHistories: [] as Array<LoginHistory>,
     GoogleOTPAuth: '',
-    GoogleSecret: '',
-    APIInstance: undefined as unknown as AxiosInstance
+    GoogleSecret: ''
   }),
   getters: {},
   actions: {
     signup (req: SignupRequest) {
       doAction<SignupRequest, SignupResponse>(
-        this.APIInstance,
         API.SIGNUP,
         req,
         req.Message,
@@ -51,7 +48,6 @@ export const useUserStore = defineStore('user', {
     },
     signin (req: LoginRequest) {
       doAction<LoginRequest, LoginResponse>(
-        this.APIInstance,
         API.LOGIN,
         req,
         req.Message,
@@ -70,7 +66,6 @@ export const useUserStore = defineStore('user', {
     resetPassword (req: ResetPasswordRequest) {
       this.PasswordUpdated = false
       doAction<ResetPasswordRequest, ResetPasswordResponse>(
-        this.APIInstance,
         API.RESET_PASSWORD,
         req,
         req.Message,
@@ -80,7 +75,6 @@ export const useUserStore = defineStore('user', {
     },
     updatePassword (req: UpdatePasswordRequest) {
       doAction<UpdatePasswordRequest, UpdatePasswordResponse>(
-        this.APIInstance,
         API.UPDATE_PASSWORD,
         req,
         req.Message,
@@ -90,7 +84,6 @@ export const useUserStore = defineStore('user', {
     },
     getLoginHistories (req: GetLoginHistoriesRequest) {
       doAction<GetLoginHistoriesRequest, GetLoginHistoriesResponse>(
-        this.APIInstance,
         API.GET_LOGIN_HISTORIES,
         req,
         req.Message,
@@ -100,7 +93,6 @@ export const useUserStore = defineStore('user', {
     },
     setupGoogleAuthentication (req: SetupGoogleAuthenticationRequest) {
       doAction<SetupGoogleAuthenticationRequest, SetupGoogleAuthenticationResponse>(
-        this.APIInstance,
         API.SETUP_GOOGLE_AUTHENTICATION,
         req,
         req.Message,
@@ -111,7 +103,6 @@ export const useUserStore = defineStore('user', {
     },
     updateAccount (req: UpdateAccountRequest, done: () => void) {
       doAction<UpdateAccountRequest, UpdateAccountResponse>(
-        this.APIInstance,
         API.UPDATE_ACCOUNT,
         req,
         req.Message,
@@ -123,7 +114,6 @@ export const useUserStore = defineStore('user', {
     },
     createExtra (req: CreateAppUserExtraRequest, done: (error: boolean) => void) {
       doActionWithError<CreateAppUserExtraRequest, CreateAppUserExtraResponse>(
-        this.APIInstance,
         API.CREATE_EXTRA,
         req,
         req.Message,
@@ -138,7 +128,6 @@ export const useUserStore = defineStore('user', {
     },
     updateExtra (req: UpdateAppUserExtraRequest, done: (error: boolean) => void) {
       doActionWithError<UpdateAppUserExtraRequest, UpdateAppUserExtraResponse>(
-        this.APIInstance,
         API.UPDATE_EXTRA,
         req,
         req.Message,

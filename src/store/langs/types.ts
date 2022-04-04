@@ -1,6 +1,5 @@
 import { LocaleMessages, VueMessageType } from 'vue-i18n'
 import { ReqMessage } from '../notifications/types'
-import { State } from '../state'
 
 interface Language {
   ID: string
@@ -61,7 +60,7 @@ interface GetCountriesResponse {
   Infos: Array<Country>
 }
 
-interface LanguageState extends State {
+interface LanguageState {
   Languages: Array<Language>
   Messages: LocaleMessages<VueMessageType>
   CurLang?: Language

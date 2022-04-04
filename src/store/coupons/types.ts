@@ -1,5 +1,4 @@
 import { ReqMessage } from '../notifications/types'
-import { State } from '../state'
 
 interface UserCoupon {
   ID: string
@@ -55,7 +54,7 @@ interface GetSpecialOffersResponse {
   Infos: Array<SpecialOffer>
 }
 
-interface CouponState extends State {
+interface CouponState {
   Allocateds: Array<UserCoupon>
   FixAmounts: Map<string, FixAmount>
   Discounts: Map<string, Discount>

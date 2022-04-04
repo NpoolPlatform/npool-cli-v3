@@ -11,12 +11,10 @@ import {
 } from './types'
 import { API } from './const'
 import { GoogleTokenType } from '../../const'
-import { AxiosInstance } from 'axios'
 
 export const useCodeRepoStore = defineStore('coderepo', {
   state: (): CodeRepoState => ({
-    GoogleToken: new Map<string, string>(),
-    APIInstance: undefined as unknown as AxiosInstance
+    GoogleToken: new Map<string, string>()
   }),
   getters: {
     getGoogleTokenByType (): (tokenType: GoogleTokenType) => string | undefined {
@@ -28,7 +26,6 @@ export const useCodeRepoStore = defineStore('coderepo', {
   actions: {
     sendEmailCode (req: SendEmailCodeRequest) {
       doAction<SendEmailCodeRequest, SendEmailCodeResponse>(
-        this.APIInstance,
         API.SEND_EMAIL_CODE,
         req,
         req.Message,
@@ -44,7 +41,6 @@ export const useCodeRepoStore = defineStore('coderepo', {
     },
     sendSMSCode (req: SendSMSCodeRequest) {
       doAction<SendSMSCodeRequest, SendSMSCodeResponse>(
-        this.APIInstance,
         API.SEND_SMS_CODE,
         req,
         req.Message,

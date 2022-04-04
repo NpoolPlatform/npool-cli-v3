@@ -1,4 +1,3 @@
-import { AxiosInstance } from 'axios'
 import { defineStore } from 'pinia'
 import { useI18n } from 'vue-i18n'
 import { doAction } from '../action'
@@ -29,8 +28,7 @@ export const useGoodStore = defineStore('good', {
     Recommends: [],
     Promotions: [],
     FeeTypes: [],
-    AppGoods: [],
-    APIInstance: undefined as unknown as AxiosInstance
+    AppGoods: []
   }),
   getters: {
     getGoodPrice (): (good: Good) => number {
@@ -147,7 +145,6 @@ export const useGoodStore = defineStore('good', {
   actions: {
     getGoods (req: GetGoodsRequest) {
       doAction<GetGoodsRequest, GetGoodsResponse>(
-        this.APIInstance,
         API.GET_GOODS,
         req,
         req.Message,
@@ -157,7 +154,6 @@ export const useGoodStore = defineStore('good', {
     },
     getRecommends (req: GetRecommendsRequest) {
       doAction<GetRecommendsRequest, GetRecommendsResponse>(
-        this.APIInstance,
         API.GET_RECOMMENDS,
         req,
         req.Message,
@@ -167,7 +163,6 @@ export const useGoodStore = defineStore('good', {
     },
     getPromotions (req: GetPromotionsRequest) {
       doAction<GetPromotionsRequest, GetPromotionsResponse>(
-        this.APIInstance,
         API.GET_PROMOTIONS,
         req,
         req.Message,
@@ -177,7 +172,6 @@ export const useGoodStore = defineStore('good', {
     },
     getFeeType (req: GetFeeTypesRequest) {
       doAction<GetFeeTypesRequest, GetFeeTypesResponse>(
-        this.APIInstance,
         API.GET_FEE_TYPES,
         req,
         req.Message,
@@ -187,7 +181,6 @@ export const useGoodStore = defineStore('good', {
     },
     getGood (req: GetGoodRequest) {
       doAction<GetGoodRequest, GetGoodResponse>(
-        this.APIInstance,
         API.GET_GOOD,
         req,
         req.Message,
@@ -202,7 +195,6 @@ export const useGoodStore = defineStore('good', {
     },
     getAppGoods (req: GetAppGoodsRequest) {
       doAction<GetAppGoodsRequest, GetAppGoodsResponse>(
-        this.APIInstance,
         API.GET_APP_GOODS,
         req,
         req.Message,

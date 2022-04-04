@@ -1,4 +1,3 @@
-import { AxiosInstance } from 'axios'
 import { defineStore } from 'pinia'
 import { doAction } from '../action'
 import { API } from './const'
@@ -10,14 +9,12 @@ import {
 
 export const useBenefitStore = defineStore('benefit', {
   state: (): BenefitState => ({
-    Benefits: [],
-    APIInstance: undefined as unknown as AxiosInstance
+    Benefits: []
   }),
   getters: {},
   actions: {
     getBenefits (req: GetBenefitsRequest) {
       doAction<GetBenefitsRequest, GetBenefitsResponse>(
-        this.APIInstance,
         API.GET_BENEFITS,
         req,
         req.Message,

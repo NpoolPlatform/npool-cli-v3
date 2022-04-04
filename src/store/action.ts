@@ -1,16 +1,16 @@
-import { AxiosResponse } from 'axios'
-import { AxiosInstance } from 'axios'
+import { AxiosInstance, AxiosResponse } from 'axios'
+import { createAPI } from '../api'
 import { useNotificationStore } from './notifications'
 import { ReqMessage } from './notifications/types'
 
 const notification = useNotificationStore()
 
 function doAction<MyRequest, MyResponse> (
-  api: AxiosInstance,
   url: string,
   req: MyRequest,
   message: ReqMessage,
   success: (resp: MyResponse) => void) {
+  const api = createAPI() as AxiosInstance
   api
     .post<MyRequest, AxiosResponse<MyResponse>>(url, req)
     .then((response: AxiosResponse<MyResponse>) => {
@@ -27,12 +27,12 @@ function doAction<MyRequest, MyResponse> (
     })
 }
 function doActionWithError<MyRequest, MyResponse> (
-  api: AxiosInstance,
   url: string,
   req: MyRequest,
   message: ReqMessage,
   success: (resp: MyResponse) => void,
   error: () => void) {
+  const api = createAPI() as AxiosInstance
   api
     .post<MyRequest, AxiosResponse<MyResponse>>(url, req)
     .then((response: AxiosResponse<MyResponse>) => {

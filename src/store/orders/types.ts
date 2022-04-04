@@ -2,7 +2,6 @@ import { Account } from '../accounts/types'
 import { Coin } from '../coins/types'
 import { Good } from '../goods/types'
 import { ReqMessage } from '../notifications/types'
-import { State } from '../state'
 
 interface OrderBase {
   ID: string
@@ -102,7 +101,7 @@ interface GetOrdersResponse {
   Infos: Array<Order>
 }
 
-interface OrderState extends State {
+interface OrderState {
   Orders: Array<Order>
 }
 

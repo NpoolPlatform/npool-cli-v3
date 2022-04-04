@@ -1,5 +1,4 @@
 import { ReqMessage } from '../notifications/types'
-import { State } from '../state'
 
 interface Benefit {
   ID: string
@@ -17,7 +16,7 @@ interface GetBenefitsResponse {
   Infos: Array<Benefit>
 }
 
-interface BenefitState extends State {
+interface BenefitState {
   Benefits: Array<Benefit>
 }
 

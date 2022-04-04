@@ -1,4 +1,3 @@
-import { AxiosInstance } from 'axios'
 import { defineStore } from 'pinia'
 import { doAction } from '../action'
 import { API } from './const'
@@ -12,14 +11,12 @@ import {
 
 export const useAccountStore = defineStore('account', {
   state: (): AccountState => ({
-    Accounts: [],
-    APIInstance: undefined as unknown as AxiosInstance
+    Accounts: []
   }),
   getters: {},
   actions: {
     getWithdrawAccounts (req: GetWithdrawAccountsRequest) {
       doAction<GetWithdrawAccountsRequest, GetWithdrawAccountsResponse>(
-        this.APIInstance,
         API.GET_WITHDRAW_ACCOUNTS,
         req,
         req.Message,
@@ -30,7 +27,6 @@ export const useAccountStore = defineStore('account', {
 
     setWithdrawAddress (req: SetWithdrawAddressRequest) {
       doAction<SetWithdrawAddressRequest, SetWithdrawAddressResponse>(
-        this.APIInstance,
         API.SET_WITHDRAW_ADDRESS,
         req,
         req.NotifyMessage,

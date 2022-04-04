@@ -1,4 +1,3 @@
-import { AxiosInstance } from 'axios'
 import { defineStore } from 'pinia'
 import { NotSet } from '../../const'
 import { doAction } from '../action'
@@ -7,8 +6,7 @@ import { Coin, CoinState, GetCoinsRequest, GetCoinsResponse } from './types'
 
 export const useCoinStore = defineStore('coin', {
   state: (): CoinState => ({
-    Coins: [],
-    APIInstance: undefined as unknown as AxiosInstance
+    Coins: []
   }),
   getters: {
     getCoinLogo (): (coin: Coin) => string {
@@ -34,7 +32,6 @@ export const useCoinStore = defineStore('coin', {
   actions: {
     getCoins (req: GetCoinsRequest) {
       doAction<GetCoinsRequest, GetCoinsResponse>(
-        this.APIInstance,
         API.GET_COINS,
         req,
         req.Message,

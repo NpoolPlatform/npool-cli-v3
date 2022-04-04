@@ -1,4 +1,3 @@
-import { AxiosInstance } from 'axios'
 import { defineStore } from 'pinia'
 import { doAction, doActionWithError } from '../action'
 import { API, ImageType } from './const'
@@ -21,14 +20,12 @@ import {
 export const useKYCStore = defineStore('kyc', {
   state: (): KYCState => ({
     Images: new Map<ImageType, KYCImage>(),
-    KYC: undefined as unknown as KYC,
-    APIInstance: undefined as unknown as AxiosInstance
+    KYC: undefined as unknown as KYC
   }),
   getters: {},
   actions: {
     uploadImage (req: UpdateKYCImageRequest, done: (error: boolean) => void) {
       doActionWithError<UpdateKYCImageRequest, UpdateKYCImageResponse>(
-        this.APIInstance,
         API.UPLOAD_IMAGE,
         req,
         req.Message,
@@ -45,7 +42,6 @@ export const useKYCStore = defineStore('kyc', {
     },
     createKYC (req: CreateKYCRequest, done: (error: boolean) => void) {
       doActionWithError<CreateKYCRequest, CreateKYCResponse>(
-        this.APIInstance,
         API.CREATE_KYC,
         req,
         req.Message,
@@ -58,7 +54,6 @@ export const useKYCStore = defineStore('kyc', {
     },
     updateKYC (req: UpdateKYCRequest) {
       doAction<UpdateKYCRequest, UpdateKYCResponse>(
-        this.APIInstance,
         API.UPDATE_KYC,
         req,
         req.Message,
@@ -68,7 +63,6 @@ export const useKYCStore = defineStore('kyc', {
     },
     getKYC (req: GetKYCRequest, done: () => void) {
       doAction<GetKYCRequest, GetKYCResponse>(
-        this.APIInstance,
         API.UPDATE_KYC,
         req,
         req.Message,
@@ -79,7 +73,6 @@ export const useKYCStore = defineStore('kyc', {
     },
     getKYCImage (req: GetKYCImageRequest, done: () => void) {
       doAction<GetKYCImageRequest, GetKYCImageResponse>(
-        this.APIInstance,
         API.GET_KYC_IMAGE,
         req,
         req.Message,

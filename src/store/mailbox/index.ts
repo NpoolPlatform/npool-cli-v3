@@ -1,4 +1,3 @@
-import { AxiosInstance } from 'axios'
 import { defineStore } from 'pinia'
 import { doAction } from '../action'
 import { API } from './const'
@@ -13,14 +12,12 @@ import {
 export const useMailboxStore = defineStore('mailbox', {
   state: (): MailboxState => ({
     Announcements: [],
-    Notifications: [],
-    APIInstance: undefined as unknown as AxiosInstance
+    Notifications: []
   }),
   getters: {},
   actions: {
     getAnnouncements (req: GetAnnouncementsRequest) {
       doAction<GetAnnouncementsRequest, GetAnnouncementsResponse>(
-        this.APIInstance,
         API.GET_ANNOUNCEMENTS,
         req,
         req.Message,
@@ -30,7 +27,6 @@ export const useMailboxStore = defineStore('mailbox', {
     },
     getNotifications (req: GetNotificationsRequest) {
       doAction<GetNotificationsRequest, GetNotificationsResponse>(
-        this.APIInstance,
         API.GET_NOTIFICATIONS,
         req,
         req.Message,

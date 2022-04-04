@@ -1,4 +1,3 @@
-import { AxiosInstance } from 'axios'
 import { defineStore } from 'pinia'
 import { InvalidID } from '../../const'
 import { remain } from '../../utils/timer'
@@ -19,8 +18,7 @@ import {
 
 export const useOrderStore = defineStore('order', {
   state: (): OrderState => ({
-    Orders: [],
-    APIInstance: undefined as unknown as AxiosInstance
+    Orders: []
   }),
   getters: {
     getOrderByID (): (id: string) => Order {
@@ -105,7 +103,6 @@ export const useOrderStore = defineStore('order', {
 
     submitOrder (req: SubmitOrderRequest, handler: (orderID: string, error: boolean) => void) {
       doActionWithError<SubmitOrderRequest, SubmitOrderResponse>(
-        this.APIInstance,
         API.SUBMIT_ORDER,
         req,
         req.Message,
@@ -119,7 +116,6 @@ export const useOrderStore = defineStore('order', {
 
     getOrder (req: GetOrderRequest) {
       doAction<GetOrderRequest, GetOrderResponse>(
-        this.APIInstance,
         API.GET_ORDER,
         req,
         req.Message,
@@ -130,7 +126,6 @@ export const useOrderStore = defineStore('order', {
 
     createPayment (req: CreatePaymentRequest, handler: (paymentID: string, error: boolean) => void) {
       doActionWithError<CreatePaymentRequest, CreatePaymentResponse>(
-        this.APIInstance,
         API.CREATE_PAYMENT,
         req,
         req.Message,
@@ -144,7 +139,6 @@ export const useOrderStore = defineStore('order', {
 
     getOrders (req: GetOrdersRequest) {
       doAction<GetOrdersRequest, GetOrdersResponse>(
-        this.APIInstance,
         API.GET_ORDERS,
         req,
         req.Message,

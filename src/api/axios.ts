@@ -9,8 +9,8 @@ const createAPI = (baseURL?: string, appID?: string): AxiosInstance | undefined 
     Cookies.set('X-App-ID', appID)
   }
 
-  if (Cookies.get('X-Base-URL') || Cookies.get('X-Base-URL')?.length === 0 ||
-      Cookies.get('X-App-ID') || Cookies.get('X-App-ID')?.length === 0) {
+  if (!Cookies.get('X-Base-URL') || Cookies.get('X-Base-URL')?.length === 0 ||
+      !Cookies.get('X-App-ID') || Cookies.get('X-App-ID')?.length === 0) {
     return undefined
   }
 

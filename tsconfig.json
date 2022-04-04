@@ -28,7 +28,8 @@
     "paths": {
       ".": ["./src/index"],
       "store": ["./src/store/index"],
-      "utils": ["./src/utils/index"]
+      "utils": ["./src/utils/index"],
+      "const": ["./src/const/index"],
     }
   }
 }

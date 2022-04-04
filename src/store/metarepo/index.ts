@@ -9,7 +9,9 @@ export const useMetaRepoStore = defineStore('metarepo', {
       Content: ''
     },
     MenuUserCenter: '',
-    TabOrder: ''
+    TabOrder: '',
+    BaseURL: '',
+    AppID: ''
   }),
   getters: {},
   actions: {}

@@ -1,6 +1,6 @@
 {
   "name": "npool-cli-v2",
-  "version": "0.0.72",
+  "version": "0.0.74",
   "private": false,
   "license": "ISC",
   "description": "Npool Client SDK",
@@ -46,6 +46,14 @@
       "require": "./dist/const/index.js",
       "es2015": "./dist/const/index.js",
       "default": "./dist/const/index.js"
+    },
+    "./axios": {
+      "types": "./dist/axios/index.d.ts",
+      "import": "./dist/axios/index.js",
+      "node": "./dist/axios/index.js",
+      "require": "./dist/axios/index.js",
+      "es2015": "./dist/axios/index.js",
+      "default": "./dist/axios/index.js"
     }
   },
   "typesVersions": {
@@ -58,6 +66,9 @@
       ],
       "const": [
         "./dist/const/index.d.ts"
+      ],
+      "axios": [
+        "./dist/axios/index.d.ts"
       ]
     }
   },

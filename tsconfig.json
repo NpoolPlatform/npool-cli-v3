@@ -30,6 +30,7 @@
       "store": ["./src/store/index"],
       "utils": ["./src/utils/index"],
       "const": ["./src/const/index"],
+      "axios": ["./src/axios/index"]
     }
   }
 }

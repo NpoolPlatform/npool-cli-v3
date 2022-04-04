@@ -8,7 +8,9 @@ interface TipMessage {
 interface MetaRepoState {
   TopTip?: TipMessage,
   MenuUserCenter: string,
-  TabOrder: string
+  TabOrder: string,
+  BaseURL: string,
+  AppID: string
 }
 
 export {

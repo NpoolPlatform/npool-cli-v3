@@ -153,3 +153,5 @@ export const useUserStore = defineStore('user', {
     }
   }
 })
+
+export * from './types'

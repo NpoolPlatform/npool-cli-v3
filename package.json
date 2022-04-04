@@ -1,6 +1,6 @@
 {
   "name": "npool-cli-v2",
-  "version": "0.0.68",
+  "version": "0.0.69",
   "private": false,
   "license": "ISC",
   "description": "Npool Client SDK",
@@ -38,6 +38,14 @@
       "require": "./dist/utils/index.js",
       "es2015": "./dist/utils/index.js",
       "default": "./dist/utils/index.js"
+    },
+    "./const": {
+      "types": "./dist/const/index.d.ts",
+      "import": "./dist/const/index.js",
+      "node": "./dist/const/index.js",
+      "require": "./dist/const/index.js",
+      "es2015": "./dist/const/index.js",
+      "default": "./dist/const/index.js"
     }
   },
   "typesVersions": {
@@ -47,6 +55,9 @@
       ],
       "utils": [
         "./dist/utils/index.d.ts"
+      ],
+      "const": [
+        "./dist/const/index.d.ts"
       ]
     }
   },

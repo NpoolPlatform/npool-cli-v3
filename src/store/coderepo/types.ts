@@ -1,6 +1,6 @@
 import { ReqMessage } from '../notifications/types'
 import { IReCaptchaComposition } from 'vue-recaptcha-v3'
-import { GoogleTokenType } from './const'
+import { GoogleTokenType } from '../../const'
 import { State } from '../state'
 
 interface SendEmailCodeRequest {

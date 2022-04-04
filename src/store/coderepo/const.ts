@@ -3,12 +3,6 @@ enum API {
   SEND_SMS_CODE = '/third-gateway/v1/send/sms/code'
 }
 
-const GoogleRecaptchaKey = '6Lcg4yIeAAAAANIyLz_mbENlYRSkK1C_aQkejb_4'
-
-enum GoogleTokenType {
-  Login = 'login'
-}
-
 enum MessageUsedFor {
   Signup = 'SIGNUP',
   Update = 'UPDATE',
@@ -17,7 +11,5 @@ enum MessageUsedFor {
 
 export {
   API,
-  GoogleRecaptchaKey,
-  GoogleTokenType,
   MessageUsedFor
 }

@@ -9,7 +9,8 @@ import {
   SendSMSCodeRequest,
   SendSMSCodeResponse
 } from './types'
-import { API, GoogleTokenType } from './const'
+import { API } from './const'
+import { GoogleTokenType } from '../../const'
 import { AxiosInstance } from 'axios'
 
 export const useCodeRepoStore = defineStore('coderepo', {
@@ -90,7 +91,5 @@ export const useCodeRepoStore = defineStore('coderepo', {
 
 export * from './types'
 export {
-  GoogleRecaptchaKey,
-  GoogleTokenType,
   MessageUsedFor
 } from './const'

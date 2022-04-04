@@ -1,42 +1,25 @@
 import axios, { AxiosInstance } from "axios"
-
-class APIMeta {
-  private static meta: APIMeta
-
-  private baseURL: string
-  private appID: string
-
-  private constructor(baseURL?: string, appID?: string) {
-    this.baseURL = baseURL ? baseURL : ''
-    this.appID = appID ? appID : ''
-  }
-  public static new(baseURL?: string, appID?: string): APIMeta {
-    if (!this.meta) {
-      this.meta = new APIMeta(baseURL, appID)
-      return this.meta
-    }
-    return this.meta
-  }
-  public getBaseURL(): string {
-    return this.baseURL
-  }
-  public getAppID(): string {
-    return this.appID
-  }
-}
+import { Cookies } from "quasar"
 
 const createAPI = (baseURL?: string, appID?: string): AxiosInstance | undefined => {
-  const meta = APIMeta.new(baseURL, appID)
-  if (meta.getBaseURL().length === 0 || meta.getAppID().length === 0) {
+  if (baseURL) {
+    Cookies.set('X-Base-URL', baseURL)
+  }
+  if (appID) {
+    Cookies.set('X-App-ID', appID)
+  }
+
+  if (Cookies.get('X-Base-URL') || Cookies.get('X-Base-URL')?.length === 0 ||
+      Cookies.get('X-App-ID') || Cookies.get('X-App-ID')?.length === 0) {
     return undefined
   }
 
   return axios.create({
     method: 'POST',
-    baseURL: process.env.DEV ? '/api' : meta.getBaseURL(),
+    baseURL: process.env.DEV ? '/api' : Cookies.get('X-Base-URL'),
     headers: {
       'Content-Type': 'application/json',
-      'X-App-ID': meta.getAppID()
+      'X-App-ID': Cookies.get('X-App-ID')
     },
     withCredentials: true,
     responseType: 'json',

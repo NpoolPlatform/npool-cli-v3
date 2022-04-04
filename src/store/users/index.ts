@@ -28,7 +28,7 @@ import {
   LoginHistory
 } from './types'
 
-const useUserStore = defineStore('user', {
+export const useUserStore = defineStore('user', {
   state: (): UserState => ({
     SignupUser: undefined,
     PasswordUpdated: false,
@@ -153,8 +153,3 @@ const useUserStore = defineStore('user', {
     }
   }
 })
-
-export {
-  useUserStore,
-  API
-}

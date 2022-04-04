@@ -1,7 +1,7 @@
-import { Benefit } from 'src/store/benefits/types'
-import { useGoodStore } from 'src/store/goods'
-import { PaymentState } from 'src/store/orders/const'
-import { Order } from 'src/store/orders/types'
+import { Benefit } from '../store/benefits/types'
+import { useGoodStore } from '../store/goods'
+import { PaymentState } from '../store/orders/const'
+import { Order } from '../store/orders/types'
 
 interface BenefitModel {
   CoinTypeID: string

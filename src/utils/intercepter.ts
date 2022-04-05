@@ -14,6 +14,7 @@ interface RouteMetaImpl {
   ShowSignHelper: boolean
   ShowFooterTop: boolean
   ShowTopTip: boolean
+  NeedLogined: boolean
 }
 
 declare module 'vue-router' {

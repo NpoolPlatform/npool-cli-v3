@@ -19,7 +19,10 @@ const createAPI = (baseURL?: string, appID?: string): AxiosInstance | undefined 
     baseURL: process.env.DEV ? '/api' : Cookies.get('X-Base-URL'),
     headers: {
       'Content-Type': 'application/json',
-      'X-App-ID': Cookies.get('X-App-ID')
+      'X-App-ID': Cookies.get('X-App-ID'),
+      'X-User-ID': Cookies.get('X-User-ID'),
+      'X-Lang-ID': Cookies.get('X-Lang-ID'),
+      'X-App-Login-Token': Cookies.get('X-App-Login-Token')
     },
     withCredentials: true,
     responseType: 'json',

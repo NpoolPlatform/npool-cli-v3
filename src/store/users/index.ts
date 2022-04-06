@@ -52,10 +52,6 @@ export const useUserStore = defineStore('user', {
         req,
         req.Message,
         (resp: LoginResponse): void => {
-          const headers = this.APIInstance.defaults.headers as unknown as Record<string, string>
-
-          headers['X-User-ID'] = resp.Info.User?.ID as string
-          headers['X-App-Login-Token'] = resp.Token
           Cookies.set('X-User-ID', resp.Info.User?.ID as string, { expires: '4h', secure: true })
           Cookies.set('X-App-Login-Token', resp.Token, { expires: '4h', secure: true })
 

@@ -1,4 +1,4 @@
-import { LocaleMessages, VueMessageType } from 'vue-i18n'
+import { Composer, LocaleMessages, VueMessageType } from 'vue-i18n'
 import { ReqMessage } from '../notifications/types'
 
 interface Language {
@@ -65,6 +65,7 @@ interface LanguageState {
   Messages: LocaleMessages<VueMessageType>
   CurLang?: Language
   Countries: Array<Country>
+  I18n: Composer<unknown, unknown, unknown, any>
 }
 
 export {

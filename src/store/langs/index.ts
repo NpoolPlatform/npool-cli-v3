@@ -21,7 +21,8 @@ export const useLangStore = defineStore('lang', {
     Languages: [],
     Messages: {},
     CurLang: undefined,
-    Countries: []
+    Countries: [],
+    I18n: useI18n()
   }),
   getters: {
     getCountryByID (): (id: string) => Country {
@@ -45,7 +46,7 @@ export const useLangStore = defineStore('lang', {
           this.Languages = []
           resp.Infos.forEach((lang) => {
             if (!this.CurLang) {
-              this.setLang(lang)
+              this.setLang(lang.Lang)
             }
             this.Languages.push(lang.Lang)
           })
@@ -81,17 +82,13 @@ export const useLangStore = defineStore('lang', {
     setLang (lang: Language) {
       this.CurLang = lang
       Cookies.set('X-Lang-ID', lang.ID, { expires: '4h', secure: true })
-      const i18n = useI18n()
-      i18n.locale.value = lang.Lang
-
-      // eslint-disable-next-line @typescript-eslint/unbound-method
-      const { t } = useI18n({ useScope: 'global' })
+      this.I18n.locale = lang.Lang
       this.getLangMessages({
         LangID: lang.ID,
         Message: {
           Error: {
-            Title: t('MSG_GET_LANG_MESSAGES'),
-            Message: t('MSG_GET_LANG_MESSAGES_FAIL'),
+            Title: this.I18n.t('MSG_GET_LANG_MESSAGES'),
+            Message: this.I18n.t('MSG_GET_LANG_MESSAGES_FAIL'),
             Popup: true,
             Type: NotificationType.Error
           }
@@ -99,8 +96,7 @@ export const useLangStore = defineStore('lang', {
       })
     },
     updateLocaleMessage () {
-      const i18n = useI18n()
-      const oldMessages = i18n.getLocaleMessage(this.CurLang?.Lang as string)
+      const oldMessages = this.I18n.getLocaleMessage(this.CurLang?.Lang as string)
       const newMessages = this.Messages[this.CurLang?.Lang as string]
     
       if (!newMessages) {
@@ -111,7 +107,7 @@ export const useLangStore = defineStore('lang', {
         oldMessages[key] = newMessages[key]
       })
     
-      i18n.setLocaleMessage(this.CurLang?.Lang as string, oldMessages)
+      this.I18n.setLocaleMessage(this.CurLang?.Lang as string, oldMessages)
     }
   }
 })

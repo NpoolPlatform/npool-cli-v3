@@ -169,8 +169,6 @@ interface UpdateAppUserExtraResponse {
 }
 
 interface UserState {
-  SignupUser?: AppUser
-  PasswordUpdated: boolean
   LoginHistories: Array<LoginHistory>
   GoogleOTPAuth: string
   GoogleSecret: string

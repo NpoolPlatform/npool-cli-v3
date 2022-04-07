@@ -29,24 +29,22 @@ import {
 
 export const useUserStore = defineStore('user', {
   state: (): UserState => ({
-    SignupUser: undefined,
-    PasswordUpdated: false,
     LoginHistories: [] as Array<LoginHistory>,
     GoogleOTPAuth: '',
     GoogleSecret: ''
   }),
   getters: {},
   actions: {
-    signup (req: SignupRequest) {
+    signup (req: SignupRequest, done: () => void) {
       doAction<SignupRequest, SignupResponse>(
         API.SIGNUP,
         req,
         req.Message,
-        (resp: SignupResponse): void => {
-          this.SignupUser = resp.Info
+        (): void => {
+          done()
         })
     },
-    signin (req: LoginRequest) {
+    signin (req: LoginRequest, done: () => void) {
       doAction<LoginRequest, LoginResponse>(
         API.LOGIN,
         req,
@@ -57,25 +55,27 @@ export const useUserStore = defineStore('user', {
 
           const logined = useLoginedUserStore()
           logined.LoginedUser = resp.Info
+
+          done()
         })
     },
-    resetPassword (req: ResetPasswordRequest) {
+    resetPassword (req: ResetPasswordRequest, done: () => void) {
       this.PasswordUpdated = false
       doAction<ResetPasswordRequest, ResetPasswordResponse>(
         API.RESET_PASSWORD,
         req,
         req.Message,
         (): void => {
-          this.PasswordUpdated = true
+          done()
         })
     },
-    updatePassword (req: UpdatePasswordRequest) {
+    updatePassword (req: UpdatePasswordRequest, done: () => void) {
       doAction<UpdatePasswordRequest, UpdatePasswordResponse>(
         API.UPDATE_PASSWORD,
         req,
         req.Message,
         (): void => {
-          this.PasswordUpdated = true
+          done()
         })
     },
     getLoginHistories (req: GetLoginHistoriesRequest) {

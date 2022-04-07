@@ -1,4 +1,4 @@
-import { MaxPasswordLength, MinPasswordLength, VerificationCodeLength } from 'src/const/const'
+import { MaxPasswordLength, MinPasswordLength, VerificationCodeLength } from '../const/const'
 
 const validateEmailAddress = (addr: string): boolean => {
   const reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/

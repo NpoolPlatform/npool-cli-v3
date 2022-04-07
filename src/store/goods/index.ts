@@ -53,13 +53,13 @@ export const useGoodStore = defineStore('good', {
       this.Recommends.forEach((good: RecommendGood) => {
         goods.push(good.Good)
       })
-      this.Goods.forEach((good: RecommendGood) => {
+      this.Goods.forEach((good: Good) => {
         for (const myGood of goods) {
-          if (myGood.Good.Good.ID === good.Good.Good.Good.ID) {
+          if (myGood.Good.Good.ID === good.Good.Good.ID) {
             return
           }
         }
-        goods.push(good.Good)
+        goods.push(good)
       })
       return goods
     },

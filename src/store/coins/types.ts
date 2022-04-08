@@ -10,6 +10,7 @@ interface Coin {
   ENV: string
   ForPay: boolean
   HomePage: string
+  Specs: string
 }
 
 interface GetCoinsRequest {

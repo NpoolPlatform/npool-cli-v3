@@ -88,6 +88,12 @@ export const useOrderStore = defineStore('order', {
         }
         return true
       }
+    },
+
+    orderPaid (): (order: Order) => boolean {
+      return (order: Order) => {
+        return order.Order.Payment ? order.Order.Payment.State === 'done' : false
+      }
     }
   },
   actions: {

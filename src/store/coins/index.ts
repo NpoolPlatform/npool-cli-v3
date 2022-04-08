@@ -26,7 +26,6 @@ export const useCoinStore = defineStore('coin', {
         return 'icons/Logo.svg'
       }
     },
-
     getCoinByID (): (id: string) => Coin {
       return (id: string): Coin => {
         for (const coin of this.Coins) {
@@ -35,6 +34,15 @@ export const useCoinStore = defineStore('coin', {
           }
         }
         return undefined as unknown as Coin
+      }
+    },
+    getCoinDescriptionByCoinUsedFor (): (id: string, usedFor: string) => Description {
+      return (id: string, usedFor: string): Description => {
+        const descriptions = this.Descriptions.get(id)
+        if (!descriptions) {
+          return undefined as unknown as Description
+        }
+        return descriptions.get(usedFor) as Description
       }
     }
   },

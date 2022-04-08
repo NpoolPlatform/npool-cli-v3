@@ -54,7 +54,7 @@ export const useCodeRepoStore = defineStore('coderepo', {
           }
         })
     },
-    getGoogleToken (req: GetGoogleTokenRequest) {
+    getGoogleToken (req: GetGoogleTokenRequest, done: (token: string) => void) {
       const recaptcha = req.Recaptcha
       const notification = useNotificationStore()
       if (recaptcha) {
@@ -65,6 +65,7 @@ export const useCodeRepoStore = defineStore('coderepo', {
               void executeRecaptcha(req.Req)
                 .then((token: string) => {
                   this.GoogleToken.set(req.Req, token)
+                  done(token)
                 })
                 .catch((err: Error) => {
                   if (req.Message.Error) {

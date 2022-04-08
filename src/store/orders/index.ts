@@ -174,5 +174,5 @@ export const useOrderStore = defineStore('order', {
   }
 })
 
-export { PaymentState, OrderTimeoutSeconds } from './const'
+export { PaymentState, OrderTimeoutSeconds, RemainMax } from './const'
 export * from './types'

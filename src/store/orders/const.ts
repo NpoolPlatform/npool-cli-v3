@@ -6,6 +6,7 @@ enum API {
 }
 
 const OrderTimeoutSeconds = 6 * 60 * 60
+const RemainMax = '06:00:00'
 
 enum PaymentState {
   WAIT = 'wait',
@@ -17,5 +18,6 @@ enum PaymentState {
 export {
   API,
   OrderTimeoutSeconds,
-  PaymentState
+  PaymentState,
+  RemainMax
 }

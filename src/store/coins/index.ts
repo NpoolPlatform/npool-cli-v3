@@ -2,11 +2,20 @@ import { defineStore } from 'pinia'
 import { NotSet } from '../../const'
 import { doAction } from '../action'
 import { API } from './const'
-import { Coin, CoinState, GetCoinsRequest, GetCoinsResponse } from './types'
+import {
+  Coin,
+  CoinState,
+  Description,
+  GetCoinsRequest,
+  GetCoinsResponse,
+  GetDescriptionRequest,
+  GetDescriptionResponse
+} from './types'
 
 export const useCoinStore = defineStore('coin', {
   state: (): CoinState => ({
-    Coins: []
+    Coins: [],
+    Descriptions: new Map<string, Map<string, Description>>()
   }),
   getters: {
     getCoinLogo (): (coin: Coin) => string {
@@ -37,6 +46,20 @@ export const useCoinStore = defineStore('coin', {
         req.Message,
         (resp: GetCoinsResponse): void => {
           this.Coins = resp.Infos
+        })
+    },
+    getCoinDescription (req: GetDescriptionRequest) {
+      doAction<GetDescriptionRequest, GetDescriptionResponse>(
+        API.GET_DESCRIPTION,
+        req,
+        req.Message,
+        (resp: GetDescriptionResponse): void => {
+          let descriptions = this.Descriptions.get(resp.Info.CoinTypeID)
+          if (!descriptions) {
+            descriptions = new Map<string, Description>()
+          }
+          descriptions.set(resp.Info.UsedFor, resp.Info)
+          this.Descriptions.set(resp.Info.CoinTypeID, descriptions)
         })
     }
   }

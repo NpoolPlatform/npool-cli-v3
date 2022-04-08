@@ -19,13 +19,35 @@ interface GetCoinsResponse {
   Infos: Array<Coin>
 }
 
+interface Description {
+  ID: string
+  CoinTypeID: string
+  Title: string
+  Message: string
+  UsedFor: string
+}
+
+interface GetDescriptionRequest {
+  CoinTypeID: string
+  UsedFor: string
+  Message: ReqMessage
+}
+
+interface GetDescriptionResponse {
+  Info: Description
+}
+
 interface CoinState {
   Coins: Array<Coin>
+  Descriptions: Map<string, Map<string, Description>>
 }
 
 export {
   Coin,
   CoinState,
   GetCoinsRequest,
-  GetCoinsResponse
+  GetCoinsResponse,
+  Description,
+  GetDescriptionRequest,
+  GetDescriptionResponse
 }

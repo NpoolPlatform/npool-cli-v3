@@ -175,6 +175,7 @@ interface UserState {
 }
 
 export {
+  AppUser,
   UserInfo,
   AppUserExtra,
   UserState,

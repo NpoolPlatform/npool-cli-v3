@@ -93,6 +93,15 @@ interface CreatePaymentResponse {
   Info: Order
 }
 
+interface UpdatePaymentRequest {
+  Info: Payment
+  Message: ReqMessage
+}
+
+interface UpdatePaymentResponse {
+  Info: Payment
+}
+
 interface GetOrdersRequest {
   Message: ReqMessage
 }
@@ -116,5 +125,7 @@ export {
   GetOrdersRequest,
   GetOrdersResponse,
   OutOfGas,
+  UpdatePaymentRequest,
+  UpdatePaymentResponse,
   OrderState
 }

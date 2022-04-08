@@ -2,7 +2,8 @@ enum API {
   SUBMIT_ORDER = '/cloud-hashing-apis-v2/v1/submit/order',
   GET_ORDER = '/cloud-hashing-apis-v2/v1/get/order',
   CREATE_PAYMENT = '/cloud-hashing-apis-v2/v1/create/order/payment',
-  GET_ORDERS = '/cloud-hashing-apis-v2/v1/get/orders/by/app/user'
+  GET_ORDERS = '/cloud-hashing-apis-v2/v1/get/orders/by/app/user',
+  UPDATE_PAYMENT = '/cloud-hashing-order/v1/update/payment/by/user'
 }
 
 const OrderTimeoutSeconds = 6 * 60 * 60

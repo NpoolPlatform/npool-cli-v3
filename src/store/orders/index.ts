@@ -13,7 +13,9 @@ import {
   Order,
   OrderState,
   SubmitOrderRequest,
-  SubmitOrderResponse
+  SubmitOrderResponse,
+  UpdatePaymentRequest,
+  UpdatePaymentResponse
 } from './types'
 
 export const useOrderStore = defineStore('order', {
@@ -151,6 +153,22 @@ export const useOrderStore = defineStore('order', {
         req.Message,
         (resp: GetOrdersResponse): void => {
           this.Orders = resp.Infos
+        })
+    },
+
+    updatePayment (req: UpdatePaymentRequest, done: () => void) {
+      doAction<UpdatePaymentRequest, UpdatePaymentResponse>(
+        API.UPDATE_PAYMENT,
+        req,
+        req.Message,
+        (resp: UpdatePaymentResponse): void => {
+          for (const order of this.Orders) {
+            if (order.Order.Payment.ID === resp.Info.ID) {
+              order.Order.Payment = resp.Info
+              break
+            }
+          }
+          done()
         })
     }
   }

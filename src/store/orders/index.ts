@@ -114,13 +114,14 @@ export const useOrderStore = defineStore('order', {
         })
     },
 
-    getOrder (req: GetOrderRequest) {
+    getOrder (req: GetOrderRequest, done: () => void) {
       doAction<GetOrderRequest, GetOrderResponse>(
         API.GET_ORDER,
         req,
         req.Message,
         (resp: GetOrderResponse): void => {
           this.insertOrder(resp.Info)
+          done()
         })
     },
 

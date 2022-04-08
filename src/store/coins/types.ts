@@ -9,6 +9,7 @@ interface Coin {
   ReservedAmount: number
   ENV: string
   ForPay: boolean
+  HomePage: string
 }
 
 interface GetCoinsRequest {

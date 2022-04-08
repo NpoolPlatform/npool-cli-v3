@@ -29,6 +29,7 @@ interface Payment {
   PlatformTransactionID: string
   CreateAt: number
   CoinUSDCurrency: number
+  UserSetPaid: boolean
 }
 
 interface OutOfGas {

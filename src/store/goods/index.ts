@@ -179,7 +179,7 @@ export const useGoodStore = defineStore('good', {
           this.FeeTypes = resp.Infos
         })
     },
-    getGood (req: GetGoodRequest) {
+    getGood (req: GetGoodRequest, done: (good: Good) => void) {
       doAction<GetGoodRequest, GetGoodResponse>(
         API.GET_GOOD,
         req,
@@ -191,6 +191,7 @@ export const useGoodStore = defineStore('good', {
             }
           }
           this.Goods.push(resp.Info)
+          done(resp.Info)
         })
     },
     getAppGoods (req: GetAppGoodsRequest) {

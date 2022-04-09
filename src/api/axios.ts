@@ -24,7 +24,7 @@ const createAPI = (baseURL?: string, appID?: string): AxiosInstance | undefined 
       'X-Lang-ID': Cookies.get('X-Lang-ID'),
       'X-App-Login-Token': Cookies.get('X-App-Login-Token')
     },
-    withCredentials: true,
+    withCredentials: false,
     responseType: 'json',
     timeout: 60000
   })

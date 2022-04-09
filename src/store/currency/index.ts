@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 import { doGet } from '../action'
-import { Coin, GetCoinsCurrenciesRequest } from '../coins'
+import { Coin } from '../coins'
 import { NotificationType } from '../notifications'
 import { API, Currency } from './const'
-import { CurrencyState } from './types'
+import { CurrencyState, GetCoinsCurrenciesRequest } from './types'
 import { useI18n } from 'vue-i18n'
 
 export const useCurrencyStore = defineStore('currency', {

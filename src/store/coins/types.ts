@@ -39,11 +39,6 @@ interface GetDescriptionResponse {
   Info: Description
 }
 
-interface GetCoinsCurrenciesRequest {
-  Currencies: Array<string>
-  Message: ReqMessage
-}
-
 interface CoinState {
   Coins: Array<Coin>
   Descriptions: Map<string, Map<string, Description>>
@@ -57,6 +52,5 @@ export {
   GetCoinsResponse,
   Description,
   GetDescriptionRequest,
-  GetDescriptionResponse,
-  GetCoinsCurrenciesRequest
+  GetDescriptionResponse
 }

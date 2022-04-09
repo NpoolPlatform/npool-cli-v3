@@ -147,5 +147,6 @@ export {
   buildBenefits,
   buildOrders,
   OrderGroup,
-  OrderModel
+  OrderModel,
+  BenefitModel
 }

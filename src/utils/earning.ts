@@ -114,7 +114,7 @@ const last7DaysEarningCoin = (coinTypeID: string, done: (coinAmount: number) => 
   rangeEarningCoin(coinTypeID, done, start, end)
 }
 
-const las24HoursEarningCoin = (coinTypeID: string, done: (coinAmount: number) => void) => {
+const last24HoursEarningCoin = (coinTypeID: string, done: (coinAmount: number) => void) => {
   const end = new Date().getTime() / 1000
   const start = new Date().getTime() / 1000 - SecondsEachDay
   rangeEarningCoin(coinTypeID, done, start, end)
@@ -128,6 +128,6 @@ export {
   rangeEarningCoin,
   last30DaysEarningCoin,
   last7DaysEarningCoin,
-  las24HoursEarningCoin,
+  last24HoursEarningCoin,
   totalEarningCoin
 }

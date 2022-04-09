@@ -2,7 +2,7 @@ import { useGoodStore } from '../store/goods'
 import { useCurrencyStore, Currency } from '../store/currency'
 import { useBenefitStore, Benefit } from '../store/benefits'
 import { ReviewState, SecondsEachDay } from '../const'
-import { useTransactionStore } from '../store/transactions'
+import { useTransactionStore, WithdrawType } from '../store/transactions'
 import { UserWithdrawState } from '../store/transactions'
 import { useCoinStore } from '../store/coins'
 
@@ -50,7 +50,20 @@ const totalWithdrawedEarningUSD = (done: (usdAmount: number) => void) => {
 
   let amount = 0
   transaction.Withdraws.forEach((withdraw: UserWithdrawState) => {
-    if (withdraw.State != ReviewState.Approved) {
+    if (withdraw.State !== ReviewState.Approved) {
+      return
+    }
+    if (withdraw.Withdraw.WithdrawType != WithdrawType.Benefit) {
+      return
+    }
+    let found = false
+    for (const tx of transaction.Transactions) {
+      if (tx.ID === withdraw.Withdraw.PlatformTransactionID) {
+        found = true
+        break
+      }
+    }
+    if (!found) {
       return
     }
     const coin = coins.getCoinByID(withdraw.Withdraw.CoinTypeID)

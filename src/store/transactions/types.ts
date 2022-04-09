@@ -29,6 +29,7 @@ interface UserWithdraw {
   WithdrawToAccountID: string
   Amount: number
   WithdrawType: WithdrawType
+  PlatformTransactionID: string
 }
 
 interface SubmitUserWithdrawRequest {

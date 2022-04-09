@@ -6,7 +6,7 @@ import { useTransactionStore, WithdrawType } from '../store/transactions'
 import { UserWithdrawState } from '../store/transactions'
 import { useCoinStore } from '../store/coins'
 
-const rangeEarningUSD = (done: (usdAmount: number) => void, start?: number, end?: number) => {
+const rangeEarningCurrency = (currency: Currency, done: (usdAmount: number) => void, start?: number, end?: number) => {
   const benefit = useBenefitStore()
   const currencies = useCurrencyStore()
   const goods = useGoodStore()
@@ -24,7 +24,7 @@ const rangeEarningUSD = (done: (usdAmount: number) => void, start?: number, end?
       return
     }
 
-    currencies.getCoinCurrency(good.Main.Name, Currency.USD, (currency: number) => {
+    currencies.getCoinCurrency(good.Main.Name, currency, (currency: number) => {
       amount += currency * benefit.Amount
       done(amount)
     })
@@ -33,8 +33,16 @@ const rangeEarningUSD = (done: (usdAmount: number) => void, start?: number, end?
   done(amount)
 }
 
+const rangeEarningUSD = (done: (usdAmount: number) => void, start?: number, end?: number) => {
+  rangeEarningCurrency(Currency.USD, done, start, end)
+}
+
 const totalEarningUSD = (done: (usdAmount: number) => void) => {
   rangeEarningUSD(done)
+}
+
+const totalEarningCurrency = (currency: Currency, done: (usdAmount: number) => void) => {
+  rangeEarningCurrency(currency, done)
 }
 
 const last24HoursEarningUSD = (done: (usdAmount: number) => void) => {
@@ -43,7 +51,7 @@ const last24HoursEarningUSD = (done: (usdAmount: number) => void) => {
   rangeEarningUSD(done, start, end)
 }
 
-const totalWithdrawedEarningUSD = (done: (usdAmount: number) => void) => {
+const totalWithdrawedEarningCurrency = (currency: Currency, done: (usdAmount: number) => void) => {
   const transaction = useTransactionStore()
   const currencies = useCurrencyStore()
   const coins = useCoinStore()
@@ -67,12 +75,16 @@ const totalWithdrawedEarningUSD = (done: (usdAmount: number) => void) => {
       return
     }
     const coin = coins.getCoinByID(withdraw.Withdraw.CoinTypeID)
-    currencies.getCoinCurrency(coin, Currency.USD, (usdAmount: number) => {
+    currencies.getCoinCurrency(coin, currency, (usdAmount: number) => {
       amount += withdraw.Withdraw.Amount * usdAmount
       done(amount)
     })
   })
   done(amount)
+}
+
+const totalWithdrawedEarningUSD = (done: (usdAmount: number) => void) => {
+  totalWithdrawedEarningCurrency(Currency.USD, done)
 }
 
 const rangeEarningCoin = (coinTypeID: string, done: (coinAmount: number) => void, start?: number, end?: number) => {
@@ -129,5 +141,8 @@ export {
   last30DaysEarningCoin,
   last7DaysEarningCoin,
   last24HoursEarningCoin,
-  totalEarningCoin
+  totalEarningCoin,
+  rangeEarningCurrency,
+  totalWithdrawedEarningCurrency,
+  totalEarningCurrency
 }

@@ -38,8 +38,8 @@ const totalEarningUSD = (done: (usdAmount: number) => void) => {
 }
 
 const last24HoursEarningUSD = (done: (usdAmount: number) => void) => {
-  const start = new Date().getTime() / 1000
-  const end = start + SecondsEachDay
+  const end = new Date().getTime() / 1000
+  const start = new Date().getTime() / 1000 - SecondsEachDay
   rangeEarningUSD(done, start, end)
 }
 
@@ -75,9 +75,59 @@ const totalWithdrawedEarningUSD = (done: (usdAmount: number) => void) => {
   done(amount)
 }
 
+const rangeEarningCoin = (coinTypeID: string, done: (coinAmount: number) => void, start?: number, end?: number) => {
+  const benefit = useBenefitStore()
+  const goods = useGoodStore()
+
+  let amount = 0
+  benefit.Benefits.forEach((benefit: Benefit) => {
+    if ((start && benefit.CreateAt < start) ||
+        (end && benefit.CreateAt > end)) {
+      return
+    }
+
+    const good = goods.getGoodByID(benefit.GoodID)
+    if (!good) {
+      return
+    }
+
+    amount += benefit.Amount
+    done(amount)
+  })
+
+  done(amount)
+}
+
+const totalEarningCoin = (coinTypeID: string, done: (coinAmount: number) => void) => {
+  rangeEarningCoin(coinTypeID, done)
+}
+
+const last30DaysEarningCoin = (coinTypeID: string, done: (coinAmount: number) => void) => {
+  const end = new Date().getTime() / 1000
+  const start = new Date().getTime() / 1000 - SecondsEachDay * 30
+  rangeEarningCoin(coinTypeID, done, start, end)
+}
+
+const last7DaysEarningCoin = (coinTypeID: string, done: (coinAmount: number) => void) => {
+  const end = new Date().getTime() / 1000
+  const start = new Date().getTime() / 1000 - SecondsEachDay * 7
+  rangeEarningCoin(coinTypeID, done, start, end)
+}
+
+const las24HoursEarningCoin = (coinTypeID: string, done: (coinAmount: number) => void) => {
+  const end = new Date().getTime() / 1000
+  const start = new Date().getTime() / 1000 - SecondsEachDay
+  rangeEarningCoin(coinTypeID, done, start, end)
+}
+
 export {
   totalEarningUSD,
   last24HoursEarningUSD,
   rangeEarningUSD,
-  totalWithdrawedEarningUSD
+  totalWithdrawedEarningUSD,
+  rangeEarningCoin,
+  last30DaysEarningCoin,
+  last7DaysEarningCoin,
+  las24HoursEarningCoin,
+  totalEarningCoin
 }

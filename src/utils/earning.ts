@@ -15,7 +15,8 @@ const totalEarningUSD = (done: (usdAmount: number) => void) => {
       return
     }
     currencys.getCoinCurrency(good.Main.Name, Currency.USD, (currency: number) => {
-      amount += currency
+      amount += currency * benefit.Amount
+      done(amount)
     })
   })
 

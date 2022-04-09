@@ -34,7 +34,7 @@ const totalEarningUSD = (done: (usdAmount: number) => void) => {
   rangeEarningUSD(done)
 }
 
-const last24HoursEearningUSD = (done: (usdAmount: number) => void) => {
+const last24HoursEarningUSD = (done: (usdAmount: number) => void) => {
   const start = new Date().getTime() / 1000
   const end = start + SecondsEachDay
   rangeEarningUSD(done, start, end)
@@ -42,6 +42,6 @@ const last24HoursEearningUSD = (done: (usdAmount: number) => void) => {
 
 export {
   totalEarningUSD,
-  last24HoursEearningUSD,
+  last24HoursEarningUSD,
   rangeEarningUSD
 }

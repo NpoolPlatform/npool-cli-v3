@@ -72,23 +72,30 @@ export const useCoinStore = defineStore('coin', {
           this.Descriptions.set(resp.Info.CoinTypeID, descriptions)
         })
     },
-    getCoinCurrencies (req: GetCoinsCurrenciesRequest) {
+    getCoinCurrencies (req: GetCoinsCurrenciesRequest, done: () => void) {
       const coins = new Map<string, string>()
       this.Coins.forEach((coin: Coin) => {
         coins.set(coin.Name.replaceAll(/^t/g, '').toLowerCase(), coin.Name)
       })
-      let ids = ''
-      coins.forEach((_, key) => {
-        ids.length > 0 ? ids += ',' + key : ids += key
-      })
-
+      const ids = Array.from(coins).map(([key, ]) => key).join(',')
       const url = API.GET_COINS_CURRENCIES + '?ids=' + ids + '&vs_currencies=' + req.Currencies.join(',')
       doGet<GetCoinsCurrenciesRequest, Map<string, Map<string, number>>>(
         url,
         req,
         req.Message,
         (resp: Map<string, Map<string, number>>): void => {
-          this.Currencies = resp
+          resp.forEach((amounts: Map<string, number>, key: string) => {
+            const myAmounts = this.Currencies.get(key)
+            if (!myAmounts) {
+              this.Currencies.set(key, amounts)
+              return
+            }
+            amounts.forEach((amount: number, cur: string) => {
+              myAmounts.set(cur, amount)
+            })
+            this.Currencies.set(key, myAmounts)
+          })
+          done()
         })
     }
   }

@@ -32,17 +32,16 @@ export const useCurrencyStore = defineStore('currency', {
         req,
         req.Message,
         (resp: Map<string, Map<string, number>>): void => {
-          resp.forEach((amounts: Map<string, number>, key: string) => {
-            const myAmounts = this.Currencies.get(key)
+          for (const [coin, map] of Object.entries(resp)) {
+            let myAmounts = this.Currencies.get(coin)
             if (!myAmounts) {
-              this.Currencies.set(key, amounts)
-              return
+              myAmounts = new Map<string, number>()
             }
-            amounts.forEach((amount: number, cur: string) => {
-              myAmounts.set(cur, amount)
-            })
-            this.Currencies.set(key, myAmounts)
-          })
+            for (const [currency, amount] of Object.entries(map)) {
+              myAmounts.set(currency, amount)
+            }
+            this.Currencies.set(coin, myAmounts)
+          }
           done()
         })
     },

@@ -1,6 +1,6 @@
 {
   "name": "npool-cli-v2",
-  "version": "0.0.115",
+  "version": "0.0.116",
   "private": false,
   "license": "ISC",
   "description": "Npool Client SDK",
@@ -171,7 +171,7 @@
     "upath2": "^3.1.12",
     "vue-i18n": "^9.0.0",
     "vue-recaptcha-v3": "^2.0.1",
-    "vue-router": "^4.0.14",
+    "vue-router": "4.0.11",
     "wrappy": "^1.0.2",
     "yocto-queue": "^0.1.0"
   }

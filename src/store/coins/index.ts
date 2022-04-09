@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia'
 import { NotSet } from '../../const'
-import { doAction } from '../action'
+import { doAction, doGet } from '../action'
 import { API } from './const'
 import {
   Coin,
   CoinState,
   Description,
+  GetCoinsCurrenciesRequest,
   GetCoinsRequest,
   GetCoinsResponse,
   GetDescriptionRequest,
@@ -15,7 +16,8 @@ import {
 export const useCoinStore = defineStore('coin', {
   state: (): CoinState => ({
     Coins: [],
-    Descriptions: new Map<string, Map<string, Description>>()
+    Descriptions: new Map<string, Map<string, Description>>(),
+    Currencies: new Map<string, Map<string, number>>()
   }),
   getters: {
     getCoinLogo (): (coin: Coin) => string {
@@ -68,6 +70,25 @@ export const useCoinStore = defineStore('coin', {
           }
           descriptions.set(resp.Info.UsedFor, resp.Info)
           this.Descriptions.set(resp.Info.CoinTypeID, descriptions)
+        })
+    },
+    getCoinCurrencies (req: GetCoinsCurrenciesRequest) {
+      const coins = new Map<string, string>()
+      this.Coins.forEach((coin: Coin) => {
+        coins.set(coin.Name.replaceAll(/^t/g, '').toLowerCase(), coin.Name)
+      })
+      let ids = ''
+      coins.forEach((_, key) => {
+        ids.length > 0 ? ids += ',' + key : ids += key
+      })
+
+      const url = API.GET_COINS_CURRENCIES + '?ids=' + ids + '&vs_currencies=' + req.Currencies.join(',')
+      doGet<GetCoinsCurrenciesRequest, Map<string, Map<string, number>>>(
+        url,
+        req,
+        req.Message,
+        (resp: Map<string, Map<string, number>>): void => {
+          this.Currencies = resp
         })
     }
   }

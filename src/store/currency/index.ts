@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { doGet } from '../action'
-import { Coin } from '../coins'
+import { Coin, useCoinStore } from '../coins'
 import { NotificationType } from '../notifications'
 import { API, Currency } from './const'
 import { CurrencyState, GetCoinsCurrenciesRequest } from './types'
@@ -21,7 +21,8 @@ export const useCurrencyStore = defineStore('currency', {
   actions: {
     getCoinCurrencies (req: GetCoinsCurrenciesRequest, done: () => void) {
       const coins = new Map<string, string>()
-      this.Coins.forEach((coin: Coin) => {
+      const coin = useCoinStore()
+      coin.Coins.forEach((coin: Coin) => {
         coins.set(this.getExchangeCoinName(coin), coin.Name)
       })
       const ids = Array.from(coins).map(([key, ]) => key).join(',')

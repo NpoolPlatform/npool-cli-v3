@@ -70,3 +70,4 @@ export const useCurrencyStore = defineStore('currency', {
 })
 
 export * from './types'
+export { Currency } from './const'

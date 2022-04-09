@@ -48,13 +48,14 @@ export const useCoinStore = defineStore('coin', {
     }
   },
   actions: {
-    getCoins (req: GetCoinsRequest) {
+    getCoins (req: GetCoinsRequest, done: () => void) {
       doAction<GetCoinsRequest, GetCoinsResponse>(
         API.GET_COINS,
         req,
         req.Message,
         (resp: GetCoinsResponse): void => {
           this.Coins = resp.Infos
+          done()
         })
     },
     getCoinDescription (req: GetDescriptionRequest) {

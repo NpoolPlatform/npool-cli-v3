@@ -53,8 +53,8 @@ interface GetUserWithdrawsRequest {
   Message: ReqMessage
 }
 
-interface GetUserWithdrawResponse {
-  Info: UserWithdraw
+interface GetUserWithdrawsResponse {
+  Infos: Array<UserWithdraw>
 }
 
 interface TransactionState {
@@ -71,6 +71,6 @@ export {
   SubmitUserWithdrawRequest,
   SubmitUserWithdrawResponse,
   GetUserWithdrawsRequest,
-  GetUserWithdrawResponse,
+  GetUserWithdrawsResponse,
   TransactionState
 }

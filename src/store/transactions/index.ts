@@ -4,6 +4,8 @@ import { API } from './const'
 import {
   GetTransactionsRequest,
   GetTransactionsResponse,
+  GetUserWithdrawsRequest,
+  GetUserWithdrawsResponse,
   SubmitUserWithdrawRequest,
   SubmitUserWithdrawResponse,
   TransactionState
@@ -32,10 +34,20 @@ export const useTransactionStore = defineStore('transaction', {
         req,
         req.Message,
         (resp: SubmitUserWithdrawResponse): void => {
-          this.Transactions.splice(0, 0, resp.Info)
+          this.Withdraws.splice(0, 0, resp.Info)
           done(false)
         }, () => {
           done(true)
+        })
+    },
+    getWithdraws (req: GetUserWithdrawsRequest, done: () => void) {
+      doAction<GetUserWithdrawsRequest, GetUserWithdrawsResponse>(
+        API.GET_WITHDRAWS,
+        req,
+        req.Message,
+        (resp: GetUserWithdrawsResponse): void => {
+          this.Withdraws = resp.Infos
+          done()
         })
     }
   }

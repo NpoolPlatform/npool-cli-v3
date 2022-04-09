@@ -19,6 +19,12 @@ enum GoogleTokenType {
   Login = 'login'
 }
 
+enum ReviewState {
+  Approved = 'approved',
+  Rejected = 'rejected',
+  Wait = 'wait'
+}
+
 export {
   NotSet,
   AccountType,
@@ -28,5 +34,6 @@ export {
   InvalidID,
   GoogleRecaptchaKey,
   GoogleTokenType,
-  SecondsEachDay
+  SecondsEachDay,
+  ReviewState
 }

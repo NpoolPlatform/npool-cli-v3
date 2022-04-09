@@ -3,8 +3,6 @@ import { WithdrawType } from './const'
 
 interface Transaction {
   ID: string
-  AppID: string
-  UserID: string
   FromAddressID: string
   ToAddressID: string
   CoinTypeID: string

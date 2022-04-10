@@ -7,7 +7,9 @@ import {
   SendEmailCodeRequest,
   SendEmailCodeResponse,
   SendSMSCodeRequest,
-  SendSMSCodeResponse
+  SendSMSCodeResponse,
+  VerifyGoogleAuthenticationCodeRequest,
+  VerifyGoogleAuthenticationCodeResponse
 } from './types'
 import { API } from './const'
 import { GoogleTokenType } from '../../const'
@@ -82,6 +84,21 @@ export const useCodeRepoStore = defineStore('coderepo', {
             }
           })
       }
+    },
+    verifyGoogleAuthenticationCode (req: VerifyGoogleAuthenticationCodeRequest) {
+      doAction<VerifyGoogleAuthenticationCodeRequest, VerifyGoogleAuthenticationCodeResponse>(
+        API.VERIFY_GOOGLE_AUTHENTICATION,
+        req,
+        req.NotifyMessage,
+        (resp: VerifyGoogleAuthenticationCodeResponse): void => {
+          const notification = useNotificationStore()
+          if (resp.Code < 0) {
+            if (req.NotifyMessage.Error) {
+              req.NotifyMessage.Error.Description = resp.Message
+              notification.Notifications.push(req.NotifyMessage.Error)
+            }
+          }
+        })
     }
   }
 })

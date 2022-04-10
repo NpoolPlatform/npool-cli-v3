@@ -38,6 +38,16 @@ interface GoogleToken {
   Token: string
 }
 
+interface VerifyGoogleAuthenticationCodeRequest {
+  Code: string
+  NotifyMessage: ReqMessage
+}
+
+interface VerifyGoogleAuthenticationCodeResponse {
+  Code: number
+  Message: string
+}
+
 interface CodeRepoState {
   GoogleToken: Map<string, string>
 }
@@ -49,5 +59,7 @@ export {
   GoogleToken,
   SendSMSCodeRequest,
   SendSMSCodeResponse,
+  VerifyGoogleAuthenticationCodeRequest,
+  VerifyGoogleAuthenticationCodeResponse,
   CodeRepoState
 }

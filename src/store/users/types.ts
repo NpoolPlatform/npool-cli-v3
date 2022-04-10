@@ -168,6 +168,24 @@ interface UpdateAppUserExtraResponse {
   Info: AppUserExtra
 }
 
+interface CreateAppUserCtrlRequest {
+  Info: AppUserControl
+  Message: ReqMessage
+}
+
+interface CreateAppUserCtrlResponse {
+  Info: AppUserControl
+}
+
+interface UpdateAppUserCtrlRequest {
+  Info: AppUserControl
+  Message: ReqMessage
+}
+
+interface UpdateAppUserCtrlResponse {
+  Info: AppUserControl
+}
+
 interface UserState {
   LoginHistories: Array<LoginHistory>
   GoogleOTPAuth: string
@@ -178,6 +196,7 @@ export {
   AppUser,
   UserInfo,
   AppUserExtra,
+  AppUserControl,
   UserState,
   LoginRequest,
   LoginResponse,
@@ -198,5 +217,9 @@ export {
   CreateAppUserExtraRequest,
   CreateAppUserExtraResponse,
   UpdateAppUserExtraRequest,
-  UpdateAppUserExtraResponse
+  UpdateAppUserExtraResponse,
+  CreateAppUserCtrlRequest,
+  CreateAppUserCtrlResponse,
+  UpdateAppUserCtrlRequest,
+  UpdateAppUserCtrlResponse
 }

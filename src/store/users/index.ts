@@ -24,7 +24,11 @@ import {
   UserInfo,
   UpdateAppUserExtraRequest,
   UpdateAppUserExtraResponse,
-  LoginHistory
+  LoginHistory,
+  CreateAppUserCtrlRequest,
+  CreateAppUserCtrlResponse,
+  UpdateAppUserCtrlRequest,
+  UpdateAppUserCtrlResponse
 } from './types'
 
 export const useUserStore = defineStore('user', {
@@ -134,6 +138,28 @@ export const useUserStore = defineStore('user', {
           done(false)
         }, () => {
           done(true)
+        })
+    },
+    createCtrl (req: CreateAppUserCtrlRequest, done: () => void) {
+      doAction<CreateAppUserCtrlRequest, CreateAppUserCtrlResponse>(
+        API.CREATE_CONTROL,
+        req,
+        req.Message,
+        (resp: CreateAppUserCtrlResponse): void => {
+          const logined = useLoginedUserStore()
+          logined.LoginedUser.Ctrl = resp.Info
+          done()
+        })
+    },
+    updateCtrl (req: UpdateAppUserCtrlRequest, done: () => void) {
+      doAction<UpdateAppUserCtrlRequest, UpdateAppUserCtrlRequest>(
+        API.UPDATE_CONTROL,
+        req,
+        req.Message,
+        (resp: UpdateAppUserCtrlResponse): void => {
+          const logined = useLoginedUserStore()
+          logined.LoginedUser.Ctrl = resp.Info
+          done()
         })
     }
   }

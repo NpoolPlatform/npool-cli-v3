@@ -8,7 +8,9 @@ enum API {
   SETUP_GOOGLE_AUTHENTICATION = '/third-gateway/v1/setup/google/authentication',
   UPDATE_ACCOUNT = '/cloud-hashing-apis-v2/v1/update/account',
   CREATE_EXTRA = '/cloud-hashing-apis-v2/v1/create/app/user/extra',
-  UPDATE_EXTRA = '/cloud-hashing-apis-v2/v1/update/app/user/extra'
+  UPDATE_EXTRA = '/cloud-hashing-apis-v2/v1/update/app/user/extra',
+  UPDATE_CONTROL = '/appuser-manager/v1/update/app/user/control',
+  CREATE_CONTROL = '/appuser-manager/v1/create/app/user/control'
 }
 
 export {

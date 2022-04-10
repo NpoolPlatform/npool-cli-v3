@@ -1,3 +1,5 @@
+import { useLoginedUserStore } from '../store/logined'
+import { Referral } from '../store/inspire'
 import { Benefit } from '../store/benefits/types'
 import { useGoodStore } from '../store/goods'
 import { PaymentState } from '../store/orders/const'
@@ -141,6 +143,30 @@ const buildOrders = (orders: Array<Order>, group: OrderGroup): Array<OrderModel>
   })
 
   return models
+}
+
+interface ReferralItem {
+  Referral: Referral
+  Children: Array<Referral>
+}
+
+export const buildReferralTree = (referrals: Array<Referral>): Array<ReferralItem> => {
+  const logined = useLoginedUserStore()
+
+  let referral = {} as Referral
+  for (const r of referrals) {
+    if (r.User.ID === logined.LoginedUser.User.ID) {
+      referral = r
+      break
+    }
+  }
+
+  const root = {
+    Referral: referral,
+    Children: referrals.filter((r) => r.User.ID !== logined.LoginedUser.User.ID)
+  } as ReferralItem
+
+  return [root]
 }
 
 export {

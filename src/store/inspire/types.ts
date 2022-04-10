@@ -34,6 +34,7 @@ interface Referral {
   USDAmount: number
   SubUSDAmount: number
   Kol: boolean
+  InvitedCount: number
   Summaries: Array<CoinSummary>
 }
 

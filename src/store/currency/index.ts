@@ -83,4 +83,4 @@ export const useCurrencyStore = defineStore('currency', {
 })
 
 export * from './types'
-export { Currency, CoinType } from './const'
+export { Currency, CoinType, PrideCoinName } from './const'

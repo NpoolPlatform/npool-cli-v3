@@ -11,8 +11,11 @@ enum CoinType {
   USDTERC20 = 'tether'
 }
 
+const PrideCoinName = 'USDT'
+
 export {
   API,
   Currency,
-  CoinType
+  CoinType,
+  PrideCoinName
 }

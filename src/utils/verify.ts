@@ -46,9 +46,15 @@ const validateMobileNO = (no: string) => {
   return reg.test(formatMobileNO(no))
 }
 
+const validateUsername = (username: string) => {
+  const reg = /^[a-zA-Z0-9][[a-zA-Z0-9_-]{3,15}$/
+  return reg.test(username)
+}
+
 export {
   validateEmailAddress,
   validateVerificationCode,
   validatePassword,
-  validateMobileNO
+  validateMobileNO,
+  validateUsername
 }

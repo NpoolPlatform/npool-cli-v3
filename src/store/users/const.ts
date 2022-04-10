@@ -10,7 +10,9 @@ enum API {
   CREATE_EXTRA = '/cloud-hashing-apis-v2/v1/create/app/user/extra',
   UPDATE_EXTRA = '/cloud-hashing-apis-v2/v1/update/app/user/extra',
   UPDATE_CONTROL = '/appuser-manager/v1/update/app/user/control',
-  CREATE_CONTROL = '/appuser-manager/v1/create/app/user/control'
+  CREATE_CONTROL = '/appuser-manager/v1/create/app/user/control',
+  UPDATE_EMAIL = '/cloud-hashing-apis-v2/v1/update/emailaddress',
+  UPDATE_PHONE = '/cloud-hashing-apis-v2/v1/update/phoneno'
 }
 
 export {

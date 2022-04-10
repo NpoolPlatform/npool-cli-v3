@@ -28,7 +28,11 @@ import {
   CreateAppUserCtrlRequest,
   CreateAppUserCtrlResponse,
   UpdateAppUserCtrlRequest,
-  UpdateAppUserCtrlResponse
+  UpdateAppUserCtrlResponse,
+  UpdateEmailRequest,
+  UpdateEmailResponse,
+  UpdatePhoneRequest,
+  UpdatePhoneResponse
 } from './types'
 
 export const useUserStore = defineStore('user', {
@@ -159,6 +163,28 @@ export const useUserStore = defineStore('user', {
         (resp: UpdateAppUserCtrlResponse): void => {
           const logined = useLoginedUserStore()
           logined.LoginedUser.Ctrl = resp.Info
+          done()
+        })
+    },
+    updateEmail (req: UpdateEmailRequest, done: () => void) {
+      doAction<UpdateEmailRequest, UpdateEmailResponse>(
+        API.UPDATE_EMAIL,
+        req,
+        req.Message,
+        (resp: UpdateEmailResponse): void => {
+          const logined = useLoginedUserStore()
+          logined.LoginedUser = resp.Info
+          done()
+        })
+    },
+    updateMobile (req: UpdatePhoneRequest, done: () => void) {
+      doAction<UpdatePhoneRequest, UpdatePhoneResponse>(
+        API.UPDATE_PHONE,
+        req,
+        req.Message,
+        (resp: UpdatePhoneResponse): void => {
+          const logined = useLoginedUserStore()
+          logined.LoginedUser = resp.Info
           done()
         })
     }

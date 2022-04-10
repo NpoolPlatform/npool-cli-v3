@@ -186,6 +186,32 @@ interface UpdateAppUserCtrlResponse {
   Info: AppUserControl
 }
 
+interface UpdateEmailRequest {
+  OldVerificationCode: string
+  OldAccount: string
+  OldAccountType: string
+  NewEmailAddress: string
+  NewEmailVerificationCode: string
+  Message: ReqMessage
+}
+
+interface UpdateEmailResponse {
+  Info: UserInfo
+}
+
+interface UpdatePhoneRequest {
+  OldVerificationCode: string
+  OldAccount: string
+  OldAccountType: string
+  NewPhoneNO: string
+  NewPhoneVerificationCode: string
+  Message: ReqMessage
+}
+
+interface UpdatePhoneResponse {
+  Info: UserInfo
+}
+
 interface UserState {
   LoginHistories: Array<LoginHistory>
   GoogleOTPAuth: string
@@ -221,5 +247,9 @@ export {
   CreateAppUserCtrlRequest,
   CreateAppUserCtrlResponse,
   UpdateAppUserCtrlRequest,
-  UpdateAppUserCtrlResponse
+  UpdateAppUserCtrlResponse,
+  UpdateEmailRequest,
+  UpdateEmailResponse,
+  UpdatePhoneRequest,
+  UpdatePhoneResponse
 }

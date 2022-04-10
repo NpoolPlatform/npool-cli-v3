@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { doGet } from '../action'
 import { Coin, useCoinStore } from '../coins'
 import { NotificationType } from '../notifications'
-import { API, Currency } from './const'
+import { API, CoinType, Currency } from './const'
 import { CurrencyState, GetCoinsCurrenciesRequest } from './types'
 import { useI18n } from 'vue-i18n'
 
@@ -19,13 +19,8 @@ export const useCurrencyStore = defineStore('currency', {
     }
   },
   actions: {
-    getCoinCurrencies (req: GetCoinsCurrenciesRequest, done: () => void) {
-      const coins = new Map<string, string>()
-      const coin = useCoinStore()
-      coin.Coins.forEach((coin: Coin) => {
-        coins.set(this.getExchangeCoinName(coin), coin.Name)
-      })
-      const ids = Array.from(coins).map(([key, ]) => key).join(',')
+    getCoinCurrencies (req: GetCoinsCurrenciesRequest, coinNames: Array<string>, done: () => void) {
+      const ids = coinNames.join(',')
       const url = API.GET_COINS_CURRENCIES + '?ids=' + ids + '&vs_currencies=' + req.Currencies.join(',')
       doGet<GetCoinsCurrenciesRequest, Map<string, Map<string, number>>>(
         url,
@@ -45,8 +40,17 @@ export const useCurrencyStore = defineStore('currency', {
           done()
         })
     },
-    getCoinCurrency (coin: Coin, currency: Currency, done: (currency: number) => void) {
-      const amount = this.Currencies.get(this.getExchangeCoinName(coin))?.get(currency)
+    getAllCoinCurrencies (req: GetCoinsCurrenciesRequest, done: () => void) {
+      const coins = new Map<string, string>()
+      const coin = useCoinStore()
+      coin.Coins.forEach((coin: Coin) => {
+        coins.set(this.getExchangeCoinName(coin), coin.Name)
+      })
+      const ids = Array.from(coins).map(([key, ]) => key)
+      this.getCoinCurrencies(req, ids, done)
+    },
+    getCoinCurrencyByCoinName (coinName: string, currency: Currency, done: (currency: number) => void) {
+      const amount = this.Currencies.get(coinName)?.get(currency)
       if (amount !== undefined) {
         done(amount)
         return
@@ -62,12 +66,21 @@ export const useCurrencyStore = defineStore('currency', {
             Type: NotificationType.Error
           }
         }
-      }, () => {
-        this.getCoinCurrency(coin, currency, done)
+      }, [coinName], () => {
+        this.getCoinCurrencyByCoinName(coinName, currency, done)
       })
+    },
+    getCoinCurrency (coin: Coin, currency: Currency, done: (currency: number) => void) {
+      this.getCoinCurrencyByCoinName(this.getExchangeCoinName(coin), currency, done)
+    },
+    getUSDTCurrency (currency: Currency, done: (currency: number) => void) {
+      this.getCoinCurrencyByCoinName(CoinType.USDTERC20, currency, done)
+    },
+    getCoinNameCurrency (coinName: string, currency: Currency, done: (currency: number) => void) {
+      this.getCoinCurrencyByCoinName(coinName, currency, done)
     }
   }
 })
 
 export * from './types'
-export { Currency } from './const'
+export { Currency, CoinType } from './const'

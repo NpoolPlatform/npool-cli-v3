@@ -7,7 +7,12 @@ enum Currency {
   JPY = 'jpy'
 }
 
+enum CoinType {
+  USDTERC20 = 'tether'
+}
+
 export {
   API,
-  Currency
+  Currency,
+  CoinType
 }

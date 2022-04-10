@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { doAction } from '../action'
+import { doAction, doActionWithError } from '../action'
 import { API } from './const'
 import {
   GetInvitationCodeRequest,
@@ -26,13 +26,16 @@ export const useInspireStore = defineStore('inspire', {
           this.InvitationCode = resp.Info
         })
     },
-    getReferrals (req: GetReferralsRequest) {
-      doAction<GetReferralsRequest, GetReferralsResponse>(
+    getReferrals (req: GetReferralsRequest, done: (error: boolean) => void) {
+      doActionWithError<GetReferralsRequest, GetReferralsResponse>(
         API.GET_REFERRALS,
         req,
         req.Message,
         (resp: GetReferralsResponse): void => {
           this.Referrals = resp.Infos
+          done(false)
+        }, () => {
+          done(true)
         })
     }
   }

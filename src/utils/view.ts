@@ -146,8 +146,9 @@ const buildOrders = (orders: Array<Order>, group: OrderGroup): Array<OrderModel>
 }
 
 interface ReferralItem {
+  UserID: string
   Referral: Referral
-  Children: Array<Referral>
+  children: Array<Referral>
 }
 
 export const buildReferralTree = (referrals: Array<Referral>): Array<ReferralItem> | undefined => {
@@ -166,8 +167,9 @@ export const buildReferralTree = (referrals: Array<Referral>): Array<ReferralIte
   }
 
   const root = {
+    UserID: referral.User.ID,
     Referral: referral,
-    Children: referrals.filter((r) => r.User.ID !== logined.LoginedUser.User.ID)
+    children: referrals.filter((r) => r.User.ID !== logined.LoginedUser.User.ID)
   } as ReferralItem
 
   return [root]
@@ -178,5 +180,6 @@ export {
   buildOrders,
   OrderGroup,
   OrderModel,
-  BenefitModel
+  BenefitModel,
+  ReferralItem
 }

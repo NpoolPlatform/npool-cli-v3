@@ -85,7 +85,7 @@ export const useCodeRepoStore = defineStore('coderepo', {
           })
       }
     },
-    verifyGoogleAuthenticationCode (req: VerifyGoogleAuthenticationCodeRequest) {
+    verifyGoogleAuthenticationCode (req: VerifyGoogleAuthenticationCodeRequest, done: (error: boolean) => void) {
       doAction<VerifyGoogleAuthenticationCodeRequest, VerifyGoogleAuthenticationCodeResponse>(
         API.VERIFY_GOOGLE_AUTHENTICATION,
         req,
@@ -97,6 +97,9 @@ export const useCodeRepoStore = defineStore('coderepo', {
               req.NotifyMessage.Error.Description = resp.Message
               notification.Notifications.push(req.NotifyMessage.Error)
             }
+            done(true)
+          } else {
+            done(false)
           }
         })
     }

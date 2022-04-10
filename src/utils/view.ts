@@ -150,15 +150,19 @@ interface ReferralItem {
   Children: Array<Referral>
 }
 
-export const buildReferralTree = (referrals: Array<Referral>): Array<ReferralItem> => {
+export const buildReferralTree = (referrals: Array<Referral>): Array<ReferralItem> | undefined => {
   const logined = useLoginedUserStore()
 
-  let referral = {} as Referral
+  let referral = undefined as unknown as Referral
   for (const r of referrals) {
     if (r.User.ID === logined.LoginedUser.User.ID) {
       referral = r
       break
     }
+  }
+
+  if (!referral) {
+    return referral
   }
 
   const root = {

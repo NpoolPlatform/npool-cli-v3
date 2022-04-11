@@ -51,7 +51,7 @@ const last24HoursEarningUSD = (done: (usdAmount: number) => void) => {
   rangeEarningUSD(done, start, end)
 }
 
-const totalWithdrawedEarningCoin = (coinTypeID: string): number => {
+const totalWithdrawedEarningCoin = (coinTypeID: string, done: (coinAmount: number) => void) => {
   const transaction = useTransactionStore()
   let amount = 0
 
@@ -78,9 +78,10 @@ const totalWithdrawedEarningCoin = (coinTypeID: string): number => {
     }
 
     amount += withdraw.Withdraw.Amount
+    done(amount)
   })
 
-  return amount
+  done(amount)
 }
 
 const totalWithdrawedEarningCurrency = (currency: Currency, done: (usdAmount: number) => void) => {

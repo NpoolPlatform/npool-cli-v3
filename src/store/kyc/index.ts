@@ -61,14 +61,16 @@ export const useKYCStore = defineStore('kyc', {
           this.KYC = resp.Info
         })
     },
-    getKYC (req: GetKYCRequest, done: () => void) {
-      doAction<GetKYCRequest, GetKYCResponse>(
+    getKYC (req: GetKYCRequest, done: (error: boolean) => void) {
+      doActionWithError<GetKYCRequest, GetKYCResponse>(
         API.GET_KYC,
         req,
         req.Message,
         (resp: GetKYCResponse): void => {
           this.KYC = resp.Info
-          done()
+          done(false)
+        }, () => {
+          done(true)
         })
     },
     getKYCImage (req: GetKYCImageRequest, done: () => void) {

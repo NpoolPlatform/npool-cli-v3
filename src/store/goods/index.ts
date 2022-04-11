@@ -143,13 +143,14 @@ export const useGoodStore = defineStore('good', {
     }
   },
   actions: {
-    getGoods (req: GetGoodsRequest) {
+    getGoods (req: GetGoodsRequest, done: () => void) {
       doAction<GetGoodsRequest, GetGoodsResponse>(
         API.GET_GOODS,
         req,
         req.Message,
         (resp: GetGoodsResponse): void => {
           this.Goods = resp.Infos
+          done()
         })
     },
     getRecommends (req: GetRecommendsRequest) {

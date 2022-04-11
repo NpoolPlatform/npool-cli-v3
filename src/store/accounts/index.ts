@@ -25,13 +25,14 @@ export const useAccountStore = defineStore('account', {
         })
     },
 
-    setWithdrawAddress (req: SetWithdrawAddressRequest) {
+    setWithdrawAddress (req: SetWithdrawAddressRequest, done: () => void) {
       doAction<SetWithdrawAddressRequest, SetWithdrawAddressResponse>(
         API.SET_WITHDRAW_ADDRESS,
         req,
         req.NotifyMessage,
         (resp: SetWithdrawAddressResponse): void => {
           this.Accounts.push(resp.Info)
+          done()
         })
     }
   }

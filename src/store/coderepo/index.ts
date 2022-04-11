@@ -193,7 +193,7 @@ export const useCodeRepoStore = defineStore('coderepo', {
         case AccountType.Email:
           this.verifyEmailCode({
             Code: code,
-            usedFor: usedFor,
+            UsedFor: usedFor,
             Message: {
               Error: {
                 Title: this.I18n.t('MSG_VERIFY_CODE_FAIL'),
@@ -206,7 +206,7 @@ export const useCodeRepoStore = defineStore('coderepo', {
         case AccountType.Mobile:
           this.verifySMSCode({
             Code: code,
-            usedFor: usedFor,
+            UsedFor: usedFor,
             Message: {
               Error: {
                 Title: this.I18n.t('MSG_VERIFY_CODE_FAIL'),

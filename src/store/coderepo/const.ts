@@ -8,7 +8,8 @@ enum API {
 enum MessageUsedFor {
   Signup = 'SIGNUP',
   Update = 'UPDATE',
-  SetWithdrawAddress = 'SETWITHDRAWADDRESS'
+  SetWithdrawAddress = 'SETWITHDRAWADDRESS',
+  Singin = 'SIGNIN'
 }
 
 export {

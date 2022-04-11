@@ -51,6 +51,38 @@ const last24HoursEarningUSD = (done: (usdAmount: number) => void) => {
   rangeEarningUSD(done, start, end)
 }
 
+const totalWithdrawedEarningCoin = (coinTypeID: string): number => {
+  const transaction = useTransactionStore()
+  let amount = 0
+
+  transaction.Withdraws.forEach((withdraw: UserWithdrawState) => {
+    if (withdraw.State !== ReviewState.Approved) {
+      return
+    }
+    if (withdraw.Withdraw.WithdrawType != WithdrawType.Benefit) {
+      return
+    }
+    let found = false
+    for (const tx of transaction.Transactions) {
+      if (tx.ID === withdraw.Withdraw.PlatformTransactionID) {
+        found = true
+        break
+      }
+    }
+    if (!found) {
+      return
+    }
+
+    if (coinTypeID != withdraw.Withdraw.CoinTypeID) {
+      return
+    }
+
+    amount += withdraw.Withdraw.Amount
+  })
+
+  return amount
+}
+
 const totalWithdrawedEarningCurrency = (currency: Currency, done: (usdAmount: number) => void) => {
   const transaction = useTransactionStore()
   const currencies = useCurrencyStore()
@@ -144,5 +176,6 @@ export {
   totalEarningCoin,
   rangeEarningCurrency,
   totalWithdrawedEarningCurrency,
-  totalEarningCurrency
+  totalEarningCurrency,
+  totalWithdrawedEarningCoin
 }

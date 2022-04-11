@@ -1,6 +1,7 @@
 import { ReqMessage } from '../notifications/types'
 import { IReCaptchaComposition } from 'vue-recaptcha-v3'
 import { GoogleTokenType } from '../../const'
+import { Composer } from 'vue-i18n'
 
 interface SendEmailCodeRequest {
   LangID: string
@@ -50,6 +51,7 @@ interface VerifyGoogleAuthenticationCodeResponse {
 
 interface CodeRepoState {
   GoogleToken: Map<string, string>
+  I18n: Composer<unknown, unknown, unknown, any>
 }
 
 export {

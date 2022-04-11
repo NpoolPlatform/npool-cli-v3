@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { doAction } from '../action'
-import { useNotificationStore } from '../notifications'
+import { NotificationType, useNotificationStore } from '../notifications'
 import {
   CodeRepoState,
   GetGoogleTokenRequest,
@@ -11,12 +11,15 @@ import {
   VerifyGoogleAuthenticationCodeRequest,
   VerifyGoogleAuthenticationCodeResponse
 } from './types'
-import { API } from './const'
-import { GoogleTokenType } from '../../const'
+import { API, MessageUsedFor } from './const'
+import { AccountType, GoogleTokenType } from '../../const'
+import { useLangStore } from '../langs'
+import { useI18n } from 'vue-i18n'
 
 export const useCodeRepoStore = defineStore('coderepo', {
   state: (): CodeRepoState => ({
-    GoogleToken: new Map<string, string>()
+    GoogleToken: new Map<string, string>(),
+    I18n: useI18n()
   }),
   getters: {
     getGoogleTokenByType (): (tokenType: GoogleTokenType) => string | undefined {
@@ -55,6 +58,42 @@ export const useCodeRepoStore = defineStore('coderepo', {
             }
           }
         })
+    },
+    sendVerificationCode (account: string, accountType: AccountType, usedFor: MessageUsedFor, toUsername: string) {
+      const lang = useLangStore()
+      switch (accountType) {
+        case AccountType.Email:
+          this.sendEmailCode({
+            LangID: lang.CurLang?.ID as string,
+            EmailAddress: account,
+            UsedFor: usedFor,
+            ToUsername: toUsername,
+            Message: {
+              Error: {
+                Title: this.I18n.t('MSG_SEND_EMAIL_CODE'),
+                Message: this.I18n.t('MSG_SEND_EMAIL_CODE_FAIL'),
+                Popup: true,
+                Type: NotificationType.Error
+              }
+            }
+          })
+          break
+        case AccountType.Mobile:
+          this.sendSMSCode({
+            LangID: lang.CurLang?.ID as string,
+            PhoneNO: account,
+            UsedFor: usedFor,
+            Message: {
+              Error: {
+                Title: this.I18n.t('MSG_SEND_SMS_CODE'),
+                Message: this.I18n.t('MSG_SEND_SMS_CODE_FAIL'),
+                Popup: true,
+                Type: NotificationType.Error
+              }
+            }
+          })
+          break
+      }
     },
     getGoogleToken (req: GetGoogleTokenRequest, done: (token: string) => void) {
       const recaptcha = req.Recaptcha

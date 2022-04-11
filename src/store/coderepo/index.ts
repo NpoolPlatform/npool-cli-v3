@@ -8,8 +8,12 @@ import {
   SendEmailCodeResponse,
   SendSMSCodeRequest,
   SendSMSCodeResponse,
+  VerifyEmailCodeRequest,
+  VerifyEmailCodeResponse,
   VerifyGoogleAuthenticationCodeRequest,
-  VerifyGoogleAuthenticationCodeResponse
+  VerifyGoogleAuthenticationCodeResponse,
+  VerifySMSCodeRequest,
+  VerifySMSCodeResponse
 } from './types'
 import { API, MessageUsedFor } from './const'
 import { AccountType, GoogleTokenType } from '../../const'
@@ -141,6 +145,84 @@ export const useCodeRepoStore = defineStore('coderepo', {
             done(false)
           }
         })
+    },
+    verifyEmailCode (req: VerifyEmailCodeRequest, done: (error: boolean) => void) {
+      doAction<VerifyEmailCodeRequest, VerifyEmailCodeResponse>(
+        API.VERIFY_EMAIL_CODE,
+        req,
+        req.Message,
+        (resp: VerifyEmailCodeResponse): void => {
+          const notification = useNotificationStore()
+          if (resp.Code < 0) {
+            if (req.Message.Error) {
+              req.Message.Error.Description = resp.Message
+              notification.Notifications.push(req.Message.Error)
+            }
+            done(true)
+          } else {
+            done(false)
+          }
+        })
+    },
+    verifySMSCode (req: VerifySMSCodeRequest, done: (error: boolean) => void) {
+      doAction<VerifySMSCodeRequest, VerifySMSCodeResponse>(
+        API.VERIFY_SMS_CODE,
+        req,
+        req.Message,
+        (resp: VerifySMSCodeResponse): void => {
+          const notification = useNotificationStore()
+          if (resp.Code < 0) {
+            if (req.Message.Error) {
+              req.Message.Error.Description = resp.Message
+              notification.Notifications.push(req.Message.Error)
+            }
+            done(true)
+          } else {
+            done(false)
+          }
+        })
+    },
+    verifyCode (accountType: AccountType, usedFor: MessageUsedFor, code: string, done: (error: boolean) => void) {
+      switch (accountType) {
+        case AccountType.Email:
+          this.verifyEmailCode({
+            Code: code,
+            usedFor: usedFor,
+            Message: {
+              Error: {
+                Title: this.I18n.t('MSG_VERIFY_CODE_FAIL'),
+                Popup: true,
+                Type: NotificationType.Error
+              }
+            }
+          }, done)
+          break
+        case AccountType.Mobile:
+          this.verifySMSCode({
+            Code: code,
+            usedFor: usedFor,
+            Message: {
+              Error: {
+                Title: this.I18n.t('MSG_VERIFY_CODE_FAIL'),
+                Popup: true,
+                Type: NotificationType.Error
+              }
+            }
+          }, done)
+          break
+        case AccountType.Google:
+          this.verifyGoogleAuthenticationCode({
+            Code: code,
+            NotifyMessage: {
+              Error: {
+                Title: this.I18n.t('MSG_VERIFY_CODE_FAIL'),
+                Popup: true,
+                Type: NotificationType.Error
+              }
+            }
+          }, done)
+          break
+      }
     }
   }
 })

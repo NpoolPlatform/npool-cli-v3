@@ -49,6 +49,40 @@ interface VerifyGoogleAuthenticationCodeResponse {
   Message: string
 }
 
+interface VerifyEmailCodeRequest {
+  UsedFor: string
+  Code: string
+  Message: ReqMessage
+}
+
+interface VerifyEmailCodeResponse {
+  Code: number
+  Message: string
+}
+
+interface VerifySMSCodeRequest {
+  UsedFor: string
+  Code: string
+  Message: ReqMessage
+}
+
+interface VerifySMSCodeResponse {
+  Code: number
+  Message: string
+}
+
+interface ContactByEmailRequest {
+  UsedFor: string
+  Sender: string
+  Subject: string
+  Body: string
+  SenderName: string
+}
+
+interface ContactByEmailResponse {
+  Info: string
+}
+
 interface CodeRepoState {
   GoogleToken: Map<string, string>
   I18n: Composer<unknown, unknown, unknown, any>
@@ -63,5 +97,11 @@ export {
   SendSMSCodeResponse,
   VerifyGoogleAuthenticationCodeRequest,
   VerifyGoogleAuthenticationCodeResponse,
+  VerifyEmailCodeRequest,
+  VerifyEmailCodeResponse,
+  VerifySMSCodeRequest,
+  VerifySMSCodeResponse,
+  ContactByEmailRequest,
+  ContactByEmailResponse,
   CodeRepoState
 }

@@ -1,4 +1,4 @@
-import { useGoodStore } from '../store/goods'
+import { Good, useGoodStore } from '../store/goods'
 import { useCurrencyStore, Currency } from '../store/currency'
 import { useBenefitStore, Benefit } from '../store/benefits'
 import { ReviewState, SecondsEachDay } from '../const'
@@ -131,8 +131,12 @@ const rangeEarningCoin = (coinTypeID: string, done: (coinAmount: number) => void
       return
     }
 
-    const good = goods.getGoodByID(benefit.GoodID)
+    const good: Good = goods.getGoodByID(benefit.GoodID)
     if (!good) {
+      return
+    }
+
+    if (coinTypeID !== good.Main?.ID) {
       return
     }
 

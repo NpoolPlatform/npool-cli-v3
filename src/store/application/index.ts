@@ -3,7 +3,7 @@ import { doAction } from '../action'
 import { API } from './const'
 import { Application, ApplicationState, GetApplicationRequest, GetApplicationResponse } from './types'
 
-export const useCoinStore = defineStore('application', {
+export const useApplicationStore = defineStore('application', {
   state: (): ApplicationState => ({
     Application: undefined as unknown as Application
   }),

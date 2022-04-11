@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { doAction } from '../action'
+import { doAction, doActionWithError } from '../action'
 import { NotificationType, useNotificationStore } from '../notifications'
 import {
   CodeRepoState,
@@ -129,7 +129,7 @@ export const useCodeRepoStore = defineStore('coderepo', {
       }
     },
     verifyGoogleAuthenticationCode (req: VerifyGoogleAuthenticationCodeRequest, done: (error: boolean) => void) {
-      doAction<VerifyGoogleAuthenticationCodeRequest, VerifyGoogleAuthenticationCodeResponse>(
+      doActionWithError<VerifyGoogleAuthenticationCodeRequest, VerifyGoogleAuthenticationCodeResponse>(
         API.VERIFY_GOOGLE_AUTHENTICATION,
         req,
         req.NotifyMessage,
@@ -144,10 +144,12 @@ export const useCodeRepoStore = defineStore('coderepo', {
           } else {
             done(false)
           }
+        }, () => {
+          done(true)
         })
     },
     verifyEmailCode (req: VerifyEmailCodeRequest, done: (error: boolean) => void) {
-      doAction<VerifyEmailCodeRequest, VerifyEmailCodeResponse>(
+      doActionWithError<VerifyEmailCodeRequest, VerifyEmailCodeResponse>(
         API.VERIFY_EMAIL_CODE,
         req,
         req.Message,
@@ -162,10 +164,12 @@ export const useCodeRepoStore = defineStore('coderepo', {
           } else {
             done(false)
           }
+        }, () => {
+          done(true)
         })
     },
     verifySMSCode (req: VerifySMSCodeRequest, done: (error: boolean) => void) {
-      doAction<VerifySMSCodeRequest, VerifySMSCodeResponse>(
+      doActionWithError<VerifySMSCodeRequest, VerifySMSCodeResponse>(
         API.VERIFY_SMS_CODE,
         req,
         req.Message,
@@ -180,6 +184,8 @@ export const useCodeRepoStore = defineStore('coderepo', {
           } else {
             done(false)
           }
+        }, () => {
+          done(true)
         })
     },
     verifyCode (accountType: AccountType, usedFor: MessageUsedFor, code: string, done: (error: boolean) => void) {

@@ -87,13 +87,13 @@ export const useCurrencyStore = defineStore('currency', {
       })
     },
     getCoinCurrency (coin: Coin, currency: Currency, done: (currency: number) => void) {
-      this.getCoinCurrencyByCoinName(this.getExchangeCoinName(coin), currency, false, done)
+      this.getCoinCurrencyByCoinName(this.getExchangeCoinName(coin), currency, done)
     },
     getUSDTCurrency (currency: Currency, done: (currency: number) => void) {
-      this.getCoinCurrencyByCoinName(CoinType.USDTERC20, currency, false, done)
+      this.getCoinCurrencyByCoinName(CoinType.USDTERC20, currency, done)
     },
     getCoinNameCurrency (coinName: string, currency: Currency, done: (currency: number) => void) {
-      this.getCoinCurrencyByCoinName(coinName, currency, false, done)
+      this.getCoinCurrencyByCoinName(coinName, currency, done)
     }
   }
 })

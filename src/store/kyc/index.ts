@@ -88,5 +88,5 @@ export const useKYCStore = defineStore('kyc', {
   }
 })
 
-export { State, DocumentType, ImageType } from './const'
+export { DocumentType, ImageType } from './const'
 export * from './types'

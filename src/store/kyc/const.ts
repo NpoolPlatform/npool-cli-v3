@@ -12,13 +12,6 @@ enum API {
   GET_KYC_IMAGE = '/kyc-management/v1/get/kyc/image',
 }
 
-enum State {
-  NotVerified = 'not-verified',
-  Wait = 'wait',
-  Verified = 'approved',
-  Rejected = 'rejected'
-}
-
 enum DocumentType {
   IDCard = 'id-card',
   Passport = 'passport'
@@ -26,7 +19,6 @@ enum DocumentType {
 
 export {
   ImageType,
-  State,
   DocumentType,
   API
 }

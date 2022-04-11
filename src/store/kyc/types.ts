@@ -1,5 +1,6 @@
+import { ReviewState } from '../../const'
 import { ReqMessage } from '../notifications/types'
-import { DocumentType, ImageType, State } from './const'
+import { DocumentType, ImageType } from './const'
 
 interface KYCImage {
   Type: ImageType
@@ -29,7 +30,7 @@ interface KYCInfo {
 
 interface KYC {
   Kyc?: KYCInfo
-  State: State
+  State: ReviewState
   Message?: string
 }
 

@@ -19,22 +19,24 @@ export const useBenefitStore = defineStore('benefit', {
   }),
   getters: {},
   actions: {
-    getBenefits (req: GetBenefitsRequest) {
+    getBenefits (req: GetBenefitsRequest, done: () => void) {
       doAction<GetBenefitsRequest, GetBenefitsResponse>(
         API.GET_BENEFITS,
         req,
         req.Message,
         (resp: GetBenefitsResponse): void => {
           this.Benefits = resp.Infos
+          done()
         })
     },
-    getCommission (req: GetCommissionRequest) {
+    getCommission (req: GetCommissionRequest, done: () => void) {
       doAction<GetCommissionRequest, GetCommissionResponse>(
         API.GET_COMMISSION,
         req,
         req.Message,
         (resp: GetCommissionResponse): void => {
           this.Commission = resp.Info
+          done()
         })
     }
   }

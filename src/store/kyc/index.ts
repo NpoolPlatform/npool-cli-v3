@@ -63,7 +63,7 @@ export const useKYCStore = defineStore('kyc', {
     },
     getKYC (req: GetKYCRequest, done: () => void) {
       doAction<GetKYCRequest, GetKYCResponse>(
-        API.UPDATE_KYC,
+        API.GET_KYC,
         req,
         req.Message,
         (resp: GetKYCResponse): void => {

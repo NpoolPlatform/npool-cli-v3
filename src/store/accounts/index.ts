@@ -3,6 +3,8 @@ import { doAction } from '../action'
 import { API } from './const'
 import {
   AccountState,
+  DeleteWithdrawAddressRequest,
+  DeleteWithdrawAddressResponse,
   GetWithdrawAccountsRequest,
   GetWithdrawAccountsResponse,
   SetWithdrawAddressRequest,
@@ -33,6 +35,21 @@ export const useAccountStore = defineStore('account', {
         (resp: SetWithdrawAddressResponse): void => {
           this.Accounts.push(resp.Info)
           done()
+        })
+    },
+
+    deleteWithdrawAddress (req: DeleteWithdrawAddressRequest) {
+      doAction<DeleteWithdrawAddressRequest, DeleteWithdrawAddressResponse>(
+        API.DELETE_WITHDRAW_ADDRESS,
+        req,
+        req.Message,
+        (resp: DeleteWithdrawAddressResponse): void => {
+          for (let i = 0; i < this.Accounts.length; i++) {
+            if (this.Accounts[i].Address.ID === resp.Info.ID) {
+              this.Accounts.splice(i, 1)
+              return
+            }
+          }
         })
     }
   }

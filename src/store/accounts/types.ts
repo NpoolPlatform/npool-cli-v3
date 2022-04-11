@@ -48,6 +48,16 @@ interface SetWithdrawAddressResponse {
   Info: WithdrawAccount
 }
 
+interface DeleteWithdrawAddressRequest {
+  ID: string
+  Message: ReqMessage
+}
+
+interface DeleteWithdrawAddressResponse {
+  Info: WithdrawAddress
+}
+
+
 interface AccountState {
   Accounts: Array<WithdrawAccount>
 }
@@ -60,5 +70,7 @@ export {
   GetWithdrawAccountsResponse,
   SetWithdrawAddressRequest,
   SetWithdrawAddressResponse,
+  DeleteWithdrawAddressRequest,
+  DeleteWithdrawAddressResponse,
   AccountState
 }

@@ -14,10 +14,19 @@ export const useCurrencyStore = defineStore('currency', {
   getters: {
     getExchangeCoinName (): (coin: Coin) => string {
       return (coin: Coin) => {
-        if (coin.Name.startsWith('usdt')) {
+        if (coin.Name.startsWith('usdt') || coin.Name.startsWith('tusdt')) {
           return CoinType.USDTERC20
         }
         return coin.Name.replaceAll(/^t/g, '').toLowerCase()
+      }
+    },
+    getCachedCoinCurrencyByCoinName (): (coinName: string, currency: Currency) => number {
+      return (coinName: string, currency: Currency) => {
+        const amount = this.Currencies.get(coinName)?.get(currency)
+        if (amount !== undefined) {
+          return amount
+        }
+        return undefined
       }
     }
   },
@@ -52,9 +61,9 @@ export const useCurrencyStore = defineStore('currency', {
       const ids = Array.from(coins).map(([key, ]) => key)
       this.getCoinCurrencies(req, ids, done)
     },
-    getCoinCurrencyByCoinName (coinName: string, currency: Currency, failReturn: boolean, done: (currency: number) => void) {
-      const amount = this.Currencies.get(coinName)?.get(currency)
-      if (amount !== undefined || failReturn) {
+    getCoinCurrencyByCoinName (coinName: string, currency: Currency, done: (currency: number) => void) {
+      const amount = this.getCachedCoinCurrencyByCoinName(coinName, currency)
+      if (amount !== undefined) {
         done(amount)
         return
       }
@@ -70,7 +79,11 @@ export const useCurrencyStore = defineStore('currency', {
           }
         }
       }, [coinName], () => {
-        this.getCoinCurrencyByCoinName(coinName, currency, true, done)
+        const amount = this.getCachedCoinCurrencyByCoinName(coinName, currency)
+        if (amount !== undefined) {
+          done(amount)
+          return
+        }
       })
     },
     getCoinCurrency (coin: Coin, currency: Currency, done: (currency: number) => void) {

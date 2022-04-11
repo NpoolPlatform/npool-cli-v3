@@ -32,7 +32,9 @@ import {
   UpdateEmailRequest,
   UpdateEmailResponse,
   UpdatePhoneRequest,
-  UpdatePhoneResponse
+  UpdatePhoneResponse,
+  LogoutRequest,
+  LogoutResponse
 } from './types'
 
 export const useUserStore = defineStore('user', {
@@ -65,6 +67,18 @@ export const useUserStore = defineStore('user', {
           logined.LoginedUser = resp.Info
 
           done()
+        })
+    },
+    logout (req: LogoutRequest) {
+      doAction<LogoutRequest, LogoutResponse>(
+        API.LOGOUT,
+        req,
+        req.Message,
+        (): void => {
+          Cookies.remove('X-User-ID')
+          Cookies.remove('X-AppLogin-Token')
+          const logined = useLoginedUserStore()
+          logined.LoginedUser = undefined as unknown as UserInfo
         })
     },
     resetPassword (req: ResetPasswordRequest, done: () => void) {

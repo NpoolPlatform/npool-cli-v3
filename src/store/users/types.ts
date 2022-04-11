@@ -72,6 +72,14 @@ interface LoginResponse {
   Token: string
 }
 
+interface LogoutRequest {
+  Message: ReqMessage
+}
+
+interface LogoutResponse {
+  Info: UserInfo
+}
+
 interface SignupRequest {
   PasswordHash: string
   Account: string
@@ -226,6 +234,8 @@ export {
   UserState,
   LoginRequest,
   LoginResponse,
+  LogoutRequest,
+  LogoutResponse,
   SignupRequest,
   SignupResponse,
   UpdatePasswordRequest,

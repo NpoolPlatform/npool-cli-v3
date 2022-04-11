@@ -1,6 +1,7 @@
 enum API {
   SIGNUP = '/cloud-hashing-apis-v2/v1/signup',
   LOGIN = '/login-gateway/v1/login',
+  LOGOUT = '/login-gateway/v1/logout',
   LOGINED = '/login-gateway/v1/logined', // This is the same as in logined module
   UPDATE_PASSWORD = '/cloud-hashing-apis-v2/v1/update/password/by/app/user',
   RESET_PASSWORD = '/cloud-hashing-apis-v2/v1/update/password',

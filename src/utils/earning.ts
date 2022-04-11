@@ -24,7 +24,7 @@ const rangeEarningCurrency = (currency: Currency, done: (usdAmount: number) => v
       return
     }
 
-    currencies.getCoinCurrency(good.Main.Name, currency, (currency: number) => {
+    currencies.getCoinCurrency(good.Main, currency, (currency: number) => {
       amount += currency * benefit.Amount
       done(amount)
     })

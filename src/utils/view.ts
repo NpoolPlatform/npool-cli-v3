@@ -1,9 +1,12 @@
-import { useLoginedUserStore } from '../store'
-import { Referral } from '../store'
-import { Benefit } from '../store'
-import { useGoodStore } from '../store'
-import { PaymentState } from '../store'
-import { Order } from '../store'
+import {
+  useLoginedUserStore,
+  useOrderStore,
+  Referral,
+  Benefit,
+  useGoodStore,
+  PaymentState,
+  Order
+} from '../store'
 
 interface BenefitModel {
   CoinTypeID: string
@@ -58,6 +61,7 @@ interface OrderModel {
   PayAmount: number
   PayCoinTypeID: string
   GoodID: string
+  State: string
 }
 
 enum OrderGroup {
@@ -72,6 +76,7 @@ enum OrderGroup {
 const buildOrders = (orders: Array<Order>, group: OrderGroup): Array<OrderModel> => {
   const models = [] as Array<OrderModel>
   const now = new Date().getTime() / 1000
+  const orderStore = useOrderStore()
 
   orders.forEach((order) => {
     switch (group) {
@@ -138,7 +143,8 @@ const buildOrders = (orders: Array<Order>, group: OrderGroup): Array<OrderModel>
       CreateAt: order.Order.Order.CreateAt,
       PayAmount: order.Order.Payment?.Amount,
       PayCoinTypeID: order.PayWithCoin?.ID as string,
-      GoodID: order.Good.Good.Good.ID as string
+      GoodID: order.Good.Good.Good.ID as string,
+      State: orderStore.getOrderState(order.Order)
     })
   })
 

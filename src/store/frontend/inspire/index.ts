@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { doAction, doActionWithError } from '../action'
+import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import {
   GetInvitationCodeRequest,

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { useI18n } from 'vue-i18n'
-import { doAction } from '../action'
+import { doAction } from '../../action'
 import { API, FeePayType } from './const'
 import {
   Fee,

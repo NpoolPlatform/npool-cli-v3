@@ -1,7 +1,7 @@
 import { AxiosInstance, AxiosResponse } from 'axios'
-import { createAPI } from '../../api'
-import { useNotificationStore } from '../local/notifications'
-import { ReqMessage } from '../local/notifications/types'
+import { createAPI } from '../api'
+import { useNotificationStore } from './local/notifications'
+import { ReqMessage } from './local/notifications/types'
 
 const notification = useNotificationStore()
 

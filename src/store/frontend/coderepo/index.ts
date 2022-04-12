@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { doAction, doActionWithError } from '../action'
+import { doAction, doActionWithError } from '../../action'
 import { NotificationType, useNotificationStore } from '../../local/notifications'
 import {
   CodeRepoState,

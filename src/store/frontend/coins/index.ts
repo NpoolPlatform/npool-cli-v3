@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { NotSet } from '../../../const'
-import { doAction } from '../action'
+import { doAction } from '../../action'
 import { API } from './const'
 import {
   Coin,

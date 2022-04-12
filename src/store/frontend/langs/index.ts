@@ -10,7 +10,7 @@ import {
   Language,
   LanguageState
 } from './types'
-import { doAction } from '../action'
+import { doAction } from '../../action'
 import { API } from './const'
 import { Cookies } from 'quasar'
 import { useI18n } from 'vue-i18n'

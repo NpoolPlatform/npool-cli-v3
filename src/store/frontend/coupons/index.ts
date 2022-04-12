@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { doAction } from '../action'
+import { doAction } from '../../action'
 import { API } from './const'
 import {
   CouponState,

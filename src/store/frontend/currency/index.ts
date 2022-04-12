@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { doGet } from '../action'
+import { doGet } from '../../action'
 import { Coin, useCoinStore } from '../coins'
 import { NotificationType } from '../../local/notifications'
 import { API, CoinType, Currency } from './const'

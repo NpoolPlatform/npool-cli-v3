@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { doAction } from '../action'
+import { doAction } from '../../action'
 import { API } from './const'
 import { Application, ApplicationState, GetApplicationRequest, GetApplicationResponse } from './types'
 

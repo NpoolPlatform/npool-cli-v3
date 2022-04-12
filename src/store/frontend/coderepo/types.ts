@@ -77,6 +77,7 @@ interface ContactByEmailRequest {
   Subject: string
   Body: string
   SenderName: string
+  Message: ReqMessage
 }
 
 interface ContactByEmailResponse {

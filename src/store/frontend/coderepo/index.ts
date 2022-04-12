@@ -3,6 +3,8 @@ import { doAction, doActionWithError } from '../action'
 import { NotificationType, useNotificationStore } from '../../local/notifications'
 import {
   CodeRepoState,
+  ContactByEmailRequest,
+  ContactByEmailResponse,
   GetGoogleTokenRequest,
   SendEmailCodeRequest,
   SendEmailCodeResponse,
@@ -229,7 +231,16 @@ export const useCodeRepoStore = defineStore('coderepo', {
           }, done)
           break
       }
-    }
+    },
+    sendContactEmail (req: ContactByEmailRequest, done: () => void) {
+      doAction<ContactByEmailRequest, ContactByEmailResponse>(
+        API.CONTACT_BY_EMAIL,
+        req,
+        req.Message,
+        (): void => {
+          done()
+        })
+    } 
   }
 })
 

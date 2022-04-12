@@ -11,7 +11,8 @@ enum MessageUsedFor {
   Signup = 'SIGNUP',
   Update = 'UPDATE',
   SetWithdrawAddress = 'SETWITHDRAWADDRESS',
-  Signin = 'SIGNIN'
+  Signin = 'SIGNIN',
+  Withdraw = 'WITHDRAW'
 }
 
 export {

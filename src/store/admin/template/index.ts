@@ -1,10 +1,15 @@
 import { defineStore } from 'pinia'
-import { doActionWithError } from '../../action'
+import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import {
+  CreateEmailTemplateRequest,
+  CreateEmailTemplateResponse,
+  EmailTemplate,
   GetEmailTemplatesRequest,
   GetEmailTemplatesResponse,
-  TemplateState
+  TemplateState,
+  UpdateEmailTemplateRequest,
+  UpdateEmailTemplateResponse
 } from './types'
 
 export const useTemplateStore = defineStore('template', {
@@ -24,6 +29,27 @@ export const useTemplateStore = defineStore('template', {
         }, () => {
           done(true)
         })
-    } 
+    },
+    createEmailTemplate (req: CreateEmailTemplateRequest, done: () => void) {
+      doAction<CreateEmailTemplateRequest, CreateEmailTemplateResponse>(
+        API.CREATE_EMAIL_TEMPLATE,
+        req,
+        req.Message,
+        (resp: CreateEmailTemplateResponse): void => {
+          this.EmailTemplates.splice(0, 0, resp.Info)
+          done()
+        })
+    },
+    updateEmailTemplate (req: UpdateEmailTemplateRequest, done: () => void) {
+      doAction<UpdateEmailTemplateRequest, UpdateEmailTemplateResponse>(
+        API.UPDATE_EMAIL_TEMPLATE,
+        req,
+        req.Message,
+        (resp: UpdateEmailTemplateResponse): void => {
+          const index = this.EmailTemplates.findIndex((el: EmailTemplate) => el.ID === resp.Info.ID)
+          this.EmailTemplates.splice(index, index === -1 ? 0 : 1, resp.Info)
+          done()
+        })
+    }
   }
 })

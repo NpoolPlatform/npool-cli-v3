@@ -23,6 +23,7 @@ const useNotificationStore = defineStore('notification', {
 })
 
 export * from './helper'
+export { ReqMessage } from './types'
 
 export {
   useNotificationStore,

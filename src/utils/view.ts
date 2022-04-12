@@ -1,9 +1,9 @@
-import { useLoginedUserStore } from '../store/logined'
-import { Referral } from '../store/inspire'
-import { Benefit } from '../store/benefits/types'
-import { useGoodStore } from '../store/goods'
-import { PaymentState } from '../store/orders/const'
-import { Order } from '../store/orders/types'
+import { useLoginedUserStore } from '../store'
+import { Referral } from '../store'
+import { Benefit } from '../store'
+import { useGoodStore } from '../store'
+import { PaymentState } from '../store'
+import { Order } from '../store'
 
 interface BenefitModel {
   CoinTypeID: string

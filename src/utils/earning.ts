@@ -1,10 +1,10 @@
-import { Good, useGoodStore } from '../store/goods'
-import { useCurrencyStore, Currency } from '../store/currency'
-import { useBenefitStore, Benefit } from '../store/benefits'
+import { Good, useGoodStore } from '../store'
+import { useCurrencyStore, Currency } from '../store'
+import { useBenefitStore, Benefit } from '../store'
 import { ReviewState, SecondsEachDay } from '../const'
-import { useTransactionStore, WithdrawType } from '../store/transactions'
-import { UserWithdrawState } from '../store/transactions'
-import { useCoinStore } from '../store/coins'
+import { useTransactionStore, WithdrawType } from '../store'
+import { UserWithdrawState } from '../store'
+import { useCoinStore } from '../store'
 
 const rangeEarningCurrency = (currency: Currency, done: (usdAmount: number) => void, start?: number, end?: number) => {
   const benefit = useBenefitStore()

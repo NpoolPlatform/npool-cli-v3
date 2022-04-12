@@ -1,7 +1,7 @@
 import { AxiosInstance, AxiosResponse } from 'axios'
 import { Cookies } from 'quasar'
-import { useLoginedUserStore, LoginedAPI, LoginedResponse } from '../store/logined'
-import { useSettingStore } from '../store/setting'
+import { useLoginedUserStore, LoginedAPI, LoginedResponse } from '../store/local'
+import { useSettingStore } from '../store/local'
 import {
   NavigationGuardNext,
   RouteLocationNormalized

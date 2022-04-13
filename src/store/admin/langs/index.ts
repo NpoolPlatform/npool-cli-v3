@@ -2,9 +2,13 @@ import { defineStore } from 'pinia'
 import {
   CreateLangRequest,
   CreateLangResponse,
+  CreateMessageRequset,
+  CreateMessageResponse,
   GetLangsRequest,
   GetLangsResponse,
-  LanguageState
+  LanguageState,
+  UpdateMessageRequset,
+  UpdateMessageResponse
 } from './types'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
@@ -40,6 +44,28 @@ export const useAdminLangStore = defineStore('adminlang', {
               locale.Languages.push(lang)
             }
           })
+          done()
+        })
+    },
+    createMessage (req: CreateMessageRequset, done: () => void) {
+      doAction<CreateMessageRequset, CreateMessageResponse>(
+        API.CREATE_MESSAGE,
+        req,
+        req.Message,
+        (resp: CreateMessageResponse): void => {
+          const locale = useLocaleStore()
+          locale.updateLocaleMessage([resp.Info])
+          done()
+        })
+    },
+    updateMessage (req: UpdateMessageRequset, done: () => void) {
+      doAction<UpdateMessageRequset, UpdateMessageResponse>(
+        API.UPDATE_MESSAGE,
+        req,
+        req.Message,
+        (resp: UpdateMessageResponse): void => {
+          const locale = useLocaleStore()
+          locale.updateLocaleMessage([resp.Info])
           done()
         })
     }

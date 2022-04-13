@@ -14,12 +14,12 @@ enum API {
   UPDATE_CONTACT = '/third-gateway/v1/update/app/contact'
 }
 
-const ContactType = [
+const ContactTypes = [
   AccountType.Mobile,
   AccountType.Email
 ]
 
 export {
   API,
-  ContactType
+  ContactTypes
 }

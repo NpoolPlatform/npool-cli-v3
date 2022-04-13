@@ -11,7 +11,6 @@ interface Language {
 
 interface AppLanguage {
   ID: string
-  AppID: string
   LangID: string
 }
 
@@ -67,6 +66,7 @@ interface LanguageState {
 
 export {
   Language,
+  AppLanguage,
   AppLangInfo,
   GetLangsRequest,
   GetLangsResponse,

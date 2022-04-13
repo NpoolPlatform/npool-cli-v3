@@ -45,3 +45,10 @@ export const useAdminLangStore = defineStore('adminlang', {
     }
   }
 })
+
+export {
+  GetLangsRequest as AdminGetLangsRequest,
+  GetLangsResponse as AdminGetLangsResponse,
+  CreateLangRequest,
+  CreateLangResponse
+} from './types'

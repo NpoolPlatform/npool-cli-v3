@@ -38,8 +38,43 @@ interface GetEmailTemplatesResponse {
   Infos: Array<EmailTemplate>
 }
 
+interface SMSTemplate {
+  ID?: string
+  LangID: string
+  UsedFor: string
+  Subject: string
+  Message: string
+}
+
+interface CreateSMSTemplateRequest {
+  Info: SMSTemplate
+  Message: ReqMessage
+}
+
+interface CreateSMSTemplateResponse {
+  Info: SMSTemplate
+}
+
+interface UpdateSMSTemplateRequest {
+  Info: SMSTemplate
+  Message: ReqMessage
+}
+
+interface UpdateSMSTemplateResponse {
+  Info: SMSTemplate
+}
+
+interface GetSMSTemplatesRequest {
+  Message: ReqMessage
+}
+
+interface GetSMSTemplatesResponse {
+  Infos: Array<SMSTemplate>
+}
+
 interface TemplateState {
   EmailTemplates: Array<EmailTemplate>
+  SMSTemplates: Array<SMSTemplate>
 }
 
 export {
@@ -50,5 +85,12 @@ export {
   UpdateEmailTemplateResponse,
   GetEmailTemplatesRequest,
   GetEmailTemplatesResponse,
+  SMSTemplate,
+  CreateSMSTemplateRequest,
+  CreateSMSTemplateResponse,
+  UpdateSMSTemplateRequest,
+  UpdateSMSTemplateResponse,
+  GetSMSTemplatesRequest,
+  GetSMSTemplatesResponse,
   TemplateState
 }

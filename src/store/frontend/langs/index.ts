@@ -10,7 +10,7 @@ import {
   Language,
   LanguageState
 } from './types'
-import { doAction } from '../../action'
+import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import { useI18n } from 'vue-i18n'
 import { useLocaleStore } from '../../local/locale'
@@ -33,8 +33,8 @@ export const useLangStore = defineStore('lang', {
     }
   },
   actions: {
-    getLangs (req: GetLangsRequest) {
-      doAction<GetLangsRequest, GetLangsResponse>(
+    getLangs (req: GetLangsRequest, done?: (error: boolean) => void) {
+      doActionWithError<GetLangsRequest, GetLangsResponse>(
         API.GET_LANGS,
         req,
         req.Message,
@@ -42,6 +42,9 @@ export const useLangStore = defineStore('lang', {
           const locale = useLocaleStore()
           locale.setLangs(Array.from(resp.Infos, (info) => info.Lang))
           this.setLang(locale.CurLang as Language)
+          done?.(false)
+        }, () => {
+          done?.(true)
         })
     },
     getLangMessages (req: GetLangMessagesRequest) {

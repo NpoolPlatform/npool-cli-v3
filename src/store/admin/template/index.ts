@@ -53,3 +53,5 @@ export const useTemplateStore = defineStore('template', {
     }
   }
 })
+
+export * from './types'

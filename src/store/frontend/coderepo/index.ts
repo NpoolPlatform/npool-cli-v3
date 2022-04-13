@@ -21,6 +21,7 @@ import { API, MessageUsedFor } from './const'
 import { AccountType, GoogleTokenType } from '../../../const'
 import { useLangStore } from '../langs'
 import { useI18n } from 'vue-i18n'
+import { useLoginedUserStore } from '../../local'
 
 export const useCodeRepoStore = defineStore('coderepo', {
   state: (): CodeRepoState => ({
@@ -144,6 +145,14 @@ export const useCodeRepoStore = defineStore('coderepo', {
             }
             done(true)
           } else {
+            const logined = useLoginedUserStore()
+            logined.LoginedUser.Ctrl = {
+              ID: logined.LoginedUser?.Ctrl?.ID,
+              AppID: logined.LoginedUser?.Ctrl?.AppID,
+              UserID: logined.LoginedUser?.Ctrl?.UserID,
+              SigninVerifyByGoogleAuthentication: logined.LoginedUser?.Ctrl?.SigninVerifyByGoogleAuthentication,
+              GoogleAuthenticationVerified: true
+            }
             done(false)
           }
         }, () => {

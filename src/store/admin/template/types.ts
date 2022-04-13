@@ -74,9 +74,44 @@ interface GetSMSTemplatesResponse {
   Infos: Array<SMSTemplate>
 }
 
+interface Contact {
+  ID?: string
+  UsedFor: string
+  Account: string
+  AccountType: string
+  Sender: string
+}
+
+interface CreateContactRequest {
+  Info: Contact
+  Message: ReqMessage
+}
+
+interface CreateContactResponse {
+  Info: Contact
+}
+
+interface UpdateContactRequest {
+  Info: Contact
+  Message: ReqMessage
+}
+
+interface UpdateContactResponse {
+  Info: Contact
+}
+
+interface GetContactsRequest {
+  Message: ReqMessage
+}
+
+interface GetContactsResponse {
+  Infos: Array<Contact>
+}
+
 interface TemplateState {
   EmailTemplates: Array<EmailTemplate>
   SMSTemplates: Array<SMSTemplate>
+  Contacts: Array<Contact>
 }
 
 export {
@@ -94,5 +129,12 @@ export {
   UpdateSMSTemplateResponse,
   GetSMSTemplatesRequest,
   GetSMSTemplatesResponse,
+  Contact,
+  CreateContactRequest,
+  CreateContactResponse,
+  UpdateContactRequest,
+  UpdateContactResponse,
+  GetContactsRequest,
+  GetContactsResponse,
   TemplateState
 }

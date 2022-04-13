@@ -34,15 +34,11 @@ export const useLocaleStore = defineStore('locale', {
         msgs[msg.MessageID] = msg.Message
       })
 
+      this.Messages[this.CurLang?.Lang as string] = msgs
       const oldMessages = this.I18n.getLocaleMessage(this.CurLang?.Lang as string)
-      const newMessages = this.Messages[this.CurLang?.Lang as string]
     
-      if (!newMessages) {
-        return
-      }
-    
-      Object.keys(newMessages).forEach((key) => {
-        oldMessages[key] = newMessages[key]
+      Object.keys(msgs).forEach((key) => {
+        oldMessages[key] = msgs[key]
       })
     
       this.I18n.setLocaleMessage(this.CurLang?.Lang as string, oldMessages)

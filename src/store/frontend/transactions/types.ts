@@ -18,7 +18,7 @@ interface GetTransactionsRequest {
 }
 
 interface GetTransactionsResponse {
-  Infos: ReadonlyArray<Transaction>
+  Infos: Array<Transaction>
 }
 
 interface UserWithdraw {
@@ -53,7 +53,7 @@ interface GetUserWithdrawsRequest {
 }
 
 interface GetUserWithdrawsResponse {
-  Infos: Array<UserWithdraw>
+  Infos: Array<UserWithdrawState>
 }
 
 interface TransactionState {

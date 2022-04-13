@@ -82,7 +82,6 @@ export const useUserStore = defineStore('user', {
         })
     },
     resetPassword (req: ResetPasswordRequest, done: () => void) {
-      this.PasswordUpdated = false
       doAction<ResetPasswordRequest, ResetPasswordResponse>(
         API.RESET_PASSWORD,
         req,
@@ -165,7 +164,9 @@ export const useUserStore = defineStore('user', {
         req.Message,
         (resp: CreateAppUserCtrlResponse): void => {
           const logined = useLoginedUserStore()
-          logined.LoginedUser.Ctrl = resp.Info
+          if (logined.LoginedUser) {
+            logined.LoginedUser.Ctrl = resp.Info
+          }
           done()
         })
     },
@@ -176,7 +177,9 @@ export const useUserStore = defineStore('user', {
         req.Message,
         (resp: UpdateAppUserCtrlResponse): void => {
           const logined = useLoginedUserStore()
-          logined.LoginedUser.Ctrl = resp.Info
+          if (logined.LoginedUser) {
+            logined.LoginedUser.Ctrl = resp.Info
+          }
           done()
         })
     },

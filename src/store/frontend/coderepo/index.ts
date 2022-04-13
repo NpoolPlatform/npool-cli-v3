@@ -19,9 +19,8 @@ import {
 } from './types'
 import { API, MessageUsedFor } from './const'
 import { AccountType, GoogleTokenType } from '../../../const'
-import { useLangStore } from '../langs'
 import { useI18n } from 'vue-i18n'
-import { useLoginedUserStore } from '../../local'
+import { useLocaleStore, useLoginedUserStore } from '../../local'
 
 export const useCodeRepoStore = defineStore('coderepo', {
   state: (): CodeRepoState => ({
@@ -67,11 +66,11 @@ export const useCodeRepoStore = defineStore('coderepo', {
         })
     },
     sendVerificationCode (account: string, accountType: AccountType, usedFor: MessageUsedFor, toUsername: string) {
-      const lang = useLangStore()
+      const locale = useLocaleStore()
       switch (accountType) {
         case AccountType.Email:
           this.sendEmailCode({
-            LangID: lang.CurLang?.ID as string,
+            LangID: locale.CurLang?.ID as string,
             EmailAddress: account,
             UsedFor: usedFor,
             ToUsername: toUsername,
@@ -87,7 +86,7 @@ export const useCodeRepoStore = defineStore('coderepo', {
           break
         case AccountType.Mobile:
           this.sendSMSCode({
-            LangID: lang.CurLang?.ID as string,
+            LangID: locale.CurLang?.ID as string,
             PhoneNO: account,
             UsedFor: usedFor,
             Message: {
@@ -146,12 +145,14 @@ export const useCodeRepoStore = defineStore('coderepo', {
             done(true)
           } else {
             const logined = useLoginedUserStore()
-            logined.LoginedUser.Ctrl = {
-              ID: logined.LoginedUser?.Ctrl?.ID,
-              AppID: logined.LoginedUser?.Ctrl?.AppID,
-              UserID: logined.LoginedUser?.Ctrl?.UserID,
-              SigninVerifyByGoogleAuthentication: logined.LoginedUser?.Ctrl?.SigninVerifyByGoogleAuthentication,
-              GoogleAuthenticationVerified: true
+            if (logined.LoginedUser) {
+              logined.LoginedUser.Ctrl = {
+                ID: logined.LoginedUser?.Ctrl?.ID,
+                AppID: logined.LoginedUser?.Ctrl?.AppID,
+                UserID: logined.LoginedUser?.Ctrl?.UserID,
+                SigninVerifyByGoogleAuthentication: logined.LoginedUser?.Ctrl?.SigninVerifyByGoogleAuthentication,
+                GoogleAuthenticationVerified: true
+              }
             }
             done(false)
           }

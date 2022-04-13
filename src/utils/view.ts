@@ -144,7 +144,7 @@ const buildOrders = (orders: Array<Order>, group: OrderGroup): Array<OrderModel>
       PayAmount: order.Order.Payment?.Amount,
       PayCoinTypeID: order.PayWithCoin?.ID as string,
       GoodID: order.Good.Good.Good.ID as string,
-      State: orderStore.getOrderState(order.Order)
+      State: orderStore.getOrderState(order)
     })
   })
 
@@ -164,7 +164,7 @@ export const buildReferralTree = (referrals: Array<Referral>): Array<ReferralIte
   const myReferrals = [] as Array<ReferralItem>
 
   for (const r of referrals) {
-    if (r.User.ID === logined.LoginedUser.User.ID) {
+    if (logined.LoginedUser && r.User.ID === logined.LoginedUser.User.ID) {
       referral = r
     } else {
       myReferrals.push({

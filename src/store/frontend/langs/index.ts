@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { nextTick } from 'vue'
 import {
   Country,
   GetCountriesRequest,
@@ -42,7 +43,7 @@ export const useLangStore = defineStore('lang', {
         (resp: GetLangsResponse): void => {
           const locale = useLocaleStore()
           locale.setLangs(Array.from(resp.Infos, (info) => info.Lang))
-          this.setLang(locale.CurLang)
+          this.setLang(locale.CurLang as Language)
         })
     },
     getLangMessages (req: GetLangMessagesRequest) {
@@ -69,16 +70,18 @@ export const useLangStore = defineStore('lang', {
       const locale = useLocaleStore()
       locale.setLang(lang)
 
-      this.getLangMessages({
-        LangID: lang.ID,
-        Message: {
-          Error: {
-            Title: this.I18n.t('MSG_GET_LANG_MESSAGES'),
-            Message: this.I18n.t('MSG_GET_LANG_MESSAGES_FAIL'),
-            Popup: true,
-            Type: NotificationType.Error
+      nextTick(() => {
+        this.getLangMessages({
+          LangID: lang.ID,
+          Message: {
+            Error: {
+              Title: this.I18n.t('MSG_GET_LANG_MESSAGES'),
+              Message: this.I18n.t('MSG_GET_LANG_MESSAGES_FAIL'),
+              Popup: true,
+              Type: NotificationType.Error
+            }
           }
-        }
+        })
       })
     }
   }

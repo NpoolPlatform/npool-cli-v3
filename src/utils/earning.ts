@@ -1,4 +1,4 @@
-import { Good, useGoodStore } from '../store'
+import { Coin, Good, useGoodStore } from '../store'
 import { useCurrencyStore, Currency } from '../store'
 import { useBenefitStore, Benefit } from '../store'
 import { ReviewState, SecondsEachDay } from '../const'
@@ -24,7 +24,7 @@ const rangeEarningCurrency = (currency: Currency, done: (usdAmount: number) => v
       return
     }
 
-    currencies.getCoinCurrency(good.Main, currency, (currency: number) => {
+    currencies.getCoinCurrency(good.Main as Coin, currency, (currency: number) => {
       amount += currency * benefit.Amount
       done(amount)
     })

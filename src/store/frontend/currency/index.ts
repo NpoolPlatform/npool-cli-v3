@@ -26,7 +26,7 @@ export const useCurrencyStore = defineStore('currency', {
         if (amount !== undefined) {
           return amount
         }
-        return undefined
+        return undefined as unknown as number
       }
     }
   },
@@ -45,7 +45,7 @@ export const useCurrencyStore = defineStore('currency', {
               myAmounts = new Map<string, number>()
             }
             for (const [currency, amount] of Object.entries(map)) {
-              myAmounts.set(currency, amount)
+              myAmounts.set(currency, amount as number)
             }
             this.Currencies.set(coin, myAmounts)
           }

@@ -1,4 +1,4 @@
-import { Composer, LocaleMessages, VueMessageType } from 'vue-i18n'
+import { Composer } from 'vue-i18n'
 import { ReqMessage } from '../../local/notifications/types'
 
 interface Language {
@@ -61,9 +61,6 @@ interface GetCountriesResponse {
 }
 
 interface LanguageState {
-  Languages: Array<Language>
-  Messages: LocaleMessages<VueMessageType>
-  CurLang?: Language
   Countries: Array<Country>
   I18n: Composer<unknown, unknown, unknown, any>
 }

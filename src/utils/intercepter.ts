@@ -1,11 +1,16 @@
 import { AxiosInstance, AxiosResponse } from 'axios'
 import { Cookies } from 'quasar'
-import { useLoginedUserStore, LoginedAPI, LoginedResponse } from '../store/local'
+import { useLoginedUserStore, LoginedResponse } from '../store/local'
 import { useSettingStore } from '../store/local'
+import { API as LoginedAPI } from '../store/frontend/users/const'
 import {
   NavigationGuardNext,
   RouteLocationNormalized
 } from 'vue-router'
+import { createAPI } from '../api'
+import { GetLangMessagesResponse, GetLangsResponse } from '../store/frontend/langs/types'
+import { API as LangAPI } from '../store/frontend/langs/const'
+import { useLocaleStore } from '../store/local/locale'
 
 interface RouteMetaImpl {
   ShowHeaderAnnouncement: boolean
@@ -23,7 +28,32 @@ declare module 'vue-router' {
   }
 }
 
-const loginInterceptor = (api: AxiosInstance, signInPath: string, to: RouteLocationNormalized, next: NavigationGuardNext) => {
+const langInterceptor = () => {
+  const langID = Cookies.get('X-Lang-ID')
+  if (!langID || langID.length === 0) {
+    return
+  }
+
+  const api = createAPI() as AxiosInstance
+  const headers = api.defaults.headers as unknown as Record<string, string>
+  headers['X-Lang-ID'] = langID
+
+  api.post<unknown, AxiosResponse<GetLangsResponse>>(LangAPI.GET_LANGS)
+    .then((resp: AxiosResponse<GetLangsResponse>) => {
+      const locale = useLocaleStore()
+      locale.setLangs(resp.data.Infos)
+      api.post<unknown, AxiosResponse<GetLangMessagesResponse>>(LangAPI.GET_LANG_MESSAGES)
+      .then((resp: AxiosResponse<GetLangMessagesResponse>) => {
+        locale.updateLocaleMessage(resp.data.Infos)
+      }).catch(() => {
+        // TODO
+      })
+    }).catch(() => {
+      // TODO
+    })
+}
+
+const loginInterceptor = (signInPath: string, to: RouteLocationNormalized, next: NavigationGuardNext) => {
   const setting = useSettingStore()
   setting.ShowHeaderAnnouncement = to.meta.ShowHeaderAnnouncement
   setting.ShowMainHeader = to.meta.ShowMainHeader
@@ -49,6 +79,8 @@ const loginInterceptor = (api: AxiosInstance, signInPath: string, to: RouteLocat
     return
   }
 
+  const api = createAPI() as AxiosInstance
+
   const headers = api.defaults.headers as unknown as Record<string, string>
   headers['X-User-ID'] = userID
   headers['X-App-Login-Token'] = token
@@ -72,5 +104,6 @@ const loginInterceptor = (api: AxiosInstance, signInPath: string, to: RouteLocat
 
 export {
   loginInterceptor,
+  langInterceptor,
   RouteMetaImpl
 }

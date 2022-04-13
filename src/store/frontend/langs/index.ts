@@ -12,15 +12,12 @@ import {
 } from './types'
 import { doAction } from '../../action'
 import { API } from './const'
-import { Cookies } from 'quasar'
 import { useI18n } from 'vue-i18n'
 import { NotificationType } from '../../local/notifications'
+import { useLocaleStore } from '../../local/locale'
 
 export const useLangStore = defineStore('lang', {
   state: (): LanguageState => ({
-    Languages: [],
-    Messages: {},
-    CurLang: undefined,
     Countries: [],
     I18n: useI18n()
   }),
@@ -43,13 +40,9 @@ export const useLangStore = defineStore('lang', {
         req,
         req.Message,
         (resp: GetLangsResponse): void => {
-          this.Languages = []
-          resp.Infos.forEach((lang) => {
-            if (!this.CurLang) {
-              this.setLang(lang.Lang)
-            }
-            this.Languages.push(lang.Lang)
-          })
+          const locale = useLocaleStore()
+          locale.setLangs(resp.Infos)
+          this.setLang(locale.CurLang)
         })
     },
     getLangMessages (req: GetLangMessagesRequest) {
@@ -58,15 +51,8 @@ export const useLangStore = defineStore('lang', {
         req,
         req.Message,
         (resp: GetLangMessagesResponse): void => {
-          let messages = this.Messages[this.CurLang?.Lang as string]
-          if (!messages) {
-            messages = {}
-          }
-          resp.Infos.forEach((msg) => {
-            messages[msg.MessageID] = msg.Message
-          })
-          this.Messages[this.CurLang?.Lang as string] = messages
-          this.updateLocaleMessage()
+          const locale = useLocaleStore()
+          locale.updateLocaleMessage(resp.Infos)
         })
     },
     getCountries (req: GetCountriesRequest, done: () => void) {
@@ -80,9 +66,9 @@ export const useLangStore = defineStore('lang', {
         })
     },
     setLang (lang: Language) {
-      this.CurLang = lang
-      Cookies.set('X-Lang-ID', lang.ID, { expires: '4h', secure: true })
-      this.I18n.locale = lang.Lang
+      const locale = useLocaleStore()
+      locale.setLang(lang)
+
       this.getLangMessages({
         LangID: lang.ID,
         Message: {
@@ -94,20 +80,6 @@ export const useLangStore = defineStore('lang', {
           }
         }
       })
-    },
-    updateLocaleMessage () {
-      const oldMessages = this.I18n.getLocaleMessage(this.CurLang?.Lang as string)
-      const newMessages = this.Messages[this.CurLang?.Lang as string]
-    
-      if (!newMessages) {
-        return
-      }
-    
-      Object.keys(newMessages).forEach((key) => {
-        oldMessages[key] = newMessages[key]
-      })
-    
-      this.I18n.setLocaleMessage(this.CurLang?.Lang as string, oldMessages)
     }
   }
 })

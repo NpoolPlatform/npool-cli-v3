@@ -10,7 +10,7 @@ import {
   Language,
   LanguageState
 } from './types'
-import { doAction, doActionWithError } from '../../action'
+import { doActionWithError } from '../../action'
 import { API } from './const'
 import { useI18n } from 'vue-i18n'
 import { useLocaleStore } from '../../local/locale'
@@ -47,24 +47,29 @@ export const useLangStore = defineStore('lang', {
           done?.(true)
         })
     },
-    getLangMessages (req: GetLangMessagesRequest) {
-      doAction<GetLangMessagesRequest, GetLangMessagesResponse>(
+    getLangMessages (req: GetLangMessagesRequest, done?: (error: boolean) => void) {
+      doActionWithError<GetLangMessagesRequest, GetLangMessagesResponse>(
         API.GET_LANG_MESSAGES,
         req,
         req.Message,
         (resp: GetLangMessagesResponse): void => {
           const locale = useLocaleStore()
           locale.updateLocaleMessage(resp.Infos)
+          done?.(false)
+        }, () => {
+          done?.(true)
         })
     },
-    getCountries (req: GetCountriesRequest, done: () => void) {
-      doAction<GetCountriesRequest, GetCountriesResponse>(
+    getCountries (req: GetCountriesRequest, done: (error: boolean) => void) {
+      doActionWithError<GetCountriesRequest, GetCountriesResponse>(
         API.GET_COUNTRIES,
         req,
         req.Message,
         (resp: GetCountriesResponse): void => {
           this.Countries = resp.Infos
-          done()
+          done?.(false)
+        }, () => {
+          done?.(true)
         })
     },
     setLang (lang: Language) {

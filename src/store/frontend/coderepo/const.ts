@@ -16,7 +16,17 @@ enum MessageUsedFor {
   Contact = 'CONTACT'
 }
 
+const MessageUsedFors = [
+  MessageUsedFor.Contact,
+  MessageUsedFor.SetWithdrawAddress,
+  MessageUsedFor.Signin,
+  MessageUsedFor.Signup,
+  MessageUsedFor.Update,
+  MessageUsedFor.Withdraw
+]
+
 export {
   API,
-  MessageUsedFor
+  MessageUsedFor,
+  MessageUsedFors
 }

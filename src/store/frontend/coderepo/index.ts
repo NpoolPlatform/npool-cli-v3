@@ -256,5 +256,5 @@ export const useCodeRepoStore = defineStore('coderepo', {
 
 export * from './types'
 export {
-  MessageUsedFor
+  MessageUsedFor, MessageUsedFors
 } from './const'

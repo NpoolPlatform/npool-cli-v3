@@ -1,3 +1,5 @@
+import { AccountType } from '../../../const'
+
 enum API {
   GET_EMAIL_TEMPALTES = '/third-gateway/v1/get/app/email/templates/by/app',
   CREATE_EMAIL_TEMPLATE = '/third-gateway/v1/create/app/email/template',
@@ -12,6 +14,12 @@ enum API {
   UPDATE_CONTACT = '/third-gateway/v1/update/app/contact'
 }
 
+const ContactType = [
+  AccountType.Mobile,
+  AccountType.Email
+]
+
 export {
-  API
+  API,
+  ContactType
 }

@@ -14,7 +14,6 @@ import {
 import { doAction } from '../../action'
 import { API } from './const'
 import { useI18n } from 'vue-i18n'
-import { NotificationType } from '../../local/notifications'
 import { useLocaleStore } from '../../local/locale'
 
 export const useLangStore = defineStore('lang', {
@@ -69,20 +68,6 @@ export const useLangStore = defineStore('lang', {
     setLang (lang: Language) {
       const locale = useLocaleStore()
       locale.setLang(lang)
-
-      nextTick(() => {
-        this.getLangMessages({
-          LangID: lang.ID,
-          Message: {
-            Error: {
-              Title: this.I18n.t('MSG_GET_LANG_MESSAGES'),
-              Message: this.I18n.t('MSG_GET_LANG_MESSAGES_FAIL'),
-              Popup: true,
-              Type: NotificationType.Error
-            }
-          }
-        })
-      })
     }
   }
 })

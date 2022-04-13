@@ -10,7 +10,7 @@ interface Language {
 }
 
 interface AppLanguage {
-  ID: string
+  ID?: string
   LangID: string
 }
 

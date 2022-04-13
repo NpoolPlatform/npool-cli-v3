@@ -41,7 +41,7 @@ export const useLangStore = defineStore('lang', {
         req.Message,
         (resp: GetLangsResponse): void => {
           const locale = useLocaleStore()
-          locale.setLangs(resp.Infos)
+          locale.setLangs(Array.from(resp.Infos, (info) => info.Lang))
           this.setLang(locale.CurLang)
         })
     },

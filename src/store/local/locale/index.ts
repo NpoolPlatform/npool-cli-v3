@@ -14,6 +14,7 @@ export const useLocaleStore = defineStore('locale', {
   getters: {},
   actions: {
     setLangs (langs: Array<Language>) {
+      this.Languages = []
       this.Languages = langs
       if (langs.length > 0 && !this.CurLang) {
         this.setLang(langs[0].Lang)

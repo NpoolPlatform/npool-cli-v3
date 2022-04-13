@@ -13,7 +13,7 @@ interface EmailTemplate {
 }
 
 interface CreateEmailTemplateRequest {
-  TargetLangID?: string
+  TargetLangID: string
   Info: EmailTemplate
   Message: ReqMessage
 }
@@ -48,7 +48,7 @@ interface SMSTemplate {
 }
 
 interface CreateSMSTemplateRequest {
-  TargetLangID?: string
+  TargetLangID: string
   Info: SMSTemplate
   Message: ReqMessage
 }

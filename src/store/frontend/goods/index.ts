@@ -162,13 +162,16 @@ export const useGoodStore = defineStore('good', {
           this.Recommends = resp.Infos
         })
     },
-    getPromotions (req: GetPromotionsRequest) {
-      doAction<GetPromotionsRequest, GetPromotionsResponse>(
+    getPromotions (req: GetPromotionsRequest, done?: (error: boolean) => void) {
+      doActionWithError<GetPromotionsRequest, GetPromotionsResponse>(
         API.GET_PROMOTIONS,
         req,
         req.Message,
         (resp: GetPromotionsResponse): void => {
           this.Promotions = resp.Infos
+          done?.(false)
+        }, () => {
+          done?.(true)
         })
     },
     getFeeType (req: GetFeeTypesRequest) {

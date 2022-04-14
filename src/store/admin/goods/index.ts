@@ -31,7 +31,7 @@ export const useAdminGoodStore = defineStore('admingood', {
   actions: {
     getAllGoods (req: GetAllGoodsRequest, done: (error: boolean) => void) {
       doActionWithError<GetAllGoodsRequest, GetAllGoodsResponse>(
-        API.SET_GOOD_PRICE,
+        API.GET_GOODS,
         req,
         req.Message,
         (resp: GetAllGoodsResponse): void => {

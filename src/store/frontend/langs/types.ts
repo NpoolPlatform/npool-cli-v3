@@ -43,6 +43,7 @@ interface GetLangsResponse {
 }
 
 interface GetLangMessagesRequest {
+  TargetLangID?: string
   LangID: string
   Message: ReqMessage
 }

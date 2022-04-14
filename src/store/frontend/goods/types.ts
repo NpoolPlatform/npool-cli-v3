@@ -186,6 +186,8 @@ export {
   GetFeeTypesRequest,
   GetFeeTypesResponse,
   AppGood,
+  Recommend,
+  Promotion,
   GetAppGoodsRequest,
   GetAppGoodsResponse,
   GoodState

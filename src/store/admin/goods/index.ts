@@ -1,13 +1,23 @@
 import { defineStore } from 'pinia'
-import { GetAppGoodsResponse } from '.'
-import { GetRecommendsRequest } from '.'
-import { GetPromotionsRequest } from '.'
-import { GetPromotionsResponse } from '.'
-import { GetRecommendsResponse } from '.'
-import { GetAppGoodsRequest } from '.'
-import { doAction, doActionWithError } from '../../action'
+import { doAction } from '../../action'
 import { API } from './const'
-import { CreatePromotionRequest, CreatePromotionResponse, CreateRecommendRequest, CreateRecommendResponse, GoodState, OfflineGoodRequest, OfflineGoodResponse, OnlineGoodRequest, OnlineGoodResponse, SetGoodPriceRequest, SetGoodPriceResponse, UpdatePromotionRequest, UpdatePromotionResponse, UpdateRecommendRequest, UpdateRecommendResponse } from './types'
+import {
+  CreatePromotionRequest,
+  CreatePromotionResponse,
+  CreateRecommendRequest,
+  CreateRecommendResponse,
+  OfflineGoodRequest,
+  OfflineGoodResponse,
+  OnlineGoodRequest,
+  OnlineGoodResponse,
+  SetGoodPriceRequest,
+  SetGoodPriceResponse,
+  UpdatePromotionRequest,
+  UpdatePromotionResponse,
+  UpdateRecommendRequest,
+  UpdateRecommendResponse
+} from './types'
+import { GoodState } from './state'
 
 export const useAdminGoodStore = defineStore('admingood', {
   state: (): GoodState => ({
@@ -17,18 +27,6 @@ export const useAdminGoodStore = defineStore('admingood', {
   }),
   getters: {},
   actions: {
-    getAppGoods (req: GetAppGoodsRequest, done: (error: boolean) => void) {
-      doActionWithError<GetAppGoodsRequest, GetAppGoodsResponse>(
-        API.GET_APP_GOODS,
-        req,
-        req.Message,
-        (resp: GetAppGoodsResponse): void => {
-          this.AppGoods = resp.Infos
-          done(false)
-        }, () => {
-          done(true)
-        })
-    },
     setGoodPrice (req: SetGoodPriceRequest, done: () => void) {
       doAction<SetGoodPriceRequest, SetGoodPriceResponse>(
         API.SET_GOOD_PRICE,
@@ -62,18 +60,6 @@ export const useAdminGoodStore = defineStore('admingood', {
           done()
         })
     },
-    getRecommends (req: GetRecommendsRequest, done: (error: boolean) => void) {
-      doActionWithError<GetRecommendsRequest, GetRecommendsResponse>(
-        API.GET_RECOMMENDS,
-        req,
-        req.Message,
-        (resp: GetRecommendsResponse): void => {
-          this.Recommends = resp.Infos
-          done(false)
-        }, () => {
-          done(true)
-        })
-    },
     createRecommend (req: CreateRecommendRequest, done: () => void) {
       doAction<CreateRecommendRequest, CreateRecommendResponse>(
         API.CREATE_RECOMMEND,
@@ -93,18 +79,6 @@ export const useAdminGoodStore = defineStore('admingood', {
           const index = this.Recommends.findIndex((el) => el.ID === resp.Info.ID)
           this.Recommends.splice(index, index < 0 ? 0 : 1, resp.Info)
           done()
-        })
-    },
-    getPromotions (req: GetPromotionsRequest, done: (error: boolean) => void) {
-      doActionWithError<GetPromotionsRequest, GetPromotionsResponse>(
-        API.GET_PROMOTIONS,
-        req,
-        req.Message,
-        (resp: GetPromotionsResponse): void => {
-          this.Promotions = resp.Infos
-          done(false)
-        }, () => {
-          done(true)
         })
     },
     createPromotion (req: CreatePromotionRequest, done: () => void) {

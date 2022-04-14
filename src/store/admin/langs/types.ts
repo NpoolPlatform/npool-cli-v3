@@ -1,13 +1,5 @@
-import { AppLanguage, Language, Message } from '../../frontend'
+import { AppLanguage, Message } from '../../frontend'
 import { ReqMessage } from '../../local'
-
-interface GetLangsRequest {
-  Message: ReqMessage
-}
-
-interface GetLangsResponse {
-  Infos: Array<Language>
-}
 
 interface CreateLangRequest {
   Info: AppLanguage
@@ -47,13 +39,7 @@ interface UpdateMessageResponse {
   Info: Message
 }
 
-interface LanguageState {
-  Languages: Array<Language>
-}
-
 export {
-  GetLangsRequest,
-  GetLangsResponse,
   CreateLangRequest,
   CreateLangResponse,
   CreateMessageRequset,
@@ -61,6 +47,5 @@ export {
   UpdateMessageRequset,
   UpdateMessageResponse,
   CreateMessagesRequest,
-  CreateMessagesResponse,
-  LanguageState
+  CreateMessagesResponse
 }

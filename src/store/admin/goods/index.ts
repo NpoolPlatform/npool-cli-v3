@@ -20,13 +20,12 @@ import {
   UpdateRecommendResponse
 } from './types'
 import { GoodState } from './state'
+import { useGoodStore } from '../../frontend'
 
 export const useAdminGoodStore = defineStore('admingood', {
   state: (): GoodState => ({
     Goods: [],
-    AppGoods: [],
-    Recommends: [],
-    Promotions: []
+    Recommends: []
   }),
   getters: {},
   actions: {
@@ -48,8 +47,9 @@ export const useAdminGoodStore = defineStore('admingood', {
         req,
         req.Message,
         (resp: SetGoodPriceResponse): void => {
-          const index = this.AppGoods.findIndex((el) => el.ID === resp.Info.ID)
-          this.AppGoods.splice(index, index < 0 ? 0 : 1, resp.Info)
+          const good = useGoodStore()
+          const index = good.AppGoods.findIndex((el) => el.ID === resp.Info.ID)
+          good.AppGoods.splice(index, index < 0 ? 0 : 1, resp.Info)
           done()
         })
     },
@@ -59,8 +59,9 @@ export const useAdminGoodStore = defineStore('admingood', {
         req,
         req.Message,
         (resp: OnlineGoodResponse): void => {
-          const index = this.AppGoods.findIndex((el) => el.ID === resp.Info.ID)
-          this.AppGoods.splice(index, index < 0 ? 0 : 1, resp.Info)
+          const good = useGoodStore()
+          const index = good.AppGoods.findIndex((el) => el.ID === resp.Info.ID)
+          good.AppGoods.splice(index, index < 0 ? 0 : 1, resp.Info)
           done()
         })
     },
@@ -70,8 +71,9 @@ export const useAdminGoodStore = defineStore('admingood', {
         req,
         req.Message,
         (resp: OfflineGoodResponse): void => {
-          const index = this.AppGoods.findIndex((el) => el.ID === resp.Info.ID)
-          this.AppGoods.splice(index, index < 0 ? 0 : 1, resp.Info)
+          const good = useGoodStore()
+          const index = good.AppGoods.findIndex((el) => el.ID === resp.Info.ID)
+          good.AppGoods.splice(index, index < 0 ? 0 : 1, resp.Info)
           done()
         })
     },
@@ -102,7 +104,8 @@ export const useAdminGoodStore = defineStore('admingood', {
         req,
         req.Message,
         (resp: CreatePromotionResponse): void => {
-          this.Promotions.splice(0, 0, resp.Info)
+          const good = useGoodStore()
+          good.Promotions.splice(0, 0, resp.Info)
           done()
         })
     },
@@ -112,8 +115,9 @@ export const useAdminGoodStore = defineStore('admingood', {
         req,
         req.Message,
         (resp: UpdatePromotionResponse): void => {
-          const index = this.Promotions.findIndex((el) => el.ID === resp.Info.ID)
-          this.Promotions.splice(index, index < 0 ? 0 : 1, resp.Info)
+          const good = useGoodStore()
+          const index = good.Promotions.findIndex((el) => el.ID === resp.Info.ID)
+          good.Promotions.splice(index, index < 0 ? 0 : 1, resp.Info)
           done()
         })
     }

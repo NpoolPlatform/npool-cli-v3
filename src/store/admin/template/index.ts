@@ -63,7 +63,7 @@ export const useTemplateStore = defineStore('template', {
         req.Message,
         (resp: UpdateEmailTemplateResponse): void => {
           const index = this.EmailTemplates.findIndex((el: EmailTemplate) => el.ID === resp.Info.ID)
-          this.EmailTemplates.splice(index, index === -1 ? 0 : 1, resp.Info)
+          this.EmailTemplates.splice(index < 0 ? 0 : index, index === -1 ? 0 : 1, resp.Info)
           done()
         })
     },
@@ -97,7 +97,7 @@ export const useTemplateStore = defineStore('template', {
         req.Message,
         (resp: UpdateSMSTemplateResponse): void => {
           const index = this.SMSTemplates.findIndex((el: SMSTemplate) => el.ID === resp.Info.ID)
-          this.SMSTemplates.splice(index, index === -1 ? 0 : 1, resp.Info)
+          this.SMSTemplates.splice(index < 0 ? 0 : index, index === -1 ? 0 : 1, resp.Info)
           done()
         })
     },
@@ -131,7 +131,7 @@ export const useTemplateStore = defineStore('template', {
         req.Message,
         (resp: UpdateContactResponse): void => {
           const index = this.Contacts.findIndex((el: Contact) => el.ID === resp.Info.ID)
-          this.Contacts.splice(index, index === -1 ? 0 : 1, resp.Info)
+          this.Contacts.splice(index < 0 ? 0 : index, index === -1 ? 0 : 1, resp.Info)
           done()
         })
     }

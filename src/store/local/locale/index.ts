@@ -59,7 +59,7 @@ export const useLocaleStore = defineStore('locale', {
       messages.forEach((msg) => {
         msgs[msg.MessageID] = msg.Message
         const index = langMsgs.findIndex((el: Message) => el.ID === msg.ID)
-        langMsgs.splice(index, index < 0 ? 0 : 1, msg)
+        langMsgs.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, msg)
       })
 
       this.LangMessages.set(messages[0].LangID, langMsgs)

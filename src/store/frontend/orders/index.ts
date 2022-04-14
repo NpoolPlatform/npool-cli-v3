@@ -100,13 +100,8 @@ export const useOrderStore = defineStore('order', {
   },
   actions: {
     insertOrder (order: Order) {
-      for (let i = 0; i < this.Orders.length; i++) {
-        if (order.Order.Order.ID === this.Orders[i].Order.Order.ID) {
-          this.Orders.splice(i, 1, order)
-          return
-        }
-      }
-      this.Orders.splice(0, 0, order)
+      const index = this.Orders.findIndex((el) => el.Order.Order.ID === order.Order.Order.ID)
+      this.Orders.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, order)
     },
 
     submitOrder (req: SubmitOrderRequest, handler: (orderID: string, error: boolean) => void) {

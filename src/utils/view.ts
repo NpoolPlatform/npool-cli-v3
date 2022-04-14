@@ -5,7 +5,9 @@ import {
   Benefit,
   useGoodStore,
   PaymentState,
-  Order
+  Order,
+  Good,
+  GoodBase
 } from '../store'
 
 interface BenefitModel {
@@ -188,9 +190,31 @@ export const buildReferralTree = (referrals: Array<Referral>): Array<ReferralIte
   return [root]
 }
 
+const buildGoods = (goods: Array<Good>): Array<GoodBase> => {
+  const myGoods = [] as Array<GoodBase>
+  goods.forEach((good) => {
+    myGoods.push({
+      ID: good.Good.Good.ID,
+      SeparateFee: good.Good.Good.SeparateFee,
+      UnitPower: good.Good.Good.UnitPower,
+      DurationDays: good.Good.Good.DurationDays,
+      Actuals: good.Good.Good.Actuals,
+      DeliveryAt: good.Good.Good.DeliveryAt,
+      Price: good.Good.Good.Price,
+      BenefitType: good.Good.Good.BenefitType,
+      Classic: good.Good.Good.Classic,
+      Title: good.Good.Good.Title,
+      Total: good.Good.Good.Total,
+      Unit: good.Good.Good.Unit
+    } as GoodBase)
+  })
+  return myGoods
+}
+
 export {
   buildBenefits,
   buildOrders,
+  buildGoods,
   OrderGroup,
   OrderModel,
   BenefitModel,

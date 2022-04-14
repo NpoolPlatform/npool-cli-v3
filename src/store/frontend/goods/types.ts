@@ -171,6 +171,7 @@ interface GoodState {
 
 export {
   Fee,
+  GoodBase,
   Good,
   RecommendGood,
   GetGoodsRequest,

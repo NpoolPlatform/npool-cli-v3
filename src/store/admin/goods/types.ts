@@ -1,5 +1,6 @@
 import { ReqMessage } from '../../local'
 import { AppGood, Recommend, Promotion, Good } from '../../frontend'
+import { BaseRequest } from 'src/store/base'
 
 interface GetAllGoodsRequest {
   Message: ReqMessage
@@ -7,6 +8,13 @@ interface GetAllGoodsRequest {
 
 interface GetAllGoodsResponse {
   Infos: Array<Good>
+}
+
+interface GetRecommendsRequest extends BaseRequest {
+}
+
+interface GetRecommendsResponse {
+  Infos: Array<Recommend>
 }
 
 interface CreateRecommendRequest {
@@ -89,4 +97,6 @@ export {
   CreatePromotionResponse,
   UpdatePromotionRequest,
   UpdatePromotionResponse,
+  GetRecommendsRequest,
+  GetRecommendsResponse
 }

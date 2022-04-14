@@ -103,11 +103,11 @@ interface RecommendGood {
   Good: Good
 }
 
-interface GetRecommendsRequest {
+interface GetRecommendGoodsRequest {
   Message: ReqMessage
 }
 
-interface GetRecommendsResponse {
+interface GetRecommendGoodsResponse {
   Infos: Array<RecommendGood>
   Total: number
 }
@@ -178,8 +178,8 @@ export {
   GetGoodsResponse,
   GetGoodRequest,
   GetGoodResponse,
-  GetRecommendsRequest,
-  GetRecommendsResponse,
+  GetRecommendGoodsRequest,
+  GetRecommendGoodsResponse,
   GetPromotionsRequest,
   GetPromotionsResponse,
   FeeType,

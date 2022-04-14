@@ -15,8 +15,8 @@ import {
   GetGoodsResponse,
   GetPromotionsRequest,
   GetPromotionsResponse,
-  GetRecommendsRequest,
-  GetRecommendsResponse,
+  GetRecommendGoodsRequest,
+  GetRecommendGoodsResponse,
   Good,
   GoodState,
   RecommendGood
@@ -153,12 +153,12 @@ export const useGoodStore = defineStore('good', {
           done()
         })
     },
-    getRecommends (req: GetRecommendsRequest) {
-      doAction<GetRecommendsRequest, GetRecommendsResponse>(
+    getRecommends (req: GetRecommendGoodsRequest) {
+      doAction<GetRecommendGoodsRequest, GetRecommendGoodsResponse>(
         API.GET_RECOMMENDS,
         req,
         req.Message,
-        (resp: GetRecommendsResponse): void => {
+        (resp: GetRecommendGoodsResponse): void => {
           this.Recommends = resp.Infos
         })
     },

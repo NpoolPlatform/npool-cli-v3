@@ -8,6 +8,8 @@ import {
   CreateRecommendResponse,
   GetAllGoodsRequest,
   GetAllGoodsResponse,
+  GetRecommendsRequest,
+  GetRecommendsResponse,
   OfflineGoodRequest,
   OfflineGoodResponse,
   OnlineGoodRequest,
@@ -75,6 +77,18 @@ export const useAdminGoodStore = defineStore('admingood', {
           const index = good.AppGoods.findIndex((el) => el.ID === resp.Info.ID)
           good.AppGoods.splice(index, index < 0 ? 0 : 1, resp.Info)
           done()
+        })
+    },
+    getRecommends (req: GetRecommendsRequest, done: (error: boolean) => void) {
+      doActionWithError<GetRecommendsRequest, GetRecommendsResponse>(
+        API.GET_RECOMMENDS,
+        req,
+        req.Message,
+        (resp: GetRecommendsResponse): void => {
+          this.Recommends = resp.Infos
+          done(false)
+        }, () => {
+          done(true)
         })
     },
     createRecommend (req: CreateRecommendRequest, done: () => void) {

@@ -9,8 +9,7 @@ enum API {
   UPDATE_RECOMMEND = '/cloud-hashing-goods/v1/update/recommend',
 
   CREATE_PROMOTION = '/cloud-hashing-goods/v1/create/app/good/promotion',
-  UPDATE_PROMOTION = '/cloud-hashing-goods/v1/update/app/good/promotion',
-  GET_PROMOTIONS = '/cloud-hashing-goods/v1/get/app/good/promotions'
+  UPDATE_PROMOTION = '/cloud-hashing-goods/v1/update/app/good/promotion'
 }
 
 export {

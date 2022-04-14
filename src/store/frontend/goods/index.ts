@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { useI18n } from 'vue-i18n'
-import { doAction } from '../../action'
+import { doAction, doActionWithError } from '../../action'
 import { API, FeePayType } from './const'
 import {
   Fee,
@@ -195,13 +195,16 @@ export const useGoodStore = defineStore('good', {
           done(resp.Info)
         })
     },
-    getAppGoods (req: GetAppGoodsRequest) {
-      doAction<GetAppGoodsRequest, GetAppGoodsResponse>(
+    getAppGoods (req: GetAppGoodsRequest, done?: (error: boolean) => void) {
+      doActionWithError<GetAppGoodsRequest, GetAppGoodsResponse>(
         API.GET_APP_GOODS,
         req,
         req.Message,
         (resp: GetAppGoodsResponse): void => {
           this.AppGoods = resp.Infos
+          done?.(false)
+        }, () => {
+          done?.(true)
         })
     }
   }

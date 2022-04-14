@@ -1,11 +1,13 @@
 import { defineStore } from 'pinia'
-import { doAction } from '../../action'
+import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import {
   CreatePromotionRequest,
   CreatePromotionResponse,
   CreateRecommendRequest,
   CreateRecommendResponse,
+  GetAllGoodsRequest,
+  GetAllGoodsResponse,
   OfflineGoodRequest,
   OfflineGoodResponse,
   OnlineGoodRequest,
@@ -21,12 +23,25 @@ import { GoodState } from './state'
 
 export const useAdminGoodStore = defineStore('admingood', {
   state: (): GoodState => ({
+    Goods: [],
     AppGoods: [],
     Recommends: [],
     Promotions: []
   }),
   getters: {},
   actions: {
+    getAllGoods (req: GetAllGoodsRequest, done: (error: boolean) => void) {
+      doActionWithError<GetAllGoodsRequest, GetAllGoodsResponse>(
+        API.SET_GOOD_PRICE,
+        req,
+        req.Message,
+        (resp: GetAllGoodsResponse): void => {
+          this.Goods = resp.Infos
+          done(false)
+        }, () => {
+          done(true)
+        })
+    },
     setGoodPrice (req: SetGoodPriceRequest, done: () => void) {
       doAction<SetGoodPriceRequest, SetGoodPriceResponse>(
         API.SET_GOOD_PRICE,

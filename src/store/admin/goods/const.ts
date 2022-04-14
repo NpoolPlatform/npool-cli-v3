@@ -1,4 +1,5 @@
 enum API {
+  GET_GOODS = '/cloud-hashing-apis-v2/v1/get/goods',
   SET_GOOD_PRICE = '/cloud-hashing-goods/v1/set/app/good/price',
   ONSALE_GOOD = '/cloud-hashing-goods/v1/onsale/app/good',
   OFFSALE_GOOD = '/cloud-hashing-goods/v1/offsale/app/good',

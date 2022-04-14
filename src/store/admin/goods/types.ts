@@ -1,5 +1,13 @@
 import { ReqMessage } from '../../local'
-import { AppGood, Recommend, Promotion } from '../../frontend'
+import { AppGood, Recommend, Promotion, Good } from '../../frontend'
+
+interface GetAllGoodsRequest {
+  Message: ReqMessage
+}
+
+interface GetAllGoodsResponse {
+  Infos: Array<Good>
+}
 
 interface CreateRecommendRequest {
   Info: Recommend
@@ -66,6 +74,8 @@ interface UpdatePromotionResponse {
 }
 
 export {
+  GetAllGoodsRequest,
+  GetAllGoodsResponse,
   CreateRecommendRequest,
   CreateRecommendResponse,
   UpdateRecommendRequest,

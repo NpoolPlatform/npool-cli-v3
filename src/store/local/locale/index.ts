@@ -46,9 +46,7 @@ export const useLocaleStore = defineStore('locale', {
         this.LangMessages.splice(index, index < 0 ? 0 : 1, msg)
       })
 
-      this.LangMessages = messages
       this.Messages[this.CurLang?.Lang as string] = msgs
-
       const oldMessages = this.I18n.getLocaleMessage(this.CurLang?.Lang as string)
     
       Object.keys(msgs).forEach((key) => {

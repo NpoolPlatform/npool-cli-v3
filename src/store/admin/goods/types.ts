@@ -55,7 +55,6 @@ interface OfflineGoodResponse {
 }
 
 interface CreatePromotionRequest {
-  TargetAppID: string
   Info: Promotion
   Message: ReqMessage
 }

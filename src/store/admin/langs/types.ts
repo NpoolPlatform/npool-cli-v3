@@ -28,6 +28,16 @@ interface CreateMessageResponse {
   Info: Message
 }
 
+interface CreateMessagesRequest {
+  TargetLangID: string
+  Infos: Array<Message>
+  Message: ReqMessage
+}
+
+interface CreateMessagesResponse {
+  Infos: Array<Message>
+}
+
 interface UpdateMessageRequset {
   Info: Message
   Message: ReqMessage
@@ -50,5 +60,7 @@ export {
   CreateMessageResponse,
   UpdateMessageRequset,
   UpdateMessageResponse,
+  CreateMessagesRequest,
+  CreateMessagesResponse,
   LanguageState
 }

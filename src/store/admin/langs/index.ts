@@ -4,6 +4,8 @@ import {
   CreateLangResponse,
   CreateMessageRequset,
   CreateMessageResponse,
+  CreateMessagesRequest,
+  CreateMessagesResponse,
   GetLangsRequest,
   GetLangsResponse,
   LanguageState,
@@ -55,6 +57,17 @@ export const useAdminLangStore = defineStore('adminlang', {
         (resp: CreateMessageResponse): void => {
           const locale = useLocaleStore()
           locale.updateLocaleMessage([resp.Info])
+          done()
+        })
+    },
+    createMessages (req: CreateMessagesRequest, done: () => void) {
+      doAction<CreateMessagesRequest, CreateMessagesResponse>(
+        API.CREATE_MESSAGES,
+        req,
+        req.Message,
+        (resp: CreateMessagesResponse): void => {
+          const locale = useLocaleStore()
+          locale.updateLocaleMessage(resp.Infos)
           done()
         })
     },

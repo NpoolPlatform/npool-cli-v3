@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ReviewState } from './state'
+import { KYCsState } from './state'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import { GetKYCsRequest, GetKYCsResponse } from './types'
@@ -11,8 +11,8 @@ import {
 } from '../../frontend'
 import { API as KYCAPI } from '../../frontend/kyc/const'
 
-export const useReviewStore = defineStore('review', {
-  state: (): ReviewState => ({
+export const useKYCsStore = defineStore('kycs', {
+  state: (): KYCsState => ({
     KYCs: [],
     Images: new Map<string, Map<ImageType, KYCImage>>()
   }),

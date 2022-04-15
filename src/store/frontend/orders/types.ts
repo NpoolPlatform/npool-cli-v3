@@ -117,6 +117,7 @@ interface OrderState {
 
 export {
   Order,
+  Payment,
   SubmitOrderRequest,
   SubmitOrderResponse,
   GetOrderRequest,

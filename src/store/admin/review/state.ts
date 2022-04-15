@@ -1,8 +1,7 @@
-import { ImageType, KYCImage, KYCInfo } from '../../frontend'
+import { KYCReview } from './types'
 
 interface ReviewState {
-  KYCs: Array<KYCInfo>
-  Images: Map<string, Map<ImageType, KYCImage>>
+  KYCReviews: Array<KYCReview>
 }
 
 export {

@@ -51,6 +51,7 @@ export const useKYCsStore = defineStore('kycs', {
             URI: req.ImageS3Key,
             Base64: resp.Info
           })
+          this.Images.set(kycID, myImgs)
           done()
         })
     }

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { doAction, doActionWithError } from 'src/store/action'
+import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import { InspireState } from './state'
 import {

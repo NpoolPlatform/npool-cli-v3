@@ -1,7 +1,7 @@
-import { CommissionCoinSetting, CommissionSetting, InvitationCode, PurchaseAmountSetting } from './types'
+import { CommissionCoinSetting, CommissionSetting, UserInvitationCode, PurchaseAmountSetting } from './types'
 
 interface InspireState {
-  InvitationCodes: Array<InvitationCode>
+  InvitationCodes: Array<UserInvitationCode>
   PurchaseAmountSettings: Array<PurchaseAmountSetting>
   CommissionSetting: CommissionSetting
   CommissionCoinSettings: Array<CommissionCoinSetting>

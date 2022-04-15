@@ -2,12 +2,26 @@ import { defineStore } from 'pinia'
 import { ReviewState } from './state'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
-import { GetKYCReviewsRequest, GetKYCReviewsResponse, GetWithdrawAddressReviewsRequest, GetWithdrawAddressReviewsResponse, UpdateKYCReviewRequest, UpdateKYCReviewResponse, UpdateReviewRequest, UpdateReviewResponse } from './types'
+import {
+  GetKYCReviewsRequest,
+  GetKYCReviewsResponse,
+  GetWithdrawAddressReviewsRequest,
+  GetWithdrawAddressReviewsResponse,
+  GetWithdrawReviewsRequest,
+  GetWithdrawReviewsResponse,
+  UpdateKYCReviewRequest,
+  UpdateKYCReviewResponse,
+  UpdateReviewRequest,
+  UpdateReviewResponse,
+  UpdateWithdrawReviewRequest,
+  UpdateWithdrawReviewResponse
+} from './types'
 
 export const useReviewStore = defineStore('review', {
   state: (): ReviewState => ({
     KYCReviews: [],
-    WithdrawAddressReviews: []
+    WithdrawAddressReviews: [],
+    WithdrawReviews: []
   }),
   getters: {},
   actions: {
@@ -64,6 +78,29 @@ export const useReviewStore = defineStore('review', {
           done(false)
         }, () => {
           done(true)
+        })
+    },
+    getWithdrawReviews (req: GetWithdrawReviewsRequest, done: (error: boolean) => void) {
+      doActionWithError<GetWithdrawReviewsRequest, GetWithdrawReviewsResponse>(
+        API.GET_WITHDRAW_REVIEWS,
+        req,
+        req.Message,
+        (resp: GetWithdrawReviewsResponse): void => {
+          this.WithdrawReviews = resp.Infos
+          done(false)
+        }, () => {
+          done(true)
+        })
+    },
+    updateWithdrawReview (req: UpdateWithdrawReviewRequest, done: () => void) {
+      doAction<UpdateWithdrawReviewRequest, UpdateWithdrawReviewResponse>(
+        API.UPDATE_WITHDRAW_REVIEW,
+        req,
+        req.Message,
+        (resp: UpdateWithdrawReviewResponse): void => {
+          const index = this.WithdrawReviews.findIndex((el) => el.Review.ID === resp.Info.Review.ID)
+          this.WithdrawReviews.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
+          done()
         })
     }
   }

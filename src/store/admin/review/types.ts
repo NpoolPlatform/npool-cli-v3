@@ -1,5 +1,5 @@
 import { BaseRequest } from '../../base'
-import { KYC, UserInfo } from '../../frontend'
+import { KYCInfo, UserInfo } from '../../frontend'
 
 interface Review {
   ID?: string
@@ -14,7 +14,7 @@ interface Review {
 }
 
 interface KYCReview {
-  Kyc: KYC
+  Kyc: KYCInfo
   Review: Review
   User: UserInfo
 }

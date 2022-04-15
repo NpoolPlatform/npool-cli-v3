@@ -121,3 +121,5 @@ export const useAdminInspireStore = defineStore('admininspire', {
     }
   }
 })
+
+export * from './types'

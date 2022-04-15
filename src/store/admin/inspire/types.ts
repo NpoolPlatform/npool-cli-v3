@@ -1,10 +1,5 @@
+import { InvitationCode } from '../../frontend'
 import { BaseRequest } from '../../base'
-
-interface InvitationCode {
-  ID?: string
-  UserID: string
-  InvitationCode?: string
-}
 
 interface GetInvitationCodesRequest extends BaseRequest {
 }

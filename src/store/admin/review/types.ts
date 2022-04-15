@@ -26,9 +26,20 @@ interface GetKYCReviewsResponse {
   Infos: Array<KYCReview>
 }
 
+interface UpdateKYCReviewRequest extends BaseRequest {
+  Info: Review
+  LangID: string
+}
+
+interface UpdateKYCReviewResponse {
+  Info: KYCReview
+}
+
 export {
   Review,
   KYCReview,
   GetKYCReviewsRequest,
-  GetKYCReviewsResponse
+  GetKYCReviewsResponse,
+  UpdateKYCReviewRequest,
+  UpdateKYCReviewResponse
 }

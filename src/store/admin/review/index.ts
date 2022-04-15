@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 import { ReviewState } from './state'
-import { doActionWithError } from '../../action'
+import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
-import { GetKYCReviewsRequest, GetKYCReviewsResponse } from './types'
+import { GetKYCReviewsRequest, GetKYCReviewsResponse, UpdateKYCReviewRequest, UpdateKYCReviewResponse } from './types'
 
 export const useReviewStore = defineStore('review', {
   state: (): ReviewState => ({
@@ -20,6 +20,17 @@ export const useReviewStore = defineStore('review', {
           done(false)
         }, () => {
           done(true)
+        })
+    },
+    updateKYCReview (req: UpdateKYCReviewRequest, done: () => void) {
+      doAction<UpdateKYCReviewRequest, UpdateKYCReviewResponse>(
+        API.UPDATE_KYC_REVIEW,
+        req,
+        req.Message,
+        (resp: UpdateKYCReviewResponse): void => {
+          const index = this.KYCReviews.findIndex((el) => el.Review.ID === resp.Info.Review.ID)
+          this.KYCReviews.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
+          done()
         })
     }
   }

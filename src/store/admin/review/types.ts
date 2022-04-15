@@ -1,4 +1,4 @@
-import { BaseRequest } from 'src/store/base'
+import { BaseRequest } from '../../base'
 import { KYC, UserInfo } from '../../frontend'
 
 interface Review {

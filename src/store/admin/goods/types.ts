@@ -1,6 +1,6 @@
 import { ReqMessage } from '../../local'
 import { AppGood, Recommend, Promotion, Good } from '../../frontend'
-import { BaseRequest } from 'src/store/base'
+import { BaseRequest } from '../../base'
 
 interface GetAllGoodsRequest {
   Message: ReqMessage

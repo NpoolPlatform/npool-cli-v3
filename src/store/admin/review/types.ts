@@ -1,5 +1,5 @@
 import { BaseRequest } from '../../base'
-import { KYCInfo, UserInfo } from '../../frontend'
+import { Account, KYCInfo, UserInfo, WithdrawAddress } from '../../frontend'
 
 interface Review {
   ID?: string
@@ -11,6 +11,14 @@ interface Review {
   ObjectID?: string
   Domain?: string
   CreateAt?: number
+}
+
+interface UpdateReviewRequest extends BaseRequest {
+  Info: Review
+}
+
+interface UpdateReviewResponse {
+  Info: Review
 }
 
 interface KYCReview {
@@ -35,11 +43,30 @@ interface UpdateKYCReviewResponse {
   Info: KYCReview
 }
 
+interface WithdrawAddressReview {
+  Address: WithdrawAddress
+  Account: Account
+  Review: Review
+  User: UserInfo
+}
+
+interface GetWithdrawAddressReviewsRequest extends BaseRequest {
+}
+
+interface GetWithdrawAddressReviewsResponse {
+  Infos: Array<WithdrawAddressReview>
+}
+
 export {
   Review,
+  UpdateReviewRequest,
+  UpdateReviewResponse,
   KYCReview,
   GetKYCReviewsRequest,
   GetKYCReviewsResponse,
   UpdateKYCReviewRequest,
-  UpdateKYCReviewResponse
+  UpdateKYCReviewResponse,
+  WithdrawAddressReview,
+  GetWithdrawAddressReviewsRequest,
+  GetWithdrawAddressReviewsResponse
 }

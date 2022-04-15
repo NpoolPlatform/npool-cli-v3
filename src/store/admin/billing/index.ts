@@ -1,9 +1,19 @@
 import { defineStore } from 'pinia'
-import { GetAppTransactionsResponse } from '.'
-import { GetAppTransactionsRequest } from '.'
 import { doActionWithError } from '../../action'
 import { API } from './const'
-import { BillingState, GetPaymentsRequest, GetPaymentsResponse, GetUserBenefitsRequest, GetUserBenefitsResponse, GetUserPaymentBalancesRequest, GetUserPaymentBalancesResponse, GetWithdrawsRequest, GetWithdrawsResponse } from './types'
+import {
+  BillingState,
+  GetPaymentsRequest,
+  GetPaymentsResponse,
+  GetUserBenefitsRequest,
+  GetUserBenefitsResponse,
+  GetUserPaymentBalancesRequest,
+  GetUserPaymentBalancesResponse,
+  GetWithdrawsRequest,
+  GetWithdrawsResponse,
+  GetAppTransactionsRequest,
+  GetAppTransactionsResponse
+} from './types'
 
 export const useBillingStore = defineStore('billing', {
   state: (): BillingState => ({

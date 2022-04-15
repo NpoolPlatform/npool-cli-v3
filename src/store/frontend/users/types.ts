@@ -228,6 +228,7 @@ interface UserState {
 
 export {
   AppUser,
+  AppRole,
   UserInfo,
   AppUserExtra,
   AppUserControl,

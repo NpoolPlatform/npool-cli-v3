@@ -1,7 +1,17 @@
 import { defineStore } from 'pinia'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
-import { CreateRoleUserRequest, CreateRoleUserResponse, DeleteRoleUserRequest, DeleteRoleUserResponse, GetRolesRequest, GetRolesResponse, GetRoleUsersRequest, GetRoleUsersResponse, RoleState } from './types'
+import {
+  CreateRoleUserRequest,
+  CreateRoleUserResponse,
+  DeleteRoleUserRequest,
+  DeleteRoleUserResponse,
+  GetRolesRequest,
+  GetRolesResponse,
+  GetRoleUsersRequest,
+  GetRoleUsersResponse,
+  RoleState
+} from './types'
 
 export const useRoleStore = defineStore('role', {
   state: (): RoleState => ({

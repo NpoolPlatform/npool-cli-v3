@@ -28,7 +28,7 @@ interface GetKYCReviewsResponse {
 
 interface UpdateKYCReviewRequest extends BaseRequest {
   Info: Review
-  LangID: string
+  TargetLangID: string
 }
 
 interface UpdateKYCReviewResponse {

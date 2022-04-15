@@ -3,7 +3,7 @@ import { AppUser, AppUserExtra } from '../users'
 
 interface InvitationCode {
   ID?: string
-  InvitationCode: string
+  InvitationCode?: string
 }
 
 interface GetInvitationCodeRequest {

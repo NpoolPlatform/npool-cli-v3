@@ -136,8 +136,7 @@ export const useUserStore = defineStore('user', {
         req.Message,
         (resp: CreateAppUserExtraResponse): void => {
           const logined = useLoginedUserStore()
-          const user = logined.LoginedUser as UserInfo
-          user.Extra = resp.Info
+          logined.LoginedUser = resp.Info
           done(false)
         }, () => {
           done(true)
@@ -150,8 +149,7 @@ export const useUserStore = defineStore('user', {
         req.Message,
         (resp: UpdateAppUserExtraResponse): void => {
           const logined = useLoginedUserStore()
-          const user = logined.LoginedUser as UserInfo
-          user.Extra = resp.Info
+          logined.LoginedUser = resp.Info
           done(false)
         }, () => {
           done(true)

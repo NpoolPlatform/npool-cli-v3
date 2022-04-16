@@ -164,7 +164,7 @@ interface CreateAppUserExtraRequest {
 }
 
 interface CreateAppUserExtraResponse {
-  Info: AppUserExtra
+  Info: UserInfo
 }
 
 interface UpdateAppUserExtraRequest {
@@ -173,7 +173,7 @@ interface UpdateAppUserExtraRequest {
 }
 
 interface UpdateAppUserExtraResponse {
-  Info: AppUserExtra
+  Info: UserInfo
 }
 
 interface CreateAppUserCtrlRequest {

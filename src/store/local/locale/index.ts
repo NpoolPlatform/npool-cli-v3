@@ -7,7 +7,6 @@ import { LocaleState } from './types'
 export const useLocaleStore = defineStore('locale', {
   state: (): LocaleState => ({
     Languages: [],
-    Messages: {},
     CurLang: undefined,
     LangMessages: new Map<string, Array<Message>>(),
     I18n: useI18n()
@@ -46,32 +45,21 @@ export const useLocaleStore = defineStore('locale', {
         return
       }
 
-      let msgs = this.Messages[messages[0].LangID]
-      if (!msgs) {
-        msgs = {}
-      }
-
       let langMsgs = this.LangMessages.get(messages[0].LangID) as Array<Message>
       if (!langMsgs) {
         langMsgs = [] as Array<Message>
       }
 
+      const oldMessages = this.I18n.getLocaleMessage(this.CurLang?.Lang as string)
+
       messages.forEach((msg) => {
-        msgs[msg.MessageID] = msg.Message
         const index = langMsgs.findIndex((el: Message) => el.ID === msg.ID)
         langMsgs.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, msg)
+        oldMessages[msg.MessageID] = msg.Message
       })
 
       this.LangMessages.set(messages[0].LangID, langMsgs)
-
-      this.Messages[messages[0].LangID] = msgs
-      const oldMessages = this.I18n.getLocaleMessage(messages[0].LangID as string)
-    
-      Object.keys(msgs).forEach((key) => {
-        oldMessages[key] = msgs[key]
-      })
-    
-      this.I18n.setLocaleMessage(messages[0].LangID, oldMessages)
+      this.I18n.setLocaleMessage(this.CurLang?.Lang as string, oldMessages)
     }
   }
 })

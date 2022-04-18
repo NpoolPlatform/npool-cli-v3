@@ -24,44 +24,41 @@ export const useAuthStore = defineStore('auths', {
         req,
         req.Message,
         (resp: GetAuthsResponse): void => {
-          let auths = this.AppAuths.get(req.TargetAppID)
-          if (!auths) {
-            auths = []
-          }
+          let auths = [] as Array<Auth>
           resp.Infos.forEach((auth) => {
             if (auth.RoleID === '' && auth.UserID === '') {
-              auths?.push(auth)
+              auths.push(auth)
             }
           })
           this.AppAuths.set(req.TargetAppID, auths)
 
+          auths = [] as Array<Auth>
+          let authKey = ''
           resp.Infos.forEach((auth) => {
             if (auth.UserID === '') {
               return
             }
 
-            const authKey = this.getAuthKey(req.TargetAppID, auth.UserID)
-            let auths = this.UserAuths.get(authKey)
-            if (!auths) {
-              auths = []
-            }
+            authKey = this.getAuthKey(req.TargetAppID, auth.UserID)
             auths.push(auth)
-            this.UserAuths.set(authKey, auths)
           })
+          if (auths.length > 0) {
+            this.UserAuths.set(authKey, auths)
+          }
 
+          auths = [] as Array<Auth>
+          authKey = ''
           resp.Infos.forEach((auth) => {
             if (auth.RoleID === '') {
               return
             }
 
-            const authKey = this.getAuthKey(req.TargetAppID, auth.RoleID)
-            let auths = this.RoleAuths.get(authKey)
-            if (!auths) {
-              auths = []
-            }
+            authKey = this.getAuthKey(req.TargetAppID, auth.RoleID)
             auths.push(auth)
-            this.RoleAuths.set(authKey, auths)
           })
+          if (auths.length > 0) {
+            this.RoleAuths.set(authKey, auths)
+          }
 
           done(false)
         }, () => {

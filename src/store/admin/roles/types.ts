@@ -8,7 +8,7 @@ interface GetRolesResponse {
   Infos: Array<AppRole>
 }
 
-interface AppRoleUser {
+interface RoleUser {
   ID?: string
   RoleID: string
   UserID?: string
@@ -18,16 +18,16 @@ interface GetRoleUsersRequest extends BaseRequest {
 }
 
 interface GetRoleUsersResponse {
-  Infos: Array<AppRoleUser>
+  Infos: Array<RoleUser>
 }
 
 interface CreateRoleUserRequest extends BaseRequest {
   TargetUserID: string
-  Info: AppRoleUser
+  Info: RoleUser
 }
 
 interface CreateRoleUserResponse {
-  Info: AppRoleUser
+  Info: RoleUser
 }
 
 interface DeleteRoleUserRequest extends BaseRequest {
@@ -35,18 +35,18 @@ interface DeleteRoleUserRequest extends BaseRequest {
 }
 
 interface DeleteRoleUserResponse {
-  Info: AppRoleUser
+  Info: RoleUser
 }
 
 interface RoleState {
   Roles: Array<AppRole>
-  RoleUsers: Array<AppRoleUser>
+  RoleUsers: Array<RoleUser>
 }
 
 export {
   GetRolesRequest,
   GetRolesResponse,
-  AppRoleUser,
+  RoleUser,
   GetRoleUsersRequest,
   GetRoleUsersResponse,
   CreateRoleUserRequest,

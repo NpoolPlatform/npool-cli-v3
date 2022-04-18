@@ -28,10 +28,11 @@ interface GetAPIsResponse {
 }
 
 interface APIState {
-  APIs: Array<API>
+  APIs: Array<ExpandAPI>
 }
 
 export {
+  APIBase,
   API,
   ExpandAPI,
   GetAPIsRequest,

@@ -1,4 +1,4 @@
-import { BaseRequest } from 'src/store/base'
+import { BaseRequest } from '../../base'
 import { Application } from '../../frontend'
 
 interface GetApplicationsRequest extends BaseRequest {

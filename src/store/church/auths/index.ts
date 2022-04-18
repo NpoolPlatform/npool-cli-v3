@@ -10,7 +10,17 @@ export const useAuthStore = defineStore('auths', {
     RoleAuths: new Map<string, Array<Auth>>(),
     Histories: []
   }),
-  getters: {},
+  getters: {
+    getAuthsByApp (): (appID: string) => Array<Auth> {
+      return (appID: string) => {
+        const auths = [] as Array<Auth>
+        this.AppAuths.get(appID)?.forEach((auth) => auths.push(auth))
+        this.UserAuths.get(appID)?.forEach((auth) => auths.push(auth))
+        this.RoleAuths.get(appID)?.forEach((auth) => auths.push(auth))
+        return auths
+      }
+    }
+  },
   actions: {
     getAuths (req: GetAuthsRequest, done: (error: boolean) => void) {
       doActionWithError<GetAuthsRequest, GetAuthsResponse>(

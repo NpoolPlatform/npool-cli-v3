@@ -1,6 +1,13 @@
 import { BaseRequest } from '../../base'
-import { AppLanguage, Message } from '../../frontend'
+import { AppLanguage, Language, Message } from '../../frontend'
 import { ReqMessage } from '../../local'
+
+interface GetAllLangsRequest extends BaseRequest {
+}
+
+interface GetAllLangsResponse {
+  Infos: Array<Language>
+}
 
 interface CreateAppLangRequest extends BaseRequest {
   Info: AppLanguage
@@ -47,5 +54,7 @@ export {
   UpdateMessageRequset,
   UpdateMessageResponse,
   CreateMessagesRequest,
-  CreateMessagesResponse
+  CreateMessagesResponse,
+  GetAllLangsRequest,
+  GetAllLangsResponse
 }

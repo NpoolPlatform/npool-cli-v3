@@ -1,5 +1,5 @@
 import { BaseRequest } from '../../base'
-import { Country, Language } from '../../frontend'
+import { Country, GetLangsRequest, GetLangsResponse, Language } from '../../frontend'
 
 interface CreateLangRequest extends BaseRequest {
   Info: Language
@@ -49,6 +49,13 @@ interface UpdateCountryResponse {
   Info: Country
 }
 
+interface GetAppLangInfosRequest extends GetLangsRequest {
+  TargetAppID: string
+}
+
+interface GetAppLangInfosResponse extends GetLangsResponse {
+}
+
 export {
   CreateLangRequest,
   CreateLangResponse,
@@ -61,5 +68,7 @@ export {
   CreateCountriesRequest,
   CreateCountriesResponse,
   UpdateCountryRequest,
-  UpdateCountryResponse
+  UpdateCountryResponse,
+  GetAppLangInfosRequest,
+  GetAppLangInfosResponse
 }

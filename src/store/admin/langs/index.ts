@@ -6,10 +6,12 @@ import {
   CreateMessageResponse,
   CreateMessagesRequest,
   CreateMessagesResponse,
+  GetAllLangsRequest,
+  GetAllLangsResponse,
   UpdateMessageRequset,
   UpdateMessageResponse
 } from './types'
-import { doAction } from '../../action'
+import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import { useLocaleStore } from '../../local'
 import { LanguageState } from './state'
@@ -20,6 +22,18 @@ export const useAdminLangStore = defineStore('adminlang', {
   }),
   getters: {},
   actions: {
+    getLangs (req: GetAllLangsRequest, done: (error: boolean) => void) {
+      doActionWithError<GetAllLangsRequest, GetAllLangsResponse>(
+        API.GET_LANGS,
+        req,
+        req.Message,
+        (resp: GetAllLangsResponse): void => {
+          this.Languages = resp.Infos
+          done(false)
+        }, () => {
+          done(true)
+        })
+    },
     createLang (req: CreateAppLangRequest, done: () => void) {
       doAction<CreateAppLangRequest, CreateAppLangResponse>(
         API.CREATE_LANG,

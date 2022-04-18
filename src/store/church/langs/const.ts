@@ -7,7 +7,7 @@ enum API {
   CREATE_COUNTRIES = '/internationalization/v1/create/countries',
   UPDATE_COUNTRY = '/internationalization/v1/update/country',
 
-  GET_APP_LANG_INFOS = '/internationalization/v1/get/app/lang/infos/by/other/app',
+  GET_APP_LANGS = '/internationalization/v1/get/app/lang/infos/by/other/app',
   CREATE_APP_LANG = '/internationalization/v1/create/app/lang/for/other/app',
   GET_MESSAGES = '/internationalization/v1/get/messages/by/other/app/lang',
   CREATE_MESSAGE = '/internationalization/v1/create/message/for/other/app'

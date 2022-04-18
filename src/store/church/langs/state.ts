@@ -1,7 +1,9 @@
-import { Language } from '../../frontend'
+import { AppLanguage, Language, Message } from '../../frontend'
 
 interface LanguageState {
-  Languages: Array<Language>
+  Languages: Map<string, Array<Language>>
+  Messages: Map<string, Map<string, Array<Message>>>
+  AppLangs: Map<string, Array<AppLanguage>>
 }
 
 export {

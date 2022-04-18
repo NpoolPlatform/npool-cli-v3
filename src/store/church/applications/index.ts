@@ -1,15 +1,18 @@
 import { defineStore } from 'pinia'
-import { Application } from '../../frontend'
+import { AppControl, Application, BanApp } from '../../frontend'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import {
   ApplicationsState,
   CreateAppControlRequest,
   CreateAppControlResponse,
+  CreateApplicationRequest,
+  CreateApplicationResponse,
   GetApplicationsRequest,
   GetApplicationsResponse,
   UpdateAppControlRequest,
-  UpdateAppControlResponse
+  UpdateAppControlResponse,
+  UpdateApplicationRequest
 } from './types'
 
 export const useApplicationsStore = defineStore('applications', {
@@ -59,6 +62,33 @@ export const useApplicationsStore = defineStore('applications', {
           const index = this.Applications.findIndex((app) => app.App.ID === resp.Info.AppID)
           const app = this.Applications[index]
           app.Ctrl = resp.Info
+          this.Applications.splice(index, 1, app)
+          done()
+        })
+    },
+    createApplication (req: CreateApplicationRequest, done: () => void) {
+      doAction<CreateApplicationRequest, CreateApplicationResponse>(
+        API.CREATE_APPLICATION,
+        req,
+        req.Message,
+        (resp: CreateApplicationResponse): void => {
+          this.Applications.push({
+            App: resp.Info,
+            Ctrl: undefined as unknown as AppControl,
+            Ban: undefined as unknown as BanApp
+          })
+          done()
+        })
+    },
+    updateApplication (req: UpdateApplicationRequest, done: () => void) {
+      doAction<CreateApplicationRequest, CreateApplicationResponse>(
+        API.CREATE_APPLICATION,
+        req,
+        req.Message,
+        (resp: CreateApplicationResponse): void => {
+          const index = this.Applications.findIndex((app) => app.App.ID === resp.Info.ID)
+          const app = this.Applications[index]
+          app.App = resp.Info
           this.Applications.splice(index, 1, app)
           done()
         })

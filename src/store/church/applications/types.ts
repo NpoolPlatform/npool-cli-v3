@@ -1,5 +1,21 @@
 import { BaseRequest } from '../../base'
-import { AppControl, Application } from '../../frontend'
+import { App, AppControl, Application } from '../../frontend'
+
+interface CreateApplicationRequest extends BaseRequest {
+  Info: App
+}
+
+interface CreateApplicationResponse {
+  Info: App
+}
+
+interface UpdateApplicationRequest extends BaseRequest {
+  Info: App
+}
+
+interface UpdateApplicationResponse {
+  Info: App
+}
 
 interface GetApplicationsRequest extends BaseRequest {
 }
@@ -36,5 +52,9 @@ export {
   CreateAppControlResponse,
   UpdateAppControlRequest,
   UpdateAppControlResponse,
+  CreateApplicationRequest,
+  CreateApplicationResponse,
+  UpdateApplicationRequest,
+  UpdateApplicationResponse,
   ApplicationsState
 }

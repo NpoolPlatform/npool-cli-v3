@@ -13,7 +13,7 @@ enum RecaptchaMethod {
 }
 
 const RecaptchaMethods = [
-  RecaptchaMethod
+  RecaptchaMethod.GoogleRecaptchaV3
 ]
 
 export {

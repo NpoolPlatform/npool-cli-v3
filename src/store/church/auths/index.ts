@@ -10,13 +10,7 @@ export const useAuthStore = defineStore('auths', {
     RoleAuths: new Map<string, Array<Auth>>(),
     Histories: []
   }),
-  getters: {
-    getAuthKey (): (appID: string, authID: string) => string {
-      return (appID: string, authID: string) => {
-        return appID + '-' + authID
-      }
-    }
-  },
+  getters: {},
   actions: {
     getAuths (req: GetAuthsRequest, done: (error: boolean) => void) {
       doActionWithError<GetAuthsRequest, GetAuthsResponse>(
@@ -33,31 +27,25 @@ export const useAuthStore = defineStore('auths', {
           this.AppAuths.set(req.TargetAppID, auths)
 
           auths = [] as Array<Auth>
-          let authKey = ''
           resp.Infos.forEach((auth) => {
             if (auth.UserID === '') {
               return
             }
-
-            authKey = this.getAuthKey(req.TargetAppID, auth.UserID)
             auths.push(auth)
           })
           if (auths.length > 0) {
-            this.UserAuths.set(authKey, auths)
+            this.UserAuths.set(req.TargetAppID, auths)
           }
 
           auths = [] as Array<Auth>
-          authKey = ''
           resp.Infos.forEach((auth) => {
             if (auth.RoleID === '') {
               return
             }
-
-            authKey = this.getAuthKey(req.TargetAppID, auth.RoleID)
             auths.push(auth)
           })
           if (auths.length > 0) {
-            this.RoleAuths.set(authKey, auths)
+            this.RoleAuths.set(req.TargetAppID, auths)
           }
 
           done(false)
@@ -86,13 +74,12 @@ export const useAuthStore = defineStore('auths', {
         req,
         req.Message,
         (resp: CreateAppUserAuthResponse): void => {
-          const authKey = this.getAuthKey(req.TargetAppID, req.TargetUserID)
-          let auths = this.UserAuths.get(authKey)
+          let auths = this.UserAuths.get(req.TargetAppID)
           if (!auths) {
             auths = []
           }
           auths.push(resp.Info)
-          this.UserAuths.set(authKey, auths)
+          this.UserAuths.set(req.TargetAppID, auths)
           done()
         })
     },
@@ -102,13 +89,12 @@ export const useAuthStore = defineStore('auths', {
         req,
         req.Message,
         (resp: CreateAppUserAuthResponse): void => {
-          const authKey = this.getAuthKey(req.TargetAppID, req.Info.RoleID)
-          let auths = this.RoleAuths.get(authKey)
+          let auths = this.RoleAuths.get(req.TargetAppID)
           if (!auths) {
             auths = []
           }
           auths.push(resp.Info)
-          this.RoleAuths.set(authKey, auths)
+          this.RoleAuths.set(req.TargetAppID, auths)
           done()
         })
     },

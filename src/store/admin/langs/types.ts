@@ -1,12 +1,12 @@
+import { BaseRequest } from '../../base'
 import { AppLanguage, Message } from '../../frontend'
 import { ReqMessage } from '../../local'
 
-interface CreateLangRequest {
+interface CreateAppLangRequest extends BaseRequest {
   Info: AppLanguage
-  Message: ReqMessage
 }
 
-interface CreateLangResponse {
+interface CreateAppLangResponse {
   Info: AppLanguage
 }
 
@@ -40,8 +40,8 @@ interface UpdateMessageResponse {
 }
 
 export {
-  CreateLangRequest,
-  CreateLangResponse,
+  CreateAppLangRequest,
+  CreateAppLangResponse,
   CreateMessageRequset,
   CreateMessageResponse,
   UpdateMessageRequset,

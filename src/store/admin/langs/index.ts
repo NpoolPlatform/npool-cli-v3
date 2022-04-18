@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import {
-  CreateLangRequest,
-  CreateLangResponse,
+  CreateAppLangRequest,
+  CreateAppLangResponse,
   CreateMessageRequset,
   CreateMessageResponse,
   CreateMessagesRequest,
@@ -20,12 +20,12 @@ export const useAdminLangStore = defineStore('adminlang', {
   }),
   getters: {},
   actions: {
-    createLang (req: CreateLangRequest, done: () => void) {
-      doAction<CreateLangRequest, CreateLangResponse>(
+    createLang (req: CreateAppLangRequest, done: () => void) {
+      doAction<CreateAppLangRequest, CreateAppLangResponse>(
         API.CREATE_LANG,
         req,
         req.Message,
-        (resp: CreateLangResponse): void => {
+        (resp: CreateAppLangResponse): void => {
           const locale = useLocaleStore()
           this.Languages.forEach((lang) => {
             if (lang.ID !== resp.Info.LangID) {

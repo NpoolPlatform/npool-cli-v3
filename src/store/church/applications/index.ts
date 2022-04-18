@@ -97,3 +97,4 @@ export const useApplicationsStore = defineStore('applications', {
 })
 
 export * from './types'
+export { RecaptchaMethod, RecaptchaMethods } from './const'

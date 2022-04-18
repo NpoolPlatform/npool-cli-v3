@@ -8,6 +8,16 @@ enum API {
   UPDATE_APPLICATION = '/appuser-manager/v1/update/app'
 }
 
+enum RecaptchaMethod {
+  GoogleRecaptchaV3 = 'google-recaptcha-v3'
+}
+
+const RecaptchaMethods = [
+  RecaptchaMethod
+]
+
 export {
-  API
+  API,
+  RecaptchaMethod,
+  RecaptchaMethods
 }

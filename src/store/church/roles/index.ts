@@ -2,11 +2,13 @@ import { defineStore } from 'pinia'
 import { UsersState } from './state'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
-import { AppRoleUser, CreateAppRoleUserRequest, CreateAppRoleUserResponse, GetAppRoleUsersRequest, GetAppRoleUsersResponse } from './types'
+import { AppRoleUser, CreateAppRoleUserRequest, CreateAppRoleUserResponse, GetAppRolesRequest, GetAppRolesResponse, GetAppRoleUsersRequest, GetAppRoleUsersResponse } from './types'
+import { AppRole } from '../../frontend'
 
 export const useChurchRolesStore = defineStore('churchroles', {
   state: (): UsersState => ({
-    RoleUsers: new Map<string, Array<AppRoleUser>>()
+    RoleUsers: new Map<string, Array<AppRoleUser>>(),
+    Roles: new Map<string, Array<AppRole>>()
   }),
   getters: {
     getUserKey (): (appID: string, userRoleID: string) => string {
@@ -16,6 +18,18 @@ export const useChurchRolesStore = defineStore('churchroles', {
     }
   },
   actions: {
+    getRoles (req: GetAppRolesRequest, done: (error: boolean) => void) {
+      doActionWithError<GetAppRolesRequest, GetAppRolesResponse>(
+        API.GET_ROLES,
+        req,
+        req.Message,
+        (resp: GetAppRolesResponse): void => {
+          this.Roles.set(req.TargetAppID, resp.Infos)
+          done(false)
+        }, () => {
+          done(true)
+        })
+    },
     getRoleUsers (req: GetAppRoleUsersRequest, done: (error: boolean) => void) {
       doActionWithError<GetAppRoleUsersRequest, GetAppRoleUsersResponse>(
         API.GET_ROLE_USERS,

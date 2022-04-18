@@ -1,14 +1,6 @@
 import { BaseRequest } from '../../base'
-import { RoleUser, GetRoleUsersRequest } from '../../admin'
-
-interface Role {
-  ID: string
-  AppID: string
-  CreatedBy: string
-  Role: string
-  Description: string
-  Default: boolean
-}
+import { RoleUser, GetRoleUsersRequest, GetRolesRequest } from '../../admin'
+import { AppRole } from '../../frontend'
 
 interface AppRoleUser extends RoleUser {
   AppID: string
@@ -31,11 +23,20 @@ interface GetAppRoleUsersResponse {
   Infos: Array<AppRoleUser>
 }
 
+interface GetAppRolesRequest extends GetRolesRequest {
+  TargetAppID: string
+}
+
+interface GetAppRolesResponse {
+  Infos: Array<AppRole>
+}
+
 export {
-  Role,
   AppRoleUser,
   CreateAppRoleUserRequest,
   CreateAppRoleUserResponse,
   GetAppRoleUsersRequest,
-  GetAppRoleUsersResponse
+  GetAppRoleUsersResponse,
+  GetAppRolesRequest,
+  GetAppRolesResponse
 }

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { doAction, doActionWithError } from 'src/store/action'
+import { doAction, doActionWithError } from '../../action'
 import { Contact, EmailTemplate, SMSTemplate, UpdateContactRequest, UpdateContactResponse, UpdateEmailTemplateRequest, UpdateEmailTemplateResponse, UpdateSMSTemplateRequest, UpdateSMSTemplateResponse } from '../../admin'
 import { API } from './const'
 import { TemplateState } from './state'

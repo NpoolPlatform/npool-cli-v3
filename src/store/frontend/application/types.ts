@@ -17,6 +17,7 @@ interface AppControl {
   RecaptchaMethod: string
   KycEnable: boolean
   SigninVerifyEnable: boolean
+  InvitationCodeMust: boolean
 }
 
 interface BanApp {

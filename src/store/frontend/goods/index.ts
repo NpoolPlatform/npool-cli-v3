@@ -174,13 +174,16 @@ export const useGoodStore = defineStore('good', {
           done?.(true)
         })
     },
-    getFeeTypes (req: GetFeeTypesRequest) {
-      doAction<GetFeeTypesRequest, GetFeeTypesResponse>(
+    getFeeTypes (req: GetFeeTypesRequest, done?: (error: boolean) => void) {
+      doActionWithError<GetFeeTypesRequest, GetFeeTypesResponse>(
         API.GET_FEE_TYPES,
         req,
         req.Message,
         (resp: GetFeeTypesResponse): void => {
           this.FeeTypes = resp.Infos
+          done?.(false)
+        }, () => {
+          done?.(true)
         })
     },
     getGood (req: GetGoodRequest, done: (good: Good) => void) {

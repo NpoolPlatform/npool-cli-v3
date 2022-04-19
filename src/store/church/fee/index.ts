@@ -59,3 +59,4 @@ export const useFeeStore = defineStore('fee', {
 })
 
 export * from './types'
+export { FeePayTypes, FeePayType } from './const'

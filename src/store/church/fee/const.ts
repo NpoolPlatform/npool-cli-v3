@@ -6,6 +6,18 @@ enum API {
   CREATE_FEE = '/cloud-hashing-goods/v1/create/fee'
 }
 
+enum FeePayType {
+  Amount = 'amount',
+  Percent = 'percent'
+}
+
+const FeePayTypes = [
+  FeePayType.Amount,
+  FeePayType.Percent
+]
+
 export {
-  API
+  API,
+  FeePayType,
+  FeePayTypes
 }

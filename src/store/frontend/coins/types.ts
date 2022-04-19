@@ -24,7 +24,7 @@ interface GetCoinsResponse {
 }
 
 interface Description {
-  ID: string
+  ID?: string
   CoinTypeID: string
   Title: string
   Message: string

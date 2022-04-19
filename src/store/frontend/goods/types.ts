@@ -173,6 +173,8 @@ export {
   Fee,
   GoodBase,
   Good,
+  DeviceInfo,
+  VendorLocation,
   RecommendGood,
   GetGoodsRequest,
   GetGoodsResponse,

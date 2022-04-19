@@ -17,7 +17,7 @@ export const useDeviceStore = defineStore('device', {
   }),
   getters: {},
   actions: {
-    getDevice (req: GetDevicesRequest, done: (error: boolean) => void) {
+    getDevices (req: GetDevicesRequest, done: (error: boolean) => void) {
       doActionWithError<GetDevicesRequest, GetDevicesResponse>(
         API.GET_DEVICES,
         req,

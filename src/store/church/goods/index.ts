@@ -234,3 +234,4 @@ export const useChurchGoodStore = defineStore('churchgood', {
 })
 
 export * from './types'
+export { BenefitTypes, BenefitType } from './const'

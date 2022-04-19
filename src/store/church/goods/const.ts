@@ -20,6 +20,18 @@ enum API {
   CREATE_PRICE_CURRENCY = '/cloud-hashing-goods/v1/create/price-currency'
 }
 
+enum BenefitType {
+  BenefitPool = 'pool',
+  BenefitPlatform = 'platform'
+}
+
+const BenefitTypes = [
+  BenefitType.BenefitPool,
+  BenefitType.BenefitPlatform
+]
+
 export {
-  API
+  API,
+  BenefitType,
+  BenefitTypes
 }

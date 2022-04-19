@@ -122,9 +122,7 @@ export const useChurchGoodStore = defineStore('churchgood', {
             goods = []
           }
           const index = goods.findIndex((el) => el.ID === resp.Info.ID)
-          if (index >= 0) {
-            goods.splice(index, 1)
-          }
+          goods.splice(index, index < 0 ? 0 : 1, resp.Info)
           this.AppGoods.set(req.TargetAppID, goods)
           done()
         })

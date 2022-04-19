@@ -78,4 +78,4 @@ export const useCoinStore = defineStore('coin', {
 })
 
 export * from './types'
-export { CoinDescriptionUsedFors, CoinDescriptionUsedFor } from './const'
+export { CoinDescriptionUsedFors, CoinDescriptionUsedFor, CoinEnvironments, CoinEnvironment } from './const'

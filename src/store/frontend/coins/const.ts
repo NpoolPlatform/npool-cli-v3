@@ -11,8 +11,20 @@ const CoinDescriptionUsedFors = [
   CoinDescriptionUsedFor.ProductDetail
 ]
 
+enum CoinEnvironment {
+  Test = 'test',
+  Main = 'main'
+}
+
+const CoinEnvironments = [
+  CoinEnvironment.Main,
+  CoinEnvironment.Test
+]
+
 export {
   API,
   CoinDescriptionUsedFor,
-  CoinDescriptionUsedFors
+  CoinDescriptionUsedFors,
+  CoinEnvironment,
+  CoinEnvironments
 }

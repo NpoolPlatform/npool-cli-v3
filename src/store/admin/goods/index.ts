@@ -22,14 +22,25 @@ import {
   UpdateRecommendResponse
 } from './types'
 import { GoodState } from './state'
-import { useGoodStore } from '../../frontend'
+import { Good, useGoodStore } from '../../frontend'
 
 export const useAdminGoodStore = defineStore('admingood', {
   state: (): GoodState => ({
     Goods: [],
     Recommends: []
   }),
-  getters: {},
+  getters: {
+    getGoodByID (): (id: string) => Good {
+      return (id: string): Good => {
+        for (const good of this.Goods) {
+          if (id === good.Good.Good.ID) {
+            return good
+          }
+        }
+        return undefined as unknown as Good
+      }
+    },
+  },
   actions: {
     getAllGoods (req: GetAllGoodsRequest, done: (error: boolean) => void) {
       doActionWithError<GetAllGoodsRequest, GetAllGoodsResponse>(

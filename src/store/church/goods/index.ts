@@ -32,7 +32,7 @@ import {
   UpdateGoodResponse
 } from './types'
 import { GoodState } from './state'
-import { AppGood, Recommend, Promotion } from '../../frontend'
+import { AppGood, Recommend, Promotion, PriceCurrency } from '../../frontend'
 
 export const useChurchGoodStore = defineStore('churchgood', {
   state: (): GoodState => ({
@@ -41,7 +41,17 @@ export const useChurchGoodStore = defineStore('churchgood', {
     Promotions: new Map<string, Array<Promotion>>(),
     PriceCurrencies: []
   }),
-  getters: {},
+  getters: {
+    getPriceCurrencyByID (): (id: string) => PriceCurrency {
+      return (id: string) => {
+        const index = this.PriceCurrencies.findIndex((el) => el.ID === id)
+        if (index < 0) {
+          return undefined as unknown as PriceCurrency
+        }
+        return this.PriceCurrencies[index]
+      }
+    }
+  },
   actions: {
     getAppGoods (req: GetTargetAppGoodsRequest, done: (error: boolean) => void) {
       doActionWithError<GetTargetAppGoodsRequest, GetTargetAppGoodsResponse>(

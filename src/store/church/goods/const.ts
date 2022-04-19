@@ -11,7 +11,13 @@ enum API {
   OFFSALE_GOOD = '/cloud-hashing-goods/v1/offsale/app/good/for/other/app',
 
   CREATE_PROMOTION = '/cloud-hashing-goods/v1/create/app/good/promotion/for/other/app',
-  GET_PROMOTIONS = '/cloud-hashing-goods/v1/get/app/good/promotions/by/other/app'
+  GET_PROMOTIONS = '/cloud-hashing-goods/v1/get/app/good/promotions/by/other/app',
+
+  CREATE_GOOD = '/cloud-hashing-apis-v2/v1/create/good',
+  UPDATE_GOOD = '/cloud-hashing-goods/v1/update/good',
+
+  GET_PRICE_CURRENCIES = '/cloud-hashing-goods/v1/get/price-currencys',
+  CREATE_PRICE_CURRENCY = '/cloud-hashing-goods/v1/create/price-currency'
 }
 
 export {

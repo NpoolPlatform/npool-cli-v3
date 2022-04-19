@@ -8,10 +8,16 @@ import {
   CreateAppPromotionResponse,
   CreateAppRecommendRequest,
   CreateAppRecommendResponse,
+  CreateGoodRequest,
+  CreateGoodResponse,
+  CreatePriceCurrencyRequest,
+  CreatePriceCurrencyResponse,
   GetAppPromotionsRequest,
   GetAppPromotionsResponse,
   GetAppRecommendsRequest,
   GetAppRecommendsResponse,
+  GetPriceCurrenciesRequest,
+  GetPriceCurrenciesResponse,
   GetTargetAppGoodsRequest,
   GetTargetAppGoodsResponse,
   OfflineAppGoodRequest,
@@ -21,7 +27,9 @@ import {
   SetAppGoodPriceRequest,
   SetAppGoodPriceResponse,
   UnauthorizeGoodRequest,
-  UnauthorizeGoodResponse
+  UnauthorizeGoodResponse,
+  UpdateGoodRequest,
+  UpdateGoodResponse
 } from './types'
 import { GoodState } from './state'
 import { AppGood, Recommend, Promotion } from '../../frontend'
@@ -30,7 +38,8 @@ export const useChurchGoodStore = defineStore('churchgood', {
   state: (): GoodState => ({
     AppGoods: new Map<string, Array<AppGood>>(),
     Recommends: new Map<string, Array<Recommend>>(),
-    Promotions: new Map<string, Array<Promotion>>()
+    Promotions: new Map<string, Array<Promotion>>(),
+    PriceCurrencies: []
   }),
   getters: {},
   actions: {
@@ -178,6 +187,46 @@ export const useChurchGoodStore = defineStore('churchgood', {
           }
           promotions.push(resp.Info)
           this.Promotions.set(req.TargetAppID, promotions)
+          done()
+        })
+    },
+    createGood (req: CreateGoodRequest, done: () => void) {
+      doAction<CreateGoodRequest, CreateGoodResponse>(
+        API.CREATE_GOOD,
+        req,
+        req.Message,
+        (): void => {
+          done()
+        })
+    },
+    updateGood (req: UpdateGoodRequest, done: () => void) {
+      doAction<UpdateGoodRequest, UpdateGoodResponse>(
+        API.UPDATE_GOOD,
+        req,
+        req.Message,
+        (): void => {
+          done()
+        })
+    },
+    getPriceCurrencies (req: GetPriceCurrenciesRequest, done: (error: boolean) => void) {
+      doActionWithError<GetPriceCurrenciesRequest, GetPriceCurrenciesResponse>(
+        API.GET_PRICE_CURRENCIES,
+        req,
+        req.Message,
+        (resp: GetPriceCurrenciesResponse): void => {
+          this.PriceCurrencies = resp.Infos
+          done(false)
+        }, () => {
+          done(true)
+        })
+    },
+    createPriceCurrency (req: CreatePriceCurrencyRequest, done: () => void) {
+      doAction<CreatePriceCurrencyRequest, CreatePriceCurrencyResponse>(
+        API.CREATE_PRICE_CURRENCY,
+        req,
+        req.Message,
+        (resp: CreatePriceCurrencyResponse): void => {
+          this.PriceCurrencies.push(resp.Info)
           done()
         })
     }

@@ -175,6 +175,7 @@ export {
   Good,
   DeviceInfo,
   VendorLocation,
+  PriceCurrency,
   RecommendGood,
   GetGoodsRequest,
   GetGoodsResponse,

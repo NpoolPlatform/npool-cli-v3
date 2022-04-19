@@ -18,7 +18,9 @@ import {
   GetAppGoodsResponse,
   GetPromotionsRequest,
   GetPromotionsResponse,
-  AppGood
+  AppGood,
+  GoodBase,
+  PriceCurrency
 } from '../../frontend'
 
 interface GetTargetAppGoodsRequest extends GetAppGoodsRequest {
@@ -94,6 +96,46 @@ interface CreateAppPromotionRequest extends CreatePromotionRequest {
 interface CreateAppPromotionResponse extends CreatePromotionResponse {
 }
 
+interface GoodInfo extends GoodBase {
+  PriceCurrency: string
+  CoinInfoID: string
+  DeviceInfoID: string,
+  VendorLocationID: string
+  SupportCoinTypeIDs: Array<string>
+  FeeIDs: Array<string>
+}
+
+interface CreateGoodRequest extends BaseRequest {
+  Info: GoodInfo
+}
+
+interface CreateGoodResponse {
+  Info: GoodInfo
+}
+
+interface UpdateGoodRequest extends BaseRequest {
+  Info: GoodInfo
+}
+
+interface UpdateGoodResponse {
+  Info: GoodInfo
+}
+
+interface GetPriceCurrenciesRequest extends BaseRequest {
+}
+
+interface GetPriceCurrenciesResponse {
+  Infos: Array<PriceCurrency>
+}
+
+interface CreatePriceCurrencyRequest extends BaseRequest {
+  Info: PriceCurrency
+}
+
+interface CreatePriceCurrencyResponse {
+  Info: PriceCurrency
+}
+
 export {
   GetTargetAppGoodsRequest,
   GetTargetAppGoodsResponse,
@@ -114,5 +156,14 @@ export {
   GetAppPromotionsRequest,
   GetAppPromotionsResponse,
   CreateAppPromotionRequest,
-  CreateAppPromotionResponse
+  CreateAppPromotionResponse,
+  GoodInfo,
+  CreateGoodRequest,
+  CreateGoodResponse,
+  UpdateGoodRequest,
+  UpdateGoodResponse,
+  GetPriceCurrenciesRequest,
+  GetPriceCurrenciesResponse,
+  CreatePriceCurrencyRequest,
+  CreatePriceCurrencyResponse
 }

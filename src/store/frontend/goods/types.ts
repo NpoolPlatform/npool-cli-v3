@@ -145,7 +145,7 @@ interface GetFeeTypesResponse {
 }
 
 interface AppGood {
-  ID: string
+  ID?: string
   GoodID: string
   Price: number
   Online: boolean

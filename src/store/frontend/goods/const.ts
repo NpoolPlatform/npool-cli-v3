@@ -12,7 +12,19 @@ enum FeePayType {
   Percent = 'percent'
 }
 
+enum InitAreaStrategy {
+  All = 'all',
+  None = 'none'
+}
+
+const InitAreaStrategies = [
+  InitAreaStrategy.All,
+  InitAreaStrategy.None
+]
+
 export {
   API,
-  FeePayType
+  FeePayType,
+  InitAreaStrategy,
+  InitAreaStrategies
 }

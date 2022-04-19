@@ -214,3 +214,4 @@ export const useGoodStore = defineStore('good', {
 })
 
 export * from './types'
+export { InitAreaStrategies, InitAreaStrategy } from './const'

@@ -1,16 +1,18 @@
+import { BaseRequest } from '../../base'
 import { ReqMessage } from '../../local/notifications/types'
+import { CoinDescriptionUsedFor } from './const'
 
 interface Coin {
   ID?: string
-  Name: string
+  Name?: string
   PreSale: boolean
-  Unit: string
+  Unit?: string
   Logo: string
   ReservedAmount: number
-  ENV: string
+  ENV?: string
   ForPay: boolean
-  HomePage: string
-  Specs: string
+  HomePage?: string
+  Specs?: string
 }
 
 interface GetCoinsRequest {
@@ -26,17 +28,15 @@ interface Description {
   CoinTypeID: string
   Title: string
   Message: string
-  UsedFor: string
+  UsedFor: CoinDescriptionUsedFor
 }
 
-interface GetDescriptionRequest {
+interface GetDescriptionsRequest extends BaseRequest {
   CoinTypeID: string
-  UsedFor: string
-  Message: ReqMessage
 }
 
-interface GetDescriptionResponse {
-  Info: Description
+interface GetDescriptionsResponse {
+  Infos: Array<Description>
 }
 
 interface CoinState {
@@ -51,6 +51,6 @@ export {
   GetCoinsRequest,
   GetCoinsResponse,
   Description,
-  GetDescriptionRequest,
-  GetDescriptionResponse
+  GetDescriptionsRequest,
+  GetDescriptionsResponse
 }

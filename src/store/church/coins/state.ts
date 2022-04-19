@@ -1,0 +1,6 @@
+interface CoinState {
+}
+
+export {
+  CoinState
+}

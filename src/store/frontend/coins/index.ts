@@ -8,8 +8,8 @@ import {
   Description,
   GetCoinsRequest,
   GetCoinsResponse,
-  GetDescriptionRequest,
-  GetDescriptionResponse
+  GetDescriptionsRequest,
+  GetDescriptionsResponse
 } from './types'
 
 export const useCoinStore = defineStore('coin', {
@@ -58,21 +58,24 @@ export const useCoinStore = defineStore('coin', {
           done()
         })
     },
-    getCoinDescription (req: GetDescriptionRequest) {
-      doAction<GetDescriptionRequest, GetDescriptionResponse>(
+    getCoinDescriptions (req: GetDescriptionsRequest) {
+      doAction<GetDescriptionsRequest, GetDescriptionsResponse>(
         API.GET_DESCRIPTION,
         req,
         req.Message,
-        (resp: GetDescriptionResponse): void => {
-          let descriptions = this.Descriptions.get(resp.Info.CoinTypeID)
+        (resp: GetDescriptionsResponse): void => {
+          let descriptions = this.Descriptions.get(req.CoinTypeID) as Map<string, Description>
           if (!descriptions) {
             descriptions = new Map<string, Description>()
           }
-          descriptions.set(resp.Info.UsedFor, resp.Info)
-          this.Descriptions.set(resp.Info.CoinTypeID, descriptions)
+          resp.Infos.forEach((desc) => {
+            descriptions.set(desc.UsedFor, desc)
+          })
+          this.Descriptions.set(req.CoinTypeID, descriptions)
         })
     }
   }
 })
 
 export * from './types'
+export { CoinDescriptionUsedFors, CoinDescriptionUsedFor } from './const'

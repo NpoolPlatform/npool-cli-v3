@@ -14,10 +14,10 @@ export const useCurrencyStore = defineStore('currency', {
   getters: {
     getExchangeCoinName (): (coin: Coin) => string {
       return (coin: Coin) => {
-        if (coin.Name.startsWith('usdt') || coin.Name.startsWith('tusdt')) {
+        if (coin.Name?.startsWith('usdt') || coin.Name?.startsWith('tusdt')) {
           return CoinType.USDTERC20
         }
-        return coin.Name.replaceAll(/^t/g, '').toLowerCase()
+        return coin.Name?.replaceAll(/^t/g, '').toLowerCase() as string
       }
     },
     getCachedCoinCurrencyByCoinName (): (coinName: string, currency: Currency) => number {
@@ -56,7 +56,7 @@ export const useCurrencyStore = defineStore('currency', {
       const coins = new Map<string, string>()
       const coin = useCoinStore()
       coin.Coins.forEach((coin: Coin) => {
-        coins.set(this.getExchangeCoinName(coin), coin.Name)
+        coins.set(this.getExchangeCoinName(coin), coin.Name as string)
       })
       const ids = Array.from(coins).map(([key, ]) => key)
       this.getCoinCurrencies(req, ids, done)

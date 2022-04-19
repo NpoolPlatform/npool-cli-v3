@@ -57,11 +57,16 @@ interface Fee {
   Value: number
 }
 
+interface MyFee {
+  Fee: Fee
+  FeeType: FeeType
+}
+
 interface GoodExtend {
   Good: GoodBase
   DeviceInfo: DeviceInfo
   VendorLocation: VendorLocation
-  Fees: Array<Fee>
+  Fees: Array<MyFee>
   PriceCurrency: PriceCurrency
   Extra: GoodExtra
 }

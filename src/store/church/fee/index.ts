@@ -1,14 +1,34 @@
 import { defineStore } from 'pinia'
-import { useGoodStore } from '../../frontend'
+import { Fee, useGoodStore } from '../../frontend'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
-import { CreateFeeRequest, CreateFeeResponse, CreateFeeTypeRequest, CreateFeeTypeResponse, FeeState, GetFeesRequest, GetFeesResponse, UpdateFeeTypeRequest, UpdateFeeTypeResponse } from './types'
+import {
+  CreateFeeRequest,
+  CreateFeeResponse,
+  CreateFeeTypeRequest,
+  CreateFeeTypeResponse,
+  FeeState,
+  GetFeesRequest,
+  GetFeesResponse,
+  UpdateFeeTypeRequest,
+  UpdateFeeTypeResponse
+} from './types'
 
 export const useFeeStore = defineStore('fee', {
   state: (): FeeState => ({
     Fees: []
   }),
-  getters: {},
+  getters: {
+    getFeeByID (): (id: string) => Fee {
+      return (id: string) => {
+        const index = this.Fees.findIndex((el) => el.ID === id)
+        if (index < 0) {
+          return undefined as unknown as Fee
+        }
+        return this.Fees[index]
+      }
+    }
+  },
   actions: {
     getFees (req: GetFeesRequest, done: (error: boolean) => void) {
       doActionWithError<GetFeesRequest, GetFeesResponse>(

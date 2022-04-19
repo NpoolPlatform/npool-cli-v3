@@ -49,6 +49,7 @@ interface GoodBase {
   Total: number
   Unit: string
   StartAt: number
+  InheritFromGoodID: string
 }
 
 interface Fee {

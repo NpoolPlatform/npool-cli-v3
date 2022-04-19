@@ -103,7 +103,6 @@ interface GoodInfo extends GoodBase {
   VendorLocationID: string
   SupportCoinTypeIDs: Array<string>
   FeeIDs: Array<string>
-  InheritFromGoodID: string
 }
 
 interface CreateGoodRequest extends BaseRequest {

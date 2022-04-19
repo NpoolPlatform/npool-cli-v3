@@ -3,7 +3,6 @@ import { BaseRequest } from '../../base'
 import { ReqMessage } from '../../local'
 
 interface CreateCoinRequest extends BaseRequest, Coin {
-  Info: Coin
 }
 
 interface CreateCoinResponse {
@@ -11,11 +10,6 @@ interface CreateCoinResponse {
 }
 
 interface UpdateCoinRequest extends BaseRequest, Coin {
-  ID: string
-  PreSale: boolean
-  Logo: string
-  ReservedAmount: number
-  ForPay: boolean
 }
 
 interface UpdateCoinResponse {

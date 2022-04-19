@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { DeviceInfo } from '../../frontend'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import {
@@ -15,7 +16,17 @@ export const useDeviceStore = defineStore('device', {
   state: (): DeviceState => ({
     Devices: []
   }),
-  getters: {},
+  getters: {
+    getDeviceByID (): (deviceID: string) => DeviceInfo {
+      return (deviceID: string) => {
+        const index = this.Devices.findIndex((dev) => dev.ID === deviceID)
+        if (index < 0) {
+          return undefined as unknown as DeviceInfo
+        }
+        return this.Devices[index]
+      }
+    }
+  },
   actions: {
     getDevices (req: GetDevicesRequest, done: (error: boolean) => void) {
       doActionWithError<GetDevicesRequest, GetDevicesResponse>(

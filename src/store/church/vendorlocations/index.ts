@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { VendorLocation } from '../../frontend'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import {
@@ -15,7 +16,17 @@ export const useVendorLocationStore = defineStore('vendorlocation', {
   state: (): VendorLocationState => ({
     VendorLocations: []
   }),
-  getters: {},
+  getters: {
+    getVendorLocationByID (): (locationID: string) => VendorLocation {
+      return (locationID: string) => {
+        const index = this.VendorLocations.findIndex((loc) => loc.ID === locationID)
+        if (index < 0) {
+          return undefined as unknown as VendorLocation
+        }
+        return this.VendorLocations[index]
+      }
+    }
+  },
   actions: {
     getVendorLocations (req: GetVendorLocationsRequest, done: (error: boolean) => void) {
       doActionWithError<GetVendorLocationsRequest, GetVendorLocationsResponse>(

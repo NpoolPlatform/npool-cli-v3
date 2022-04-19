@@ -58,7 +58,7 @@ export const useCoinStore = defineStore('coin', {
           done()
         })
     },
-    getCoinDescriptions (req: GetDescriptionsRequest) {
+    getCoinDescriptions (req: GetDescriptionsRequest, done?: () => void) {
       doAction<GetDescriptionsRequest, GetDescriptionsResponse>(
         API.GET_DESCRIPTION,
         req,
@@ -72,6 +72,7 @@ export const useCoinStore = defineStore('coin', {
             descriptions.set(desc.UsedFor, desc)
           })
           this.Descriptions.set(req.CoinTypeID, descriptions)
+          done?.()
         })
     }
   }

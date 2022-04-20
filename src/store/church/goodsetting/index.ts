@@ -1,7 +1,15 @@
 import { defineStore } from 'pinia'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
-import { CreateGoodBenefitRequest, CreateGoodBenefitResponse, GetGoodBenefitsRequest, GetGoodBenefitsResponse, GoodSettingState, UpdateGoodBenefitRequest, UpdateGoodBenefitResponse } from './types'
+import {
+  CreateGoodBenefitRequest,
+  CreateGoodBenefitResponse,
+  GetGoodBenefitsRequest,
+  GetGoodBenefitsResponse,
+  GoodSettingState,
+  UpdateGoodBenefitRequest,
+  UpdateGoodBenefitResponse
+} from './types'
 
 export const useGoodSettingStore = defineStore('goodsetting', {
   state: (): GoodSettingState => ({

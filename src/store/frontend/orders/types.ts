@@ -22,6 +22,8 @@ interface Payment {
   ID: string,
   OrderID: string,
   AccountID: string
+  StartAmount: number
+  FinishAmount: number
   Amount: number,
   CoinInfoID: string
   State: string,

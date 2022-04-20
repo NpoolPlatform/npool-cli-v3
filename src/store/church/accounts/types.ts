@@ -1,4 +1,4 @@
-import { Account } from '../../frontend'
+import { Account, WithdrawAddress } from '../../frontend'
 import { BaseRequest } from '../../base'
 
 interface GetAccountsRequest extends BaseRequest {
@@ -24,11 +24,39 @@ interface CreateUserAccountResponse {
   Info: Account
 }
 
+interface GoodPayment {
+  ID: string
+  GoodID: string
+  PaymentCoinTypeID: string
+  AccountID: string
+  Idle: boolean
+}
+
+interface GetGoodPaymentsRequest extends BaseRequest {
+}
+
+interface GetGoodPaymentsResponse {
+  Infos: Array<GoodPayment>
+}
+
+interface GetWithdrawAddressesRequest extends BaseRequest {
+  TargetAppID: string
+}
+
+interface GetWithdrawAddressesResponse {
+  Infos: Array<WithdrawAddress>
+}
+
 export {
   GetAccountsRequest,
   GetAccountsResponse,
   CreatePlatformAccountRequest,
   CreatePlatformAccountResponse,
   CreateUserAccountRequest,
-  CreateUserAccountResponse
+  CreateUserAccountResponse,
+  GoodPayment,
+  GetGoodPaymentsRequest,
+  GetGoodPaymentsResponse,
+  GetWithdrawAddressesRequest,
+  GetWithdrawAddressesResponse
 }

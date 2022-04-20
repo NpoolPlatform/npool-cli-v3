@@ -5,6 +5,7 @@ interface Account {
   CoinTypeID: string
   Address: string
   CreateAt: number
+  PlatformHoldPrivateKey: boolean
 }
 
 interface WithdrawAddress {

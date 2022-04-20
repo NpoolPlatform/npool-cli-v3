@@ -1,7 +1,7 @@
 import { ReqMessage } from '../../local/notifications/types'
 
 interface Account {
-  ID: string
+  ID?: string
   CoinTypeID: string
   Address: string
   CreateAt: number
@@ -9,7 +9,7 @@ interface Account {
 }
 
 interface WithdrawAddress {
-  ID: string
+  ID?: string
   CoinTypeID: string
   AccountID: string
   Name: string

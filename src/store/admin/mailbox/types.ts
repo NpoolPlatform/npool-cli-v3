@@ -2,8 +2,6 @@ import { BaseRequest } from '../../base'
 import {
   Announcement,
   Notification,
-  CreateMailRequest,
-  CreateMailResponse,
   GetMailsRequest,
   GetMailsResponse,
   GetNotificationsResponse
@@ -47,15 +45,8 @@ interface GetAppNotificationsRequest extends BaseRequest {
 interface GetAppNotificationsResponse extends GetNotificationsResponse {
 }
 
-interface CreateUserMailRequest extends CreateMailRequest {
-  TargetUserID: string
-}
-
-interface CreateUserMailResponse extends CreateMailResponse {
-}
-
 interface GetUserMailsRequest extends GetMailsRequest {
-}
+} 
 
 interface GetUserMailsResponse extends GetMailsResponse {
 }
@@ -71,8 +62,6 @@ export {
   UpdateNotificationResponse,
   GetAppNotificationsRequest,
   GetAppNotificationsResponse,
-  CreateUserMailRequest,
-  CreateUserMailResponse,
   GetUserMailsRequest,
   GetUserMailsResponse
 }

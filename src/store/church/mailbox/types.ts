@@ -5,12 +5,12 @@ import {
   CreateNotificationResponse,
   GetAppNotificationsRequest,
   GetAppNotificationsResponse,
-  CreateUserMailRequest,
-  CreateUserMailResponse,
   GetUserMailsRequest,
   GetUserMailsResponse
 } from '../../admin'
 import {
+  CreateMailRequest,
+  CreateMailResponse,
   GetAnnouncementsRequest,
   GetAnnouncementsResponse
 } from '../../frontend'
@@ -43,11 +43,12 @@ interface GetTargetAppNotificationsRequest extends GetAppNotificationsRequest {
 interface GetTargetAppNotificationsResponse extends GetAppNotificationsResponse {
 }
 
-interface CreateAppUserMailRequest extends CreateUserMailRequest {
+interface CreateAppUserMailRequest extends CreateMailRequest {
   TargetAppID: string
+  TargetUserID: string
 }
 
-interface CreateAppUserMailResponse extends CreateUserMailResponse {
+interface CreateAppUserMailResponse extends CreateMailResponse {
 }
 
 interface GetAppUserMailsRequest extends GetUserMailsRequest {

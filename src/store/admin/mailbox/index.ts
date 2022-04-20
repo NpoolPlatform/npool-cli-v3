@@ -5,8 +5,6 @@ import { MailboxState } from './state'
 import {
   CreateNotificationRequest,
   CreateNotificationResponse,
-  CreateUserMailRequest,
-  CreateUserMailResponse,
   GetAppNotificationsRequest,
   GetAppNotificationsResponse,
   GetUserMailsRequest,
@@ -52,16 +50,6 @@ export const useAdminMailboxStore = defineStore('adminmailbox', {
         (resp: UpdateNotificationResponse): void => {
           const index = this.Notifications.findIndex((el) => el.ID === resp.Info.ID)
           this.Notifications.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
-          done()
-        })
-    },
-    createMail (req: CreateUserMailRequest, done: () => void) {
-      doAction<CreateUserMailRequest, CreateUserMailResponse>(
-        API.CREATE_MAIL,
-        req,
-        req.Message,
-        (resp: CreateUserMailResponse): void => {
-          this.Mails.push(resp.Info)
           done()
         })
     },

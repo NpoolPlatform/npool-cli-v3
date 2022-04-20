@@ -89,3 +89,5 @@ export const useChurchAccountStore = defineStore('churchaccount', {
     }
   }
 })
+
+export * from './types'

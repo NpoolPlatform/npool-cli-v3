@@ -8,7 +8,27 @@ interface GetAccountsResponse {
   Infos: Array<Account>
 }
 
+interface CreatePlatformAccountRequest extends BaseRequest {
+  CoinTypeID: string
+}
+
+interface CreatePlatformAccountResponse {
+  Info: Account
+}
+
+interface CreateUserAccountRequest extends BaseRequest {
+  Info: Account
+}
+
+interface CreateUserAccountResponse {
+  Info: Account
+}
+
 export {
   GetAccountsRequest,
-  GetAccountsResponse
+  GetAccountsResponse,
+  CreatePlatformAccountRequest,
+  CreatePlatformAccountResponse,
+  CreateUserAccountRequest,
+  CreateUserAccountResponse
 }

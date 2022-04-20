@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { Account } from '../../frontend'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import { AccountState } from './state'
@@ -15,7 +16,14 @@ export const useChurchAccountStore = defineStore('churchaccount', {
   state: (): AccountState => ({
     Accounts: []
   }),
-  getters: {},
+  getters: {
+    getAccountByID (): (id: string) => Account {
+      return (id: string) => {
+        const index = this.Accounts.findIndex((el) => el.ID === id)
+        return index < 0 ? undefined as unknown as Account : this.Accounts[index]
+      }
+    }
+  },
   actions: {
     getAccounts (req: GetAccountsRequest, done: (error: boolean) => void) {
       doActionWithError<GetAccountsRequest, GetAccountsResponse>(

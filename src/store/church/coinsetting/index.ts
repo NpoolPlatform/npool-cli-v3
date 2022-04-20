@@ -17,7 +17,7 @@ export const useCoinSettingStore = defineStore('coinsetting', {
   }),
   getters: {},
   actions: {
-    getGCoinSetting (req: GetCoinSettingsRequest, done: (error: boolean) => void) {
+    getGCoinSettings (req: GetCoinSettingsRequest, done: (error: boolean) => void) {
       doActionWithError<GetCoinSettingsRequest, GetCoinSettingsResponse>(
         API.GET_COIN_SETTINGS,
         req,

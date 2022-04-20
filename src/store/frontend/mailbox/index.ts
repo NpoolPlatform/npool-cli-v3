@@ -1,9 +1,13 @@
 import { defineStore } from 'pinia'
-import { doAction } from '../../action'
+import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import {
+  CreateMailRequest,
+  CreateMailResponse,
   GetAnnouncementsRequest,
   GetAnnouncementsResponse,
+  GetMailsRequest,
+  GetMailsResponse,
   GetNotificationsRequest,
   GetNotificationsResponse,
   MailboxState
@@ -12,26 +16,55 @@ import {
 export const useMailboxStore = defineStore('mailbox', {
   state: (): MailboxState => ({
     Announcements: [],
-    Notifications: []
+    Notifications: [],
+    Mails: []
   }),
   getters: {},
   actions: {
-    getAnnouncements (req: GetAnnouncementsRequest) {
-      doAction<GetAnnouncementsRequest, GetAnnouncementsResponse>(
+    getAnnouncements (req: GetAnnouncementsRequest, done?: (error: boolean) => void) {
+      doActionWithError<GetAnnouncementsRequest, GetAnnouncementsResponse>(
         API.GET_ANNOUNCEMENTS,
         req,
         req.Message,
         (resp: GetAnnouncementsResponse): void => {
           this.Announcements = resp.Infos
+          done?.(false)
+        }, () => {
+          done?.(true)
         })
     },
-    getNotifications (req: GetNotificationsRequest) {
-      doAction<GetNotificationsRequest, GetNotificationsResponse>(
+    getNotifications (req: GetNotificationsRequest, done?: (error: boolean) => void) {
+      doActionWithError<GetNotificationsRequest, GetNotificationsResponse>(
         API.GET_NOTIFICATIONS,
         req,
         req.Message,
         (resp: GetNotificationsResponse): void => {
           this.Notifications = resp.Infos
+          done?.(false)
+        }, () => {
+          done?.(true)
+        })
+    },
+    createMail (req: CreateMailRequest, done: () => void) {
+      doAction<CreateMailRequest, CreateMailResponse>(
+        API.CREATE_MAIL,
+        req,
+        req.Message,
+        (resp: CreateMailResponse): void => {
+          this.Mails.push(resp.Info)
+          done()
+        })
+    },
+    getMails (req: GetMailsRequest, done: (error: boolean) => void) {
+      doActionWithError<GetMailsRequest, GetMailsResponse>(
+        API.GET_MAILS,
+        req,
+        req.Message,
+        (resp: GetMailsResponse): void => {
+          this.Mails = resp.Infos
+          done(false)
+        }, () => {
+          done(true)
         })
     }
   }

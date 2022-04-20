@@ -1,4 +1,4 @@
-import { ReqMessage } from '../../local/notifications/types'
+import { BaseRequest } from '../../base'
 
 interface Announcement {
   ID: string
@@ -7,8 +7,7 @@ interface Announcement {
   CreateAt: number
 }
 
-interface GetAnnouncementsRequest {
-  Message: ReqMessage
+interface GetAnnouncementsRequest extends BaseRequest {
 }
 
 interface GetAnnouncementsResponse {
@@ -23,17 +22,42 @@ interface Notification {
   CreateAt: number
 }
 
-interface GetNotificationsRequest {
-  Message: ReqMessage
+interface GetNotificationsRequest extends BaseRequest {
 }
 
 interface GetNotificationsResponse {
   Infos: Array<Notification>
 }
 
+interface Mail {
+  ID: string
+  FromUserID: string
+  ToUserID: string
+  Title: string
+  Content: string
+  AlreadyRead: boolean
+  CreateAt: number
+}
+
+interface CreateMailRequest extends BaseRequest {
+  Info: Mail
+}
+
+interface CreateMailResponse {
+  Info: Mail
+}
+
+interface GetMailsRequest extends BaseRequest {
+}
+
+interface GetMailsResponse {
+  Infos: Array<Mail>
+}
+
 interface MailboxState {
   Announcements: Array<Announcement>
   Notifications: Array<Notification>
+  Mails: Array<Mail>
 }
 
 export {
@@ -43,5 +67,10 @@ export {
   Notification,
   GetNotificationsRequest,
   GetNotificationsResponse,
+  Mail,
+  CreateMailRequest,
+  CreateMailResponse,
+  GetMailsRequest,
+  GetMailsResponse,
   MailboxState
 }

@@ -1,14 +1,19 @@
 import { defineStore } from 'pinia'
+import { useMailboxStore } from '../../frontend'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import { MailboxState } from './state'
 import {
+  CreateAnnouncementRequest,
+  CreateAnnouncementResponse,
   CreateNotificationRequest,
   CreateNotificationResponse,
   GetAppNotificationsRequest,
   GetAppNotificationsResponse,
   GetUserMailsRequest,
   GetUserMailsResponse,
+  UpdateAnnouncementRequest,
+  UpdateAnnouncementResponse,
   UpdateNotificationRequest,
   UpdateNotificationResponse
 } from './types'
@@ -20,6 +25,29 @@ export const useAdminMailboxStore = defineStore('adminmailbox', {
   }),
   getters: {},
   actions: {
+    createAnnouncement (req: CreateAnnouncementRequest, done: () => void) {
+      doAction<CreateAnnouncementRequest, CreateAnnouncementResponse>(
+        API.CREATE_ANNOUNCEMENT,
+        req,
+        req.Message,
+        (resp: CreateAnnouncementResponse): void => {
+          const mailbox = useMailboxStore()
+          mailbox.Announcements.push(resp.Info)
+          done()
+        })
+    },
+    updateAnnouncement (req: UpdateAnnouncementRequest, done: () => void) {
+      doAction<UpdateAnnouncementRequest, UpdateAnnouncementResponse>(
+        API.UPDATE_ANNOUNCEMENT,
+        req,
+        req.Message,
+        (resp: UpdateAnnouncementResponse): void => {
+          const mailbox = useMailboxStore()
+          const index = mailbox.Announcements.findIndex((el) => el.ID === resp.Info.ID)
+          mailbox.Announcements.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
+          done()
+        })
+    },
     getNotifications (req: GetAppNotificationsRequest, done?: (error: boolean) => void) {
       doActionWithError<GetAppNotificationsRequest, GetAppNotificationsResponse>(
         API.GET_NOTIFICATIONS,

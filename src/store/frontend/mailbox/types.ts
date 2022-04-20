@@ -16,6 +16,8 @@ interface GetAnnouncementsResponse {
 
 interface Notification {
   ID: string
+  AppID: string
+  UserID: string
   Title: string
   Content: string
   AlreadyRead: boolean

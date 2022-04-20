@@ -24,6 +24,7 @@ interface UpdateAnnouncementResponse {
 }
 
 interface CreateNotificationRequest extends BaseRequest {
+  TargetUserID: string
   Info: Notification
 }
 

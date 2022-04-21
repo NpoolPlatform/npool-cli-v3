@@ -55,7 +55,7 @@ function doGet<MyRequest, MyResponse> (
   req: MyRequest,
   message: ReqMessage,
   success: (resp: MyResponse) => void) {
-  const api = createAPI() as AxiosInstance
+  const api = createAPI(undefined, undefined, true) as AxiosInstance
   api
     .get<MyRequest, AxiosResponse<MyResponse>>(url)
     .then((response: AxiosResponse<MyResponse>) => {

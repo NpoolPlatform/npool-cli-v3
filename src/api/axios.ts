@@ -1,7 +1,7 @@
-import axios, { AxiosInstance } from "axios"
+import axios, { AxiosInstance, HeadersDefaults } from "axios"
 import { Cookies } from "quasar"
 
-const createAPI = (baseURL?: string, appID?: string): AxiosInstance | undefined => {
+const createAPI = (baseURL?: string, appID?: string, simple?: boolean): AxiosInstance | undefined => {
   if (baseURL) {
     Cookies.set('X-Base-URL', baseURL)
   }
@@ -14,7 +14,7 @@ const createAPI = (baseURL?: string, appID?: string): AxiosInstance | undefined 
     return undefined
   }
 
-  return axios.create({
+  const api = axios.create({
     method: 'POST',
     baseURL: process.env.DEV ? '/api' : Cookies.get('X-Base-URL'),
     headers: {
@@ -28,6 +28,12 @@ const createAPI = (baseURL?: string, appID?: string): AxiosInstance | undefined 
     responseType: 'json',
     timeout: 60000
   })
+
+  if (simple) {
+    api.defaults.headers = {} as unknown as HeadersDefaults
+  }
+
+  return api
 }
 
 export {

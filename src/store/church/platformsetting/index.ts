@@ -50,3 +50,5 @@ export const usePlatformSettingStore = defineStore('platformsetting', {
     }
   }
 })
+
+export * from './types'

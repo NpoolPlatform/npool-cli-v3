@@ -4,3 +4,4 @@ export * from './admin'
 export * from './church'
 
 export * from './action'
+export * from './base'

@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { WithdrawSetting, UpdateWithdrawSettingRequest, UpdateWithdrawSettingResponse } from '../../admin'
+import { API as WithdrawSettingAPI } from '../../admin/withdrawsetting/const'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import { WithdrawSettingState } from './state'
@@ -45,7 +46,7 @@ export const useChurchWithdrawettingStore = defineStore('churchwithdrawsetting',
     },
     updateWithdrawSetting (req: UpdateWithdrawSettingRequest, done: () => void) {
       doAction<UpdateWithdrawSettingRequest, UpdateWithdrawSettingResponse>(
-        API.CREATE_WITHDRAW_SETTING,
+        WithdrawSettingAPI.UPDATE_WITHDRAW_SETTING,
         req,
         req.Message,
         (resp: UpdateWithdrawSettingResponse): void => {

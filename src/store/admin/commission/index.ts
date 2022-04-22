@@ -69,3 +69,4 @@ export const useCommissionStore = defineStore('commission', {
 })
 
 export * from './types'
+export { CommissionTypes, CommissionType } from './const'

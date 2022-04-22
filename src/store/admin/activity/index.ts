@@ -11,7 +11,7 @@ import {
   UpdateActivityResponse
 } from './types'
 
-export const useChurchActivityStore = defineStore('churchactivity', {
+export const useAdminActivityStore = defineStore('adminactivity', {
   state: (): ActivityState => ({
     Activities: []
   }),

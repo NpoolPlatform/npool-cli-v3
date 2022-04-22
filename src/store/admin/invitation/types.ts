@@ -1,28 +1,23 @@
 import { InvitationCode } from '../../frontend'
 import { BaseRequest } from '../../base'
 
-interface UserInvitationCode extends InvitationCode {
-  UserID: string
-}
-
 interface GetInvitationCodesRequest extends BaseRequest {
 }
 
 interface GetInvitationCodesResponse {
-  Infos: Array<UserInvitationCode>
+  Infos: Array<InvitationCode>
 }
 
 interface CreateInvitationCodeRequest extends BaseRequest {
   TargetUserID: string
-  Info: UserInvitationCode
+  Info: InvitationCode
 }
 
 interface CreateInvitationCodeResponse {
-  Info: UserInvitationCode
+  Info: InvitationCode
 }
 
 export {
-  UserInvitationCode,
   GetInvitationCodesRequest,
   GetInvitationCodesResponse,
   CreateInvitationCodeRequest,

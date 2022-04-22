@@ -1,14 +1,17 @@
 import { ReqMessage } from '../../local/notifications/types'
 
 interface UserCoupon {
-  ID: string
+  ID?: string
+  AppID?: string
+  UserID?: string
   Type: string
   CouponID: string
 }
 
 interface FixAmount {
-  ID: string
+  ID?: string
   Start: number
+  AppID?: string
   DurationDays: number
   Denomination: number
   Message: string
@@ -16,7 +19,8 @@ interface FixAmount {
 }
 
 interface Discount {
-  ID: string
+  ID?: string
+  AppID?: string
   Start: number
   DurationDays: number
   Discount: number
@@ -31,7 +35,9 @@ interface Allocated {
 }
 
 interface SpecialOffer {
-  ID: string
+  ID?: string
+  AppID?: string
+  UserID?: string
   Amount: string
   Start: number
   DurationDays: number

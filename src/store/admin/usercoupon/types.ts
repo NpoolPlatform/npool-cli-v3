@@ -1,27 +1,23 @@
 import { UserCoupon } from '../../frontend'
 import { BaseRequest } from '../../base'
 
-interface TargetUserCoupon extends UserCoupon {
-  UserID?: string
-}
-
 interface CreateUserCouponRequest extends BaseRequest {
-  Info: TargetUserCoupon
+  TargetUserID: string
+  Info: UserCoupon
 }
 
 interface CreateUserCouponResponse {
-  Info: TargetUserCoupon
+  Info: UserCoupon
 }
 
 interface GetUserCouponsRequest extends BaseRequest {
 }
 
 interface GetUserCouponsResponse {
-  Infos: Array<TargetUserCoupon>
+  Infos: Array<UserCoupon>
 }
 
 export {
-  TargetUserCoupon,
   CreateUserCouponRequest,
   CreateUserCouponResponse,
   GetUserCouponsRequest,

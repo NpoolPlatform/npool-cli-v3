@@ -1,7 +1,8 @@
 import { BaseRequest } from '../../base'
 
 interface CommissionSetting {
-  ID: string
+  ID?: string
+  AppID: string
   Type: string
   Level: number
   InvitationDiscount: boolean

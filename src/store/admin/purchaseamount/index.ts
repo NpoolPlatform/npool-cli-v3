@@ -5,6 +5,8 @@ import { PurchaseAmountSettingState } from './state'
 import {
   CreatePurchaseAmountSettingRequest,
   CreatePurchaseAmountSettingResponse,
+  CreateUserPurchaseAmountSettingRequest,
+  CreateUserPurchaseAmountSettingResponse,
   GetPurchaseAmountSettingsRequest,
   GetPurchaseAmountSettingsResponse
 } from './types'
@@ -33,6 +35,16 @@ export const usePurchaseAmountSettingStore = defineStore('purchaseamountsetting'
         req,
         req.Message,
         (resp: CreatePurchaseAmountSettingResponse): void => {
+          this.PurchaseAmountSettings.push(resp.Info)
+          done()
+        })
+    },
+    createUserPurchaseAmountSetting (req: CreateUserPurchaseAmountSettingRequest, done: () => void) {
+      doAction<CreateUserPurchaseAmountSettingRequest, CreateUserPurchaseAmountSettingResponse>(
+        API.CREATE_USER_PURCHASE_AMOUNT_SETTING,
+        req,
+        req.Message,
+        (resp: CreateUserPurchaseAmountSettingResponse): void => {
           this.PurchaseAmountSettings.push(resp.Info)
           done()
         })

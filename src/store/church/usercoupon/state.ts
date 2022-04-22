@@ -1,7 +1,7 @@
 import { UserCoupon } from '../../frontend'
 
 interface UserCouponState {
-  UserCoupons: Array<UserCoupon>
+  UserCoupons: Map<string, Array<UserCoupon>>
 }
 
 export {

@@ -27,12 +27,12 @@ interface GetPurchaseAmountSettingsResponse {
   Infos: Array<PurchaseAmountSetting>
 }
 
-interface CreatePurchaseAmountSettingRequest extends BaseRequest {
+interface CreateUserPurchaseAmountSettingRequest extends BaseRequest {
   TargetUserID: string
   Info: PurchaseAmountSetting
 }
 
-interface CreatePurchaseAmountSettingResponse {
+interface CreateUserPurchaseAmountSettingResponse {
   Info: PurchaseAmountSetting
 }
 
@@ -41,5 +41,7 @@ export {
   GetPurchaseAmountSettingsRequest,
   GetPurchaseAmountSettingsResponse,
   CreatePurchaseAmountSettingRequest,
-  CreatePurchaseAmountSettingResponse
+  CreatePurchaseAmountSettingResponse,
+  CreateUserPurchaseAmountSettingRequest,
+  CreateUserPurchaseAmountSettingResponse
 }

@@ -43,10 +43,10 @@ export const useCouponStore = defineStore('coupon', {
           resp.Infos.forEach((info) => {
             this.Allocateds.push(info.Allocated)
             if (info.Coupon) {
-              this.FixAmounts.set(info.Coupon.ID, info.Coupon)
+              this.FixAmounts.set(info.Coupon.ID as string, info.Coupon)
             }
             if (info.Discount) {
-              this.Discounts.set(info.Discount.ID, info.Discount)
+              this.Discounts.set(info.Discount.ID as string, info.Discount)
             }
           })
         })

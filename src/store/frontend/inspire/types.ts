@@ -3,6 +3,8 @@ import { AppUser, AppUserExtra } from '../users'
 
 interface InvitationCode {
   ID?: string
+  AppID?: string
+  UserID?: string
   InvitationCode?: string
 }
 

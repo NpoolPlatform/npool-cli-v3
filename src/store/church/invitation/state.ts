@@ -1,7 +1,7 @@
 import { InvitationCode } from '../../frontend'
 
 interface InvitationState {
-  InvitationCodes: Array<InvitationCode>
+  InvitationCodes: Map<string, Array<InvitationCode>>
 }
 
 export {

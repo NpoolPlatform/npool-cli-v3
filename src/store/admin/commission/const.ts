@@ -6,6 +6,16 @@ enum API {
   GET_COMMISSION_COINS_SETTINGS = '/cloud-hashing-inspire/v1/get/commission/coin/settings'
 }
 
+enum CommissionType {
+  CommissionByAmount = 'commission-by-amount'
+}
+
+const CommissionTypes = [
+  CommissionType.CommissionByAmount
+]
+
 export {
-  API
+  API,
+  CommissionType,
+  CommissionTypes
 }

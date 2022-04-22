@@ -17,7 +17,7 @@ import {
 
 export const useChurchCommissionStore = defineStore('churchcommission', {
   state: (): CommissionState => ({
-    CommissionSetting: new Map<string, CommissionSetting>()
+    CommissionSettings: new Map<string, CommissionSetting>()
   }),
   getters: {},
   actions: {
@@ -27,7 +27,7 @@ export const useChurchCommissionStore = defineStore('churchcommission', {
         req,
         req.Message,
         (resp: GetAppCommissionSettingResponse): void => {
-          this.CommissionSetting.set(req.TargetAppID, resp.Info)
+          this.CommissionSettings.set(req.TargetAppID, resp.Info)
           done(false)
         }, () => {
           done(true)
@@ -39,7 +39,7 @@ export const useChurchCommissionStore = defineStore('churchcommission', {
         req,
         req.Message,
         (resp: CreateAppCommissionSettingResponse): void => {
-          this.CommissionSetting.set(req.TargetAppID, resp.Info)
+          this.CommissionSettings.set(req.TargetAppID, resp.Info)
           done()
         })
     },
@@ -49,7 +49,7 @@ export const useChurchCommissionStore = defineStore('churchcommission', {
         req,
         req.Message,
         (resp: UpdateCommissionSettingResponse): void => {
-          this.CommissionSetting.set(req.Info.AppID, resp.Info)
+          this.CommissionSettings.set(req.Info.AppID, resp.Info)
           done()
         })
     }

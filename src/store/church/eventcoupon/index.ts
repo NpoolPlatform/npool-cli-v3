@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { EventCoupon } from '../../admin'
+import { EventCoupon, UpdateEventCouponRequest, UpdateEventCouponResponse } from '../../admin'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import { EventCouponState } from './state'
@@ -40,6 +40,22 @@ export const useChurchEventCouponStore = defineStore('churcheventcoupon', {
           }
           coupons.push(resp.Info)
           this.EventCoupons.set(req.TargetAppID, coupons)
+          done()
+        })
+    },
+    updateEventCoupon (req: UpdateEventCouponRequest, done: () => void) {
+      doAction<UpdateEventCouponRequest, UpdateEventCouponResponse>(
+        API.CREATE_EVENT_COUPON,
+        req,
+        req.Message,
+        (resp: CreateAppEventCouponResponse): void => {
+          const coupons = this.EventCoupons.get(req.Info.AppID as string) as Array<EventCoupon>
+          const index = coupons.findIndex((el) => el.ID === resp.Info.ID)
+          if (index < 0) {
+            return
+          }
+          coupons.splice(index, 1, resp.Info)
+          this.EventCoupons.set(req.Info.AppID as string, coupons)
           done()
         })
     }

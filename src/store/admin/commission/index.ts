@@ -1,58 +1,26 @@
 import { defineStore } from 'pinia'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
-import { InspireState } from './state'
+import { CommissionState } from './state'
 import {
   CommissionSetting,
   CreateCommissionSettingRequest,
   CreateCommissionSettingResponse,
-  CreateInvitationCodeRequest,
-  CreateInvitationCodeResponse,
-  CreatePurchaseAmountSettingRequest,
-  CreatePurchaseAmountSettingResponse,
   GetCommissionCoinSettingsRequest,
   GetCommissionCoinSettingsResponse,
   GetCommissionSettingRequest,
   GetCommissionSettingResponse,
-  GetInvitationCodesRequest,
-  GetInvitationCodesResponse,
-  GetPurchaseAmountSettingsRequest,
-  GetPurchaseAmountSettingsResponse,
   UpdateCommissionSettingRequest,
   UpdateCommissionSettingResponse
 } from './types'
 
-export const useAdminInspireStore = defineStore('admininspire', {
-  state: (): InspireState => ({
-    InvitationCodes: [],
-    PurchaseAmountSettings: [],
+export const useCommissionStore = defineStore('commission', {
+  state: (): CommissionState => ({
     CommissionSetting: undefined as unknown as CommissionSetting,
     CommissionCoinSettings: []
   }),
   getters: {},
   actions: {
-    getInvitationCodes (req: GetInvitationCodesRequest, done: (error: boolean) => void) {
-      doActionWithError<GetInvitationCodesRequest, GetInvitationCodesResponse>(
-        API.GET_INVITATION_CODES,
-        req,
-        req.Message,
-        (resp: GetInvitationCodesResponse): void => {
-          this.InvitationCodes = resp.Infos
-          done(false)
-        }, () => {
-          done(true)
-        })
-    },
-    createInvitationCode (req: CreateInvitationCodeRequest, done: () => void) {
-      doAction<CreateInvitationCodeRequest, CreateInvitationCodeResponse>(
-        API.CREATE_INVITATION_CODE,
-        req,
-        req.Message,
-        (resp: CreateInvitationCodeResponse): void => {
-          this.InvitationCodes.push(resp.Info)
-          done()
-        })
-    },
     getCommissionSetting (req: GetCommissionSettingRequest, done: (error: boolean) => void) {
       doActionWithError<GetCommissionSettingRequest, GetCommissionSettingResponse>(
         API.GET_COMMISSION_SETTING,
@@ -82,28 +50,6 @@ export const useAdminInspireStore = defineStore('admininspire', {
         req.Message,
         (resp: UpdateCommissionSettingResponse): void => {
           this.CommissionSetting = resp.Info
-          done()
-        })
-    },
-    getPurchaseAmountSettings (req: GetPurchaseAmountSettingsRequest, done: (error: boolean) => void) {
-      doActionWithError<GetPurchaseAmountSettingsRequest, GetPurchaseAmountSettingsResponse>(
-        API.GET_PURCHASE_AMOUNT_SETTINGS,
-        req,
-        req.Message,
-        (resp: GetPurchaseAmountSettingsResponse): void => {
-          this.PurchaseAmountSettings = resp.Infos
-          done(false)
-        }, () => {
-          done(true)
-        })
-    },
-    createPurchaseAmountSetting (req: CreatePurchaseAmountSettingRequest, done: () => void) {
-      doAction<CreatePurchaseAmountSettingRequest, CreatePurchaseAmountSettingResponse>(
-        API.CREATE_PURCHASE_AMOUNT_SETTING,
-        req,
-        req.Message,
-        (resp: CreatePurchaseAmountSettingResponse): void => {
-          this.PurchaseAmountSettings.push(resp.Info)
           done()
         })
     },

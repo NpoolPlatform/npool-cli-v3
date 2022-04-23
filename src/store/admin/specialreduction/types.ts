@@ -6,6 +6,7 @@ interface UserSpecialOffer extends SpecialOffer {
 }
 
 interface CreateSpecialOfferRequest extends BaseRequest {
+  TargetUserID: string
   Info: UserSpecialOffer
 }
 

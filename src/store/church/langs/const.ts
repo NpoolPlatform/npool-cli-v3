@@ -10,7 +10,8 @@ enum API {
   GET_APP_LANGS = '/internationalization/v1/get/app/lang/infos/by/other/app',
   CREATE_APP_LANG = '/internationalization/v1/create/app/lang/for/other/app',
   GET_MESSAGES = '/internationalization/v1/get/messages/by/other/app/lang',
-  CREATE_MESSAGE = '/internationalization/v1/create/message/for/other/app'
+  CREATE_MESSAGE = '/internationalization/v1/create/message/for/other/app',
+  CREATE_MESSAGES = '/internationalization/v1/create/messages/for/other/app'
 }
 
 export {

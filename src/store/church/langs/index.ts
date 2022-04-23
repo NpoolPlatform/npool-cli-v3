@@ -2,6 +2,8 @@ import { defineStore } from 'pinia'
 import {
   CreateAppMessageRequest,
   CreateAppMessageResponse,
+  CreateAppMessagesRequest,
+  CreateAppMessagesResponse,
   CreateCountriesRequest,
   CreateCountriesResponse,
   CreateCountryRequest,
@@ -178,7 +180,24 @@ export const useChurchLangStore = defineStore('churchlang', {
           this.Messages.set(req.TargetAppID, appMsgs)
           done()
         })
-    }
+    },
+    createMessages (req: CreateAppMessagesRequest, done: (error: boolean) => void) {
+      doActionWithError<CreateAppMessagesRequest, CreateAppMessagesResponse>(
+        API.CREATE_MESSAGES,
+        req,
+        req.Message,
+        (resp: CreateAppMessagesResponse): void => {
+          let appMsgs = this.Messages.get(req.TargetAppID)
+          if (!appMsgs) {
+            appMsgs = new Map<string, Array<Message>>()
+          }
+          appMsgs.set(req.TargetLangID as string, resp.Infos)
+          this.Messages.set(req.TargetAppID, appMsgs)
+          done(false)
+        }, () => {
+          done(true)
+        })
+    },
   }
 })
 

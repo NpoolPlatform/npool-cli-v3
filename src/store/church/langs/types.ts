@@ -1,4 +1,4 @@
-import { CreateMessageResponse, CreateMessageRequset, CreateAppLangRequest, CreateAppLangResponse } from '../../admin'
+import { CreateMessageResponse, CreateMessageRequset, CreateAppLangRequest, CreateAppLangResponse, CreateMessagesRequest, CreateMessagesResponse } from '../../admin'
 import { BaseRequest } from '../../base'
 import { Country, GetLangMessagesRequest, GetLangMessagesResponse, GetLangsRequest, GetLangsResponse, Language } from '../../frontend'
 
@@ -78,6 +78,13 @@ interface CreateAppMessageRequest extends CreateMessageRequset {
 interface CreateAppMessageResponse extends CreateMessageResponse {
 }
 
+interface CreateAppMessagesRequest extends CreateMessagesRequest {
+  TargetAppID: string
+}
+
+interface CreateAppMessagesResponse extends CreateMessagesResponse {
+}
+
 export {
   CreateLangRequest,
   CreateLangResponse,
@@ -98,5 +105,7 @@ export {
   GetAppMessagesRequest,
   GetAppMessagesResponse,
   CreateAppMessageRequest,
-  CreateAppMessageResponse
+  CreateAppMessageResponse,
+  CreateAppMessagesRequest,
+  CreateAppMessagesResponse
 }

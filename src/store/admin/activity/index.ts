@@ -3,6 +3,7 @@ import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import { ActivityState } from './state'
 import {
+  Activity,
   CreateActivityRequest,
   CreateActivityResponse,
   GetActivitiesRequest,
@@ -15,7 +16,14 @@ export const useAdminActivityStore = defineStore('adminactivity', {
   state: (): ActivityState => ({
     Activities: []
   }),
-  getters: {},
+  getters: {
+    getActivityByID (): (id: string) => Activity {
+      return (id: string) => {
+        const index = this.Activities.findIndex((el) => el.ID === id)
+        return index < 0 ? undefined as unknown as Activity : this.Activities[index]
+      }
+    }
+  },
   actions: {
     getActivities (req: GetActivitiesRequest, done: (error: boolean) => void) {
       doActionWithError<GetActivitiesRequest, GetActivitiesResponse>(

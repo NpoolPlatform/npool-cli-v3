@@ -19,7 +19,18 @@ export const useChurchActivityStore = defineStore('churchactivity', {
   state: (): ActivityState => ({
     Activities: new Map<string, Array<Activity>>()
   }),
-  getters: {},
+  getters: {
+    getActivityByAppID (): (appID: string, id: string) => Activity {
+      return (appID: string, id: string) => {
+        const activities = this.Activities.get(appID)
+        if (!activities) {
+          return undefined as unknown as Activity
+        }
+        const index = activities.findIndex((el) => el.ID === id)
+        return index < 0 ? undefined as unknown as Activity : activities[index]
+      }
+    }
+  },
   actions: {
     getActivities (req: GetAppActivitiesRequest, done: (error: boolean) => void) {
       doActionWithError<GetAppActivitiesRequest, GetAppActivitiesResponse>(

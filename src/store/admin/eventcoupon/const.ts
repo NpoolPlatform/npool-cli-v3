@@ -1,3 +1,5 @@
+import { CouponType } from '../../frontend'
+
 enum API {
   CREATE_EVENT_COUPON = '/cloud-hashing-inspire/v1/create/event/coupon',
   UPDATE_EVENT_COUPON = '/cloud-hashing-inspire/v1/update/event/coupon',
@@ -24,8 +26,14 @@ const CouponEvents = [
   CouponEvent.EventSingleAmount
 ]
 
+const EventCouponTypes = [
+  CouponType.FixAmount,
+  CouponType.Discount
+]
+
 export {
   API,
   CouponEvent,
-  CouponEvents
+  CouponEvents,
+  EventCouponTypes
 }

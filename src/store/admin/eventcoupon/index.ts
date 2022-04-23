@@ -54,4 +54,4 @@ export const useEventCouponStore = defineStore('eventcoupon', {
 })
 
 export * from './types'
-export { CouponEvents, CouponEvent } from './const'
+export { CouponEvents, CouponEvent, EventCouponTypes } from './const'

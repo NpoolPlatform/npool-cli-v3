@@ -6,7 +6,7 @@ enum API {
 enum Type {
   FixAmount = 'coupon',
   Discount = 'discount',
-  SpecialOffer = 'special-offer'
+  SpecialOffer = 'user-special-reduction'
 }
 
 export {

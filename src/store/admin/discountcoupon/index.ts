@@ -5,6 +5,7 @@ import { DiscountState } from './state'
 import {
   CreateDiscountRequest,
   CreateDiscountResponse,
+  DiscountCoupon,
   GetDiscountsRequest,
   GetDiscountsResponse,
   UpdateDiscountRequest,
@@ -15,7 +16,14 @@ export const useDiscountStore = defineStore('discount', {
   state: (): DiscountState => ({
     Discounts: []
   }),
-  getters: {},
+  getters: {
+    getDiscountByID (): (id: string) => DiscountCoupon {
+      return (id: string) => {
+        const index = this.Discounts.findIndex((el) => el.ID === id)
+        return index < 0 ? undefined as unknown as DiscountCoupon : this.Discounts[index]
+      }
+    }
+  },
   actions: {
     getDiscounts (req: GetDiscountsRequest, done: (error: boolean) => void) {
       doActionWithError<GetDiscountsRequest, GetDiscountsResponse>(

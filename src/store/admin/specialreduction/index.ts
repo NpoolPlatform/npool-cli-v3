@@ -5,14 +5,21 @@ import { SpecialOfferState } from './state'
 import {
   CreateSpecialOfferRequest,
   CreateSpecialOfferResponse,
-  GetUserSpecialOffersRequest, GetUserSpecialOffersResponse, UpdateSpecialOfferRequest, UpdateSpecialOfferResponse
+  GetUserSpecialOffersRequest, GetUserSpecialOffersResponse, UpdateSpecialOfferRequest, UpdateSpecialOfferResponse, UserSpecialOffer
 } from './types'
 
 export const useSpecialOfferStore = defineStore('specialoffer', {
   state: (): SpecialOfferState => ({
     SpecialOffers: []
   }),
-  getters: {},
+  getters: {
+    getSpecialOfferByID (): (id: string) => UserSpecialOffer {
+      return (id: string) => {
+        const index = this.SpecialOffers.findIndex((el) => el.ID === id)
+        return index < 0 ? undefined as unknown as UserSpecialOffer : this.SpecialOffers[index]
+      }
+    }
+  },
   actions: {
     getSpecialOffers (req: GetUserSpecialOffersRequest, done: (error: boolean) => void) {
       doActionWithError<GetUserSpecialOffersRequest, GetUserSpecialOffersResponse>(

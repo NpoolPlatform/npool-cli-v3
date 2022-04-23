@@ -19,7 +19,18 @@ export const useChurchDiscountStore = defineStore('churchdiscountcoupon', {
   state: (): DiscountState => ({
     Discounts: new Map<string, Array<DiscountCoupon>>()
   }),
-  getters: {},
+  getters: {
+    getDiscountByAppID (): (appID: string, id: string) => DiscountCoupon {
+      return (appID: string, id: string) => {
+        const coupons = this.Discounts.get(appID)
+        if (!coupons) {
+          return undefined as unknown as DiscountCoupon
+        }
+        const index = coupons.findIndex((el) => el.ID === id)
+        return index < 0 ? undefined as unknown as DiscountCoupon : coupons[index]
+      }
+    }
+  },
   actions: {
     getDiscounts (req: GetAppDiscountsRequest, done: (error: boolean) => void) {
       doActionWithError<GetAppDiscountsRequest, GetAppDiscountsResponse>(

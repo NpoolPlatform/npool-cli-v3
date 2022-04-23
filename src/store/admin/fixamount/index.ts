@@ -5,6 +5,7 @@ import { FixAmountState } from './state'
 import {
   CreateFixAmountRequest,
   CreateFixAmountResponse,
+  FixAmountCoupon,
   GetFixAmountsRequest,
   GetFixAmountsResponse,
   UpdateFixAmountRequest,
@@ -15,7 +16,14 @@ export const useFixAmountStore = defineStore('fixamount', {
   state: (): FixAmountState => ({
     FixAmounts: []
   }),
-  getters: {},
+  getters: {
+    getFixAmountByID (): (id: string) => FixAmountCoupon {
+      return (id: string) => {
+        const index = this.FixAmounts.findIndex((el) => el.ID === id)
+        return index < 0 ? undefined as unknown as FixAmountCoupon : this.FixAmounts[index]
+      }
+    }
+  },
   actions: {
     getFixAmounts (req: GetFixAmountsRequest, done: (error: boolean) => void) {
       doActionWithError<GetFixAmountsRequest, GetFixAmountsResponse>(

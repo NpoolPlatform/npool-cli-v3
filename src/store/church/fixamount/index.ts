@@ -19,7 +19,18 @@ export const useChurchFixAmountStore = defineStore('churchfixamount', {
   state: (): FixAmountState => ({
     FixAmounts: new Map<string, Array<FixAmountCoupon>>()
   }),
-  getters: {},
+  getters: {
+    getFixAmountByAppID (): (appID: string, id: string) => FixAmountCoupon {
+      return (appID: string, id: string) => {
+        const coupons = this.FixAmounts.get(appID)
+        if (!coupons) {
+          return undefined as unknown as FixAmountCoupon
+        }
+        const index = coupons.findIndex((el) => el.ID === id)
+        return index < 0 ? undefined as unknown as FixAmountCoupon : coupons[index]
+      }
+    }
+  },
   actions: {
     getFixAmounts (req: GetAppFixAmountsRequest, done: (error: boolean) => void) {
       doActionWithError<GetAppFixAmountsRequest, GetAppFixAmountsResponse>(

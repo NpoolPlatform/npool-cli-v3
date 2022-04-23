@@ -19,7 +19,18 @@ export const useChurchSpecialOfferStore = defineStore('churchspecialoffer', {
   state: (): SpecialOfferState => ({
     SpecialOffers: new Map<string, Array<UserSpecialOffer>>()
   }),
-  getters: {},
+  getters: {
+    getSpecialOfferByAppID (): (appID: string, id: string) => UserSpecialOffer {
+      return (appID: string, id: string) => {
+        const coupons = this.SpecialOffers.get(appID)
+        if (!coupons) {
+          return undefined as unknown as UserSpecialOffer
+        }
+        const index = coupons.findIndex((el) => el.ID === id)
+        return index < 0 ? undefined as unknown as UserSpecialOffer : coupons[index]
+      }
+    }
+  },
   actions: {
     getSpecialOffers (req: GetAppSpecialOffersRequest, done: (error: boolean) => void) {
       doActionWithError<GetAppSpecialOffersRequest, GetAppSpecialOffersResponse>(

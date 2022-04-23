@@ -2,10 +2,14 @@ import { ReqMessage } from '../../local/notifications/types'
 
 interface Benefit {
   ID: string
+  AppID: string
+  UserID: string
   GoodID: string
   OrderID: string
+  CoinTypeID: string
   Amount: number
   CreateAt: number
+  LastBenefitTimestamp: number
 }
 
 interface GetBenefitsRequest {

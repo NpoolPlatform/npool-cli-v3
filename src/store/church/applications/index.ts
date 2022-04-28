@@ -82,7 +82,7 @@ export const useApplicationsStore = defineStore('applications', {
     },
     updateApplication (req: UpdateApplicationRequest, done: () => void) {
       doAction<CreateApplicationRequest, CreateApplicationResponse>(
-        API.CREATE_APPLICATION,
+        API.UPDATE_APPLICATION,
         req,
         req.Message,
         (resp: CreateApplicationResponse): void => {

@@ -182,7 +182,7 @@ interface CreateAppUserCtrlRequest {
 }
 
 interface CreateAppUserCtrlResponse {
-  Info: AppUserControl
+  Info: UserInfo
 }
 
 interface UpdateAppUserCtrlRequest {
@@ -191,7 +191,7 @@ interface UpdateAppUserCtrlRequest {
 }
 
 interface UpdateAppUserCtrlResponse {
-  Info: AppUserControl
+  Info: UserInfo
 }
 
 interface UpdateEmailRequest {

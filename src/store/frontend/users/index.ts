@@ -163,20 +163,20 @@ export const useUserStore = defineStore('user', {
         (resp: CreateAppUserCtrlResponse): void => {
           const logined = useLoginedUserStore()
           if (logined.LoginedUser) {
-            logined.LoginedUser.Ctrl = resp.Info
+            logined.LoginedUser = resp.Info
           }
           done()
         })
     },
     updateCtrl (req: UpdateAppUserCtrlRequest, done: () => void) {
-      doAction<UpdateAppUserCtrlRequest, UpdateAppUserCtrlRequest>(
+      doAction<UpdateAppUserCtrlRequest, UpdateAppUserCtrlResponse>(
         API.UPDATE_CONTROL,
         req,
         req.Message,
         (resp: UpdateAppUserCtrlResponse): void => {
           const logined = useLoginedUserStore()
           if (logined.LoginedUser) {
-            logined.LoginedUser.Ctrl = resp.Info
+            logined.LoginedUser = resp.Info
           }
           done()
         })

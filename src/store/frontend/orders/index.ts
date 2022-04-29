@@ -141,13 +141,16 @@ export const useOrderStore = defineStore('order', {
         })
     },
 
-    getOrders (req: GetOrdersRequest) {
-      doAction<GetOrdersRequest, GetOrdersResponse>(
+    getOrders (req: GetOrdersRequest, done?: (error: boolean) => void) {
+      doActionWithError<GetOrdersRequest, GetOrdersResponse>(
         API.GET_ORDERS,
         req,
         req.Message,
         (resp: GetOrdersResponse): void => {
           this.Orders = resp.Infos
+          done?.(false)
+        }, () => {
+          done?.(true)
         })
     },
 

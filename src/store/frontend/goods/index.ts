@@ -99,22 +99,6 @@ export const useGoodStore = defineStore('good', {
         return t('MSG_EFFECTIVE_NEXT_DAY')
       }
     },
-    getGoodSoldPercent (): (good: Good) => number {
-      return (good: Good): number => {
-        if (!good?.Sold) {
-          return 9.9 / 100
-        }
-        return good?.Sold / good?.Good?.Good?.Total
-      }
-    },
-    getGoodSoldPercentString (): (good: Good) => string {
-      return (good: Good): string => {
-        if (!good?.Sold) {
-          return '9.9%'
-        }
-        return (good?.Sold / good?.Good?.Good?.Total * 100).toFixed(1) + '%'
-      }
-    },
     expandGoods () : (goods: Array<Good>, count: number) => Array<Good> {
       return (goods: Array<Good>, count: number) => {
         if (goods.length >= count || goods.length === 0) {

@@ -204,7 +204,6 @@ const buildGoods = (goods: Array<Good>): Array<GoodBase> => {
       BenefitType: good.Good.Good.BenefitType,
       Classic: good.Good.Good.Classic,
       Title: good.Good.Good.Title,
-      Total: good.Good.Good.Total,
       Unit: good.Good.Good.Unit,
       StartAt: good.Good.Good.StartAt,
       InheritFromGoodID: good.Good.Good.InheritFromGoodID

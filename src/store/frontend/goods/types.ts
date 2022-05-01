@@ -46,7 +46,6 @@ interface GoodBase {
   BenefitType: string
   Classic: boolean
   Title: string
-  Total: number
   Unit: string
   StartAt: number
   InheritFromGoodID: string

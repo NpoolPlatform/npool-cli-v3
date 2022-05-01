@@ -1,4 +1,6 @@
+import { BaseRequest } from '../../base'
 import {
+  CommissionCoinSetting,
   CreateCommissionSettingRequest,
   CreateCommissionSettingResponse,
   GetCommissionSettingRequest,
@@ -19,9 +21,29 @@ interface GetAppCommissionSettingRequest extends GetCommissionSettingRequest {
 interface GetAppCommissionSettingResponse extends GetCommissionSettingResponse {
 }
 
+interface CreateCommissionCoinSettingRequest extends BaseRequest {
+  Info: CommissionCoinSetting
+}
+
+interface CreateCommissionCoinSettingResponse {
+  Info: CommissionCoinSetting
+}
+
+interface UpdateCommissionCoinSettingRequest extends BaseRequest {
+  Info: CommissionCoinSetting
+}
+
+interface UpdateCommissionCoinSettingResponse {
+  Info: CommissionCoinSetting
+}
+
 export {
   CreateAppCommissionSettingRequest,
   CreateAppCommissionSettingResponse,
   GetAppCommissionSettingRequest,
-  GetAppCommissionSettingResponse
+  GetAppCommissionSettingResponse,
+  CreateCommissionCoinSettingRequest,
+  CreateCommissionCoinSettingResponse,
+  UpdateCommissionCoinSettingRequest,
+  UpdateCommissionCoinSettingResponse
 }

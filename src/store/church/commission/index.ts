@@ -2,7 +2,8 @@ import { defineStore } from 'pinia'
 import {
   CommissionSetting,
   UpdateCommissionSettingRequest,
-  UpdateCommissionSettingResponse
+  UpdateCommissionSettingResponse,
+  useCommissionStore
 } from '../../admin'
 import { API as CommissionAPI } from '../../admin/commission/const'
 import { doAction, doActionWithError } from '../../action'
@@ -11,9 +12,13 @@ import { CommissionState } from './state'
 import {
   CreateAppCommissionSettingRequest,
   CreateAppCommissionSettingResponse,
+  CreateCommissionCoinSettingResponse,
   GetAppCommissionSettingRequest,
-  GetAppCommissionSettingResponse
+  GetAppCommissionSettingResponse,
+  UpdateCommissionCoinSettingRequest,
+  UpdateCommissionCoinSettingResponse
 } from './types'
+import { CreateCommissionCoinSettingRequest } from '..'
 
 export const useChurchCommissionStore = defineStore('churchcommission', {
   state: (): CommissionState => ({
@@ -50,6 +55,29 @@ export const useChurchCommissionStore = defineStore('churchcommission', {
         req.Message,
         (resp: UpdateCommissionSettingResponse): void => {
           this.CommissionSettings.set(req.Info.AppID, resp.Info)
+          done()
+        })
+    },
+    createCommissionCoinSetting (req: CreateCommissionCoinSettingRequest, done: () => void) {
+      doAction<CreateCommissionCoinSettingRequest, CreateCommissionCoinSettingResponse>(
+        API.CREATE_COMMISSION_COIN_SETTING,
+        req,
+        req.Message,
+        (resp: CreateCommissionCoinSettingResponse): void => {
+          const c = useCommissionStore()
+          c.CommissionCoinSettings.splice(0, 0, resp.Info)
+          done()
+        })
+    },
+    updateCommissionCoinSetting (req: UpdateCommissionCoinSettingRequest, done: () => void) {
+      doAction<UpdateCommissionCoinSettingRequest, UpdateCommissionCoinSettingResponse>(
+        API.UPDATE_COMMISSION_COIN_SETTING,
+        req,
+        req.Message,
+        (resp: UpdateCommissionCoinSettingResponse): void => {
+          const c = useCommissionStore()
+          const index = c.CommissionCoinSettings.findIndex((el) => el.ID === resp.Info.ID)
+          c.CommissionCoinSettings.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
           done()
         })
     }

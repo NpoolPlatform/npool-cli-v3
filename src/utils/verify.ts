@@ -44,7 +44,7 @@ const formatMobileNO = (no: string): string => {
 }
 
 const validateMobileNO = (no: string) => {
-  const reg = /^(\+\d{1,3}[- ]?)?\d{10}$/
+  const reg = /^(\+\d{1,3}[- ]?)?\d{8,11}$/
   return reg.test(formatMobileNO(no))
 }
 

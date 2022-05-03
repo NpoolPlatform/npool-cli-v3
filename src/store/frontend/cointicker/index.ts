@@ -3,13 +3,21 @@ import { doGet } from '../../action'
 import { API } from './const'
 import {
   CoinTickerState,
+  ETHGas,
+  GetETHGasRequest,
   GetTickersRequest,
   Ticker
 } from './types'
 
 export const useCoinTickerStore = defineStore('cointicker', {
   state: (): CoinTickerState => ({
-    Tickers: new Map<string, Ticker>()
+    Tickers: new Map<string, Ticker>(),
+    ETHGas: {
+      fast: 0,
+      fastest: 0,
+      safeLow: 0,
+      average: 0
+    }
   }),
   getters: {
     getTickerByCoinName (): (coinName: string) => Ticker {
@@ -31,7 +39,17 @@ export const useCoinTickerStore = defineStore('cointicker', {
           }
           done()
         })
-    } 
+    },
+    getETHGas (req: GetETHGasRequest, done: () => void) {
+      doGet<GetETHGasRequest, ETHGas>(
+        API.GET_ETH_GAS,
+        req,
+        req.Message,
+        (resp: ETHGas): void => {
+          this.ETHGas = resp
+          done()
+        })
+    }
   }
 })
 

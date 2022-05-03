@@ -28,12 +28,25 @@ interface GetTickersRequest extends BaseRequest {
   CoinNames: Array<string>
 }
 
+interface ETHGas {
+  fast: number
+  fastest: number
+  safeLow: number
+  average: number
+}
+
+interface GetETHGasRequest extends BaseRequest {
+}
+
 interface CoinTickerState {
   Tickers: Map<string, Ticker>
+  ETHGas: ETHGas
 }
 
 export {
   Ticker,
   GetTickersRequest,
+  ETHGas,
+  GetETHGasRequest,
   CoinTickerState
 }

@@ -39,7 +39,7 @@ export const useCoinTickerStore = defineStore('cointicker', {
             done(true)
             return
           }
-          Object.keys(resp).forEach((key) => {
+          Object.keys(resp.data).forEach((key) => {
             this.Tickers.set(key, (resp.data as unknown as Record<string, unknown>)[key] as Ticker)
           })
           done(false)

@@ -1,0 +1,6 @@
+interface OracleState {
+}
+
+export {
+  OracleState
+}

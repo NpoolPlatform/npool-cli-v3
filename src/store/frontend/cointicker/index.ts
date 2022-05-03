@@ -6,6 +6,7 @@ import {
   ETHGas,
   GetETHGasRequest,
   GetTickersRequest,
+  GetTickersResponse,
   Ticker
 } from './types'
 
@@ -27,17 +28,21 @@ export const useCoinTickerStore = defineStore('cointicker', {
     }
   },
   actions: {
-    getCoinTickers (req: GetTickersRequest, done: () => void) {
+    getCoinTickers (req: GetTickersRequest, done: (error: boolean) => void) {
       const url = API.GET_TICKER + '?assets=' + req.CoinNames.join(',')
-      doGet<GetTickersRequest, Map<string, Ticker>>(
+      doGet<GetTickersRequest, GetTickersResponse>(
         url,
         req,
         req.Message,
-        (resp: Map<string, Ticker>): void => {
-          for (const [k, v] of resp) {
+        (resp: GetTickersResponse): void => {
+          if (resp.statusCode !== 200) {
+            done(true)
+            return
+          }
+          for (const [k, v] of resp.data) {
             this.Tickers.set(k, v)
           }
-          done()
+          done(false)
         })
     },
     getETHGas (req: GetETHGasRequest, done: () => void) {

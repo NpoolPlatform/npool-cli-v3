@@ -1,7 +1,8 @@
 import { EmailSubscriber } from '../../frontend'
-import { BaseRequest } from '../../base'
+import { BaseRequest, Cond } from '../../base'
 
 interface GetEmailSubscribersRequest extends BaseRequest {
+  Conds: Map<string, Cond>
 }
 
 interface GetEmailSubscribersResponse {

@@ -3,7 +3,7 @@ import { doGet } from '../../action'
 import { API } from './const'
 import {
   CoinTickerState,
-  GetTickerRequest,
+  GetTickersRequest,
   Ticker
 } from './types'
 
@@ -19,9 +19,9 @@ export const useCoinTickerStore = defineStore('cointicker', {
     }
   },
   actions: {
-    sendContactEmail (req: GetTickerRequest, done: () => void) {
+    getCoinTickers (req: GetTickersRequest, done: () => void) {
       const url = API.GET_TICKER + '?assets=' + req.CoinNames.join(',')
-      doGet<GetTickerRequest, Map<string, Ticker>>(
+      doGet<GetTickersRequest, Map<string, Ticker>>(
         url,
         req,
         req.Message,

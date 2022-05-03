@@ -24,7 +24,7 @@ interface Ticker {
   src: string
 }
 
-interface GetTickerRequest extends BaseRequest {
+interface GetTickersRequest extends BaseRequest {
   CoinNames: Array<string>
 }
 
@@ -34,6 +34,6 @@ interface CoinTickerState {
 
 export {
   Ticker,
-  GetTickerRequest,
+  GetTickersRequest,
   CoinTickerState
 }

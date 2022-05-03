@@ -2,7 +2,7 @@ import { BaseRequest } from '../../base'
 
 interface EmailSubscriber {
   ID?: string
-  AppID: string
+  AppID?: string
   EmailAddress: string
 }
 

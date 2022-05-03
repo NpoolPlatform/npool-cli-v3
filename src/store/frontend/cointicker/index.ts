@@ -35,6 +35,7 @@ export const useCoinTickerStore = defineStore('cointicker', {
         req,
         req.Message,
         (resp: GetTickersResponse): void => {
+          console.log(resp)
           if (resp.statusCode !== 200) {
             done(true)
             return

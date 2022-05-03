@@ -2,19 +2,22 @@ import { Notification } from './types'
 import { Type } from './const'
 import { Notify } from 'quasar'
 
+const mergeMessage = (notification: Notification) => {
+  if (notification.Message) {
+    if (notification.Description) {
+      return notification.Message + '(' + notification.Description + ')'
+    }
+    return notification.Message
+  }
+  return notification.Description
+}
+
 const success = (notification: Notification): void => {
   Notify.create({
     type: 'positive',
-    message: notification.Title
+    message: notification.Title,
+    caption: mergeMessage(notification)
   })
-}
-
-const mergeMessage = (notification: Notification) => {
-  if (notification.Message) {
-    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-    return notification.Message + '(' + notification.Description + ')'
-  }
-  return notification.Description
 }
 
 const fail = (notification: Notification): void => {

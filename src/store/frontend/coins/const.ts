@@ -21,10 +21,13 @@ const CoinEnvironments = [
   CoinEnvironment.Test
 ]
 
+const DefaultCoinPageSize = 100
+
 export {
   API,
   CoinDescriptionUsedFor,
   CoinDescriptionUsedFors,
   CoinEnvironment,
-  CoinEnvironments
+  CoinEnvironments,
+  DefaultCoinPageSize
 }

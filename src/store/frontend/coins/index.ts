@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { NotSet } from '../../../const'
 import { doAction } from '../../action'
-import { API } from './const'
+import { API, DefaultCoinPageSize } from './const'
 import {
   Coin,
   CoinState,
@@ -49,6 +49,7 @@ export const useCoinStore = defineStore('coin', {
   },
   actions: {
     getCoins (req: GetCoinsRequest, done: () => void) {
+      req.Limit = DefaultCoinPageSize
       doAction<GetCoinsRequest, GetCoinsResponse>(
         API.GET_COINS,
         req,

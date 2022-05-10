@@ -16,6 +16,8 @@ interface Coin {
 }
 
 interface GetCoinsRequest {
+  Offset?: number
+  Limit?: number
   Message: ReqMessage
 }
 

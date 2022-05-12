@@ -172,7 +172,6 @@ pipeline {
       }
       steps {
         withNPMWrapper('KK-NPM-key') {
-          sh 'whereis node'
           npm command: 'publish'
         }
       }

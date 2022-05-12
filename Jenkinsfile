@@ -77,7 +77,7 @@ pipeline {
             tag=0.1.1
           fi
 
-          env.TAG=$tag
+          echo $tag > .tag
         '''.stripIndent())
       }
     }
@@ -104,7 +104,7 @@ pipeline {
             tag=0.1.1
           fi
           
-          env.TAG=$tag
+          echo $tag > .tag
         '''.stripIndent())
       }
     }
@@ -132,7 +132,7 @@ pipeline {
             tag=0.1.1
           fi
           
-          env.TAG=$tag
+          echo $tag > .tag
         '''.stripIndent())
       }
     }
@@ -148,12 +148,14 @@ pipeline {
 
       steps {
         sh(returnStdout: false, script: '''
-          sed -ri "s#\\\"version(.*)#\\\"version\\\": \\\"${env.TAG}\\\",#" package.json
+          TAG=`cat .tag`
+          sed -ri "s#\\\"version(.*)#\\\"version\\\": \\\"${TAG}\\\",#" package.json
           set +e
           git add package.json
-          git commit -m "Bump version to ${env.TAG}"
+          git commit -m "Bump version to ${TAG}"
           set -e
-          git tag -a ${env.TAG} -m "Bump version to ${env.TAG}"
+          git tag -a ${TAG} -m "Bump version to ${TAG}"
+          rm .tag
         '''.stripIndent())
 
         withCredentials([gitUsernamePassword(credentialsId: 'KK-github-key', gitToolName: 'git-tool')]) {

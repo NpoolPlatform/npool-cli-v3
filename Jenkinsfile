@@ -171,7 +171,7 @@ pipeline {
         expression { RELEASE_TARGET == 'true' }
       }
       steps {
-        withCredentials([string(credentialsId: 'KK-NPM-key', variable: 'NPM_TOKEN')])
+        withCredentials([string(credentialsId: 'KK-NPM-key', variable: 'NPM_TOKEN')]) {
           sh 'npm publish'
         }
       }

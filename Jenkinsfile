@@ -171,7 +171,7 @@ pipeline {
         expression { RELEASE_TARGET == 'true' }
       }
       steps {
-        withEnv(['PATH=/opt/rh/devtoolset-11/usr/bin:${env.PATH}']) {
+        withEnv(['PATH+GCC=/opt/rh/devtoolset-11/usr/bin']) {
           withNPMWrapper('KK-NPM-key') {
             npm command: 'publish'
           }

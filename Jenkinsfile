@@ -165,7 +165,7 @@ pipeline {
 
     stage('Release npm package') {
       when {
-        expression { DEPLOY_TARGET == 'true' }
+        expression { RELEASE_TARGET == 'true' }
       }
       steps {
         withNPMWrapper('KK-NPM-key') {

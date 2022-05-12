@@ -147,19 +147,18 @@ pipeline {
       }
 
       steps {
-        sh(returnStdout: false, script: '''
-          TAG=`cat .tag`
-          sed -ri "s#\\\"version(.*)#\\\"version\\\": \\\"${TAG}\\\",#" package.json
-          set +e
-          git add package.json
-          git commit -m "Bump version to ${TAG}"
-          set -e
-          git tag -a ${TAG} -m "Bump version to ${TAG}"
-          rm .tag
-        '''.stripIndent())
-
         withCredentials([gitUsernamePassword(credentialsId: 'KK-github-key', gitToolName: 'git-tool')]) {
-          sh 'git push --tag'
+          sh(returnStdout: false, script: '''
+            TAG=`cat .tag`
+            sed -ri "s#\\\"version(.*)#\\\"version\\\": \\\"${TAG}\\\",#" package.json
+            set +e
+            git add package.json
+            git commit -m "Bump version to ${TAG}"
+            set -e
+            git tag -a ${TAG} -m "Bump version to ${TAG}"
+            rm .tag
+            'git push --tag'
+          '''.stripIndent())
         }
       }
     }

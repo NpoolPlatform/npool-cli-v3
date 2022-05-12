@@ -77,7 +77,7 @@ pipeline {
             tag=0.1.1
           fi
 
-          env.TAG = $tag
+          env.TAG=$tag
         '''.stripIndent())
       }
     }
@@ -104,7 +104,7 @@ pipeline {
             tag=0.1.1
           fi
           
-          env.TAG = $tag
+          env.TAG=$tag
         '''.stripIndent())
       }
     }
@@ -132,7 +132,7 @@ pipeline {
             tag=0.1.1
           fi
           
-          env.TAG = $tag
+          env.TAG=$tag
         '''.stripIndent())
       }
     }
@@ -193,7 +193,7 @@ pipeline {
         sh(script: 'bash $JENKINS_HOME/wechat-templates/send_wxmsg.sh fixed')
      }
       script {
-        // env.ForEmailPlugin = env.WORKSPACE
+        // env.ForEmailPlugin=env.WORKSPACE
         emailext attachmentsPattern: 'TestResults\\*.trx',
         body: '${FILE,path="$JENKINS_HOME/email-templates/success_email_tmp.html"}',
         mimeType: 'text/html',
@@ -206,7 +206,7 @@ pipeline {
         sh(script: 'bash $JENKINS_HOME/wechat-templates/send_wxmsg.sh successful')
      }
       script {
-        // env.ForEmailPlugin = env.WORKSPACE
+        // env.ForEmailPlugin=env.WORKSPACE
         emailext attachmentsPattern: 'TestResults\\*.trx',
         body: '${FILE,path="$JENKINS_HOME/email-templates/success_email_tmp.html"}',
         mimeType: 'text/html',
@@ -219,7 +219,7 @@ pipeline {
         sh(script: 'bash $JENKINS_HOME/wechat-templates/send_wxmsg.sh failure')
      }
       script {
-        // env.ForEmailPlugin = env.WORKSPACE
+        // env.ForEmailPlugin=env.WORKSPACE
         emailext attachmentsPattern: 'TestResults\\*.trx',
         body: '${FILE,path="$JENKINS_HOME/email-templates/fail_email_tmp.html"}',
         mimeType: 'text/html',
@@ -232,7 +232,7 @@ pipeline {
         sh(script: 'bash $JENKINS_HOME/wechat-templates/send_wxmsg.sh aborted')
      }
       script {
-        // env.ForEmailPlugin = env.WORKSPACE
+        // env.ForEmailPlugin=env.WORKSPACE
         emailext attachmentsPattern: 'TestResults\\*.trx',
         body: '${FILE,path="$JENKINS_HOME/email-templates/fail_email_tmp.html"}',
         mimeType: 'text/html',

@@ -129,7 +129,7 @@ pipeline {
       }
 
       steps {
-        sh(returnStdout: true, script: '''
+        sh(returnStdout: false, script: '''
           sed -ri "s#\\\"version(.*)#\\\"version\\\": \\\"${env.TAG}\\\",#" package.json
           set +e
           git add package.json

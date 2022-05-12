@@ -1,9 +1,5 @@
 pipeline {
   agent any
-  environment {
-    NODE_VERSION = 'v16.14.0'
-  }
-
   stages {
     stage('Clone') {
       steps {
@@ -175,8 +171,10 @@ pipeline {
         expression { RELEASE_TARGET == 'true' }
       }
       steps {
-        withNPMWrapper('KK-NPM-key') {
-          npm command: 'publish'
+        withEnv(['PATH=/opt/rh/devtoolset-11/usr/bin:${env.PATH}']) {
+          withNPMWrapper('KK-NPM-key') {
+            npm command: 'publish'
+          }
         }
       }
     }

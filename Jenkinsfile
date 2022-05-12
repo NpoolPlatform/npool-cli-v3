@@ -157,7 +157,7 @@ pipeline {
             set -e
             git tag -a ${TAG} -m "Bump version to ${TAG}"
             rm .tag
-            'git push --tag'
+            git push --tag
           '''.stripIndent())
         }
       }

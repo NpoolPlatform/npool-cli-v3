@@ -7,6 +7,24 @@ pipeline {
       }
     }
 
+    stage('Checkout tag') {
+      when {
+        expression { RELEASE_TARGET == 'true' }
+      }
+      steps {
+        sh(returnStdout: true, script: '''
+          set +e
+          revlist=`git rev-list --tags --max-count=1`
+          rc=$?
+          set -e
+          if [ 0 -eq $rc ]; then
+            tag=`git describe --tags $revlist`
+            git checkout $tag
+          fi
+        '''.stripIndent())
+      }
+    }
+
     stage('Compile') {
       when {
         expression { BUILD_TARGET == 'true' }

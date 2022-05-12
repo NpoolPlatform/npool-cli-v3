@@ -123,7 +123,7 @@ pipeline {
       when {
         anyOf {
           expression { TAG_MAJOR == 'true' }
-          expression { TAG_MINER == 'true' }
+          expression { TAG_MINOR == 'true' }
           expression { TAG_PATCH == 'true' }
         }
       }

@@ -27,7 +27,10 @@ pipeline {
 
     stage('Compile') {
       when {
-        expression { BUILD_TARGET == 'true' }
+        anyOf {
+          expression { BUILD_TARGET == 'true' }
+          expression { RELEASE_TARGET == 'true' }
+        }
       }
       steps {
         sh (returnStdout: false, script: '''

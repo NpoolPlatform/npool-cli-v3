@@ -1,6 +1,10 @@
 pipeline {
   agent any
   stages {
+    environment {
+      NODE_VERSION = 'v16.14.0'
+    }
+
     stage('Clone') {
       steps {
         git(url: scm.userRemoteConfigs[0].url, branch: '$BRANCH_NAME', changelog: true, credentialsId: 'KK-github-key', poll: true)

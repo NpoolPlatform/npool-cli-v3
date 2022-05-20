@@ -10,10 +10,14 @@ interface GetCoinCurrencyRequest extends BaseRequest {
   Currency: string
 }
 
-interface GetCoinCurrencyResponse {
+interface CurrencyData {
   base: string
   currency: string
   amount: string
+} 
+
+interface GetCoinCurrencyResponse {
+  data: CurrencyData
 }
 
 interface CurrencyState {
@@ -24,6 +28,7 @@ interface CurrencyState {
 export {
   CurrencyState,
   GetCoinsCurrenciesRequest,
+  CurrencyData,
   GetCoinCurrencyRequest,
   GetCoinCurrencyResponse
 }

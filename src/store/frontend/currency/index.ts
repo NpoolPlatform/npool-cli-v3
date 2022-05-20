@@ -52,7 +52,7 @@ export const useCurrencyStore = defineStore('currency', {
         req,
         req.Message,
         (resp: GetCoinCurrencyResponse): void => {
-          if (coinName !== resp.base) {
+          if (coinName !== resp.data.base) {
             console.log('Error get currency', req, coinName, resp)
             return
           }
@@ -61,7 +61,7 @@ export const useCurrencyStore = defineStore('currency', {
           if (!myAmounts) {
             myAmounts = new Map<string, number>()
           }
-          const amount = parseFloat(resp.amount)
+          const amount = parseFloat(resp.data.amount)
           myAmounts.set(req.Currency, amount)
           this.Currencies.set(req.Currency, myAmounts)
           done(amount)

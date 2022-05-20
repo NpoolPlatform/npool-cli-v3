@@ -1,6 +1,14 @@
 import { BaseRequest } from '../../base'
 import { AppRole } from '../../frontend'
 
+interface CreateRoleRequest extends BaseRequest {
+  Info: AppRole
+}
+
+interface CreateRoleResponse {
+  Info: AppRole
+}
+
 interface GetRolesRequest extends BaseRequest {
 }
 
@@ -44,6 +52,8 @@ interface RoleState {
 }
 
 export {
+  CreateRoleRequest,
+  CreateRoleResponse,
   GetRolesRequest,
   GetRolesResponse,
   RoleUser,

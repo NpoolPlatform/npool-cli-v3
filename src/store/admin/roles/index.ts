@@ -2,6 +2,8 @@ import { defineStore } from 'pinia'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import {
+  CreateRoleRequest,
+  CreateRoleResponse,
   CreateRoleUserRequest,
   CreateRoleUserResponse,
   DeleteRoleUserRequest,
@@ -20,6 +22,16 @@ export const useRoleStore = defineStore('role', {
   }),
   getters: {},
   actions: {
+    createRole (req: CreateRoleRequest, done: () => void) {
+      doAction<CreateRoleRequest, CreateRoleResponse>(
+        API.CREATE_ROLE,
+        req,
+        req.Message,
+        (resp: CreateRoleResponse): void => {
+          this.Roles.splice(0, 0, resp.Info)
+          done()
+        })
+    },
     getRoles (req: GetRolesRequest, done: (error: boolean) => void) {
       doActionWithError<GetRolesRequest, GetRolesResponse>(
         API.GET_ROLES,

@@ -12,7 +12,9 @@ import {
   GetRolesResponse,
   GetRoleUsersRequest,
   GetRoleUsersResponse,
-  RoleState
+  RoleState,
+  UpdateRoleRequest,
+  UpdateRoleResponse
 } from './types'
 
 export const useRoleStore = defineStore('role', {
@@ -29,6 +31,17 @@ export const useRoleStore = defineStore('role', {
         req.Message,
         (resp: CreateRoleResponse): void => {
           this.Roles.splice(0, 0, resp.Info)
+          done()
+        })
+    },
+    updateRole (req: UpdateRoleRequest, done: () => void) {
+      doAction<UpdateRoleRequest, UpdateRoleResponse>(
+        API.UPDATE_ROLE,
+        req,
+        req.Message,
+        (resp: UpdateRoleResponse): void => {
+          const index = this.Roles.findIndex((el) => el.ID === resp.Info.ID)
+          this.Roles.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
           done()
         })
     },

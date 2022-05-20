@@ -2,8 +2,11 @@ import { defineStore } from 'pinia'
 import { UsersState } from './state'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
-import { AppRoleUser, CreateAppRoleUserRequest, CreateAppRoleUserResponse, GetAppRolesRequest, GetAppRolesResponse, GetAppRoleUsersRequest, GetAppRoleUsersResponse } from './types'
+import { AppRoleUser, CreateAppRoleResponse, CreateAppRoleUserRequest, CreateAppRoleUserResponse, GetAppRolesRequest, GetAppRolesResponse, GetAppRoleUsersRequest, GetAppRoleUsersResponse } from './types'
 import { AppRole } from '../../frontend'
+import { CreateAppRoleRequest } from '..'
+import { UpdateRoleRequest, UpdateRoleResponse } from '../../admin'
+import { API as AdminAPI } from '../../admin/roles/const'
 
 export const useChurchRolesStore = defineStore('churchroles', {
   state: (): UsersState => ({
@@ -18,6 +21,37 @@ export const useChurchRolesStore = defineStore('churchroles', {
     }
   },
   actions: {
+    createRole (req: CreateAppRoleRequest, done: () => void) {
+      doAction<CreateAppRoleRequest, CreateAppRoleResponse>(
+        API.CREATE_ROLE,
+        req,
+        req.Message,
+        (resp: CreateAppRoleResponse): void => {
+          let roles = this.Roles.get(req.TargetAppID)
+          if (!roles) {
+            roles = []
+          }
+          roles.push(resp.Info)
+          this.Roles.set(req.TargetAppID, roles)
+          done()
+        })
+    },
+    updateRole (req: UpdateRoleRequest, done: () => void) {
+      doAction<UpdateRoleRequest, UpdateRoleResponse>(
+        AdminAPI.UPDATE_ROLE,
+        req,
+        req.Message,
+        (resp: UpdateRoleResponse): void => {
+          let roles = this.Roles.get(req.Info.AppID)
+          if (!roles) {
+            roles = []
+          }
+          const index = roles.findIndex((el) => el.ID === req.Info.ID)
+          roles.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
+          this.Roles.set(req.Info.AppID, roles)
+          done()
+        })
+    },
     getRoles (req: GetAppRolesRequest, done: (error: boolean) => void) {
       doActionWithError<GetAppRolesRequest, GetAppRolesResponse>(
         API.GET_ROLES,

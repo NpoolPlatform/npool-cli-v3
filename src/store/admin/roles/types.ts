@@ -9,6 +9,14 @@ interface CreateRoleResponse {
   Info: AppRole
 }
 
+interface UpdateRoleRequest extends BaseRequest {
+  Info: AppRole
+}
+
+interface UpdateRoleResponse {
+  Info: AppRole
+}
+
 interface GetRolesRequest extends BaseRequest {
 }
 
@@ -54,6 +62,8 @@ interface RoleState {
 export {
   CreateRoleRequest,
   CreateRoleResponse,
+  UpdateRoleRequest,
+  UpdateRoleResponse,
   GetRolesRequest,
   GetRolesResponse,
   RoleUser,

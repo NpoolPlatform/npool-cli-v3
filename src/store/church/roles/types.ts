@@ -1,4 +1,11 @@
-import { RoleUser, GetRoleUsersRequest, GetRolesRequest, CreateRoleUserRequest } from '../../admin'
+import {
+  RoleUser,
+  GetRoleUsersRequest,
+  GetRolesRequest,
+  CreateRoleUserRequest,
+  CreateRoleRequest,
+  CreateRoleResponse
+} from '../../admin'
 import { AppRole } from '../../frontend'
 
 interface AppRoleUser extends RoleUser {
@@ -22,6 +29,13 @@ interface GetAppRoleUsersResponse {
   Infos: Array<AppRoleUser>
 }
 
+interface CreateAppRoleRequest extends CreateRoleRequest {
+  TargetAppID: string
+}
+
+interface CreateAppRoleResponse extends CreateRoleResponse {
+}
+
 interface GetAppRolesRequest extends GetRolesRequest {
   TargetAppID: string
 }
@@ -36,6 +50,8 @@ export {
   CreateAppRoleUserResponse,
   GetAppRoleUsersRequest,
   GetAppRoleUsersResponse,
+  CreateAppRoleRequest,
+  CreateAppRoleResponse,
   GetAppRolesRequest,
   GetAppRolesResponse
 }

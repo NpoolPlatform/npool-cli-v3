@@ -51,9 +51,17 @@ export const useGoodStore = defineStore('good', {
     getRecommendGoods (): Array<Good> {
       const goods = [] as Array<Good>
       this.Recommends.forEach((good: RecommendGood) => {
+        const index = this.AppGoods.findIndex((el) => el.GoodID === good.Good.Good.Good.ID)
+        if (index < 0) {
+          return
+        }
         goods.push(good.Good)
       })
       this.Goods.forEach((good: Good) => {
+        const index = this.AppGoods.findIndex((el) => el.GoodID === good.Good.Good.ID)
+        if (index < 0) {
+          return
+        }
         for (const myGood of goods) {
           if (myGood.Good.Good.ID === good.Good.Good.ID) {
             return
@@ -99,7 +107,7 @@ export const useGoodStore = defineStore('good', {
         return t('MSG_EFFECTIVE_NEXT_DAY')
       }
     },
-    expandGoods () : (goods: Array<Good>, count: number) => Array<Good> {
+    expandGoods (): (goods: Array<Good>, count: number) => Array<Good> {
       return (goods: Array<Good>, count: number) => {
         if (goods.length >= count || goods.length === 0) {
           return goods

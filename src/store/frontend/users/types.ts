@@ -10,7 +10,7 @@ interface AppUser {
 }
 
 interface AppRole {
-  ID: string
+  ID?: string
   AppID: string
   CreatedBy: string
   Role: string

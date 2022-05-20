@@ -1,10 +1,19 @@
 import { Composer } from 'vue-i18n'
-import { ReqMessage } from '../../local/notifications/types'
+import { BaseRequest } from '../../base'
 import { Currency } from './const'
 
-interface GetCoinsCurrenciesRequest {
+interface GetCoinsCurrenciesRequest extends BaseRequest {
   Currencies: Array<Currency>
-  Message: ReqMessage
+}
+
+interface GetCoinCurrencyRequest extends BaseRequest {
+  Currency: string
+}
+
+interface GetCoinCurrencyResponse {
+  base: string
+  currency: string
+  amount: string
 }
 
 interface CurrencyState {
@@ -14,5 +23,7 @@ interface CurrencyState {
 
 export {
   CurrencyState,
-  GetCoinsCurrenciesRequest
+  GetCoinsCurrenciesRequest,
+  GetCoinCurrencyRequest,
+  GetCoinCurrencyResponse
 }

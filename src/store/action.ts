@@ -72,8 +72,33 @@ function doGet<MyRequest, MyResponse> (
     })
 }
 
+function doGetWithError<MyRequest, MyResponse> (
+  url: string,
+  req: MyRequest,
+  message: ReqMessage,
+  success: (resp: MyResponse) => void,
+  error: () => void) {
+  const api = createAPI(undefined, undefined, true) as AxiosInstance
+  api
+    .get<MyRequest, AxiosResponse<MyResponse>>(url)
+    .then((response: AxiosResponse<MyResponse>) => {
+      success(response.data)
+      if (message.Info) {
+        notification.Notifications.push(message.Info)
+      }
+    })
+    .catch((err: Error) => {
+      if (message.Error) {
+        message.Error.Description = err.message
+        notification.Notifications.push(message.Error)
+      }
+      error()
+    })
+}
+
 export {
   doAction,
   doActionWithError,
-  doGet
+  doGet,
+  doGetWithError
 }

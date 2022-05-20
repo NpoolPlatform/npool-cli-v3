@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
-import { doGet } from '../../action'
+import { doGet, doGetWithError } from '../../action'
 import { Coin, useCoinStore } from '../coins'
 import { NotificationType } from '../../local/notifications'
-import { API, CoinType, Currency } from './const'
-import { CurrencyState, GetCoinsCurrenciesRequest } from './types'
+import { CoinbaseAPI, CoinGeckoAPI, CoinType, COIN_PATTERN, Currency, CURRENCY_PATTERN } from './const'
+import { CurrencyState, GetCoinCurrencyRequest, GetCoinCurrencyResponse, GetCoinsCurrenciesRequest } from './types'
 import { useI18n } from 'vue-i18n'
 
 export const useCurrencyStore = defineStore('currency', {
@@ -31,10 +31,41 @@ export const useCurrencyStore = defineStore('currency', {
     }
   },
   actions: {
-    getCoinCurrencies (req: GetCoinsCurrenciesRequest, coinNames: Array<string>, done: () => void) {
+    getCurrency (req: GetCoinCurrencyRequest, coinName: string, done: (amount: number) => void) {
+      let url = CoinbaseAPI.GET_COIN_CURRENCY
+      if (coinName.includes('bitcoin')) {
+        url = url.replace(COIN_PATTERN, 'BTC') as CoinbaseAPI
+      } else if (coinName.includes('ethereum')) {
+        url = url.replace(COIN_PATTERN, 'ETH') as CoinbaseAPI
+      } else if (coinName.includes('filecoin')) {
+        url = url.replace(COIN_PATTERN, 'FIL') as CoinbaseAPI
+      } else if (coinName.includes('tether') || coinName.includes('usdt')) {
+        url = url.replace(COIN_PATTERN, 'USDT') as CoinbaseAPI
+      } else if (coinName.includes('solana')) {
+        url = url.replace(COIN_PATTERN, 'SOL') as CoinbaseAPI
+      }
+
+      url = url.replace(CURRENCY_PATTERN, req.Currency.toUpperCase()) as CoinbaseAPI
+
+      doGet<GetCoinCurrencyRequest, GetCoinCurrencyResponse>(
+        url,
+        req,
+        req.Message,
+        (resp: GetCoinCurrencyResponse): void => {
+          let myAmounts = this.Currencies.get(req.Currency)
+          if (!myAmounts) {
+            myAmounts = new Map<string, number>()
+          }
+          const amount = parseFloat(resp.amount)
+          myAmounts.set(req.Currency, amount)
+          this.Currencies.set(req.Currency, myAmounts)
+          done(amount)
+        })
+    },
+    getCoinCurrencies (req: GetCoinsCurrenciesRequest, coinNames: Array<string>, done: (error: boolean) => void) {
       const ids = coinNames.join(',')
-      const url = API.GET_COINS_CURRENCIES + '?ids=' + ids + '&vs_currencies=' + req.Currencies.join(',')
-      doGet<GetCoinsCurrenciesRequest, Map<string, Map<string, number>>>(
+      const url = CoinGeckoAPI.GET_COINS_CURRENCIES + '?ids=' + ids + '&vs_currencies=' + req.Currencies.join(',')
+      doGetWithError<GetCoinsCurrenciesRequest, Map<string, Map<string, number>>>(
         url,
         req,
         req.Message,
@@ -49,7 +80,9 @@ export const useCurrencyStore = defineStore('currency', {
             }
             this.Currencies.set(coin, myAmounts)
           }
-          done()
+          done(false)
+        }, () => {
+          done(true)
         })
     },
     getAllCoinCurrencies (req: GetCoinsCurrenciesRequest, done: () => void) {
@@ -59,7 +92,12 @@ export const useCurrencyStore = defineStore('currency', {
         coins.set(this.getExchangeCoinName(coin), coin.Name as string)
       })
       const ids = Array.from(coins).map(([key, ]) => key)
-      this.getCoinCurrencies(req, ids, done)
+      this.getCoinCurrencies(req, ids, (error: boolean) => {
+        if (!error) {
+          done()
+          return
+        }
+      })
     },
     getCoinCurrencyByCoinName (coinName: string, currency: Currency, done: (currency: number) => void) {
       const amount = this.getCachedCoinCurrencyByCoinName(coinName, currency)
@@ -78,12 +116,28 @@ export const useCurrencyStore = defineStore('currency', {
             Type: NotificationType.Error
           }
         }
-      }, [coinName], () => {
-        const amount = this.getCachedCoinCurrencyByCoinName(coinName, currency)
-        if (amount !== undefined) {
-          done(amount)
-          return
+      }, [coinName], (error: boolean) => {
+        if (!error) {
+          const amount = this.getCachedCoinCurrencyByCoinName(coinName, currency)
+          if (amount !== undefined) {
+            done(amount)
+            return
+          }
         }
+
+        this.getCurrency({
+          Currency: currency,
+          Message: {
+            Error: {
+              Title: this.I18n.t('MSG_GET_CURRENCY'),
+              Message: this.I18n.t('MSG_GET_CURRENCY_FAIL'),
+              Popup: true,
+              Type: NotificationType.Error
+            }
+          }
+        }, coinName, (amount: number) => {
+          done(amount)
+        })
       })
     },
     getCoinCurrency (coin: Coin, currency: Currency, done: (currency: number) => void) {

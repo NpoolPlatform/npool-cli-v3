@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { Cookies } from 'quasar'
 import { doAction, doActionWithError } from '../../action'
 import { useLoginedUserStore } from '../../local/logined'
-import { API } from './const'
+import { API, PredefineRole } from './const'
 import {
   SignupRequest,
   SignupResponse,
@@ -43,7 +43,13 @@ export const useUserStore = defineStore('user', {
     GoogleOTPAuth: '',
     GoogleSecret: ''
   }),
-  getters: {},
+  getters: {
+    buyer (): boolean {
+      const logined = useLoginedUserStore()
+      const index = logined.LoginedUser?.Roles?.findIndex((el) => el.Role === PredefineRole.Buyer)
+      return index !== undefined && index >= 0
+    }
+  },
   actions: {
     signup (req: SignupRequest, done: () => void) {
       doAction<SignupRequest, SignupResponse>(

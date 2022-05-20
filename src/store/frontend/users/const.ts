@@ -16,6 +16,11 @@ enum API {
   UPDATE_PHONE = '/cloud-hashing-apis-v2/v1/update/phoneno'
 }
 
+enum PredefineRole {
+  Buyer = 'byuer'
+}
+
 export {
-  API
+  API,
+  PredefineRole
 }

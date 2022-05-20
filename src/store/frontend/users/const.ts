@@ -17,7 +17,7 @@ enum API {
 }
 
 enum PredefineRole {
-  Buyer = 'byuer'
+  Buyer = 'buyer'
 }
 
 export {

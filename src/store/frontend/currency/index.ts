@@ -43,6 +43,9 @@ export const useCurrencyStore = defineStore('currency', {
         url = url.replace(COIN_PATTERN, 'USDT') as CoinbaseAPI
       } else if (coinName.includes('solana')) {
         url = url.replace(COIN_PATTERN, 'SOL') as CoinbaseAPI
+      } else {
+        console.log('UNSUPPORTED coin type', coinName)
+        return
       }
 
       url = url.replace(CURRENCY_PATTERN, req.Currency.toUpperCase()) as CoinbaseAPI

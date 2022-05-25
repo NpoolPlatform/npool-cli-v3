@@ -27,6 +27,7 @@ interface GetCoinsResponse {
 
 interface Description {
   ID?: string
+  AppID: string
   CoinTypeID: string
   Title: string
   Message: string
@@ -34,7 +35,6 @@ interface Description {
 }
 
 interface GetDescriptionsRequest extends BaseRequest {
-  CoinTypeID: string
 }
 
 interface GetDescriptionsResponse {

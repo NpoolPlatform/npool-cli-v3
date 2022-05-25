@@ -61,18 +61,18 @@ export const useCoinStore = defineStore('coin', {
     },
     getCoinDescriptions (req: GetDescriptionsRequest, done?: () => void) {
       doAction<GetDescriptionsRequest, GetDescriptionsResponse>(
-        API.GET_DESCRIPTION,
+        API.GET_DESCRIPTIONS,
         req,
         req.Message,
         (resp: GetDescriptionsResponse): void => {
-          let descriptions = this.Descriptions.get(req.CoinTypeID) as Map<string, Description>
-          if (!descriptions) {
-            descriptions = new Map<string, Description>()
-          }
           resp.Infos.forEach((desc) => {
+            let descriptions = this.Descriptions.get(desc.CoinTypeID) as Map<string, Description>
+            if (!descriptions) {
+              descriptions = new Map<string, Description>()
+            }
             descriptions.set(desc.UsedFor, desc)
+            this.Descriptions.set(desc.CoinTypeID, descriptions)
           })
-          this.Descriptions.set(req.CoinTypeID, descriptions)
           done?.()
         })
     }

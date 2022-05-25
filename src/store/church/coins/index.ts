@@ -1,21 +1,25 @@
 import { defineStore } from 'pinia'
 import { useCoinStore, Description } from '../../frontend'
-import { doAction } from '../../action'
+import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import { CoinState } from './state'
 import {
   CreateCoinRequest,
   CreateCoinResponse,
-  CreateDescriptionRequest,
-  CreateDescriptionResponse,
+  CreateAppDescriptionRequest,
+  CreateAppDescriptionResponse,
   UpdateCoinRequest,
   UpdateCoinResponse,
-  UpdateDescriptionRequest,
-  UpdateDescriptionResponse
+  UpdateAppDescriptionRequest,
+  UpdateAppDescriptionResponse,
+  GetAppDescriptionsResponse
 } from './types'
+import { GetAppDescriptionsRequest } from '..'
 
 export const useChurchCoinStore = defineStore('churchcoin', {
-  state: (): CoinState => ({}),
+  state: (): CoinState => ({
+    Descriptions: new Map<string, Array<Description>>()
+  }),
   getters: {},
   actions: {
     createCoin (req: CreateCoinRequest, done: () => void) {
@@ -41,36 +45,47 @@ export const useChurchCoinStore = defineStore('churchcoin', {
           done()
         })
     },
-    createDescription (req: CreateDescriptionRequest, done: () => void) {
-      doAction<CreateDescriptionRequest, CreateDescriptionResponse>(
+    createDescription (req: CreateAppDescriptionRequest, done: () => void) {
+      doAction<CreateAppDescriptionRequest, CreateAppDescriptionResponse>(
         API.CREATE_DESCRIPTION,
         req,
-        req.NotifyMessage,
-        (resp: CreateDescriptionResponse): void => {
-          const coin = useCoinStore()
-          let descs = coin.Descriptions.get(req.CoinTypeID)
+        req.Message,
+        (resp: CreateAppDescriptionResponse): void => {
+          let descs = this.Descriptions.get(req.TargetAppID)
           if (!descs) {
-            descs = new Map<string, Description>()
+            descs = []
           }
-          descs.set(req.UsedFor, resp.Info)
-          coin.Descriptions.set(req.CoinTypeID, descs)
+          descs.splice(0, 0, resp.Info)
+          this.Descriptions.set(req.TargetAppID, descs)
           done()
         })
     },
-    updateDescription (req: UpdateDescriptionRequest, done: () => void) {
-      doAction<UpdateDescriptionRequest, UpdateDescriptionResponse>(
+    updateDescription (req: UpdateAppDescriptionRequest, done: () => void) {
+      doAction<UpdateAppDescriptionRequest, UpdateAppDescriptionResponse>(
         API.UPDATE_DESCRIPTION,
         req,
-        req.NotifyMessage,
-        (resp: UpdateDescriptionResponse): void => {
-          const coin = useCoinStore()
-          let descs = coin.Descriptions.get(req.CoinTypeID)
+        req.Message,
+        (resp: UpdateAppDescriptionResponse): void => {
+          let descs = this.Descriptions.get(req.Info.AppID)
           if (!descs) {
-            descs = new Map<string, Description>()
+            descs = []
           }
-          descs.set(req.UsedFor, resp.Info)
-          coin.Descriptions.set(req.CoinTypeID, descs)
+          const index = descs.findIndex((el) => el.ID === resp.Info.ID)
+          descs.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
+          this.Descriptions.set(req.Info.AppID, descs)
           done()
+        })
+    },
+    getDescriptions (req: GetAppDescriptionsRequest, done: (error: boolean) => void) {
+      doActionWithError<GetAppDescriptionsRequest, GetAppDescriptionsResponse>(
+        API.GET_DESCRIPTIONS,
+        req,
+        req.Message,
+        (resp: GetAppDescriptionsResponse): void => {
+          this.Descriptions.set(req.TargetAppID, resp.Infos)
+          done(false)
+        }, () => {
+          done(true)
         })
     }
   }

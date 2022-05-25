@@ -1,6 +1,10 @@
-import { Coin, Description } from '../../frontend'
+import {
+  Coin,
+  Description,
+  GetDescriptionsRequest,
+  GetDescriptionsResponse
+} from '../../frontend'
 import { BaseRequest } from '../../base'
-import { ReqMessage } from '../../local'
 
 interface CreateCoinRequest extends BaseRequest, Coin {
 }
@@ -16,20 +20,28 @@ interface UpdateCoinResponse {
   Info: Coin
 }
 
-interface CreateDescriptionRequest extends Description {
-  NotifyMessage: ReqMessage
-}
-
-interface CreateDescriptionResponse {
+interface CreateAppDescriptionRequest extends BaseRequest {
+  TargetAppID: string
   Info: Description
 }
 
-interface UpdateDescriptionRequest extends Description {
-  NotifyMessage: ReqMessage
+interface CreateAppDescriptionResponse {
+  Info: Description
 }
 
-interface UpdateDescriptionResponse {
+interface UpdateAppDescriptionRequest extends BaseRequest {
   Info: Description
+}
+
+interface UpdateAppDescriptionResponse {
+  Info: Description
+}
+
+interface GetAppDescriptionsRequest extends GetDescriptionsRequest {
+  TargetAppID: string
+}
+
+interface GetAppDescriptionsResponse extends GetDescriptionsResponse {
 }
 
 export {
@@ -37,9 +49,10 @@ export {
   CreateCoinResponse,
   UpdateCoinRequest,
   UpdateCoinResponse,
-  Description,
-  CreateDescriptionRequest,
-  CreateDescriptionResponse,
-  UpdateDescriptionRequest,
-  UpdateDescriptionResponse
+  CreateAppDescriptionRequest,
+  CreateAppDescriptionResponse,
+  UpdateAppDescriptionRequest,
+  UpdateAppDescriptionResponse,
+  GetAppDescriptionsRequest,
+  GetAppDescriptionsResponse
 }

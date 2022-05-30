@@ -1,5 +1,5 @@
 import { BaseRequest } from '../../base'
-import { Benefit, Transaction, UserWithdraw, Payment } from '../../frontend'
+import { Benefit, Transaction, UserWithdraw, Payment, UserPaymentBalance } from '../../frontend'
 
 interface GetUserBenefitsRequest extends BaseRequest {
 }
@@ -29,26 +29,11 @@ interface GetPaymentsResponse {
   Infos: Array<Payment>
 }
 
-interface UserPaymentBalance {
-  ID?: string
-  UserID?: string
-  PaymentID: string
-  Amount: number
+interface GetAppPaymentBalancesRequest extends BaseRequest {
 }
 
-interface GetUserPaymentBalancesRequest extends BaseRequest {
-}
-
-interface GetUserPaymentBalancesResponse {
+interface GetAppPaymentBalancesResponse {
   Infos: Array<UserPaymentBalance>
-}
-
-interface BillingState {
-  UserBenefits: Array<Benefit>
-  Transactions: Array<Transaction>
-  Payments: Array<Payment>
-  PaymentBalances: Array<UserPaymentBalance>
-  Withdraws: Array<UserWithdraw>
 }
 
 export {
@@ -60,8 +45,6 @@ export {
   GetWithdrawsResponse,
   GetPaymentsRequest,
   GetPaymentsResponse,
-  UserPaymentBalance,
-  GetUserPaymentBalancesRequest,
-  GetUserPaymentBalancesResponse,
-  BillingState
+  GetAppPaymentBalancesRequest,
+  GetAppPaymentBalancesResponse
 }

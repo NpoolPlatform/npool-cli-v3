@@ -6,8 +6,8 @@ import {
   GetPaymentsResponse,
   GetUserBenefitsRequest,
   GetUserBenefitsResponse,
-  GetUserPaymentBalancesRequest,
-  GetUserPaymentBalancesResponse,
+  GetAppPaymentBalancesRequest,
+  GetAppPaymentBalancesResponse,
   GetWithdrawsRequest,
   GetWithdrawsResponse
 } from '../../admin'
@@ -19,11 +19,11 @@ interface GetAppPaymentsRequest extends GetPaymentsRequest {
 interface GetAppPaymentsResponse extends GetPaymentsResponse {
 }
 
-interface GetAppPaymentBalancesRequest extends GetUserPaymentBalancesRequest {
+interface GetTargetAppPaymentBalancesRequest extends GetAppPaymentBalancesRequest {
   TargetAppID: string
 }
 
-interface GetAppPaymentBalancesResponse extends GetUserPaymentBalancesResponse {
+interface GetTargetAppPaymentBalancesResponse extends GetAppPaymentBalancesResponse {
 }
 
 interface GetAppUserBenefitsRequest extends GetUserBenefitsRequest {
@@ -67,8 +67,8 @@ interface GetPlatformBenefitsResponse {
 export {
   GetAppPaymentsRequest,
   GetAppPaymentsResponse,
-  GetAppPaymentBalancesRequest,
-  GetAppPaymentBalancesResponse,
+  GetTargetAppPaymentBalancesRequest,
+  GetTargetAppPaymentBalancesResponse,
   GetAppUserBenefitsRequest,
   GetAppUserBenefitsResponse,
   GetTargetAppTransactionsRequest,

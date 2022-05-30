@@ -1,4 +1,4 @@
-import { UserPaymentBalance } from '../../admin'
+import { UserPaymentBalance } from '../../frontend'
 import { Benefit, Payment, Transaction, UserWithdraw } from '../../frontend'
 import { PlatformBenefit } from './types'
 

@@ -3,12 +3,12 @@ import { BillingState } from './state'
 import { doActionWithError } from '../../action'
 import { API } from './const'
 import { Benefit, Payment, Transaction, UserWithdraw } from '../../frontend'
-import { UserPaymentBalance } from '../../admin'
+import { UserPaymentBalance } from '../../frontend'
 import {
   GetAppPaymentsResponse,
   GetAppPaymentsRequest,
-  GetAppPaymentBalancesRequest,
-  GetAppPaymentBalancesResponse,
+  GetTargetAppPaymentBalancesRequest,
+  GetTargetAppPaymentBalancesResponse,
   GetAppUserBenefitsResponse,
   GetTargetAppTransactionsRequest,
   GetTargetAppTransactionsResponse,
@@ -42,12 +42,12 @@ export const useChurchBillingStore = defineStore('churchbilling', {
           done(true)
         })
     },
-    getPaymentBalances (req: GetAppPaymentBalancesRequest, done: (error: boolean) => void) {
-      doActionWithError<GetAppPaymentBalancesRequest, GetAppPaymentBalancesResponse>(
+    getPaymentBalances (req: GetTargetAppPaymentBalancesRequest, done: (error: boolean) => void) {
+      doActionWithError<GetTargetAppPaymentBalancesRequest, GetTargetAppPaymentBalancesResponse>(
         API.GET_USER_PAYMENT_BALANCES,
         req,
         req.Message,
-        (resp: GetAppPaymentBalancesResponse): void => {
+        (resp: GetTargetAppPaymentBalancesResponse): void => {
           this.PaymentBalances.set(req.TargetAppID, resp.Infos)
           done(false)
         }, () => {

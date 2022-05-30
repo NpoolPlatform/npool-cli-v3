@@ -2,20 +2,22 @@ import { defineStore } from 'pinia'
 import { doActionWithError } from '../../action'
 import { API } from './const'
 import {
-  BillingState,
+  BillingState
+} from './state'
+import {
   GetPaymentsRequest,
   GetPaymentsResponse,
   GetUserBenefitsRequest,
   GetUserBenefitsResponse,
-  GetUserPaymentBalancesRequest,
-  GetUserPaymentBalancesResponse,
+  GetAppPaymentBalancesRequest,
+  GetAppPaymentBalancesResponse,
   GetWithdrawsRequest,
   GetWithdrawsResponse,
   GetAppTransactionsRequest,
   GetAppTransactionsResponse
 } from './types'
 
-export const useBillingStore = defineStore('billing', {
+export const useAdminBillingStore = defineStore('adminbilling', {
   state: (): BillingState => ({
     UserBenefits: [],
     Transactions: [],
@@ -61,12 +63,12 @@ export const useBillingStore = defineStore('billing', {
           done(true)
         })
     },
-    getPaymentBalances (req: GetUserPaymentBalancesRequest, done: (error: boolean) => void) {
-      doActionWithError<GetUserPaymentBalancesRequest, GetUserPaymentBalancesResponse>(
+    getPaymentBalances (req: GetAppPaymentBalancesRequest, done: (error: boolean) => void) {
+      doActionWithError<GetAppPaymentBalancesRequest, GetAppPaymentBalancesResponse>(
         API.GET_USER_PAYMENT_BALANCES,
         req,
         req.Message,
-        (resp: GetUserPaymentBalancesResponse): void => {
+        (resp: GetAppPaymentBalancesResponse): void => {
           this.PaymentBalances = resp.Infos
           done(false)
         }, () => {

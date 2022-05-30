@@ -34,14 +34,14 @@ export const useCurrencyStore = defineStore('currency', {
         if (name.includes('usdt')) {
           name = name.replace('usdt', 'USDT')
         }
-        if (!name.includes('USDT')) {
+        if (!name.includes('USDT ')) {
           name = name.replace('USDT', 'USDT ')
         }
-        if (!name.includes('erc')) {
-          name = name.replace('erc', 'ERC ')
+        if (name.includes('erc')) {
+          name = name.replace('erc', 'ERC')
         }
-        if (!name.includes('trc')) {
-          name = name.replace('trc', 'TRC ')
+        if (name.includes('trc')) {
+          name = name.replace('trc', 'TRC')
         }
         name = name[0].toUpperCase() + name.slice(1)
         return name

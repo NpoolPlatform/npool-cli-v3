@@ -22,6 +22,10 @@ export const useCurrencyStore = defineStore('currency', {
     },
     getCachedCoinCurrencyByCoinName (): (coinName: string, currency: Currency) => number {
       return (coinName: string, currency: Currency) => {
+        if (coinName.toLowerCase().includes('usdt') && currency === Currency.USD) {
+          return 1
+        }
+
         const amount = this.Currencies.get(coinName)?.get(currency)
         if (amount !== undefined) {
           return amount

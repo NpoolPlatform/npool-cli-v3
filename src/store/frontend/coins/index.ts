@@ -55,7 +55,9 @@ export const useCoinStore = defineStore('coin', {
         req,
         req.Message,
         (resp: GetCoinsResponse): void => {
-          this.Coins = resp.Infos
+          this.Coins = resp.Infos.sort((a: Coin, b: Coin) => {
+            return (a.Name as string) < (b.Name as string) ? -1 : 1
+          })
           done()
         })
     },

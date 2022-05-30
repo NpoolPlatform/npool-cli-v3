@@ -12,6 +12,7 @@ import {
   GetOrdersResponse,
   Order,
   OrderState,
+  Payment,
   SubmitOrderRequest,
   SubmitOrderResponse,
   UpdatePaymentRequest,
@@ -95,6 +96,13 @@ export const useOrderStore = defineStore('order', {
     orderPaid (): (order: Order) => boolean {
       return (order: Order) => {
         return order.Order.Payment ? order.Order.Payment.State === 'done' : false
+      }
+    },
+
+    getPaymentByID (): (id: string) => Payment {
+      return (id: string) => {
+        const index = this.Orders.findIndex((el) => el.Order.Payment && el.Order.Payment.ID === id)
+        return index > 0 ? this.Orders[index].Order.Payment : undefined as unknown as Payment
       }
     }
   },

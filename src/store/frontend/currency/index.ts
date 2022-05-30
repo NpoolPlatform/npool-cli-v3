@@ -54,6 +54,11 @@ export const useCurrencyStore = defineStore('currency', {
   },
   actions: {
     getCurrency (req: GetCoinCurrencyRequest, coinName: string, done: (amount: number) => void) {
+      if (coinName.toLowerCase().includes('usdt') && req.Currency === Currency.USD) {
+        done(1)
+        return
+      }
+
       let url = CoinbaseAPI.GET_COIN_CURRENCY
       if (coinName.includes('bitcoin')) {
         url = url.replace(COIN_PATTERN, 'BTC') as CoinbaseAPI

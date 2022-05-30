@@ -102,7 +102,7 @@ export const useOrderStore = defineStore('order', {
     getPaymentByID (): (id: string) => Payment {
       return (id: string) => {
         const index = this.Orders.findIndex((el) => el.Order.Payment && el.Order.Payment.ID === id)
-        return index > 0 ? this.Orders[index].Order.Payment : undefined as unknown as Payment
+        return index >= 0 ? this.Orders[index].Order.Payment : undefined as unknown as Payment
       }
     }
   },

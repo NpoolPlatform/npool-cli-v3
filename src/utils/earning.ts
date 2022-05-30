@@ -1,12 +1,12 @@
-import { Coin, Good, useGoodStore } from '../store'
+import { Coin, Good, useBillingStore, useGoodStore, useOrderStore, UserPaymentBalance } from '../store'
 import { useCurrencyStore, Currency } from '../store'
 import { useBenefitStore, Benefit } from '../store'
-import { ReviewState, SecondsEachDay } from '../const'
+import { InvalidID, ReviewState, SecondsEachDay } from '../const'
 import { useTransactionStore, WithdrawType } from '../store'
 import { UserWithdrawState } from '../store'
 import { useCoinStore } from '../store'
 
-const rangeEarningCurrency = (currency: Currency, done: (usdAmount: number) => void, start?: number, end?: number) => {
+const rangeEarningCurrency = (currency: Currency, done: (amount: number) => void, start?: number, end?: number) => {
   const benefit = useBenefitStore()
   const currencies = useCurrencyStore()
   const goods = useGoodStore()
@@ -41,7 +41,7 @@ const totalEarningUSD = (done: (usdAmount: number) => void) => {
   rangeEarningUSD(done)
 }
 
-const totalEarningCurrency = (currency: Currency, done: (usdAmount: number) => void) => {
+const totalEarningCurrency = (currency: Currency, done: (amount: number) => void) => {
   rangeEarningCurrency(currency, done)
 }
 
@@ -169,6 +169,51 @@ const last24HoursEarningCoin = (coinTypeID: string, done: (coinAmount: number) =
   rangeEarningCoin(coinTypeID, done, start, end)
 }
 
+const rangePaymentBalanceCurrency = (currency: Currency, done: (amount: number) => void, start?: number, end?: number) => {
+  const billing = useBillingStore()
+  const order = useOrderStore()
+  const currencies = useCurrencyStore()
+
+  let amount = 0
+
+  billing.PaymentBalances.forEach((balance: UserPaymentBalance) => {
+    const payment = order.getPaymentByID(balance.PaymentID)
+
+    if (balance.UsedByPaymentID !== InvalidID) {
+      return
+    }
+
+    if (!payment) {
+      return
+    }
+
+    if ((start && payment.CreateAt < start) ||
+        (end && payment.CreateAt > end)) {
+      return
+    }
+
+    const payOrder = order.getOrderByID(payment.OrderID)
+    if (!payOrder) {
+      return
+    }
+
+    currencies.getCoinCurrency(payOrder.PayWithCoin, currency, (currency: number) => {
+      amount += currency * balance.Amount
+      done(amount)
+    })
+  })
+
+  done(amount)
+}
+
+const totalPaymentBalanceUSD = (done: (usdAmount: number) => void) => {
+  rangePaymentBalanceCurrency(Currency.USD, done)
+}
+
+const totalPaymentBalanceCurrency = (currency: Currency, done: (usdAmount: number) => void) => {
+  rangePaymentBalanceCurrency(currency, done)
+}
+
 export {
   totalEarningUSD,
   last24HoursEarningUSD,
@@ -182,5 +227,7 @@ export {
   rangeEarningCurrency,
   totalWithdrawedEarningCurrency,
   totalEarningCurrency,
-  totalWithdrawedEarningCoin
+  totalWithdrawedEarningCoin,
+  totalPaymentBalanceUSD,
+  totalPaymentBalanceCurrency
 }

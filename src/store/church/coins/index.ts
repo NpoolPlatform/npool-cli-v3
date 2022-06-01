@@ -95,7 +95,7 @@ export const useChurchCoinStore = defineStore('churchcoin', {
           done(true)
         })
     },
-    createProjectInfo (req: CreateAppProductInfoRequest, done: () => void) {
+    createProductInfo (req: CreateAppProductInfoRequest, done: () => void) {
       doAction<CreateAppProductInfoRequest, CreateAppProductInfoResponse>(
         API.CREATE_PRODUCT_INFO,
         req,
@@ -110,7 +110,7 @@ export const useChurchCoinStore = defineStore('churchcoin', {
           done()
         })
     },
-    updateProjectInfo (req: UpdateAppProductInfoRequest, done: () => void) {
+    updateProductInfo (req: UpdateAppProductInfoRequest, done: () => void) {
       doAction<UpdateAppProductInfoRequest, UpdateAppProductInfoResponse>(
         API.UPDATE_PRODUCT_INFO,
         req,
@@ -126,7 +126,7 @@ export const useChurchCoinStore = defineStore('churchcoin', {
           done()
         })
     },
-    getProjectInfos (req: GetAppProductInfosRequest, done: (error: boolean) => void) {
+    getProductInfos (req: GetAppProductInfosRequest, done: (error: boolean) => void) {
       doActionWithError<GetAppProductInfosRequest, GetAppProductInfosResponse>(
         API.GET_PRODUCT_INFOS,
         req,

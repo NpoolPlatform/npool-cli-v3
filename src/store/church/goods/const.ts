@@ -9,6 +9,7 @@ enum API {
   SET_GOOD_PRICE = '/cloud-hashing-goods/v1/set/app/good/price/for/other/app',
   ONSALE_GOOD = '/cloud-hashing-goods/v1/onsale/app/good/for/other/app',
   OFFSALE_GOOD = '/cloud-hashing-goods/v1/offsale/app/good/for/other/app',
+  UPDATE_APP_GOOD = '/cloud-hashing-goods/v1/offsale/update/good',
 
   CREATE_PROMOTION = '/cloud-hashing-goods/v1/create/app/good/promotion/for/other/app',
   GET_PROMOTIONS = '/cloud-hashing-goods/v1/get/app/good/promotions/by/other/app',

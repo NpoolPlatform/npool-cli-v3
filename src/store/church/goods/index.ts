@@ -150,7 +150,7 @@ export const useChurchGoodStore = defineStore('churchgood', {
     },
     updateAppGood (req: UpdateTargetAppGoodRequest, done: () => void) {
       doAction<UpdateTargetAppGoodRequest, UpdateTargetAppGoodResponse>(
-        API.UPDATE_GOOD,
+        API.UPDATE_APP_GOOD,
         req,
         req.Message,
         (resp: UpdateTargetAppGoodResponse): void => {

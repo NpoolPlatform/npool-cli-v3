@@ -2,7 +2,10 @@ import {
   Coin,
   Description,
   GetDescriptionsRequest,
-  GetDescriptionsResponse
+  GetDescriptionsResponse,
+  GetProductInfosRequest,
+  GetProductInfosResponse,
+  ProductInfo
 } from '../../frontend'
 import { BaseRequest } from '../../base'
 
@@ -44,6 +47,30 @@ interface GetAppDescriptionsRequest extends GetDescriptionsRequest {
 interface GetAppDescriptionsResponse extends GetDescriptionsResponse {
 }
 
+interface CreateAppProductInfoRequest extends BaseRequest {
+  TargetAppID: string
+  Info: ProductInfo
+}
+
+interface CreateAppProductInfoResponse {
+  Info: ProductInfo
+}
+
+interface UpdateAppProductInfoRequest extends BaseRequest {
+  Info: ProductInfo
+}
+
+interface UpdateAppProductInfoResponse {
+  Info: ProductInfo
+}
+
+interface GetAppProductInfosRequest extends GetProductInfosRequest {
+  TargetAppID: string
+}
+
+interface GetAppProductInfosResponse extends GetProductInfosResponse {
+}
+
 export {
   CreateCoinRequest,
   CreateCoinResponse,
@@ -54,5 +81,11 @@ export {
   UpdateAppDescriptionRequest,
   UpdateAppDescriptionResponse,
   GetAppDescriptionsRequest,
-  GetAppDescriptionsResponse
+  GetAppDescriptionsResponse,
+  CreateAppProductInfoRequest,
+  CreateAppProductInfoResponse,
+  UpdateAppProductInfoRequest,
+  UpdateAppProductInfoResponse,
+  GetAppProductInfosRequest,
+  GetAppProductInfosResponse
 }

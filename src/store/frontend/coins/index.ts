@@ -9,13 +9,17 @@ import {
   GetCoinsRequest,
   GetCoinsResponse,
   GetDescriptionsRequest,
-  GetDescriptionsResponse
+  GetDescriptionsResponse,
+  GetProductInfosRequest,
+  GetProductInfosResponse,
+  ProductInfo
 } from './types'
 
 export const useCoinStore = defineStore('coin', {
   state: (): CoinState => ({
     Coins: [],
     Descriptions: new Map<string, Map<string, Description>>(),
+    ProductInfos: new Map<string, ProductInfo>(),
     Currencies: new Map<string, Map<string, number>>()
   }),
   getters: {
@@ -44,6 +48,11 @@ export const useCoinStore = defineStore('coin', {
           return undefined as unknown as Description
         }
         return descriptions.get(usedFor) as Description
+      }
+    },
+    getCoinProductInfoByCoin (): (coinID: string) => ProductInfo {
+      return (coinID: string) => {
+        return this.ProductInfos.get(coinID) as ProductInfo
       }
     }
   },
@@ -74,6 +83,18 @@ export const useCoinStore = defineStore('coin', {
             }
             descriptions.set(desc.UsedFor, desc)
             this.Descriptions.set(desc.CoinTypeID, descriptions)
+          })
+          done?.()
+        })
+    },
+    getCoinProductInfos (req: GetProductInfosRequest, done?: () => void) {
+      doAction<GetProductInfosRequest, GetProductInfosResponse>(
+        API.GET_PRODUCT_INFOS,
+        req,
+        req.Message,
+        (resp: GetProductInfosResponse): void => {
+          resp.Infos.forEach((info) => {
+            this.ProductInfos.set(info.CoinTypeID, info)
           })
           done?.()
         })

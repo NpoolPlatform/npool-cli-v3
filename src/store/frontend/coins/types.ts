@@ -41,9 +41,24 @@ interface GetDescriptionsResponse {
   Infos: Array<Description>
 }
 
+interface ProductInfo {
+  ID?: string
+  AppID: string
+  CoinTypeID: string
+  ProductPage: string
+}
+
+interface GetProductInfosRequest extends BaseRequest {
+}
+
+interface GetProductInfosResponse {
+  Infos: Array<ProductInfo>
+}
+
 interface CoinState {
   Coins: Array<Coin>
   Descriptions: Map<string, Map<string, Description>>
+  ProductInfos: Map<string, ProductInfo>
   Currencies: Map<string, Map<string, number>>
 }
 
@@ -54,5 +69,8 @@ export {
   GetCoinsResponse,
   Description,
   GetDescriptionsRequest,
-  GetDescriptionsResponse
+  GetDescriptionsResponse,
+  ProductInfo,
+  GetProductInfosRequest,
+  GetProductInfosResponse
 }

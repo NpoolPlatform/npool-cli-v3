@@ -29,7 +29,9 @@ import {
   UnauthorizeGoodRequest,
   UnauthorizeGoodResponse,
   UpdateGoodRequest,
-  UpdateGoodResponse
+  UpdateGoodResponse,
+  UpdateTargetAppGoodRequest,
+  UpdateTargetAppGoodResponse
 } from './types'
 import { GoodState } from './state'
 import { AppGood, Recommend, Promotion, PriceCurrency } from '../../frontend'
@@ -136,6 +138,22 @@ export const useChurchGoodStore = defineStore('churchgood', {
         req,
         req.Message,
         (resp: OfflineAppGoodResponse): void => {
+          let goods = this.AppGoods.get(req.TargetAppID)
+          if (!goods) {
+            goods = []
+          }
+          const index = goods.findIndex((el) => el.ID === resp.Info.ID)
+          goods.splice(index, index < 0 ? 0 : 1, resp.Info)
+          this.AppGoods.set(req.TargetAppID, goods)
+          done()
+        })
+    },
+    updateAppGood (req: UpdateTargetAppGoodRequest, done: () => void) {
+      doAction<UpdateTargetAppGoodRequest, UpdateTargetAppGoodResponse>(
+        API.UPDATE_GOOD,
+        req,
+        req.Message,
+        (resp: UpdateTargetAppGoodResponse): void => {
           let goods = this.AppGoods.get(req.TargetAppID)
           if (!goods) {
             goods = []

@@ -10,7 +10,9 @@ import {
   OfflineGoodRequest,
   OfflineGoodResponse,
   CreatePromotionRequest,
-  CreatePromotionResponse
+  CreatePromotionResponse,
+  UpdateAppGoodRequest,
+  UpdateAppGoodResponse
 } from '../../admin'
 import { BaseRequest } from '../../base'
 import {
@@ -80,6 +82,13 @@ interface OfflineAppGoodRequest extends OfflineGoodRequest {
 }
 
 interface OfflineAppGoodResponse extends OfflineGoodResponse {
+}
+
+interface UpdateTargetAppGoodRequest extends UpdateAppGoodRequest {
+  TargetAppID: string
+}
+
+interface UpdateTargetAppGoodResponse extends UpdateAppGoodResponse {
 }
 
 interface GetAppPromotionsRequest extends GetPromotionsRequest {
@@ -153,6 +162,8 @@ export {
   OnlineAppGoodResponse,
   OfflineAppGoodRequest,
   OfflineAppGoodResponse,
+  UpdateTargetAppGoodRequest,
+  UpdateTargetAppGoodResponse,
   GetAppPromotionsRequest,
   GetAppPromotionsResponse,
   CreateAppPromotionRequest,

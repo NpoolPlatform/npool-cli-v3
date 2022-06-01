@@ -1,9 +1,7 @@
-import { ReqMessage } from '../../local'
 import { AppGood, Recommend, Promotion, Good } from '../../frontend'
 import { BaseRequest } from '../../base'
 
-interface GetAllGoodsRequest {
-  Message: ReqMessage
+interface GetAllGoodsRequest extends BaseRequest {
 }
 
 interface GetAllGoodsResponse {
@@ -17,63 +15,64 @@ interface GetRecommendsResponse {
   Infos: Array<Recommend>
 }
 
-interface CreateRecommendRequest {
+interface CreateRecommendRequest extends BaseRequest {
   Info: Recommend
-  Message: ReqMessage
 }
 
 interface CreateRecommendResponse {
   Info: Recommend
 }
 
-interface UpdateRecommendRequest {
+interface UpdateRecommendRequest extends BaseRequest {
   Info: Recommend
-  Message: ReqMessage
 }
 
 interface UpdateRecommendResponse {
   Info: Recommend
 }
 
-interface SetGoodPriceRequest {
+interface SetGoodPriceRequest extends BaseRequest {
   Info: AppGood
-  Message: ReqMessage
 }
 
 interface SetGoodPriceResponse {
   Info: AppGood
 }
 
-interface OnlineGoodRequest {
+interface OnlineGoodRequest extends BaseRequest {
   Info: AppGood
-  Message: ReqMessage
 }
 
 interface OnlineGoodResponse {
   Info: AppGood
 }
 
-interface OfflineGoodRequest {
+interface OfflineGoodRequest extends BaseRequest {
   Info: AppGood
-  Message: ReqMessage
 }
 
 interface OfflineGoodResponse {
   Info: AppGood
 }
 
-interface CreatePromotionRequest {
+interface UpdateAppGoodRequest extends BaseRequest {
+  Info: AppGood
+}
+
+interface UpdateAppGoodResponse {
+  Info: AppGood
+}
+
+interface CreatePromotionRequest extends BaseRequest {
   Info: Promotion
-  Message: ReqMessage
 }
 
 interface CreatePromotionResponse {
   Info: Promotion
 }
 
-interface UpdatePromotionRequest {
+interface UpdatePromotionRequest extends BaseRequest {
   Info: Promotion
-  Message: ReqMessage
 }
 
 interface UpdatePromotionResponse {
@@ -93,6 +92,8 @@ export {
   OnlineGoodResponse,
   OfflineGoodRequest,
   OfflineGoodResponse,
+  UpdateAppGoodRequest,
+  UpdateAppGoodResponse,
   CreatePromotionRequest,
   CreatePromotionResponse,
   UpdatePromotionRequest,

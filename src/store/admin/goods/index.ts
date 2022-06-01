@@ -16,6 +16,8 @@ import {
   OnlineGoodResponse,
   SetGoodPriceRequest,
   SetGoodPriceResponse,
+  UpdateAppGoodRequest,
+  UpdateAppGoodResponse,
   UpdatePromotionRequest,
   UpdatePromotionResponse,
   UpdateRecommendRequest,
@@ -84,6 +86,18 @@ export const useAdminGoodStore = defineStore('admingood', {
         req,
         req.Message,
         (resp: OfflineGoodResponse): void => {
+          const good = useGoodStore()
+          const index = good.AppGoods.findIndex((el) => el.ID === resp.Info.ID)
+          good.AppGoods.splice(index, index < 0 ? 0 : 1, resp.Info)
+          done()
+        })
+    },
+    updateGood (req: UpdateAppGoodRequest, done: () => void) {
+      doAction<UpdateAppGoodRequest, UpdateAppGoodResponse>(
+        API.UPDATE_GOOD,
+        req,
+        req.Message,
+        (resp: UpdateAppGoodResponse): void => {
           const good = useGoodStore()
           const index = good.AppGoods.findIndex((el) => el.ID === resp.Info.ID)
           good.AppGoods.splice(index, index < 0 ? 0 : 1, resp.Info)

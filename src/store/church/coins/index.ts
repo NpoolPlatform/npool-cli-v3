@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { useCoinStore, Description } from '../../frontend'
+import { useCoinStore, Description, ProductInfo } from '../../frontend'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import { CoinState } from './state'
@@ -12,13 +12,20 @@ import {
   UpdateCoinResponse,
   UpdateAppDescriptionRequest,
   UpdateAppDescriptionResponse,
-  GetAppDescriptionsResponse
+  GetAppDescriptionsResponse,
+  CreateAppProductInfoRequest,
+  CreateAppProductInfoResponse,
+  UpdateAppProductInfoRequest,
+  UpdateAppProductInfoResponse,
+  GetAppProductInfosRequest,
+  GetAppProductInfosResponse
 } from './types'
 import { GetAppDescriptionsRequest } from '..'
 
 export const useChurchCoinStore = defineStore('churchcoin', {
   state: (): CoinState => ({
-    Descriptions: new Map<string, Array<Description>>()
+    Descriptions: new Map<string, Array<Description>>(),
+    ProductInfos: new Map<string, Array<ProductInfo>>()
   }),
   getters: {},
   actions: {
@@ -83,6 +90,49 @@ export const useChurchCoinStore = defineStore('churchcoin', {
         req.Message,
         (resp: GetAppDescriptionsResponse): void => {
           this.Descriptions.set(req.TargetAppID, resp.Infos)
+          done(false)
+        }, () => {
+          done(true)
+        })
+    },
+    createProductInfo (req: CreateAppProductInfoRequest, done: () => void) {
+      doAction<CreateAppProductInfoRequest, CreateAppProductInfoResponse>(
+        API.CREATE_PRODUCT_INFO,
+        req,
+        req.Message,
+        (resp: CreateAppProductInfoResponse): void => {
+          let infos = this.ProductInfos.get(req.TargetAppID)
+          if (!infos) {
+            infos = []
+          }
+          infos.splice(0, 0, resp.Info)
+          this.ProductInfos.set(req.TargetAppID, infos)
+          done()
+        })
+    },
+    updateProductInfo (req: UpdateAppProductInfoRequest, done: () => void) {
+      doAction<UpdateAppProductInfoRequest, UpdateAppProductInfoResponse>(
+        API.UPDATE_PRODUCT_INFO,
+        req,
+        req.Message,
+        (resp: UpdateAppProductInfoResponse): void => {
+          let infos = this.ProductInfos.get(req.Info.AppID)
+          if (!infos) {
+            infos = []
+          }
+          const index = infos.findIndex((el) => el.ID === resp.Info.ID)
+          infos.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
+          this.ProductInfos.set(req.Info.AppID, infos)
+          done()
+        })
+    },
+    getProductInfos (req: GetAppProductInfosRequest, done: (error: boolean) => void) {
+      doActionWithError<GetAppProductInfosRequest, GetAppProductInfosResponse>(
+        API.GET_PRODUCT_INFOS,
+        req,
+        req.Message,
+        (resp: GetAppProductInfosResponse): void => {
+          this.ProductInfos.set(req.TargetAppID, resp.Infos)
           done(false)
         }, () => {
           done(true)

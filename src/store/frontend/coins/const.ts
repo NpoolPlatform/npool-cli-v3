@@ -1,6 +1,7 @@
 enum API {
   GET_COINS = '/sphinx-coininfo/v1/get/coininfos',
-  GET_DESCRIPTIONS = '/project-info-manager/v1/get/coin/descriptions'
+  GET_DESCRIPTIONS = '/project-info-manager/v1/get/coin/descriptions',
+  GET_PRODUCT_INFOS = '/project-info-manager/v1/get/coin/productinfos'
 }
 
 enum CoinDescriptionUsedFor {

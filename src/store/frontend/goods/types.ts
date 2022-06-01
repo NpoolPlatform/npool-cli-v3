@@ -156,6 +156,7 @@ interface AppGood {
   Online: boolean
   InitAreaStrategy: string
   DisplayIndex: number
+  Visible: boolean
 }
 
 interface GetAppGoodsRequest {

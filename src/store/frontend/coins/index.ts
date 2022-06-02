@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { NotSet } from '../../../const'
-import { doAction } from '../../action'
+import { doAction, doActionWithError } from '../../action'
 import { API, DefaultCoinPageSize } from './const'
 import {
   Coin,
@@ -8,6 +8,8 @@ import {
   Description,
   GetCoinsRequest,
   GetCoinsResponse,
+  GetCurrentFeeRequest,
+  GetCurrentFeeResponse,
   GetDescriptionsRequest,
   GetDescriptionsResponse,
   GetProductInfosRequest,
@@ -97,6 +99,17 @@ export const useCoinStore = defineStore('coin', {
             this.ProductInfos.set(info.CoinTypeID, info)
           })
           done?.()
+        })
+    },
+    getCurrentFee (req: GetCurrentFeeRequest, done: (feeAmount: number, error: boolean) => void) {
+      doActionWithError<GetCurrentFeeRequest, GetCurrentFeeResponse>(
+        API.GET_CURRENT_FEE,
+        req,
+        req.Message,
+        (resp: GetCurrentFeeResponse): void => {
+          done(resp.FeeAmount, false)
+        }, () => {
+          done(0, true)
         })
     }
   }

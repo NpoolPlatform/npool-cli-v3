@@ -196,6 +196,13 @@ export const useGoodStore = defineStore('good', {
               return
             }
           }
+
+          this.AppGoods.forEach((ag) => {
+            if (ag.GoodID === resp.Info.Good.Good.ID) {
+              resp.Info.Good.Good.Price = ag.Price
+            }
+          })
+
           this.Goods.push(resp.Info)
           done(resp.Info)
         })

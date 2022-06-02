@@ -141,7 +141,14 @@ export const useGoodStore = defineStore('good', {
         req,
         req.Message,
         (resp: GetGoodsResponse): void => {
-          this.Goods = resp.Infos
+          resp.Infos.forEach((info) => {
+            for (const good of this.Goods) {
+              if (good.Good.Good.ID === info.Good.Good.ID) {
+                return
+              }
+            }
+            this.Goods.push(info)
+          })
           done()
         })
     },

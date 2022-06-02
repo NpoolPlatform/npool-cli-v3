@@ -51,14 +51,14 @@ export const useGoodStore = defineStore('good', {
     getRecommendGoods (): Array<Good> {
       const goods = [] as Array<Good>
       this.Recommends.forEach((good: RecommendGood) => {
-        const index = this.AppGoods.findIndex((el) => el.GoodID === good.Good.Good.Good.ID && el.Online)
+        const index = this.AppGoods.findIndex((el) => el.GoodID === good.Good.Good.Good.ID && el.Online && el.Visible)
         if (index < 0) {
           return
         }
         goods.push(good.Good)
       })
       this.Goods.forEach((good: Good) => {
-        const index = this.AppGoods.findIndex((el) => el.GoodID === good.Good.Good.ID && el.Online)
+        const index = this.AppGoods.findIndex((el) => el.GoodID === good.Good.Good.ID && el.Online && el.Visible)
         if (index < 0) {
           return
         }

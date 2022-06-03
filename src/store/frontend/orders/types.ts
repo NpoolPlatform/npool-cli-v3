@@ -20,6 +20,7 @@ interface OrderBase {
 
 interface Payment {
   ID: string,
+  GoodID: string
   OrderID: string,
   AccountID: string
   StartAmount: number

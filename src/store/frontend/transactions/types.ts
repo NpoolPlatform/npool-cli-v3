@@ -7,6 +7,7 @@ interface Transaction {
   ToAddressID: string
   CoinTypeID: string
   Amount: number
+  TransactionFee: number
   Message: string
   CreateAt: number
   State: string

@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { useI18n } from 'vue-i18n'
 import { doAction, doActionWithError } from '../../action'
+import { useCoinStore } from '../coins'
 import { API, FeePayType } from './const'
 import {
   Fee,
@@ -147,6 +148,10 @@ export const useGoodStore = defineStore('good', {
                 return
               }
             }
+            const coin = useCoinStore()
+            if (info.Main) {
+              info.Main.Name = coin.formatCoinName(info.Main.Name as string)
+            } 
             this.Goods.push(info)
           })
           done()

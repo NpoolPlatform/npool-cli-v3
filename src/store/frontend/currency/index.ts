@@ -35,20 +35,8 @@ export const useCurrencyStore = defineStore('currency', {
     },
     formatCoinName (): (name: string) => string {
       return (name: string) => {
-        if (name.includes('usdt')) {
-          name = name.replace('usdt', 'USDT')
-        }
-        if (!name.includes('USDT ')) {
-          name = name.replace('USDT', 'USDT ')
-        }
-        if (name.includes('erc')) {
-          name = name.replace('erc', 'ERC')
-        }
-        if (name.includes('trc')) {
-          name = name.replace('trc', 'TRC')
-        }
-        name = name[0].toUpperCase() + name.slice(1)
-        return name
+        const coin = useCoinStore()
+        return coin.formatCoinName(name)
       }
     }
   },

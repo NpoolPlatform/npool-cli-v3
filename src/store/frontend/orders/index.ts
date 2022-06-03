@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { InvalidID } from '../../../const'
 import { remain } from '../../../utils/timer'
 import { doAction, doActionWithError } from '../../action'
+import { useCoinStore } from '../coins'
 import { API, OrderTimeoutSeconds, PaymentState } from './const'
 import {
   CreatePaymentRequest,
@@ -109,6 +110,10 @@ export const useOrderStore = defineStore('order', {
   actions: {
     insertOrder (order: Order) {
       const index = this.Orders.findIndex((el) => el.Order.Order.ID === order.Order.Order.ID)
+      if (order.PayWithCoin) {
+        const coin = useCoinStore()
+        order.PayWithCoin.Name = coin.formatCoinName(order.PayWithCoin.Name as string)
+      }
       this.Orders.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, order)
     },
 

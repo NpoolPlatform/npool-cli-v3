@@ -87,9 +87,12 @@ export const useCoinStore = defineStore('coin', {
           this.Coins = resp.Infos.sort((a: Coin, b: Coin) => {
             return (a.Name as string) < (b.Name as string) ? -1 : 1
           })
+          const coins = [] as Array<Coin>
           this.Coins.forEach((coin) => {
             coin.Name = this.formatCoinName(coin.Name as string)
+            coins.push(coin)
           })
+          this.Coins = coins
           done()
         })
     },

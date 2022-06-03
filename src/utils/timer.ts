@@ -21,7 +21,7 @@ const formatTime = (timestamp: number, dateOnly?: boolean): string => {
   if (dateOnly) {
     return date.formatDate(timestamp * 1000, 'YYYY/MM/DD')
   }
-  return date.formatDate(timestamp * 1000, 'YYYY/MM/DDTHH:mm:ss')
+  return date.formatDate(timestamp * 1000, 'YYYY/MM/DD HH:mm:ss')
 }
 
 const RemainZero = '00:00:00'

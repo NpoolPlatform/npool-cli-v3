@@ -56,6 +56,24 @@ export const useCoinStore = defineStore('coin', {
       return (coinID: string) => {
         return this.ProductInfos.get(coinID) as ProductInfo
       }
+    },
+    formatCoinName (): (name: string) => string {
+      return (name: string) => {
+        if (name.includes('usdt')) {
+          name = name.replace('usdt', 'USDT')
+        }
+        if (!name.includes('USDT ')) {
+          name = name.replace('USDT', 'USDT ')
+        }
+        if (name.includes('erc')) {
+          name = name.replace('erc', 'ERC')
+        }
+        if (name.includes('trc')) {
+          name = name.replace('trc', 'TRC')
+        }
+        name = name[0].toUpperCase() + name.slice(1)
+        return name
+      }
     }
   },
   actions: {
@@ -68,6 +86,9 @@ export const useCoinStore = defineStore('coin', {
         (resp: GetCoinsResponse): void => {
           this.Coins = resp.Infos.sort((a: Coin, b: Coin) => {
             return (a.Name as string) < (b.Name as string) ? -1 : 1
+          })
+          this.Coins.forEach((coin) => {
+            coin.Name = this.formatCoinName(coin.Name as string)
           })
           done()
         })

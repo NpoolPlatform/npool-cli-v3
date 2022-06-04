@@ -157,6 +157,7 @@ interface AppGood {
   InitAreaStrategy: string
   DisplayIndex: number
   Visible: boolean
+  PurchaseLimit: number
 }
 
 interface GetAppGoodsRequest {

@@ -70,11 +70,6 @@ export const useCurrencyStore = defineStore('currency', {
         req,
         req.Message,
         (resp: GetCoinCurrencyResponse): void => {
-          if (coinName !== resp.data.base) {
-            console.log('Error get currency', req, coinName, resp)
-            return
-          }
-
           let myAmounts = this.Currencies.get(req.Currency)
           if (!myAmounts) {
             myAmounts = new Map<string, number>()

@@ -13,7 +13,8 @@ enum PaymentState {
   WAIT = 'wait',
   DONE = 'done',
   FAIL = 'fail',
-  TIMEOUT = 'timeout'
+  TIMEOUT = 'timeout',
+  CANCELED = 'canceled'
 }
 
 export {

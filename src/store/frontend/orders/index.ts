@@ -61,6 +61,9 @@ export const useOrderStore = defineStore('order', {
         if (order.Order.Payment && order.Order.Payment.State === PaymentState.FAIL) {
           return 'MSG_PAYMENT_FAIL'
         }
+        if (order.Order.Payment && order.Order.Payment.State === PaymentState.CANCELED) {
+          return 'MSG_PAYMENT_CANCELED'
+        }
         if (now < order.Order.Order.Start) {
           return 'MSG_WAIT_FOR_START'
         }

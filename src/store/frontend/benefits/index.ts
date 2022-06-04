@@ -1,10 +1,12 @@
 import { defineStore } from 'pinia'
-import { doAction } from '../../action'
+import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import {
   BenefitState,
   GetBenefitsRequest,
   GetBenefitsResponse,
+  GetCommissionCoinSettingsRequest,
+  GetCommissionCoinSettingsResponse,
   GetCommissionRequest,
   GetCommissionResponse
 } from './types'
@@ -15,7 +17,8 @@ export const useBenefitStore = defineStore('benefit', {
     Commission: {
       Total: 0,
       Balance: 0
-    }
+    },
+    CommissionCoinSettings: []
   }),
   getters: {},
   actions: {
@@ -37,6 +40,18 @@ export const useBenefitStore = defineStore('benefit', {
         (resp: GetCommissionResponse): void => {
           this.Commission = resp.Info
           done()
+        })
+    },
+    getCommissionCoinSettings (req: GetCommissionCoinSettingsRequest, done: (error: boolean) => void) {
+      doActionWithError<GetCommissionCoinSettingsRequest, GetCommissionCoinSettingsResponse>(
+        API.GET_COMMISSION_COINS_SETTINGS,
+        req,
+        req.Message,
+        (resp: GetCommissionCoinSettingsResponse): void => {
+          this.CommissionCoinSettings = resp.Infos
+          done(false)
+        }, () => {
+          done(true)
         })
     }
   }

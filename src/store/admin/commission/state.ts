@@ -1,5 +1,5 @@
+import { CommissionCoinSetting } from '../../frontend'
 import {
-  CommissionCoinSetting,
   CommissionSetting
 } from './types'
 

@@ -33,28 +33,12 @@ interface UpdateCommissionSettingResponse {
   Info: CommissionSetting
 }
 
-interface CommissionCoinSetting {
-  ID?: string
-  CoinTypeID: string
-  Using: boolean
-}
-
-interface GetCommissionCoinSettingsRequest extends BaseRequest {
-}
-
-interface GetCommissionCoinSettingsResponse {
-  Infos: Array<CommissionCoinSetting>
-}
-
 export {
   CommissionSetting,
-  CommissionCoinSetting,
   CreateCommissionSettingRequest,
   CreateCommissionSettingResponse,
   GetCommissionSettingRequest,
   GetCommissionSettingResponse,
   UpdateCommissionSettingRequest,
-  UpdateCommissionSettingResponse,
-  GetCommissionCoinSettingsRequest,
-  GetCommissionCoinSettingsResponse
+  UpdateCommissionSettingResponse
 }

@@ -1,11 +1,11 @@
 import { BaseRequest } from '../../base'
 import {
-  CommissionCoinSetting,
   CreateCommissionSettingRequest,
   CreateCommissionSettingResponse,
   GetCommissionSettingRequest,
   GetCommissionSettingResponse
 } from '../../admin'
+import { CommissionCoinSetting } from '../../frontend'
 
 interface CreateAppCommissionSettingRequest extends CreateCommissionSettingRequest {
   TargetAppID: string

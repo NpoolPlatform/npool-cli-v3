@@ -1,4 +1,4 @@
-import { ReqMessage } from '../../local/notifications/types'
+import { BaseRequest } from '../../base'
 
 interface Benefit {
   ID: string
@@ -12,8 +12,7 @@ interface Benefit {
   LastBenefitTimestamp: number
 }
 
-interface GetBenefitsRequest {
-  Message: ReqMessage
+interface GetBenefitsRequest extends BaseRequest {
 }
 
 interface GetBenefitsResponse {
@@ -25,17 +24,30 @@ interface Commission {
   Balance: number
 }
 
-interface GetCommissionRequest {
-  Message: ReqMessage
+interface GetCommissionRequest extends BaseRequest {
 }
 
 interface GetCommissionResponse {
   Info: Commission
 }
 
+interface CommissionCoinSetting {
+  ID?: string
+  CoinTypeID: string
+  Using: boolean
+}
+
+interface GetCommissionCoinSettingsRequest extends BaseRequest {
+}
+
+interface GetCommissionCoinSettingsResponse {
+  Infos: Array<CommissionCoinSetting>
+}
+
 interface BenefitState {
   Benefits: Array<Benefit>
   Commission: Commission
+  CommissionCoinSettings: Array<CommissionCoinSetting>
 }
 
 export {
@@ -45,5 +57,8 @@ export {
   GetBenefitsResponse,
   Commission,
   GetCommissionRequest,
-  GetCommissionResponse
+  GetCommissionResponse,
+  CommissionCoinSetting,
+  GetCommissionCoinSettingsRequest,
+  GetCommissionCoinSettingsResponse
 }

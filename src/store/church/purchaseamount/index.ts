@@ -49,7 +49,7 @@ export const useChurchPurchaseAmountSettingStore = defineStore('churchpurchaseam
     },
     createUserPurchaseAmountSetting (req: CreateAppUserPurchaseAmountSettingRequest, done: () => void) {
       doAction<CreateAppUserPurchaseAmountSettingRequest, CreateAppUserPurchaseAmountSettingResponse>(
-        API.CREATE_PURCHASE_AMOUNT_SETTING,
+        API.CREATE_USER_PURCHASE_AMOUNT_SETTING,
         req,
         req.Message,
         (resp: CreateAppUserPurchaseAmountSettingResponse): void => {

@@ -35,6 +35,7 @@ interface Payment {
   CreateAt: number
   CoinUSDCurrency: number
   UserSetPaid: boolean
+  UserSetCanceled: boolean
 }
 
 interface OutOfGas {

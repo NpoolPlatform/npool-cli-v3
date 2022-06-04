@@ -172,7 +172,7 @@ pipeline {
         expression { RELEASE_TARGET == 'true' }
       }
       steps {
-        sh 'npm publish'
+        sh 'PATH=/usr/local/bin:$PATH npm publish'
       }
     }
 

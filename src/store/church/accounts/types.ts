@@ -30,6 +30,7 @@ interface GoodPayment {
   PaymentCoinTypeID: string
   AccountID: string
   Idle: boolean
+  OccupiedBy: string
 }
 
 interface GetGoodPaymentsRequest extends BaseRequest {

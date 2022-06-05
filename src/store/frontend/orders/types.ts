@@ -1,7 +1,7 @@
 import { Account } from '../accounts/types'
 import { Coin } from '../coins/types'
 import { Good } from '../goods/types'
-import { ReqMessage } from '../../local/notifications/types'
+import { BaseRequest } from '../../base'
 
 interface OrderBase {
   ID: string
@@ -68,60 +68,64 @@ interface Order {
   PayToAccount: Account
 }
 
-interface SubmitOrderRequest {
+interface SubmitOrderRequest extends BaseRequest {
   GoodID: string
   Units: number
   CouponID?: string
   DiscountCouponID?: string
   UserSpecialReductionID?: string
-  Message: ReqMessage
 }
 
 interface SubmitOrderResponse {
   Info: Order
 }
 
-interface GetOrderRequest {
+interface GetOrderRequest extends BaseRequest {
   ID: string
-  Message: ReqMessage
 }
 
 interface GetOrderResponse {
   Info: Order
 }
 
-interface CreatePaymentRequest {
+interface CreatePaymentRequest extends BaseRequest {
   OrderID: string
   PaymentCoinTypeID: string
-  Message: ReqMessage
 }
 
 interface CreatePaymentResponse {
   Info: Order
 }
 
-interface UpdatePaymentRequest {
+interface UpdatePaymentRequest extends BaseRequest {
   Info: Payment
-  Message: ReqMessage
 }
 
 interface UpdatePaymentResponse {
   Info: Payment
 }
 
-interface GetOrdersRequest {
-  Message: ReqMessage
+interface GetOrdersRequest extends BaseRequest {
 }
 
 interface GetOrdersResponse {
   Infos: Array<Order>
 }
 
+interface GetBaseOrdersRequest extends BaseRequest {
+}
+
+interface GetBaseOrdersResponse {
+  Infos: Array<OrderBase>
+}
+
 interface OrderState {
   Orders: Array<Order>
+  BaseOrders: Array<OrderBase>
 }
 
 export {
+  OrderBase,
   Order,
   Payment,
   SubmitOrderRequest,
@@ -135,5 +139,7 @@ export {
   OutOfGas,
   UpdatePaymentRequest,
   UpdatePaymentResponse,
+  GetBaseOrdersRequest,
+  GetBaseOrdersResponse,
   OrderState
 }

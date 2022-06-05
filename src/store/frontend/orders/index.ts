@@ -7,6 +7,8 @@ import { API, OrderTimeoutSeconds, PaymentState } from './const'
 import {
   CreatePaymentRequest,
   CreatePaymentResponse,
+  GetBaseOrdersRequest,
+  GetBaseOrdersResponse,
   GetOrderRequest,
   GetOrderResponse,
   GetOrdersRequest,
@@ -22,7 +24,8 @@ import {
 
 export const useOrderStore = defineStore('order', {
   state: (): OrderState => ({
-    Orders: []
+    Orders: [],
+    BaseOrders: []
   }),
   getters: {
     getOrderByID (): (id: string) => Order {
@@ -184,7 +187,20 @@ export const useOrderStore = defineStore('order', {
           }
           done()
         })
-    }
+    },
+
+    getBaseOrders (req: GetBaseOrdersRequest, done?: (error: boolean) => void) {
+      doActionWithError<GetBaseOrdersRequest, GetBaseOrdersResponse>(
+        API.GET_BASE_ORDERRS,
+        req,
+        req.Message,
+        (resp: GetBaseOrdersResponse): void => {
+          this.BaseOrders = resp.Infos
+          done?.(false)
+        }, () => {
+          done?.(true)
+        })
+    },
   }
 })
 

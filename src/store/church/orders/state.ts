@@ -1,7 +1,8 @@
-import { Order } from '../../frontend'
+import { Order, OrderBase } from '../../frontend'
 
 interface OrderState {
-  Orders: Map<string, Array<Order>>
+  Orders: Map<string, Array<Order>>,
+  BaseOrders: Map<string, Array<OrderBase>>
 }
 
 export {

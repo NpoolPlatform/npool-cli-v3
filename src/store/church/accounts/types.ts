@@ -39,6 +39,14 @@ interface GetGoodPaymentsResponse {
   Infos: Array<GoodPayment>
 }
 
+interface UpdateGoodPaymentRequest extends BaseRequest {
+  Info: GoodPayment
+}
+
+interface UpdateGoodPaymentResponse {
+  Info: GoodPayment
+}
+
 interface GetWithdrawAddressesRequest extends BaseRequest {
   TargetAppID: string
 }
@@ -57,6 +65,8 @@ export {
   GoodPayment,
   GetGoodPaymentsRequest,
   GetGoodPaymentsResponse,
+  UpdateGoodPaymentRequest,
+  UpdateGoodPaymentResponse,
   GetWithdrawAddressesRequest,
   GetWithdrawAddressesResponse
 }

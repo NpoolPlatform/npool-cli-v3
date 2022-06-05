@@ -11,12 +11,23 @@ import {
   GetWithdrawsRequest,
   GetWithdrawsResponse
 } from '../../admin'
+import { UserPaymentBalance } from '../../frontend'
 
 interface GetAppPaymentsRequest extends GetPaymentsRequest {
   TargetAppID: string
 }
 
 interface GetAppPaymentsResponse extends GetPaymentsResponse {
+}
+
+interface CreateTargetAppUserPaymentBalanceRequest extends BaseRequest {
+  TargetAppID: string
+  TargetUserID: string
+  Info: UserPaymentBalance
+}
+
+interface CreateTargetAppUserPaymentBalanceResponse {
+  Info: UserPaymentBalance
 }
 
 interface GetTargetAppPaymentBalancesRequest extends GetAppPaymentBalancesRequest {
@@ -69,6 +80,8 @@ export {
   GetAppPaymentsResponse,
   GetTargetAppPaymentBalancesRequest,
   GetTargetAppPaymentBalancesResponse,
+  CreateTargetAppUserPaymentBalanceRequest,
+  CreateTargetAppUserPaymentBalanceResponse,
   GetAppUserBenefitsRequest,
   GetAppUserBenefitsResponse,
   GetTargetAppTransactionsRequest,

@@ -13,8 +13,10 @@ import {
   GetGoodPaymentsRequest,
   GetGoodPaymentsResponse,
   GetWithdrawAddressesRequest,
-  GetWithdrawAddressesResponse
+  GetWithdrawAddressesResponse,
+  UpdateGoodPaymentResponse
 } from './types'
+import { UpdateGoodPaymentRequest } from '..'
 
 export const useChurchAccountStore = defineStore('churchaccount', {
   state: (): AccountState => ({
@@ -73,6 +75,17 @@ export const useChurchAccountStore = defineStore('churchaccount', {
           done(false)
         }, () => {
           done(true)
+        })
+    },
+    updateGoodPayment (req: UpdateGoodPaymentRequest, done: () => void) {
+      doAction<UpdateGoodPaymentRequest, UpdateGoodPaymentResponse>(
+        API.UPDATE_GOOD_PAYMENT,
+        req,
+        req.Message,
+        (resp: UpdateGoodPaymentResponse): void => {
+          const index = this.GoodPayments.findIndex((el) => el.ID === req.Info.ID)
+          this.GoodPayments.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
+          done()
         })
     },
     getWithdrawAddresses (req: GetWithdrawAddressesRequest, done: (error: boolean) => void) {

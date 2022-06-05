@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { BillingState } from './state'
-import { doActionWithError } from '../../action'
+import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import { Benefit, Payment, Transaction, UserWithdraw } from '../../frontend'
 import { UserPaymentBalance } from '../../frontend'
@@ -15,9 +15,10 @@ import {
   GetAppWithdrawsRequest,
   GetAppWithdrawsResponse,
   GetPlatformBenefitsRequest,
-  GetPlatformBenefitsResponse
+  GetPlatformBenefitsResponse,
+  CreateTargetAppUserPaymentBalanceRequest
 } from './types'
-import { GetAppUserBenefitsRequest } from '..'
+import { CreateTargetAppUserPaymentBalanceResponse, GetAppUserBenefitsRequest } from '..'
 
 export const useChurchBillingStore = defineStore('churchbilling', {
   state: (): BillingState => ({
@@ -52,6 +53,21 @@ export const useChurchBillingStore = defineStore('churchbilling', {
           done(false)
         }, () => {
           done(true)
+        })
+    },
+    createPaymentBalance (req: CreateTargetAppUserPaymentBalanceRequest, done: () => void) {
+      doAction<CreateTargetAppUserPaymentBalanceRequest, CreateTargetAppUserPaymentBalanceResponse>(
+        API.CREATE_USER_PAYMENT_BALANCE,
+        req,
+        req.Message,
+        (resp: CreateTargetAppUserPaymentBalanceResponse): void => {
+          let infos = this.PaymentBalances.get(req.TargetAppID)
+          if (!infos) {
+            infos = [] as Array<UserPaymentBalance>
+          }
+          infos.push(resp.Info)
+          this.PaymentBalances.set(req.TargetAppID, infos)
+          done()
         })
     },
     getUserBenefits (req: GetAppUserBenefitsRequest, done: (error: boolean) => void) {

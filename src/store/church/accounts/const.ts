@@ -5,6 +5,7 @@ enum API {
   CREATE_USER_ACCOUNT = '/cloud-hashing-apis-v2/v1/create/user/coin/account',
 
   GET_GOOD_PAYMENTS = '/cloud-hashing-billing/v1/get/good/payments',
+  UPDATE_GOOD_PAYMENT = '/cloud-hashing-billing/v1/update/good/payment',
   GET_WITHDRAW_ADDRESSES = '/cloud-hashing-billing/v1/get/user/withdraws/by/other/app'
 }
 

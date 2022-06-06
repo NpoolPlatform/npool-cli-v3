@@ -4,6 +4,12 @@ enum API {
   GET_CURRENCIES = '/oracle-manager/v1/get/currencies'
 }
 
+enum CurrencyMethod {
+  FixAmount = 'fix-amount',
+  OverPercent = 'over-percent'
+}
+
 export {
-  API
+  API,
+  CurrencyMethod
 }

@@ -1,4 +1,5 @@
 import { BaseRequest } from '../../base'
+import { CurrencyMethod } from './const'
 
 interface CoinCurrency {
   ID?: string
@@ -6,6 +7,8 @@ interface CoinCurrency {
   CoinTypeID: string
   PriceVSUSDT: number
   AppPriceVSUSDT: number
+  OverPercent: number
+  CurrencyMethod: CurrencyMethod
 }
 
 interface CreateCurrencyRequest extends BaseRequest {

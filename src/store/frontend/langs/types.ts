@@ -12,6 +12,7 @@ interface Language {
 interface AppLanguage {
   ID?: string
   LangID: string
+  MainLang: boolean
 }
 
 interface AppLangInfo {

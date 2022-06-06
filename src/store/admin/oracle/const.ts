@@ -9,7 +9,13 @@ enum CurrencyMethod {
   OverPercent = 'over-percent'
 }
 
+const CurrencyMethods = [
+  CurrencyMethod.FixAmount,
+  CurrencyMethod.OverPercent
+]
+
 export {
   API,
-  CurrencyMethod
+  CurrencyMethod,
+  CurrencyMethods
 }

@@ -54,3 +54,4 @@ export const useAdminOracleStore = defineStore('adminoracle', {
 })
 
 export * from './types'
+export { CurrencyMethod, CurrencyMethods } from './const'

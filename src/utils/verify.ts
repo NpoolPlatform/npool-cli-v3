@@ -1,7 +1,7 @@
 import { MaxPasswordLength, MinPasswordLength, VerificationCodeLength } from '../const/const'
 
 const validateEmailAddress = (addr: string): boolean => {
-  const reg = /^[a-zA-Z0-9_][\u002Ea-zA-Z0-9_-\\+]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+  const reg = /^[a-zA-Z0-9_][\u002Ea-zA-Z0-9_+.*&^%$#!()-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
   return reg.test(addr)
 }
 

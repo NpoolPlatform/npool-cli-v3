@@ -9,7 +9,7 @@ interface CoinSetting {
   PlatformOfflineAccountID?: string
   UserOfflineAccountID?: string
   UserOnlineAccountID?: string
-  GasProvideAccountID?: string
+  GasProviderAccountID?: string
 }
 
 interface CreateCoinSettingRequest extends BaseRequest {

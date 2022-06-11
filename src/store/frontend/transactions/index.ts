@@ -8,7 +8,8 @@ import {
   GetUserWithdrawsResponse,
   SubmitUserWithdrawRequest,
   SubmitUserWithdrawResponse,
-  TransactionState
+  TransactionState,
+  UserWithdrawState
 } from './types'
 
 export const useTransactionStore = defineStore('transaction', {
@@ -28,16 +29,16 @@ export const useTransactionStore = defineStore('transaction', {
           done()
         })
     },
-    submitWithdraw (req: SubmitUserWithdrawRequest, done: (error: boolean) => void) {
+    submitWithdraw (req: SubmitUserWithdrawRequest, done: (error: boolean, withdraw: UserWithdrawState) => void) {
       doActionWithError<SubmitUserWithdrawRequest, SubmitUserWithdrawResponse>(
         API.SUBMIT_WITHDRAW,
         req,
         req.Message,
         (resp: SubmitUserWithdrawResponse): void => {
           this.Withdraws.splice(0, 0, resp.Info)
-          done(false)
+          done(false, resp.Info)
         }, () => {
-          done(true)
+          done(true, undefined as unknown as UserWithdrawState)
         })
     },
     getWithdraws (req: GetUserWithdrawsRequest, done: () => void) {

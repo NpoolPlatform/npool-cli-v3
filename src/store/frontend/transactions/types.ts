@@ -42,7 +42,7 @@ interface SubmitUserWithdrawRequest {
 interface UserWithdrawState {
   Withdraw: UserWithdraw
   State: string
-  Message: UserWithdrawState
+  Message: string
 }
 
 interface SubmitUserWithdrawResponse {

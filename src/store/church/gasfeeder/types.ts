@@ -6,6 +6,7 @@ interface CoinGas {
   GasCoinTypeID: string
   DepositThresholdLow: number
   DepositAmount: number
+  OnlineScale: number
 }
 
 interface Deposit {

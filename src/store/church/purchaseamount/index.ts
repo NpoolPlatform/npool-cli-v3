@@ -11,7 +11,9 @@ import {
   CreateAppUserPurchaseAmountSettingRequest,
   CreateAppUserPurchaseAmountSettingResponse,
   GetAppPurchaseAmountSettingsRequest,
-  GetAppPurchaseAmountSettingsResponse
+  GetAppPurchaseAmountSettingsResponse,
+  UpdateAppPurchaseAmountSettingRequest,
+  UpdateAppPurchaseAmountSettingResponse
 } from './types'
 
 export const useChurchPurchaseAmountSettingStore = defineStore('churchpurchaseamountsetting', {
@@ -61,7 +63,23 @@ export const useChurchPurchaseAmountSettingStore = defineStore('churchpurchaseam
           this.PurchaseAmountSettings.set(req.TargetAppID, amounts)
           done()
         })
-    }
+    },
+    updatePurchaseAmountSetting (req: UpdateAppPurchaseAmountSettingRequest, done: () => void) {
+      doAction<UpdateAppPurchaseAmountSettingRequest, UpdateAppPurchaseAmountSettingResponse>(
+        API.UPDATE_PURCHASE_AMOUNT_SETTING,
+        req,
+        req.Message,
+        (resp: UpdateAppPurchaseAmountSettingResponse): void => {
+          let amounts = this.PurchaseAmountSettings.get(req.Info.AppID)
+          if (!amounts) {
+            amounts = []
+          }
+          const index = amounts.findIndex((el) => el.ID === req.Info.ID)
+          amounts.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
+          this.PurchaseAmountSettings.set(req.Info.AppID, amounts)
+          done()
+        })
+    },
   }
 })
 

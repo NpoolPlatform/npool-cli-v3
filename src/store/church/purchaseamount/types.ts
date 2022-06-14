@@ -1,10 +1,12 @@
+import { BaseRequest } from '../../base'
 import {
   CreatePurchaseAmountSettingRequest,
   CreatePurchaseAmountSettingResponse,
   CreateUserPurchaseAmountSettingRequest,
   CreateUserPurchaseAmountSettingResponse,
   GetPurchaseAmountSettingsRequest,
-  GetPurchaseAmountSettingsResponse
+  GetPurchaseAmountSettingsResponse,
+  PurchaseAmountSetting
 } from '../../admin'
 
 interface CreateAppPurchaseAmountSettingRequest extends CreatePurchaseAmountSettingRequest {
@@ -28,11 +30,21 @@ interface GetAppPurchaseAmountSettingsRequest extends GetPurchaseAmountSettingsR
 interface GetAppPurchaseAmountSettingsResponse extends GetPurchaseAmountSettingsResponse {
 }
 
+interface UpdateAppPurchaseAmountSettingRequest extends BaseRequest {
+  Info: PurchaseAmountSetting
+}
+
+interface UpdateAppPurchaseAmountSettingResponse {
+  Info: PurchaseAmountSetting
+}
+
 export {
   CreateAppPurchaseAmountSettingRequest,
   CreateAppPurchaseAmountSettingResponse,
   GetAppPurchaseAmountSettingsRequest,
   GetAppPurchaseAmountSettingsResponse,
   CreateAppUserPurchaseAmountSettingRequest,
-  CreateAppUserPurchaseAmountSettingResponse
+  CreateAppUserPurchaseAmountSettingResponse,
+  UpdateAppPurchaseAmountSettingRequest,
+  UpdateAppPurchaseAmountSettingResponse
 }

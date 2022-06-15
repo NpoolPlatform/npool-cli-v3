@@ -71,6 +71,12 @@ export const useCoinStore = defineStore('coin', {
         if (name.includes('trc')) {
           name = name.replace('trc', 'TRC')
         }
+        if (name.includes('usd')) {
+          name = name.replace('usd', 'USD')
+        }
+        if (name.indexOf('USD') > 0 && !name.includes(' USD')) {
+          name = name.replace('USD', ' USD')
+        }
         name = name[0].toUpperCase() + name.slice(1)
         return name
       }

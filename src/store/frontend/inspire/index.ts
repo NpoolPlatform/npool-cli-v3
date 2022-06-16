@@ -59,7 +59,7 @@ export const useInspireStore = defineStore('inspire', {
     },
     getPurchaseAmountSettings (req: GetPurchaseAmountSettingsRequest, done: () => void) {
       doAction<GetPurchaseAmountSettingsRequest, GetPurchaseAmountSettingsResponse>(
-        API.GET_INVITATION_CODE,
+        API.GET_PURCHASE_AMOUNT_SETTINGS,
         req,
         req.Message,
         (resp: GetPurchaseAmountSettingsResponse): void => {

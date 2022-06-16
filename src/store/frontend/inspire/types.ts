@@ -23,10 +23,19 @@ interface Invitation {
 
 interface CoinSummary {
   CoinTypeID: string
+  CoinName: string
   Units: number
   Amount: number
   Unit: string
+}
+
+interface GoodSummary {
+  GoodID: string
+  CoinTypeID: string
   CoinName: string
+  Units: number
+  Amount: number
+  Unit: string
 }
 
 interface Referral {
@@ -38,6 +47,7 @@ interface Referral {
   Kol: boolean
   InvitedCount: number
   Summaries: Array<CoinSummary>
+  GoodSummaries: Array<GoodSummary>
 }
 
 interface GetReferralsRequest {

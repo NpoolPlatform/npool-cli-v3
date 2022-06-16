@@ -2,6 +2,8 @@ import { defineStore } from 'pinia'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import {
+  GetGoodCommissionsRequest,
+  GetGoodCommissionsResponse,
   GetInvitationCodeRequest,
   GetInvitationCodeResponse,
   GetReferralsRequest,
@@ -13,7 +15,8 @@ import {
 export const useInspireStore = defineStore('inspire', {
   state: (): InspireState => ({
     InvitationCode: {} as InvitationCode,
-    Referrals: []
+    Referrals: [],
+    GoodCommissions: []
   }),
   getters: {},
   actions: {
@@ -33,6 +36,18 @@ export const useInspireStore = defineStore('inspire', {
         req.Message,
         (resp: GetReferralsResponse): void => {
           this.Referrals = resp.Infos
+          done(false)
+        }, () => {
+          done(true)
+        })
+    },
+    getGoodCommissions (req: GetGoodCommissionsRequest, done: (error: boolean) => void) {
+      doActionWithError<GetGoodCommissionsRequest, GetGoodCommissionsResponse>(
+        API.GET_GOOD_COMMISSIONS,
+        req,
+        req.Message,
+        (resp: GetGoodCommissionsResponse): void => {
+          this.GoodCommissions = resp.Infos
           done(false)
         }, () => {
           done(true)

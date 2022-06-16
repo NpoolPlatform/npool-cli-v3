@@ -74,8 +74,14 @@ export const useCoinStore = defineStore('coin', {
         if (name.includes('usd')) {
           name = name.replace('usd', 'USD')
         }
-        if (name.indexOf('USD') > 0 && !name.includes(' USD')) {
+        if (name.indexOf('USD') > 0 && !name.includes(' USD') && !name.includes('TUSD')) {
           name = name.replace('USD', ' USD')
+        }
+        if (name.includes('Binance USD')) {
+          name = name.replace('Binance USD', 'Binance USD BEP20')
+        }
+        if (name.includes('USDT')) {
+          name = name.replace('USDT', 'Tether')
         }
         name = name[0].toUpperCase() + name.slice(1)
         return name

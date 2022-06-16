@@ -3,6 +3,7 @@ import { BaseRequest } from '../../base'
 interface PurchaseAmountSetting {
   ID: string
   AppID: string
+  GoodID: string
   UserID: string
   Amount: number
   Percent: number

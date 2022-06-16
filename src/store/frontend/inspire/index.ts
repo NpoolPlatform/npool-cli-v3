@@ -6,6 +6,8 @@ import {
   GetGoodCommissionsResponse,
   GetInvitationCodeRequest,
   GetInvitationCodeResponse,
+  GetPurchaseAmountSettingsRequest,
+  GetPurchaseAmountSettingsResponse,
   GetReferralsRequest,
   GetReferralsResponse,
   InspireState,
@@ -16,17 +18,19 @@ export const useInspireStore = defineStore('inspire', {
   state: (): InspireState => ({
     InvitationCode: {} as InvitationCode,
     Referrals: [],
-    GoodCommissions: []
+    GoodCommissions: [],
+    PurchaseAmountSettings: []
   }),
   getters: {},
   actions: {
-    getInvitationCode (req: GetInvitationCodeRequest) {
+    getInvitationCode (req: GetInvitationCodeRequest, done?: () => void) {
       doAction<GetInvitationCodeRequest, GetInvitationCodeResponse>(
         API.GET_INVITATION_CODE,
         req,
         req.Message,
         (resp: GetInvitationCodeResponse): void => {
           this.InvitationCode = resp.Info
+          done?.()
         })
     },
     getReferrals (req: GetReferralsRequest, done: (error: boolean) => void) {
@@ -51,6 +55,16 @@ export const useInspireStore = defineStore('inspire', {
           done(false)
         }, () => {
           done(true)
+        })
+    },
+    getPurchaseAmountSettings (req: GetPurchaseAmountSettingsRequest, done: () => void) {
+      doAction<GetPurchaseAmountSettingsRequest, GetPurchaseAmountSettingsResponse>(
+        API.GET_INVITATION_CODE,
+        req,
+        req.Message,
+        (resp: GetPurchaseAmountSettingsResponse): void => {
+          this.PurchaseAmountSettings = resp.Infos
+          done()
         })
     }
   }

@@ -1,6 +1,6 @@
 import {
   PurchaseAmountSetting
-} from './types'
+} from '../../frontend'
 
 interface PurchaseAmountSettingState {
   PurchaseAmountSettings: Array<PurchaseAmountSetting>

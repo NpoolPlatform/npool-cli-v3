@@ -7,8 +7,8 @@ import {
   CreatePurchaseAmountSettingResponse,
   CreateUserPurchaseAmountSettingRequest,
   CreateUserPurchaseAmountSettingResponse,
-  GetPurchaseAmountSettingsRequest,
-  GetPurchaseAmountSettingsResponse
+  GetAppPurchaseAmountSettingsRequest,
+  GetAppPurchaseAmountSettingsResponse
 } from './types'
 
 export const usePurchaseAmountSettingStore = defineStore('purchaseamountsetting', {
@@ -17,12 +17,12 @@ export const usePurchaseAmountSettingStore = defineStore('purchaseamountsetting'
   }),
   getters: {},
   actions: {
-    getPurchaseAmountSettings (req: GetPurchaseAmountSettingsRequest, done: (error: boolean) => void) {
-      doActionWithError<GetPurchaseAmountSettingsRequest, GetPurchaseAmountSettingsResponse>(
+    getPurchaseAmountSettings (req: GetAppPurchaseAmountSettingsRequest, done: (error: boolean) => void) {
+      doActionWithError<GetAppPurchaseAmountSettingsRequest, GetAppPurchaseAmountSettingsResponse>(
         API.GET_PURCHASE_AMOUNT_SETTINGS,
         req,
         req.Message,
-        (resp: GetPurchaseAmountSettingsResponse): void => {
+        (resp: GetAppPurchaseAmountSettingsResponse): void => {
           this.PurchaseAmountSettings = resp.Infos
           done(false)
         }, () => {

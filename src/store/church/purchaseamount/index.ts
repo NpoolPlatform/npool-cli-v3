@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import {
   PurchaseAmountSetting
-} from '../../admin'
+} from '../../frontend'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import { PurchaseAmountSettingState } from './state'
@@ -10,8 +10,8 @@ import {
   CreateAppPurchaseAmountSettingResponse,
   CreateAppUserPurchaseAmountSettingRequest,
   CreateAppUserPurchaseAmountSettingResponse,
-  GetAppPurchaseAmountSettingsRequest,
-  GetAppPurchaseAmountSettingsResponse,
+  GetTargetAppPurchaseAmountSettingsRequest,
+  GetTargetAppPurchaseAmountSettingsResponse,
   UpdateAppPurchaseAmountSettingRequest,
   UpdateAppPurchaseAmountSettingResponse
 } from './types'
@@ -22,12 +22,12 @@ export const useChurchPurchaseAmountSettingStore = defineStore('churchpurchaseam
   }),
   getters: {},
   actions: {
-    getPurchaseAmountSettings (req: GetAppPurchaseAmountSettingsRequest, done: (error: boolean) => void) {
-      doActionWithError<GetAppPurchaseAmountSettingsRequest, GetAppPurchaseAmountSettingsResponse>(
+    getPurchaseAmountSettings (req: GetTargetAppPurchaseAmountSettingsRequest, done: (error: boolean) => void) {
+      doActionWithError<GetTargetAppPurchaseAmountSettingsRequest, GetTargetAppPurchaseAmountSettingsResponse>(
         API.GET_PURCHASE_AMOUNT_SETTINGS,
         req,
         req.Message,
-        (resp: GetAppPurchaseAmountSettingsResponse): void => {
+        (resp: GetTargetAppPurchaseAmountSettingsResponse): void => {
           this.PurchaseAmountSettings.set(req.TargetAppID, resp.Infos)
           done(false)
         }, () => {

@@ -4,10 +4,10 @@ import {
   CreatePurchaseAmountSettingResponse,
   CreateUserPurchaseAmountSettingRequest,
   CreateUserPurchaseAmountSettingResponse,
-  GetPurchaseAmountSettingsRequest,
-  GetPurchaseAmountSettingsResponse,
-  PurchaseAmountSetting
+  GetAppPurchaseAmountSettingsRequest,
+  GetAppPurchaseAmountSettingsResponse
 } from '../../admin'
+import { PurchaseAmountSetting } from '../../frontend'
 
 interface CreateAppPurchaseAmountSettingRequest extends CreatePurchaseAmountSettingRequest {
   TargetAppID: string
@@ -23,11 +23,11 @@ interface CreateAppUserPurchaseAmountSettingRequest extends CreateUserPurchaseAm
 interface CreateAppUserPurchaseAmountSettingResponse extends CreateUserPurchaseAmountSettingResponse {
 }
 
-interface GetAppPurchaseAmountSettingsRequest extends GetPurchaseAmountSettingsRequest {
+interface GetTargetAppPurchaseAmountSettingsRequest extends GetAppPurchaseAmountSettingsRequest {
   TargetAppID: string
 }
 
-interface GetAppPurchaseAmountSettingsResponse extends GetPurchaseAmountSettingsResponse {
+interface GetTargetAppPurchaseAmountSettingsResponse extends GetAppPurchaseAmountSettingsResponse {
 }
 
 interface UpdateAppPurchaseAmountSettingRequest extends BaseRequest {
@@ -41,8 +41,8 @@ interface UpdateAppPurchaseAmountSettingResponse {
 export {
   CreateAppPurchaseAmountSettingRequest,
   CreateAppPurchaseAmountSettingResponse,
-  GetAppPurchaseAmountSettingsRequest,
-  GetAppPurchaseAmountSettingsResponse,
+  GetTargetAppPurchaseAmountSettingsRequest,
+  GetTargetAppPurchaseAmountSettingsResponse,
   CreateAppUserPurchaseAmountSettingRequest,
   CreateAppUserPurchaseAmountSettingResponse,
   UpdateAppPurchaseAmountSettingRequest,

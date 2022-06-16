@@ -1,4 +1,4 @@
-import { PurchaseAmountSetting } from '../../admin'
+import { PurchaseAmountSetting } from '../../frontend'
 
 interface PurchaseAmountSettingState {
   PurchaseAmountSettings: Map<string, Array<PurchaseAmountSetting>>

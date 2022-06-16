@@ -82,6 +82,8 @@ export {
   GetInvitationCodeRequest,
   GetInvitationCodeResponse,
   Referral,
+  CoinSummary,
+  GoodSummary,
   GetReferralsRequest,
   GetReferralsResponse,
   GoodCommission,

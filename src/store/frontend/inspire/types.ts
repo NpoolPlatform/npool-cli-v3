@@ -36,6 +36,7 @@ interface GoodSummary {
   Units: number
   Amount: number
   Unit: string
+  Percent: number
 }
 
 interface Referral {

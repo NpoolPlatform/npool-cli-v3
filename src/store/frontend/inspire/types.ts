@@ -58,6 +58,8 @@ interface GetReferralsResponse {
 }
 
 interface GoodCommission {
+  AppID: string
+  UserID: string
   GoodID: string
   Amount: number
   CoinTypeID: string

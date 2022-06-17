@@ -13,7 +13,9 @@ enum MessageUsedFor {
   SetWithdrawAddress = 'SETWITHDRAWADDRESS',
   Signin = 'SIGNIN',
   Withdraw = 'WITHDRAW',
-  Contact = 'CONTACT'
+  Contact = 'CONTACT',
+  CreateInvitationCode = 'CREATEINVITATIONCODE',
+  SetCommission = 'SETCOMMISSION'
 }
 
 const MessageUsedFors = [
@@ -22,7 +24,9 @@ const MessageUsedFors = [
   MessageUsedFor.Signin,
   MessageUsedFor.Signup,
   MessageUsedFor.Update,
-  MessageUsedFor.Withdraw
+  MessageUsedFor.Withdraw,
+  MessageUsedFor.CreateInvitationCode,
+  MessageUsedFor.SetCommission
 ]
 
 export {

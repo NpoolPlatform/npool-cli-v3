@@ -77,7 +77,10 @@ export const useInspireStore = defineStore('inspire', {
         req,
         req.Message,
         (resp: GetPurchaseAmountSettingsResponse): void => {
-          this.PurchaseAmountSettings = resp.Infos
+          resp.Infos.forEach((info: PurchaseAmountSetting) => {
+            const index = this.PurchaseAmountSettings.findIndex((el) => el.ID === info.ID)
+            this.PurchaseAmountSettings.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, info)
+          })
           done()
         })
     },

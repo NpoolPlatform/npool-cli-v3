@@ -6,6 +6,7 @@ interface InvitationCode {
   AppID?: string
   UserID?: string
   InvitationCode?: string
+  CreateAt: number
 }
 
 interface GetInvitationCodeRequest extends BaseRequest {

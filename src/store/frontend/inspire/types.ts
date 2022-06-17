@@ -92,6 +92,34 @@ interface GetPurchaseAmountSettingsResponse {
   Infos: Array<PurchaseAmountSetting>
 }
 
+interface CreateSubInvitationCodeRequest extends BaseRequest {
+  AppID: string
+  UserID: string
+  TargetUserID: string
+  LangID: string
+  InviterName: string
+  InviteeName: string
+  Info: InvitationCode
+}
+
+interface CreateSubInvitationCodeResponse {
+  Info: InvitationCode
+}
+
+interface CreateSubPurchaseAmountSettingRequest extends BaseRequest {
+  AppID: string
+  UserID: string
+  TargetUserID: string
+  LangID: string
+  InviterName: string
+  InviteeName: string
+  Info: PurchaseAmountSetting
+}
+
+interface CreateSubPurchaseAmountSettingResponse {
+  Infos: Array<PurchaseAmountSetting>
+}
+
 interface InspireState {
   InvitationCode: InvitationCode
   Referrals: Array<Referral>
@@ -114,5 +142,9 @@ export {
   PurchaseAmountSetting,
   GetPurchaseAmountSettingsRequest,
   GetPurchaseAmountSettingsResponse,
+  CreateSubInvitationCodeRequest,
+  CreateSubInvitationCodeResponse,
+  CreateSubPurchaseAmountSettingRequest,
+  CreateSubPurchaseAmountSettingResponse,
   InspireState
 }

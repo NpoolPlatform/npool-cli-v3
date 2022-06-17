@@ -2,6 +2,10 @@ import { defineStore } from 'pinia'
 import { doAction, doActionWithError } from '../../action'
 import { API } from './const'
 import {
+  CreateSubInvitationCodeRequest,
+  CreateSubInvitationCodeResponse,
+  CreateSubPurchaseAmountSettingRequest,
+  CreateSubPurchaseAmountSettingResponse,
   GetGoodCommissionsRequest,
   GetGoodCommissionsResponse,
   GetInvitationCodeRequest,
@@ -11,7 +15,8 @@ import {
   GetReferralsRequest,
   GetReferralsResponse,
   InspireState,
-  InvitationCode
+  InvitationCode,
+  PurchaseAmountSetting
 } from './types'
 
 export const useInspireStore = defineStore('inspire', {
@@ -31,6 +36,15 @@ export const useInspireStore = defineStore('inspire', {
         (resp: GetInvitationCodeResponse): void => {
           this.InvitationCode = resp.Info
           done?.()
+        })
+    },
+    createInvitationCode (req: CreateSubInvitationCodeRequest, done: () => void) {
+      doAction<CreateSubInvitationCodeRequest, CreateSubInvitationCodeResponse>(
+        API.CREATE_INVITATION_CODE,
+        req,
+        req.Message,
+        (): void => {
+          done()
         })
     },
     getReferrals (req: GetReferralsRequest, done: (error: boolean) => void) {
@@ -59,11 +73,24 @@ export const useInspireStore = defineStore('inspire', {
     },
     getPurchaseAmountSettings (req: GetPurchaseAmountSettingsRequest, done: () => void) {
       doAction<GetPurchaseAmountSettingsRequest, GetPurchaseAmountSettingsResponse>(
-        API.GET_PURCHASE_AMOUNT_SETTINGS,
+        API.GET_AMOUNT_SETTINGS,
         req,
         req.Message,
         (resp: GetPurchaseAmountSettingsResponse): void => {
           this.PurchaseAmountSettings = resp.Infos
+          done()
+        })
+    },
+    createPurchaseAmountSetting (req: CreateSubPurchaseAmountSettingRequest, done: () => void) {
+      doAction<CreateSubPurchaseAmountSettingRequest, CreateSubPurchaseAmountSettingResponse>(
+        API.CREATE_AMOUNT_SETTING,
+        req,
+        req.Message,
+        (resp: CreateSubPurchaseAmountSettingResponse): void => {
+          resp.Infos.forEach((info: PurchaseAmountSetting) => {
+            const index = this.PurchaseAmountSettings.findIndex((el) => el.ID === info.ID)
+            this.PurchaseAmountSettings.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, info)
+          })
           done()
         })
     }

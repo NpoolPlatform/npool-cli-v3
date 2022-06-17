@@ -1,3 +1,4 @@
+import { Locale } from 'vue-i18n'
 import {
   useLoginedUserStore,
   useOrderStore,
@@ -7,7 +8,9 @@ import {
   PaymentState,
   Order,
   Good,
-  GoodBase
+  GoodBase,
+  AppUser,
+  AppUserExtra
 } from '../store'
 
 interface BenefitModel {
@@ -212,6 +215,25 @@ const buildGoods = (goods: Array<Good>): Array<GoodBase> => {
   return myGoods
 }
 
+const username = (user: AppUser, extra: AppUserExtra, locale: Locale) => {
+  let username = user.EmailAddress
+  switch (locale) {
+    case 'ja-JP':
+      if (extra) {
+        username = extra.FirstName + ' ' + extra.LastName
+      }
+      break
+    default:
+      if (extra) {
+        username = extra.LastName + ' ' + extra.FirstName
+      }
+  }
+  if (!username?.length) {
+    username = user.PhoneNO
+  }
+  return username
+}
+
 export {
   buildBenefits,
   buildOrders,
@@ -219,5 +241,6 @@ export {
   OrderGroup,
   OrderModel,
   BenefitModel,
-  ReferralItem
+  ReferralItem,
+  username
 }

@@ -72,15 +72,15 @@ interface GetGoodCommissionsResponse {
 }
 
 interface PurchaseAmountSetting {
-  ID: string
-  AppID: string
+  ID?: string
+  AppID?: string
   GoodID: string
-  UserID: string
-  Amount: number
+  UserID?: string
+  Amount?: number
   Percent: number
-  Title: string
-  BadgeLarge: string
-  BadgeSmall: string
+  Title?: string
+  BadgeLarge?: string
+  BadgeSmall?: string
   Start: number
   End: number
 }

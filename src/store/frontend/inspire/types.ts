@@ -93,10 +93,10 @@ interface GetPurchaseAmountSettingsResponse {
 }
 
 interface CreateSubInvitationCodeRequest extends BaseRequest {
-  AppID: string
-  UserID: string
+  AppID?: string
+  UserID?: string
   TargetUserID: string
-  LangID: string
+  LangID?: string
   InviterName: string
   InviteeName: string
   Info: InvitationCode
@@ -107,10 +107,10 @@ interface CreateSubInvitationCodeResponse {
 }
 
 interface CreateSubPurchaseAmountSettingRequest extends BaseRequest {
-  AppID: string
-  UserID: string
+  AppID?: string
+  UserID?: string
   TargetUserID: string
-  LangID: string
+  LangID?: string
   InviterName: string
   InviteeName: string
   Info: PurchaseAmountSetting

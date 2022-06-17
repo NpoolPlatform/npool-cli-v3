@@ -105,13 +105,14 @@ export const useUserStore = defineStore('user', {
           done()
         })
     },
-    getLoginHistories (req: GetLoginHistoriesRequest) {
+    getLoginHistories (req: GetLoginHistoriesRequest, done: () => void) {
       doAction<GetLoginHistoriesRequest, GetLoginHistoriesResponse>(
         API.GET_LOGIN_HISTORIES,
         req,
         req.Message,
         (resp: GetLoginHistoriesResponse): void => {
           this.LoginHistories = resp.Infos
+          done()
         })
     },
     setupGoogleAuthentication (req: SetupGoogleAuthenticationRequest) {

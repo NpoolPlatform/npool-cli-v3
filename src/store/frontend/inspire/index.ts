@@ -16,7 +16,9 @@ import {
   GetReferralsResponse,
   InspireState,
   InvitationCode,
-  PurchaseAmountSetting
+  PurchaseAmountSetting,
+  UpdateInvitationCodeRequest,
+  UpdateInvitationCodeResponse
 } from './types'
 
 export const useInspireStore = defineStore('inspire', {
@@ -44,6 +46,16 @@ export const useInspireStore = defineStore('inspire', {
         req,
         req.Message,
         (): void => {
+          done()
+        })
+    },
+    updateInvitationCode (req: UpdateInvitationCodeRequest, done: () => void) {
+      doAction<UpdateInvitationCodeRequest, UpdateInvitationCodeResponse>(
+        API.UPDATE_INVITATION_CODE,
+        req,
+        req.Message,
+        (resp: UpdateInvitationCodeResponse): void => {
+          this.InvitationCode = resp.Info
           done()
         })
     },

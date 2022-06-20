@@ -4,6 +4,7 @@ enum API {
   GET_GOOD_COMMISSIONS = '/cloud-hashing-apis-v2/v1/get/good/commissions',
   GET_AMOUNT_SETTINGS = '/cloud-hashing-apis-v2/v1/get/amount/settings',
   CREATE_INVITATION_CODE = '/cloud-hashing-apis-v2/v1/create/invitation/code',
+  UPDATE_INVITATION_CODE = '/cloud-hashing-inspire/v1/update/invitation/code',
   CREATE_AMOUNT_SETTING = '/cloud-hashing-apis-v2/v1/create/amount/setting',
 }
 

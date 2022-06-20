@@ -17,6 +17,14 @@ interface GetInvitationCodeResponse {
   Info: InvitationCode
 }
 
+interface UpdateInvitationCodeRequest extends BaseRequest {
+  Info: InvitationCode
+}
+
+interface UpdateInvitationCodeResponse {
+  Info: InvitationCode
+}
+
 interface Invitation {
   ID: string
   CreateAt: number
@@ -135,6 +143,8 @@ export {
   InvitationCode,
   GetInvitationCodeRequest,
   GetInvitationCodeResponse,
+  UpdateInvitationCodeRequest,
+  UpdateInvitationCodeResponse,
   Referral,
   CoinSummary,
   GoodSummary,

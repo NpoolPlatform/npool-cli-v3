@@ -7,6 +7,7 @@ interface InvitationCode {
   UserID?: string
   InvitationCode?: string
   CreateAt?: number
+  Confirmed?: boolean
 }
 
 interface GetInvitationCodeRequest extends BaseRequest {

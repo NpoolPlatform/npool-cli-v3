@@ -83,8 +83,8 @@ export const useInspireStore = defineStore('inspire', {
           done(true)
         })
     },
-    getPurchaseAmountSettings (req: GetPurchaseAmountSettingsRequest, done: () => void) {
-      doAction<GetPurchaseAmountSettingsRequest, GetPurchaseAmountSettingsResponse>(
+    getPurchaseAmountSettings (req: GetPurchaseAmountSettingsRequest, done: (error: boolean) => void) {
+      doActionWithError<GetPurchaseAmountSettingsRequest, GetPurchaseAmountSettingsResponse>(
         API.GET_AMOUNT_SETTINGS,
         req,
         req.Message,
@@ -93,7 +93,9 @@ export const useInspireStore = defineStore('inspire', {
             const index = this.PurchaseAmountSettings.findIndex((el) => el.ID === info.ID)
             this.PurchaseAmountSettings.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, info)
           })
-          done()
+          done(false)
+        }, () => {
+          done(true)
         })
     },
     createPurchaseAmountSetting (req: CreateSubPurchaseAmountSettingRequest, done: () => void) {

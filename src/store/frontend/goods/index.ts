@@ -136,8 +136,8 @@ export const useGoodStore = defineStore('good', {
     }
   },
   actions: {
-    getGoods (req: GetGoodsRequest, done: () => void) {
-      doAction<GetGoodsRequest, GetGoodsResponse>(
+    getGoods (req: GetGoodsRequest, done: (error: boolean) => void) {
+      doActionWithError<GetGoodsRequest, GetGoodsResponse>(
         API.GET_GOODS,
         req,
         req.Message,
@@ -154,7 +154,9 @@ export const useGoodStore = defineStore('good', {
             } 
             this.Goods.push(info)
           })
-          done()
+          done(false)
+        }, () => {
+          done(true)
         })
     },
     getRecommends (req: GetRecommendGoodsRequest) {

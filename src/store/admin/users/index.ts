@@ -2,7 +2,10 @@ import { defineStore } from 'pinia'
 import { UsersState } from './state'
 import { doActionWithError } from '../../action'
 import { API } from './const'
-import { GetUsersRequest, GetUsersResponse } from './types'
+import {
+  GetUsersRequest,
+  GetUsersResponse
+} from './types'
 import { UserInfo } from '../../frontend'
 
 export const useUsersStore = defineStore('users', {

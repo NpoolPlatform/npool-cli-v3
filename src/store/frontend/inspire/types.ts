@@ -74,6 +74,7 @@ interface GoodCommission {
   Amount: number
   CoinTypeID: string
   CoinName: string
+  Contribution: number
 }
 
 interface GetGoodCommissionsRequest extends BaseRequest {

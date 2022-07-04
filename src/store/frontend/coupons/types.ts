@@ -38,7 +38,7 @@ interface SpecialOffer {
   ID?: string
   AppID?: string
   UserID?: string
-  Amount: string
+  Amount: number
   Start: number
   DurationDays: number
   Message: string

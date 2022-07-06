@@ -8,6 +8,8 @@ const notification = useNotificationStore()
 const errorswitcher = useErrorSwitcherStore()
 
 function processError (err: AxiosError, message?: Notification) {
+  console.log('axios error', err)
+
   if (message) {
     message.Description = err.message
   }

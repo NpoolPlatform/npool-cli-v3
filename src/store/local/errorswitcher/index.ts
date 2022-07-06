@@ -17,6 +17,7 @@ const useErrorSwitcherStore = defineStore('errorswitcher', {
 })
 
 export * from './const'
+export * from './types'
 
 export {
   useErrorSwitcherStore

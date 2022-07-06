@@ -6,9 +6,12 @@ import {
   GetTargetAppBaseOrdersRequest,
   GetTargetAppBaseOrdersResponse,
   GetTargetAppOrdersRequest,
-  GetTargetAppOrdersResponse
+  GetTargetAppOrdersResponse,
+  SubmitAppUserOrderRequest,
+  SubmitAppUserOrderResponse
 } from './types'
 import { Order, OrderBase } from '../../frontend'
+import { InvalidID } from '../../../const'
 
 export const useChurchOrderStore = defineStore('churchorder', {
   state: (): OrderState => ({
@@ -40,6 +43,24 @@ export const useChurchOrderStore = defineStore('churchorder', {
           done?.(false)
         }, () => {
           done?.(true)
+        })
+    },
+
+    submitOrder (req: SubmitAppUserOrderRequest, handler: (orderID: string, error: boolean) => void) {
+      doActionWithError<SubmitAppUserOrderRequest, SubmitAppUserOrderResponse>(
+        API.SUBMIT_ORDER,
+        req,
+        req.Message,
+        (resp: SubmitAppUserOrderResponse): void => {
+          let orders = this.Orders.get(req.TargetAppID)
+          if (!orders) {
+            orders = []
+          }
+          orders.splice(0, 0, resp.Info)
+          this.Orders.set(req.TargetAppID, orders)
+          handler(resp.Info.Order.Order.ID, false)
+        }, () => {
+          handler(InvalidID, true)
         })
     }
   }

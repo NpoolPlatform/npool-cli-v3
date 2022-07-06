@@ -1,4 +1,4 @@
-import { GetBaseOrdersRequest, GetBaseOrdersResponse, Order } from '../../frontend'
+import { GetBaseOrdersRequest, GetBaseOrdersResponse, Order, SubmitOrderRequest, SubmitOrderResponse } from '../../frontend'
 import { BaseRequest } from '../../base'
 
 interface GetAppOrdersRequest extends BaseRequest {
@@ -14,9 +14,18 @@ interface GetAppBaseOrdersRequest extends GetBaseOrdersRequest {
 interface GetAppBaseOrdersResponse extends GetBaseOrdersResponse {
 }
 
+interface SubmitUserOrderRequest extends SubmitOrderRequest {
+  TargetUserID: string
+}
+
+interface SubmitUserOrderResponse extends SubmitOrderResponse {
+}
+
 export {
   GetAppOrdersRequest,
   GetAppOrdersResponse,
   GetAppBaseOrdersRequest,
-  GetAppBaseOrdersResponse
+  GetAppBaseOrdersResponse,
+  SubmitUserOrderRequest,
+  SubmitUserOrderResponse
 }

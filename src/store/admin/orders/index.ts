@@ -6,8 +6,11 @@ import {
   GetAppBaseOrdersRequest,
   GetAppBaseOrdersResponse,
   GetAppOrdersRequest,
-  GetAppOrdersResponse
+  GetAppOrdersResponse,
+  SubmitUserOrderRequest,
+  SubmitUserOrderResponse
 } from './types'
+import { InvalidID } from '../../../const'
 
 export const useAdminOrderStore = defineStore('adminorder', {
   state: (): OrderState => ({
@@ -39,6 +42,19 @@ export const useAdminOrderStore = defineStore('adminorder', {
           done?.(false)
         }, () => {
           done?.(true)
+        })
+    },
+
+    submitOrder (req: SubmitUserOrderRequest, handler: (orderID: string, error: boolean) => void) {
+      doActionWithError<SubmitUserOrderRequest, SubmitUserOrderResponse>(
+        API.SUBMIT_ORDER,
+        req,
+        req.Message,
+        (resp: SubmitUserOrderResponse): void => {
+          this.Orders.splice(0, 0, resp.Info)
+          handler(resp.Info.Order.Order.ID, false)
+        }, () => {
+          handler(InvalidID, true)
         })
     }
   }

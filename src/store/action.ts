@@ -1,9 +1,34 @@
-import { AxiosInstance, AxiosResponse } from 'axios'
+import { AxiosError, AxiosInstance, AxiosResponse } from 'axios'
 import { createAPI } from '../api'
+import { useErrorSwitcherStore } from './local'
 import { useNotificationStore } from './local/notifications'
-import { ReqMessage } from './local/notifications/types'
+import { ReqMessage, Notification } from './local/notifications/types'
 
 const notification = useNotificationStore()
+const errorswitcher = useErrorSwitcherStore()
+
+function processError (err: AxiosError, message?: Notification) {
+  if (message) {
+    message.Description = err.message
+  }
+
+  for (const target of errorswitcher.ErrorTargets) {
+    if (target.ErrorCode.toString() === err.code as string) {
+      if (!errorswitcher.ErrorTrigger) {
+        errorswitcher.ErrorTrigger = {
+          ErrorCode: target.ErrorCode,
+          Target: target.Target,
+          Error: message
+        }
+      }
+      return
+    }
+  }
+
+  if (message) {
+    notification.Notifications.push(message)
+  }
+}
 
 function doAction<MyRequest, MyResponse> (
   url: string,
@@ -19,11 +44,8 @@ function doAction<MyRequest, MyResponse> (
         notification.Notifications.push(message.Info)
       }
     })
-    .catch((err: Error) => {
-      if (message.Error) {
-        message.Error.Description = err.message
-        notification.Notifications.push(message.Error)
-      }
+    .catch((err: AxiosError) => {
+      processError(err, message.Error)
     })
 }
 function doActionWithError<MyRequest, MyResponse> (
@@ -41,11 +63,8 @@ function doActionWithError<MyRequest, MyResponse> (
         notification.Notifications.push(message.Info)
       }
     })
-    .catch((err: Error) => {
-      if (message.Error) {
-        message.Error.Description = err.message
-        notification.Notifications.push(message.Error)
-      }
+    .catch((err: AxiosError) => {
+      processError(err, message.Error)
       error()
     })
 }
@@ -64,11 +83,8 @@ function doGet<MyRequest, MyResponse> (
         notification.Notifications.push(message.Info)
       }
     })
-    .catch((err: Error) => {
-      if (message.Error) {
-        message.Error.Description = err.message
-        notification.Notifications.push(message.Error)
-      }
+    .catch((err: AxiosError) => {
+      processError(err, message.Error)
     })
 }
 
@@ -87,11 +103,8 @@ function doGetWithError<MyRequest, MyResponse> (
         notification.Notifications.push(message.Info)
       }
     })
-    .catch((err: Error) => {
-      if (message.Error) {
-        message.Error.Description = err.message
-        notification.Notifications.push(message.Error)
-      }
+    .catch((err: AxiosError) => {
+      processError(err, message.Error)
       error()
     })
 }

@@ -8,14 +8,12 @@ const notification = useNotificationStore()
 const errorswitcher = useErrorSwitcherStore()
 
 function processError (err: AxiosError, message?: Notification) {
-  console.log('axios error', err.message, err.code, err.name, err.request)
-
   if (message) {
-    message.Description = err.message
+    message.Description = err.response?.statusText
   }
 
   for (const target of errorswitcher.ErrorTargets) {
-    if (target.ErrorCode.toString() === err.code as string) {
+    if (target.ErrorCode === err.response?.status) {
       if (!errorswitcher.ErrorTrigger) {
         errorswitcher.ErrorTrigger = {
           ErrorCode: target.ErrorCode,

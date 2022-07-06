@@ -75,7 +75,7 @@ export const useUserStore = defineStore('user', {
           done()
         })
     },
-    logout (req: LogoutRequest) {
+    logout (req: LogoutRequest, done?: () => void) {
       doAction<LogoutRequest, LogoutResponse>(
         API.LOGOUT,
         req,
@@ -85,6 +85,7 @@ export const useUserStore = defineStore('user', {
           Cookies.remove('X-AppLogin-Token')
           const logined = useLoginedUserStore()
           logined.LoginedUser = undefined as unknown as UserInfo
+          done?.()
         })
     },
     resetPassword (req: ResetPasswordRequest, done: () => void) {

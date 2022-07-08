@@ -52,13 +52,16 @@ export const useKYCStore = defineStore('kyc', {
           done(true)
         })
     },
-    updateKYC (req: UpdateKYCRequest) {
-      doAction<UpdateKYCRequest, UpdateKYCResponse>(
+    updateKYC (req: UpdateKYCRequest, done?: (error: boolean) => void) {
+      doActionWithError<UpdateKYCRequest, UpdateKYCResponse>(
         API.UPDATE_KYC,
         req,
         req.Message,
         (resp: UpdateKYCResponse): void => {
           this.KYC = resp.Info
+          done?.(false)
+        }, () => {
+          done?.(true)
         })
     },
     getKYC (req: GetKYCRequest, done: (error: boolean) => void) {

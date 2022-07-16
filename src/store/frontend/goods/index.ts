@@ -99,9 +99,12 @@ export const useGoodStore = defineStore('good', {
     },
     getGoodEffectiveDate (): (good: Good) => string {
       return (good: Good): string => {
-        const now = new Date().getTime() / 1000
         // eslint-disable-next-line @typescript-eslint/unbound-method
         const { t, locale } = useI18n({ useScope: 'global' })
+        if (good.Main?.PreSale) {
+          return t('MSG_TBA')
+        }
+        const now = new Date().getTime() / 1000
         if (now < good.Good.Good.StartAt) {
           return new Date(good.Good.Good.StartAt * 1000).toLocaleDateString(locale.value)
         }

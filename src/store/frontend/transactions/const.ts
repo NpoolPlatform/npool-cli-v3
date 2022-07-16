@@ -6,7 +6,8 @@ enum API {
 
 enum WithdrawType {
   Benefit = 'benefit',
-  Commission = 'commission'
+  Commission = 'commission',
+  PaymentBalance = 'user-payment-balance'
 }
 
 enum TransactionState {

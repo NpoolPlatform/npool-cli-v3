@@ -9,7 +9,17 @@ enum WithdrawType {
   Commission = 'commission'
 }
 
+enum TransactionState {
+  Created = 'created',
+  Wait = 'wait',
+  Paying = 'paying',
+  Successful = 'successful',
+  Fail = 'fail',
+  Rejected = 'rejected'
+}
+
 export {
   API,
-  WithdrawType
+  WithdrawType,
+  TransactionState
 }

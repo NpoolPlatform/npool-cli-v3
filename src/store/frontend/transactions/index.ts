@@ -55,4 +55,4 @@ export const useTransactionStore = defineStore('transaction', {
 })
 
 export * from './types'
-export { WithdrawType } from './const'
+export { WithdrawType, TransactionState } from './const'

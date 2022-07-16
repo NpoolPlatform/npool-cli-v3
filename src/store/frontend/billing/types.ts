@@ -6,6 +6,8 @@ interface UserPaymentBalance {
   PaymentID: string
   Amount: number
   UsedByPaymentID: string
+  CoinTypeID: string
+  CoinUSDCurrency: number
 }
 
 interface GetUserPaymentBalancesRequest extends BaseRequest {

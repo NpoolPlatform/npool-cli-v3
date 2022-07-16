@@ -179,7 +179,7 @@ const rangePaymentBalanceCurrency = (currency: Currency, done: (amount: number) 
   billing.PaymentBalances.forEach((balance: UserPaymentBalance) => {
     const payment = order.getPaymentByID(balance.PaymentID)
 
-    if (balance.UsedByPaymentID !== InvalidID) {
+    if (balance.UsedByPaymentID !== InvalidID || balance.CoinUSDCurrency > 0) {
       return
     }
 

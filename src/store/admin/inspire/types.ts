@@ -18,8 +18,8 @@ interface GetUserGoodCommissionsResponse {
 }
 
 interface AdminInspireState {
-  Referrals: Array<Referral>
-  GoodCommissions: Array<GoodCommission>
+  Referrals: Map<string, Array<Referral>>
+  GoodCommissions: Map<string, Array<GoodCommission>>
 }
 
 export {

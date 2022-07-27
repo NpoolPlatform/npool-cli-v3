@@ -7,12 +7,14 @@ import {
   GetUserReferralsRequest,
   GetUserReferralsResponse,
   AdminInspireState,
+  Referral,
+  GoodCommission,
 } from './types'
 
 export const useAdminInspireStore = defineStore('admininspire', {
   state: (): AdminInspireState => ({
-    Referrals: [],
-    GoodCommissions: [],
+    Referrals: new Map<string, Array<Referral>>(),
+    GoodCommissions: new Map<string, Array<GoodCommission>>()
   }),
   getters: {},
   actions: {
@@ -22,7 +24,7 @@ export const useAdminInspireStore = defineStore('admininspire', {
         req,
         req.Message,
         (resp: GetUserReferralsResponse): void => {
-          this.Referrals = resp.Infos
+          this.Referrals.set(req.TargetUserID,resp.Infos)
           done(false)
         }, () => {
           done(true)
@@ -34,7 +36,7 @@ export const useAdminInspireStore = defineStore('admininspire', {
         req,
         req.Message,
         (resp: GetUserGoodCommissionsResponse): void => {
-          this.GoodCommissions = resp.Infos
+          this.GoodCommissions.set(req.TargetUserID,resp.Infos)
           done(false)
         }, () => {
           done(true)

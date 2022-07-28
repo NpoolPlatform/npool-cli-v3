@@ -60,10 +60,10 @@ export const useCoinStore = defineStore('coin', {
     formatCoinName (): (name: string) => string {
       return (name: string) => {
         if (name.includes('tusdcerc20')) {
-          name = name.replace('tusedcerc20', 'TUSDC ERC20')
+          name = name.replace('tusedcerc20', 'TUSD Coin ERC20')
         }
         if (name.includes('usdcerc20')) {
-          name = name.replace('usdcerc20', 'USDC ERC20')
+          name = name.replace('usdcerc20', 'USD Coin ERC20')
         }
         if (name.includes('usdt')) {
           name = name.replace('usdt', 'USDT')

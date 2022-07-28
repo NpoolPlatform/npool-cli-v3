@@ -83,6 +83,12 @@ export const useCoinStore = defineStore('coin', {
         if (name.includes('USDT')) {
           name = name.replace('USDT', 'Tether')
         }
+        if (name.includes('tusdcerc20')) {
+          name = name.replace('tusedcerc20', 'TUSDC ERC20')
+        }
+        if (name.includes('usdcerc20')) {
+          name = name.replace('usdcerc20', 'USDC ERC20')
+        }
         name = name[0].toUpperCase() + name.slice(1)
         return name
       }

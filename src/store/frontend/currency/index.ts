@@ -17,12 +17,20 @@ export const useCurrencyStore = defineStore('currency', {
         if (coin.Name?.startsWith('usdt') || coin.Name?.startsWith('tusdt')) {
           return CoinType.USDTERC20
         }
+        if (coin.Name?.toLowerCase().includes('binancecoin')) {
+          return 'binance-coin'
+        }
         return coin.Name?.replaceAll(/^t/g, '').toLowerCase() as string
       }
     },
     getCachedCoinCurrencyByCoinName (): (coinName: string, currency: Currency) => number {
       return (coinName: string, currency: Currency) => {
-        if ((coinName.toLowerCase().includes('usdt') || coinName.toLowerCase().includes('tether')) && currency === Currency.USD) {
+        if ((coinName.toLowerCase().includes('usdt') ||
+            coinName.toLowerCase().includes('tether') ||
+            coinName.toLowerCase().includes('binance usd') ||
+            coinName.toLowerCase().includes('usdbep20') ||
+            coinName.toLowerCase().includes('usd coin')) &&
+            currency === Currency.USD) {
           return 1
         }
 

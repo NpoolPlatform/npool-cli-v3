@@ -137,6 +137,7 @@
     "make-dir": "^3.1.0",
     "merge-stream": "^2.0.0",
     "minimatch": "^3.1.2",
+    "npool-cli-v2": "^0.2.275",
     "once": "^1.4.0",
     "p-limit": "^2.3.0",
     "p-locate": "^4.1.0",

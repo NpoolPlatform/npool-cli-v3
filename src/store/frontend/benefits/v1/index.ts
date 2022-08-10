@@ -23,7 +23,6 @@ export const useArchivementStore = defineStore('archivement', {
           this.Archivements = resp.Archivements
           this.Total = resp.Total
           done(false)
-          // 连续请求
         },
         () => {
           done(true)

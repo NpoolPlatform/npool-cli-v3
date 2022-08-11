@@ -23,7 +23,7 @@ export const useAccountStore = defineStore('account', {
         req,
         req.Message,
         (resp: GetWithdrawAccountsResponse): void => {
-          this.Accounts = resp.Infos
+          this.Accounts = resp.Infos.filter((el) => el.Address.DeleteAt === 0)
         })
     },
 

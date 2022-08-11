@@ -16,6 +16,7 @@ interface WithdrawAddress {
   Message: string
   CreateAt: number
   Labels: Array<string>
+  DeleteAt: number
 }
 
 interface WithdrawAccount {

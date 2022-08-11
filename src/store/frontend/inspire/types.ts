@@ -87,8 +87,9 @@ interface GetGoodCommissionsResponse {
 interface PurchaseAmountSetting {
   ID?: string
   AppID?: string
-  GoodID: string
   UserID?: string
+  GoodID: string
+  CoinTypeID: string
   Amount?: number
   Percent: number
   Title?: string

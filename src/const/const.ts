@@ -1,11 +1,5 @@
 const NotSet = 'NOT SET'
 
-enum AccountType {
-  Mobile = 'mobile',
-  Email = 'email',
-  Google = 'google'
-}
-
 const VerificationCodeLength = 6
 const MinPasswordLength = 8
 const MaxPasswordLength = 32
@@ -19,15 +13,8 @@ enum GoogleTokenType {
   Login = 'login'
 }
 
-enum ReviewState {
-  Approved = 'approved',
-  Rejected = 'rejected',
-  Wait = 'wait'
-}
-
 export {
   NotSet,
-  AccountType,
   VerificationCodeLength,
   MinPasswordLength,
   MaxPasswordLength,
@@ -35,5 +22,4 @@ export {
   GoogleRecaptchaKey,
   GoogleTokenType,
   SecondsEachDay,
-  ReviewState
 }

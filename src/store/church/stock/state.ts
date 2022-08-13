@@ -1,6 +1,0 @@
-interface StockState {
-}
-
-export {
-  StockState
-}

@@ -2,7 +2,7 @@ import { AxiosInstance, AxiosResponse } from 'axios'
 import { Cookies } from 'quasar'
 import { useLoginedUserStore, LoginedResponse } from '../store/local'
 import { useSettingStore } from '../store/local'
-import { API as LoginedAPI } from '../store/frontend/users/const'
+import { API as LoginedAPI } from '../store/frontend/appuser/user/const'
 import {
   NavigationGuardNext,
   RouteLocationNormalized

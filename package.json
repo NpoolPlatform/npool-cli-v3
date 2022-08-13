@@ -1,12 +1,12 @@
 {
-  "name": "npool-cli-v2",
-  "version": "0.2.279",
+  "name": "npool-cli-v3",
+  "version": "0.3.1",
   "private": false,
   "license": "ISC",
   "description": "Npool Client SDK",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NpoolPlatform/npool-cli.git"
+    "url": "git+https://github.com/NpoolPlatform/npool-cli-v3.git"
   },
   "keywords": [
     "npm",
@@ -14,9 +14,9 @@
   ],
   "author": "Entropy Pool Team (kikakkz@hotmail.com)",
   "bugs": {
-    "url": "https://github.com/NpoolPlatform/npool-cli/issues"
+    "url": "https://github.com/NpoolPlatform/npool-cli-v3/issues"
   },
-  "homepage": "https://github.com/NpoolPlatform/npool-cli#README",
+  "homepage": "https://github.com/NpoolPlatform/npool-cli-v3#README",
   "main": "dist/index.js",
   "module": "dist/esm5/index.js",
   "es2015": "dist/esm/index.js",

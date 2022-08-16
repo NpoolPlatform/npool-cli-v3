@@ -1,5 +1,5 @@
-import axios, { AxiosInstance, HeadersDefaults } from "axios"
-import { Cookies } from "quasar"
+import axios, { AxiosInstance, HeadersDefaults } from 'axios'
+import { Cookies } from 'quasar'
 
 const createAPI = (baseURL?: string, appID?: string, simple?: boolean): AxiosInstance | undefined => {
   if (baseURL) {

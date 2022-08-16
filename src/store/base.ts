@@ -1,4 +1,4 @@
-import { ReqMessage } from "./local/notifications"
+import { ReqMessage } from './local/notifications'
 
 enum Op {
   EQ = 'eq',
@@ -8,12 +8,12 @@ enum Op {
 }
 
 interface Cond {
-  Op: Op
-  Val: any
+  Op: Op;
+  Val: any;
 }
 
 interface BaseRequest {
-  Message: ReqMessage
+  Message: ReqMessage;
 }
 
 export {

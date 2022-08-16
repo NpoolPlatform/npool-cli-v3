@@ -1,22 +1,23 @@
 import { AxiosInstance, AxiosResponse } from 'axios'
 import { Cookies } from 'quasar'
-import { useLoginedUserStore, LoginedResponse } from '../store/local'
-import { useSettingStore } from '../store/local'
-import { API as LoginedAPI } from '../store/frontend/appuser/user/const'
+import { useLoginedUserStore } from 'src/store/local'
+import { useSettingStore } from 'src/store/local'
+import { API as LoginedAPI } from 'src/store/frontend/appuser/user/const'
 import {
   NavigationGuardNext,
   RouteLocationNormalized
 } from 'vue-router'
-import { createAPI } from '../api'
+import { createAPI } from 'src/api'
+import { LoginedResponse } from 'src/store/local/logined/types'
 
 interface RouteMetaImpl {
-  ShowHeaderAnnouncement: boolean
-  ShowMainHeader: boolean
-  ShowBigLogo: boolean
-  ShowSignHelper: boolean
-  ShowFooterTop: boolean
-  ShowTopTip: boolean
-  NeedLogined: boolean
+  ShowHeaderAnnouncement: boolean;
+  ShowMainHeader: boolean;
+  ShowBigLogo: boolean;
+  ShowSignHelper: boolean;
+  ShowFooterTop: boolean;
+  ShowTopTip: boolean;
+  NeedLogined: boolean;
 }
 
 declare module 'vue-router' {

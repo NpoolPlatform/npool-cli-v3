@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { doActionWithError } from 'npool-cli-v2'
+import { doActionWithError } from 'src/store/action'
 import { API } from './const'
 import {
   CreateWithdrawRequest,

@@ -1,4 +1,4 @@
-import { SigninVerifyType, SignMethodType } from './const'
+import { RecaptchaType, SigninVerifyType, SignMethodType } from './const'
 
 export interface User {
   ID: string
@@ -46,4 +46,48 @@ export interface User {
 
   InvitationCode: string
   LoginVerified: boolean
+}
+
+export interface App {
+  ID: string
+  CreatedBy: string
+  Name: string
+  Logo: string
+  Description: string
+
+  BanAppID: string
+  Banned: boolean
+  BanMessage: string
+  SignupMethods: Array<SignMethodType>
+  ExtSigninMethods: Array<SignMethodType>
+  RecaptchaMethod: RecaptchaType
+
+  KycEnable: boolean
+  SigninVerifyEnable: boolean
+  InvitationCodeMust: boolean
+
+  CreatedAt: number
+}
+
+export interface Role {
+  ID: string
+  CreatedBy: string
+  Role: string
+  Description: string
+  Default: boolean
+
+  AppID: string
+  AppName: string
+  AppLogo: string
+
+  CreatedAt: number
+}
+
+export interface Auth {
+  ID: string
+  AppID: string
+  RoleID: string
+  UserID: string
+  Resource: string
+  Method: string
 }

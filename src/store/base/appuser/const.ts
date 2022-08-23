@@ -8,3 +8,7 @@ export enum SignMethodType {
   Mobile = 'Mobile',
   Email = 'Email'
 }
+
+export enum RecaptchaType {
+  GoogleRecaptchaV3 = 'GoogleRecaptchaV3'
+}

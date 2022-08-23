@@ -1,5 +1,4 @@
-import { Notification } from './types'
-import { Type } from './const'
+import { NotifyType, Notification } from '../../base'
 import { Notify } from 'quasar'
 
 const mergeMessage = (notification: Notification) => {
@@ -49,19 +48,19 @@ const notify = (notification: Notification) => {
     return
   }
   switch (notification.Type) {
-    case Type.Success:
+    case NotifyType.Success:
       success(notification)
       break
-    case Type.Error:
+    case NotifyType.Error:
       fail(notification)
       break
-    case Type.Info:
+    case NotifyType.Info:
       info(notification)
       break
-    case Type.Warning:
+    case NotifyType.Warning:
       warning(notification)
       break
-    case Type.Waiting:
+    case NotifyType.Waiting:
       return Notify.create({
         type: 'ongoing',
         message: notification.Message

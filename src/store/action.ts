@@ -1,11 +1,11 @@
 import { AxiosError, AxiosInstance, AxiosResponse } from 'axios'
 import { createAPI } from '../api'
-import { useErrorSwitcherStore } from './local'
-import { useNotificationStore } from './local/notifications'
-import { ReqMessage, Notification } from './local/notifications/types'
+import { useErrorStore } from './local'
+import { useNotificationStore } from './local'
+import { ReqMessage, Notification } from './base'
 
 const notification = useNotificationStore()
-const errorswitcher = useErrorSwitcherStore()
+const errorswitcher = useErrorStore()
 
 function processError (err: AxiosError, message?: Notification) {
   if (message) {

@@ -1,4 +1,3 @@
-export * from './logined'
-export * from './notifications'
-export * from './locale'
-export * from './errorswitcher'
+export * from './user'
+export * from './error'
+export * from './notify'

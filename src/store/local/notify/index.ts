@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
-import { Notification, NotificationState } from './types'
-import { Type as NotificationType } from './const'
+import { NotificationState } from './types'
+import { Notification } from '../../base'
 
-const useNotificationStore = defineStore('notification', {
+export const useNotificationStore = defineStore('notification-v3', {
   state: (): NotificationState => ({
     Notifications: []
   }),
@@ -23,9 +23,3 @@ const useNotificationStore = defineStore('notification', {
 })
 
 export * from './helper'
-export { ReqMessage, Notification as LocalNotification } from './types'
-
-export {
-  useNotificationStore,
-  NotificationType
-}

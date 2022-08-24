@@ -3,6 +3,8 @@ import { doActionWithError } from '../../../action'
 import { App, Auth, Role, User } from '../../../base'
 import { API } from './const'
 import {
+  CreateAdminAppsRequest,
+  CreateAdminAppsResponse,
   GetAdminAppsRequest,
   GetAdminAppsResponse
 } from './types'
@@ -28,6 +30,19 @@ export const useGenesisAdminStore = defineStore('genesis-admin-v3', {
         req,
         req.Message,
         (resp: GetAdminAppsResponse): void => {
+          this.Apps = resp.Infos
+          done(resp.Infos, false)
+        }, () => {
+          done([], true)
+        })
+    },
+
+    createAdminApps (req: CreateAdminAppsRequest, done: (apps: Array<App>, error: boolean) => void) {
+      doActionWithError<CreateAdminAppsRequest, CreateAdminAppsResponse>(
+        API.CREATE_ADMINAPPS,
+        req,
+        req.Message,
+        (resp: CreateAdminAppsResponse): void => {
           this.Apps = resp.Infos
           done(resp.Infos, false)
         }, () => {

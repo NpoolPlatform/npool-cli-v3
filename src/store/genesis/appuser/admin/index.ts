@@ -3,6 +3,8 @@ import { doActionWithError } from '../../../action'
 import { App, Auth, Role, User } from '../../../base'
 import { API } from './const'
 import {
+  AuthorizeGenesisRequest,
+  AuthorizeGenesisResponse,
   CreateAdminAppsRequest,
   CreateAdminAppsResponse,
   CreateGenesisRolesRequest,
@@ -11,6 +13,8 @@ import {
   CreateGenesisUserResponse,
   GetAdminAppsRequest,
   GetAdminAppsResponse,
+  GetGenesisAuthsRequest,
+  GetGenesisAuthsResponse,
   GetGenesisRolesRequest,
   GetGenesisRolesResponse,
   GetGenesisUsersRequest,
@@ -107,6 +111,38 @@ export const useGenesisAdminStore = defineStore('genesis-admin-v3', {
           done(resp.Info, false)
         }, () => {
           done(undefined as unknown as User, true)
+        })
+    },
+
+    getGenesisAuths (req: GetGenesisAuthsRequest, done: (auths: Array<Auth>, error: boolean) => void) {
+      doActionWithError<GetGenesisAuthsRequest, GetGenesisAuthsResponse>(
+        API.GET_GENESISAUTHS,
+        req,
+        req.Message,
+        (resp: GetGenesisAuthsResponse): void => {
+          this.Auths.set(req.TargetAppID, resp.Infos)
+          done(resp.Infos, false)
+        }, () => {
+          done([], true)
+        })
+    },
+
+    authorizeGenesis (req: AuthorizeGenesisRequest, done: (auths: Array<Auth>, error: boolean) => void) {
+      doActionWithError<AuthorizeGenesisRequest, AuthorizeGenesisResponse>(
+        API.AUTHORIZE_GENESIS,
+        req,
+        req.Message,
+        (resp: AuthorizeGenesisResponse): void => {
+          resp.Infos.forEach((info: Auth) => {
+            let infos = this.Auths.get(info.AppID)
+            if (!infos) {
+              infos = [] as Array<Auth>
+            }
+            this.Auths.set(info.AppID, resp.Infos)
+          })
+          done(resp.Infos, false)
+        }, () => {
+          done([], true)
         })
     }
   }

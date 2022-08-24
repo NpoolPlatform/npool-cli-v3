@@ -1,5 +1,5 @@
-import { AccountType, User } from 'src/store/base/appuser'
-import { BaseRequest } from 'src/store/base/notify'
+import { AccountType, User } from '../../../base/appuser'
+import { BaseRequest } from '../../../base/notify'
 
 export interface SignupRequest extends BaseRequest{
   Account: string;

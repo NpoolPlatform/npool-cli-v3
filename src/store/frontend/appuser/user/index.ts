@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { Cookies } from 'quasar'
-import { doAction } from 'src/store/action'
-import { User } from 'src/store/base/appuser'
+import { doAction } from '../../../action'
+import { User } from '../../../base'
 import { API } from './const'
 import { LoginRequest, LoginResponse } from './types'
 

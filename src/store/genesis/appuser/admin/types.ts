@@ -49,11 +49,11 @@ export interface AuthorizeGenesisRequest extends BaseRequest {
 }
 
 export interface AuthorizeGenesisResponse {
-  Info: User
+  Infos: Array<Auth>
 }
 
 export interface GetGenesisAuthsRequest extends BaseRequest {
-  AppID: string
+  TargetAppID: string
 }
 
 export interface GetGenesisAuthsResponse {

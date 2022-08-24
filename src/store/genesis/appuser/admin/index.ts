@@ -5,8 +5,12 @@ import { API } from './const'
 import {
   CreateAdminAppsRequest,
   CreateAdminAppsResponse,
+  CreateGenesisRolesRequest,
+  CreateGenesisRolesResponse,
   GetAdminAppsRequest,
-  GetAdminAppsResponse
+  GetAdminAppsResponse,
+  GetGenesisRolesRequest,
+  GetGenesisRolesResponse
 } from './types'
 
 export const useGenesisAdminStore = defineStore('genesis-admin-v3', {
@@ -44,6 +48,32 @@ export const useGenesisAdminStore = defineStore('genesis-admin-v3', {
         req.Message,
         (resp: CreateAdminAppsResponse): void => {
           this.Apps = resp.Infos
+          done(resp.Infos, false)
+        }, () => {
+          done([], true)
+        })
+    },
+
+    getGenesisRoles (req: GetGenesisRolesRequest, done: (apps: Array<Role>, error: boolean) => void) {
+      doActionWithError<GetGenesisRolesRequest, GetGenesisRolesResponse>(
+        API.GET_GENESISROLES,
+        req,
+        req.Message,
+        (resp: GetGenesisRolesResponse): void => {
+          this.Roles = resp.Infos
+          done(resp.Infos, false)
+        }, () => {
+          done([], true)
+        })
+    },
+
+    createGenesisRoles (req: CreateGenesisRolesRequest, done: (apps: Array<Role>, error: boolean) => void) {
+      doActionWithError<CreateGenesisRolesRequest, CreateGenesisRolesResponse>(
+        API.CREATE_GENESISROLES,
+        req,
+        req.Message,
+        (resp: CreateGenesisRolesResponse): void => {
+          this.Roles = resp.Infos
           done(resp.Infos, false)
         }, () => {
           done([], true)

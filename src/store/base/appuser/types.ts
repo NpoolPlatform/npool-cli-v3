@@ -1,4 +1,5 @@
-import { RecaptchaType, SigninVerifyType, SignMethodType } from './const'
+
+import {  RecaptchaType, SigninVerifyType, SignMethodType } from './const'
 
 export interface User {
   ID: string

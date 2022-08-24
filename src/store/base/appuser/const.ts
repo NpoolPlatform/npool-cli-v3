@@ -12,3 +12,15 @@ export enum SignMethodType {
 export enum RecaptchaType {
   GoogleRecaptchaV3 = 'GoogleRecaptchaV3'
 }
+
+export enum AccountType {
+  Mobile = 'Mobile',
+  Email = 'Email',
+  Twitter = 'Twitter',
+  Github = 'Github',
+  Facebook = 'Facebook',
+  Linkedin = 'Linkedin',
+  Wechat = 'Wechat',
+  Google = 'Google',
+  Username = 'Username'
+}

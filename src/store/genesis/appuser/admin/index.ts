@@ -7,10 +7,14 @@ import {
   CreateAdminAppsResponse,
   CreateGenesisRolesRequest,
   CreateGenesisRolesResponse,
+  CreateGenesisUserRequest,
+  CreateGenesisUserResponse,
   GetAdminAppsRequest,
   GetAdminAppsResponse,
   GetGenesisRolesRequest,
-  GetGenesisRolesResponse
+  GetGenesisRolesResponse,
+  GetGenesisUsersRequest,
+  GetGenesisUsersResponse
 } from './types'
 
 export const useGenesisAdminStore = defineStore('genesis-admin-v3', {
@@ -67,7 +71,7 @@ export const useGenesisAdminStore = defineStore('genesis-admin-v3', {
         })
     },
 
-    createGenesisRoles (req: CreateGenesisRolesRequest, done: (apps: Array<Role>, error: boolean) => void) {
+    createGenesisRoles (req: CreateGenesisRolesRequest, done: (roles: Array<Role>, error: boolean) => void) {
       doActionWithError<CreateGenesisRolesRequest, CreateGenesisRolesResponse>(
         API.CREATE_GENESISROLES,
         req,
@@ -77,6 +81,32 @@ export const useGenesisAdminStore = defineStore('genesis-admin-v3', {
           done(resp.Infos, false)
         }, () => {
           done([], true)
+        })
+    },
+
+    getGenesisUsers (req: GetGenesisUsersRequest, done: (users: Array<User>, error: boolean) => void) {
+      doActionWithError<GetGenesisUsersRequest, GetGenesisUsersResponse>(
+        API.GET_GENESISUSERS,
+        req,
+        req.Message,
+        (resp: GetGenesisUsersResponse): void => {
+          this.Users = resp.Infos
+          done(resp.Infos, false)
+        }, () => {
+          done([], true)
+        })
+    },
+
+    createGenesisUser (req: CreateGenesisUserRequest, done: (user: User, error: boolean) => void) {
+      doActionWithError<CreateGenesisUserRequest, CreateGenesisUserResponse>(
+        API.CREATE_GENESISUSER,
+        req,
+        req.Message,
+        (resp: CreateGenesisUserResponse): void => {
+          this.Users.push(resp.Info)
+          done(resp.Info, false)
+        }, () => {
+          done(undefined as unknown as User, true)
         })
     }
   }

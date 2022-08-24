@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { NotificationState } from './types'
 import { Notification } from '../../base'
 
-export const useNotificationStore = defineStore('notification-v3', {
+export const useNotificationStore = defineStore('local-notification-v3', {
   state: (): NotificationState => ({
     Notifications: []
   }),

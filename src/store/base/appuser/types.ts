@@ -51,6 +51,15 @@ export interface User {
   LoginVerified: boolean
 }
 
+
+export interface LoginHistory {
+  ID: string;
+  ClientIP: string;
+  UserAgent: string;
+  CreateAt: number;
+  Location: string;
+}
+
 export interface App {
   ID: string
   CreatedBy: string

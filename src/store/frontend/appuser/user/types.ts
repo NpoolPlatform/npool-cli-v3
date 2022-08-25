@@ -67,10 +67,3 @@ export interface UpdateUserResponse {
   Info: User;
 }
 
-export interface LoginHistory {
-  ID: string;
-  ClientIP: string;
-  UserAgent: string;
-  CreateAt: number;
-  Location: string;
-}

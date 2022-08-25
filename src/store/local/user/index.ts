@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { Cookies } from 'quasar'
 import { User } from '../../base'
 
 export const useLocalUserStore = defineStore('localuser-v3', {
@@ -10,5 +11,13 @@ export const useLocalUserStore = defineStore('localuser-v3', {
       return this.User !== undefined
     }
   },
-  actions: {}
+  actions: {
+    setUser(user: User) {
+      this.User = user
+      if (user.LoginVerified) {
+        Cookies.set('X-User-ID', user.ID, { expires: '4h', secure: true })
+        Cookies.set('X-App-Login-Token', user.LoginToken, { expires: '4h', secure: true })
+      }
+    }
+  }
 })

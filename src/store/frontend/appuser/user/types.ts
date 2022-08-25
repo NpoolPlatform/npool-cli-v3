@@ -74,11 +74,3 @@ export interface LoginHistory {
   CreateAt: number;
   Location: string;
 }
-
-export interface UserState {
-  LoginHistories: Array<LoginHistory>;
-  GoogleOTPAuth: string;
-  GoogleSecret: string;
-  LoginedUser: User;
-}
-

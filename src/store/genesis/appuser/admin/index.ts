@@ -21,7 +21,7 @@ import {
   GetGenesisUsersResponse
 } from './types'
 
-export const useGenesisAdminStore = defineStore('genesis-admin-v3', {
+export const useGenesisAdminStore = defineStore('genesis-admin-v4', {
   state: () => ({
     Apps: [] as Array<App>,
     Users: [] as Array<User>,

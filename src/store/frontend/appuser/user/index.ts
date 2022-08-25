@@ -1,30 +1,25 @@
 import { defineStore } from 'pinia'
-import { Cookies } from 'quasar'
-import { doAction } from '../../../action'
-import { User } from '../../../base'
+import { useLocalUserStore } from '../../../local'
+import { doActionWithError } from '../../../action'
 import { API } from './const'
 import { LoginRequest, LoginResponse } from './types'
+import { User } from '../../../base'
 
-export const useFrontendUserStore = defineStore('frontend-user-v3', {
-  state: () => ({
-    LoginedUser: {} as User
-  }),
-  getters: {
-    getLogined (): boolean {
-      return this.LoginedUser !== null && this.LoginedUser.LoginVerified
-    }
-  },
+export const useFrontendUserStore = defineStore('frontend-user-v4', {
+  state: () => ({}),
+  getters: {},
   actions: {
-    login (req: LoginRequest, done: () => void) {
-      doAction<LoginRequest, LoginResponse>(
+    login (req: LoginRequest, done: (user: User, error: boolean) => void) {
+      doActionWithError<LoginRequest, LoginResponse>(
         API.LOGIN,
         req,
         req.Message,
         (resp: LoginResponse): void => {
-          Cookies.set('X-User-ID', resp.Info.ID, { expires: '4h', secure: true })
-          Cookies.set('X-App-Login-Token', resp.Info.LoginToken, { expires: '4h', secure: true })
-          this.LoginedUser = resp.Info
-          done()
+          const user = useLocalUserStore()
+          user.setUser(resp.Info)
+          done(resp.Info, false)
+        }, () => {
+          done(undefined as unknown as User, true)
         })
     }
   }

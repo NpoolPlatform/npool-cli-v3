@@ -56,7 +56,7 @@ export interface LoginHistory {
   ID: string;
   ClientIP: string;
   UserAgent: string;
-  CreateAt: number;
+  CreatedAt: number;
   Location: string;
 }
 

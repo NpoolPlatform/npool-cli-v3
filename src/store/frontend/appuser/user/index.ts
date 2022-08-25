@@ -2,12 +2,30 @@ import { defineStore } from 'pinia'
 import { useLocalUserStore } from '../../../local'
 import { doAction, doActionWithError } from '../../../action'
 import { API } from './const'
-import { LoginRequest, LoginResponse, LoginVerifyRequest, LoginVerifyResponse, LogoutRequest, LogoutResponse, SignupRequest, SignupResponse } from './types'
-import { User } from '../../../base'
+import { 
+  GetLoginHistoriesRequest, 
+  GetLoginHistoriesRequestContinuously, 
+  GetLoginHistoriesResponse, 
+  LoginRequest, 
+  LoginResponse,
+  LoginVerifyRequest, 
+  LoginVerifyResponse, 
+  LogoutRequest, 
+  LogoutResponse, 
+  SignupRequest, 
+  SignupResponse 
+} from './types'
+import { LoginHistory, User } from '../../../base'
 
 export const useFrontendUserStore = defineStore('frontend-user-v4', {
-  state: () => ({}),
-  getters: {},
+  state: () => ({
+    LoginHistories: [] as Array<LoginHistory>,
+  }),
+  getters: {
+    loginHistories(): Array<LoginHistory>  {
+      return this.LoginHistories.sort((a,b) => a.CreatedAt > b.CreatedAt ? -1 : 1)
+    }
+  },
   actions: {
     login (req: LoginRequest, done: (user: User, error: boolean) => void) {
       doActionWithError<LoginRequest, LoginResponse>(
@@ -57,5 +75,35 @@ export const useFrontendUserStore = defineStore('frontend-user-v4', {
           done(true)
         })
     },
+    getLoginHistories(req: GetLoginHistoriesRequest, done: (histories: Array<LoginHistory>, error: boolean) => void) {
+      doActionWithError<GetLoginHistoriesRequest, GetLoginHistoriesResponse>(
+        API.GET_LOGIN_HISTORIES,
+        req,
+        req.Message,
+        (resp: GetLoginHistoriesResponse): void => {
+          this.LoginHistories.push(...resp.Infos)
+          done(resp.Infos,false)
+        }, () => {
+          done(undefined as unknown as Array<LoginHistory>, true)
+        }
+      )
+    },
+    getLoginHistoriesContinuously(req: GetLoginHistoriesRequestContinuously) {
+      doActionWithError<GetLoginHistoriesRequestContinuously, GetLoginHistoriesResponse>(
+        API.GET_LOGIN_HISTORIES,
+        req,
+        req.Message,
+        (resp: GetLoginHistoriesResponse): void => {
+          this.LoginHistories.push(...resp.Infos)
+          if (resp.Infos.length < req.limit) {
+            return
+          }
+          req.offset = req.offset + req.limit
+          this.getLoginHistoriesContinuously(req)
+        }, () => {
+          // NOTHING TODO
+        }
+      )
+    }
   }
 })

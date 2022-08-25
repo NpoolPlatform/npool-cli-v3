@@ -29,6 +29,7 @@ export interface User {
   GoogleAuthVerified: boolean
   GoogleSecret: string
   HasGoogleSecret: boolean
+  SigninVerifyByGoogleAuth: boolean
 
   BanAppUserID: string
   Banned: boolean
@@ -46,6 +47,7 @@ export interface User {
   CreatedAt: number
 
   InvitationCode: string
+  InvitationCodeConfirmed: boolean
   LoginVerified: boolean
 }
 

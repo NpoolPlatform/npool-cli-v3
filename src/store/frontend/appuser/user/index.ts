@@ -44,15 +44,17 @@ export const useFrontendUserStore = defineStore('frontend-user-v4', {
           done()
         })
     },
-    logout (req: LogoutRequest, done: () => void) {
-      doAction<LogoutRequest, LogoutResponse>(
+    logout (req: LogoutRequest, done: (error: boolean) => void) {
+      doActionWithError<LogoutRequest, LogoutResponse>(
         API.LOGOUT,
         req,
         req.Message,
         (): void => {
           const user = useLocalUserStore()
           user.restUser()
-          done()
+          done(false)
+        }, () => {
+          done(true)
         })
     },
   }

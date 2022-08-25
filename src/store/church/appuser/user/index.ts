@@ -25,7 +25,12 @@ export const useChurchUserStore = defineStore('church-user-v3', {
         req,
         req.Message,
         (resp: GetAppUsersResponse): void => {
-          this.Users.set(req.TargetAppID, resp.Infos)
+          let users = this.Users.get(req.TargetAppID)
+          if (!users) {
+            users = []
+          }
+          users.concat(resp.Infos)
+          this.Users.set(req.TargetAppID, users)
           done(resp.Infos, false)
         }, () => {
           done([], true)
@@ -38,7 +43,12 @@ export const useChurchUserStore = defineStore('church-user-v3', {
         req,
         req.Message,
         (resp: GetAppRolesResponse): void => {
-          this.Roles.set(req.TargetAppID, resp.Infos)
+          let roles = this.Roles.get(req.TargetAppID)
+          if (!roles) {
+            roles = []
+          }
+          roles.concat(resp.Infos)
+          this.Roles.set(req.TargetAppID, roles)
           done(resp.Infos, false)
         }, () => {
           done([], true)
@@ -51,7 +61,12 @@ export const useChurchUserStore = defineStore('church-user-v3', {
         req,
         req.Message,
         (resp: GetAppAuthsResponse): void => {
-          this.Auths.set(req.TargetAppID, resp.Infos)
+          let auths = this.Auths.get(req.TargetAppID)
+          if (!auths) {
+            auths = []
+          }
+          auths.concat(resp.Infos)
+          this.Auths.set(req.TargetAppID, auths)
           done(resp.Infos, false)
         }, () => {
           done([], true)

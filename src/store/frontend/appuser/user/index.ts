@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 import { useLocalUserStore } from '../../../local'
-import { doActionWithError } from '../../../action'
+import { doAction, doActionWithError } from '../../../action'
 import { API } from './const'
-import { LoginRequest, LoginResponse } from './types'
+import { LoginRequest, LoginResponse, LoginVerifyRequest, LoginVerifyResponse, LogoutRequest, LogoutResponse, SignupRequest, SignupResponse } from './types'
 import { User } from '../../../base'
 
 export const useFrontendUserStore = defineStore('frontend-user-v4', {
@@ -21,6 +21,39 @@ export const useFrontendUserStore = defineStore('frontend-user-v4', {
         }, () => {
           done(undefined as unknown as User, true)
         })
-    }
+    },
+    loginVerify (req: LoginVerifyRequest, done: (resp: User, error: boolean) => void) {
+      doActionWithError<LoginVerifyRequest, LoginVerifyResponse>(
+        API.LOGIN_VERIFY,
+        req,
+        req.Message,
+        (resp: LoginVerifyResponse): void => {
+          const user = useLocalUserStore()
+          user.setUser(resp.Info)
+          done(resp.Info, false)
+        }, () => {
+          done(undefined as unknown as User, true)
+        })
+    },
+    signup (req: SignupRequest, done: () => void) {
+      doAction<SignupRequest, SignupResponse>(
+        API.SIGNUP,
+        req,
+        req.Message,
+        (): void => {
+          done()
+        })
+    },
+    logout (req: LogoutRequest, done: () => void) {
+      doAction<LogoutRequest, LogoutResponse>(
+        API.LOGOUT,
+        req,
+        req.Message,
+        (): void => {
+          const user = useLocalUserStore()
+          user.restUser()
+          done()
+        })
+    },
   }
 })

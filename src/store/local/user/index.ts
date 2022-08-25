@@ -18,6 +18,12 @@ export const useLocalUserStore = defineStore('local-user-v3', {
         Cookies.set('X-User-ID', user.ID, { expires: '4h', secure: true })
         Cookies.set('X-App-Login-Token', user.LoginToken, { expires: '4h', secure: true })
       }
+    },
+    restUser() {
+      Cookies.remove('X-User-ID')
+      Cookies.remove('X-AppLogin-Token')
+      this.User = undefined as unknown as User
+      this.$reset()
     }
   }
 })

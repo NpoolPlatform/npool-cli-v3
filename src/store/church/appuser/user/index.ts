@@ -29,7 +29,7 @@ export const useChurchUserStore = defineStore('church-user-v3', {
           if (!users) {
             users = []
           }
-          users.concat(resp.Infos)
+          users.push(...resp.Infos)
           this.Users.set(req.TargetAppID, users)
           done(resp.Infos, false)
         }, () => {
@@ -47,7 +47,7 @@ export const useChurchUserStore = defineStore('church-user-v3', {
           if (!roles) {
             roles = []
           }
-          roles.concat(resp.Infos)
+          roles.push(...resp.Infos)
           this.Roles.set(req.TargetAppID, roles)
           done(resp.Infos, false)
         }, () => {
@@ -65,7 +65,7 @@ export const useChurchUserStore = defineStore('church-user-v3', {
           if (!auths) {
             auths = []
           }
-          auths.concat(resp.Infos)
+          auths.push(...resp.Infos)
           this.Auths.set(req.TargetAppID, auths)
           done(resp.Infos, false)
         }, () => {

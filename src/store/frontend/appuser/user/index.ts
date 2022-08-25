@@ -82,7 +82,7 @@ export const useFrontendUserStore = defineStore('frontend-user-v4', {
         req.Message,
         (resp: GetLoginHistoriesResponse): void => {
           this.LoginHistories.push(...resp.Infos)
-          done(resp.Infos,false)
+          done(resp.Infos, false)
         }, () => {
           done(undefined as unknown as Array<LoginHistory>, true)
         }

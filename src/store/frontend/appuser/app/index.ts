@@ -2,7 +2,7 @@ import { doAction } from '../../../action'
 import { defineStore } from 'pinia'
 import { API } from './const'
 import { App, GetAppRequest, GetAppResponse } from './types'
-export const useApplicationStore = defineStore('frontend-app-v4', {
+export const useFrontendAppStore = defineStore('frontend-app-v4', {
   state: () => ({
     App: undefined as unknown as App
   }),

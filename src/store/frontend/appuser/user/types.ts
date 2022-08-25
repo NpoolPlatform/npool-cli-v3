@@ -70,7 +70,10 @@ export interface UpdateUserResponse {
 export interface GetLoginHistoriesRequest extends BaseRequest{
 
 }
-
+export interface GetLoginHistoriesRequestContinuously extends BaseRequest{
+  offset: number
+  limit: number
+}
 export interface GetLoginHistoriesResponse {
   Infos: Array<LoginHistory>
 }

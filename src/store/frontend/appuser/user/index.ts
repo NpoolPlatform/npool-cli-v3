@@ -2,7 +2,19 @@ import { defineStore } from 'pinia'
 import { useLocalUserStore } from '../../../local'
 import { doAction, doActionWithError } from '../../../action'
 import { API } from './const'
-import { GetLoginHistoriesRequest, GetLoginHistoriesResponse, LoginRequest, LoginResponse, LoginVerifyRequest, LoginVerifyResponse, LogoutRequest, LogoutResponse, SignupRequest, SignupResponse } from './types'
+import { 
+  GetLoginHistoriesRequest, 
+  GetLoginHistoriesRequestContinuously, 
+  GetLoginHistoriesResponse, 
+  LoginRequest, 
+  LoginResponse,
+  LoginVerifyRequest, 
+  LoginVerifyResponse, 
+  LogoutRequest, 
+  LogoutResponse, 
+  SignupRequest, 
+  SignupResponse 
+} from './types'
 import { LoginHistory, User } from '../../../base'
 
 export const useFrontendUserStore = defineStore('frontend-user-v4', {
@@ -72,7 +84,23 @@ export const useFrontendUserStore = defineStore('frontend-user-v4', {
           this.LoginHistories.push(...resp.Infos)
           done(resp.Infos,false)
         }, () => {
-          done(null, true)
+          done(undefined as unknown as Array<LoginHistory>, true)
+        }
+      )
+    },
+    getLoginHistoriesContinuously(offset:number, limit: number, req: GetLoginHistoriesRequestContinuously) {
+      doActionWithError<GetLoginHistoriesRequestContinuously, GetLoginHistoriesResponse>(
+        API.GET_LOGIN_HISTORIES,
+        {...req, ...{offset: offset, limit: limit} },
+        req.Message,
+        (resp: GetLoginHistoriesResponse): void => {
+          this.LoginHistories.push(...resp.Infos)
+          if (resp.Infos.length < limit) {
+            return
+          }
+          this.getLoginHistoriesContinuously(offset + limit, limit, req)
+        }, () => {
+          // NOTHING TODO
         }
       )
     }

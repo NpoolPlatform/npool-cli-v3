@@ -103,3 +103,16 @@ export interface Auth {
   Resource: string
   Method: string
 }
+
+export interface AuthHistory {
+  AppID: string
+  AppName: string
+  AppLogo: string
+  UserID: string
+  EmailAddress: string
+  PhoneNO: string
+  Resource: string
+  Method: string
+  Allowed: boolean
+  CreatedAt: number
+}

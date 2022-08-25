@@ -1,4 +1,4 @@
-import { Auth, Role, User } from '../../../base/appuser'
+import { Role, User } from '../../../base/appuser'
 import { BaseRequest } from '../../../base/notify'
 
 export interface GetAppUsersRequest extends BaseRequest{
@@ -21,18 +21,7 @@ export interface GetAppRolesResponse {
   Infos: Array<Role>
 }
 
-export interface GetAppAuthsRequest extends BaseRequest{
-  TargetAppID: string
-  Offset: number
-  Limit: number
-}
-
-export interface GetAppAuthsResponse {
-  Infos: Array<Auth>
-}
-
 export interface ChurchUserState {
   Users: Map<string, Array<User>>
   Roles: Map<string, Array<Role>>
-  Auths: Map<string, Array<Auth>>
 }

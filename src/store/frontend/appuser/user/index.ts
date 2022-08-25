@@ -88,17 +88,18 @@ export const useFrontendUserStore = defineStore('frontend-user-v4', {
         }
       )
     },
-    getLoginHistoriesContinuously(offset: number, limit: number, req: GetLoginHistoriesRequestContinuously) {
+    getLoginHistoriesContinuously(req: GetLoginHistoriesRequestContinuously) {
       doActionWithError<GetLoginHistoriesRequestContinuously, GetLoginHistoriesResponse>(
         API.GET_LOGIN_HISTORIES,
-        {...req, ...{offset: offset, limit: limit} },
+        req,
         req.Message,
         (resp: GetLoginHistoriesResponse): void => {
           this.LoginHistories.push(...resp.Infos)
-          if (resp.Infos.length < limit) {
+          if (resp.Infos.length < req.limit) {
             return
           }
-          this.getLoginHistoriesContinuously(offset + limit, limit, req)
+          req.offset = req.offset + req.limit
+          this.getLoginHistoriesContinuously(req)
         }, () => {
           // NOTHING TODO
         }

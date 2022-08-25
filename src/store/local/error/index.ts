@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { SwitchTarget } from './const'
 import { ErrorSwitcherState, ErrorTarget } from './types'
 
-export const useErrorStore = defineStore('errorswitcher-v3', {
+export const useErrorStore = defineStore('local-errorswitcher-v3', {
   state: (): ErrorSwitcherState => ({
     ErrorTargets: [
       {

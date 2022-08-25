@@ -39,7 +39,7 @@ export const useChurchUserStore = defineStore('church-user-v3', {
 
     getAppRoles (req: GetAppRolesRequest, done: (users: Array<Role>, error: boolean) => void) {
       doActionWithError<GetAppRolesRequest, GetAppRolesResponse>(
-        API.GET_APP_USERS,
+        API.GET_APP_ROLES,
         req,
         req.Message,
         (resp: GetAppRolesResponse): void => {
@@ -57,7 +57,7 @@ export const useChurchUserStore = defineStore('church-user-v3', {
 
     getAppAuths (req: GetAppAuthsRequest, done: (users: Array<Auth>, error: boolean) => void) {
       doActionWithError<GetAppAuthsRequest, GetAppAuthsResponse>(
-        API.GET_APP_USERS,
+        API.GET_APP_AUTHS,
         req,
         req.Message,
         (resp: GetAppAuthsResponse): void => {

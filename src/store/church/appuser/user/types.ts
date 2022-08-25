@@ -30,3 +30,9 @@ export interface GetAppAuthsRequest extends BaseRequest{
 export interface GetAppAuthsResponse {
   Infos: Array<Auth>
 }
+
+export interface ChurchUserState {
+  Users: Map<string, Array<User>>
+  Roles: Map<string, Array<Role>>
+  Auths: Map<string, Array<Auth>>
+}

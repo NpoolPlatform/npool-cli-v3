@@ -3,6 +3,7 @@ import { doActionWithError } from '../../../action'
 import { Auth, Role, User } from '../../../base'
 import { API } from './const'
 import {
+  ChurchUserState,
   GetAppAuthsRequest,
   GetAppAuthsResponse,
   GetAppRolesRequest,
@@ -12,7 +13,7 @@ import {
 } from './types'
 
 export const useChurchUserStore = defineStore('church-user-v3', {
-  state: () => ({
+  state: (): ChurchUserState => ({
     Users: new Map<string, Array<User>>(),
     Roles: new Map<string, Array<Role>>(),
     Auths: new Map<string, Array<Auth>>()
@@ -37,7 +38,7 @@ export const useChurchUserStore = defineStore('church-user-v3', {
         })
     },
 
-    getAppRoles (req: GetAppRolesRequest, done: (users: Array<Role>, error: boolean) => void) {
+    getAppRoles (req: GetAppRolesRequest, done: (roles: Array<Role>, error: boolean) => void) {
       doActionWithError<GetAppRolesRequest, GetAppRolesResponse>(
         API.GET_APP_ROLES,
         req,
@@ -55,7 +56,7 @@ export const useChurchUserStore = defineStore('church-user-v3', {
         })
     },
 
-    getAppAuths (req: GetAppAuthsRequest, done: (users: Array<Auth>, error: boolean) => void) {
+    getAppAuths (req: GetAppAuthsRequest, done: (auths: Array<Auth>, error: boolean) => void) {
       doActionWithError<GetAppAuthsRequest, GetAppAuthsResponse>(
         API.GET_APP_AUTHS,
         req,

@@ -26,6 +26,7 @@ export interface LoginResponse {
 }
 
 export interface LoginVerifyRequest extends BaseRequest {
+  UserID: string;
   Token: string;
   VerificationCode: string;
 }
@@ -35,7 +36,7 @@ export interface LoginVerifyResponse {
 }
 
 export interface LogoutRequest extends BaseRequest {
-  Token: string;
+  Token?: string;
 }
 
 export interface LogoutResponse {

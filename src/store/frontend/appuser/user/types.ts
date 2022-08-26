@@ -45,6 +45,7 @@ export interface LogoutResponse {
 
 export interface UpdateUserRequest extends BaseRequest {
   Account?: string;
+  NewAccount?:string;
   AccountType?: string;
   NewAccountType?: string;
   VerificationCode?: string;

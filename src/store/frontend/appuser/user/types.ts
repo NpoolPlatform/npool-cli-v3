@@ -61,6 +61,8 @@ export interface UpdateUserRequest extends BaseRequest {
   IDNumber?: string;
   SigninVerifyType?: string;
   PasswordHash?: string;
+  SigninVerifyByGoogleAuth?: boolean;
+  GoogleAuthVerified?: boolean;
 }
 
 export interface UpdateUserResponse {

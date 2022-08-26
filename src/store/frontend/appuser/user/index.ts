@@ -13,7 +13,9 @@ import {
   LogoutRequest, 
   LogoutResponse, 
   SignupRequest, 
-  SignupResponse 
+  SignupResponse, 
+  UpdateUserRequest,
+  UpdateUserResponse
 } from './types'
 import { LoginHistory, User } from '../../../base'
 
@@ -73,6 +75,19 @@ export const useFrontendUserStore = defineStore('frontend-user-v4', {
           done(false)
         }, () => {
           done(true)
+        })
+    },
+    updateUser (req: UpdateUserRequest, done: (user: User, error: boolean) => void) {
+      doActionWithError<UpdateUserRequest, UpdateUserResponse>(
+        API.UPDATE_USER,
+        req,
+        req.Message,
+        (resp: UpdateUserResponse): void => {
+          const user = useLocalUserStore()
+          user.setUser(resp.Info)
+          done(resp.Info, false)
+        }, () => {
+          done(undefined as unknown as User, true)
         })
     },
     getLoginHistories(req: GetLoginHistoriesRequest, done: (histories: Array<LoginHistory>, error: boolean) => void) {

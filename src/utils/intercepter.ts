@@ -54,7 +54,9 @@ const loginInterceptor = (signInPath: string, to: RouteLocationNormalized, next:
 
   api.post<unknown, AxiosResponse<LoginedResponse>>('/appuser/v1/logined')
     .then((resp: AxiosResponse<LoginedResponse>) => {
-      user.User = resp.data.Info
+      if (resp.data.Info) {
+        user.setUser(resp.data.Info)
+      }
       if (!user.User && to.meta && to.meta.NeedLogined) {
         next({ path: signInPath, replace: true })
         return

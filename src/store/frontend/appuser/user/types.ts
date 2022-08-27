@@ -81,8 +81,8 @@ export interface ResetUserRequest extends BaseRequest {
   Account: string
   AccountType: SignMethodType
   VerificationCode: string
-  PasswordHash: string
-  RecoveryCode: string
+  PasswordHash?: string
+  RecoveryCode?: string
 }
 
 export interface ResetUserResponse {

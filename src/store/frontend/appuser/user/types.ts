@@ -27,6 +27,8 @@ export interface LoginResponse {
 
 export interface LoginVerifyRequest extends BaseRequest {
   UserID: string;
+  Account: string;
+  AccountType: AccountType,
   Token: string;
   VerificationCode: string;
 }

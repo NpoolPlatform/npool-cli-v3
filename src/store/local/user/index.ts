@@ -8,13 +8,13 @@ export const useLocalUserStore = defineStore('local-user-v4', {
   }),
   getters: {
     logined (): boolean {
-      return this.User !== undefined
+      return this.User && this.User.Logined && this.User.LoginVerified
     }
   },
   actions: {
     setUser(user: User) {
       this.User = user
-      if (user.LoginVerified) {
+      if (user) {
         Cookies.set('X-User-ID', user.ID, { expires: '4h', secure: true })
         Cookies.set('X-App-Login-Token', user.LoginToken, { expires: '4h', secure: true })
       }

@@ -26,6 +26,7 @@ export interface LoginResponse {
 }
 
 export interface LoginVerifyRequest extends BaseRequest {
+  UserID: string;
   Token: string;
   VerificationCode: string;
 }
@@ -35,7 +36,7 @@ export interface LoginVerifyResponse {
 }
 
 export interface LogoutRequest extends BaseRequest {
-  Token: string;
+  Token?: string;
 }
 
 export interface LogoutResponse {
@@ -44,8 +45,11 @@ export interface LogoutResponse {
 
 export interface UpdateUserRequest extends BaseRequest {
   Account?: string;
+  NewAccount?:string;
   AccountType?: string;
+  NewAccountType?: string;
   VerificationCode?: string;
+  NewVerificationCode?:string;
   EmailAddress?: string;
   PhoneNO?: string;
   Username?: string;
@@ -61,6 +65,8 @@ export interface UpdateUserRequest extends BaseRequest {
   IDNumber?: string;
   SigninVerifyType?: string;
   PasswordHash?: string;
+  SigninVerifyByGoogleAuth?: boolean;
+  GoogleAuthVerified?: boolean;
 }
 
 export interface UpdateUserResponse {

@@ -26,6 +26,8 @@ export interface LoginResponse {
 
 export interface LoginVerifyRequest extends BaseRequest {
   UserID: string;
+  Account: string;
+  AccountType: AccountType,
   Token: string;
   VerificationCode: string;
 }
@@ -64,8 +66,11 @@ export interface UpdateUserRequest extends BaseRequest {
   IDNumber?: string;
   SigninVerifyType?: string;
   PasswordHash?: string;
+  OldPasswordHash?:string;
   SigninVerifyByGoogleAuth?: boolean;
   GoogleAuthVerified?: boolean;
+  InvitationCodeID?: string;
+  InvitationCodeConfirmed?: boolean;
 }
 
 export interface UpdateUserResponse {
@@ -79,4 +84,5 @@ export interface GetLoginHistoriesRequest extends BaseRequest {
 
 export interface GetLoginHistoriesResponse {
   Infos: Array<LoginHistory>
+  Total: number
 }

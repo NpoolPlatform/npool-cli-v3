@@ -1,5 +1,12 @@
 
-import {  RecaptchaType, SigninVerifyType, SignMethodType } from './const'
+import {
+  EntityType,
+  KYCState,
+  RecaptchaType,
+  SigninVerifyType,
+  SignMethodType,
+  DocumentType 
+} from './const'
 
 export interface User {
   ID: string
@@ -47,18 +54,22 @@ export interface User {
 
   CreatedAt: number
 
+  InvitationCodeID: string
   InvitationCode: string
   InvitationCodeConfirmed: boolean
+
   LoginVerified: boolean
 }
 
 
 export interface LoginHistory {
+  AppID: string;
   ID: string;
+  UserID: string;
   ClientIP: string;
   UserAgent: string;
-  CreatedAt: number;
   Location: string;
+  CreatedAt: number;
 }
 
 export interface App {
@@ -116,4 +127,26 @@ export interface AuthHistory {
   Method: string
   Allowed: boolean
   CreatedAt: number
+}
+
+export interface KYC {
+  ID: string;
+  AppID: string;
+  AppName: string;
+  AppLogo: string;
+  UserID: string;
+  EmailAddress: string;
+  PhoneNO: string;
+  DocumentType: DocumentType;
+  IDNumber: string;
+  FrontImg: string;
+  BackImg: string;
+  SelfieImg: string;
+  EntityType: EntityType;
+  ReviewID: string;
+  State: KYCState;
+  CreatedAt: number;
+  UpdatedAt: number;
+
+  Message: string;
 }

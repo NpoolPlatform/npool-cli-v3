@@ -1,10 +1,10 @@
-import { AccountType, User, LoginHistory } from '../../../base/appuser'
+import { AccountType, User, LoginHistory, SignMethodType } from '../../../base/appuser'
 import { BaseRequest } from '../../../base/notify'
 
 export interface SignupRequest extends BaseRequest{
   Account: string;
   PasswordHash: string;
-  AccountType: AccountType;
+  AccountType: SignMethodType;
   VerificationCode: string;
   InvitationCode: string;
 }

@@ -4,7 +4,8 @@ import {
   KYCState,
   RecaptchaType,
   SigninVerifyType,
-  SignMethodType 
+  SignMethodType,
+  DocumentType 
 } from './const'
 
 export interface User {

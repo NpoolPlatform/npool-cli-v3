@@ -1,6 +1,6 @@
 {
   "name": "npool-cli-v4",
-  "version": "0.3.85",
+  "version": "0.3.87",
   "private": false,
   "license": "ISC",
   "description": "Npool Client SDK",

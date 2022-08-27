@@ -1,5 +1,4 @@
-import { AccountType, User, LoginHistory } from '../../../base/appuser'
-import { BaseRequest } from '../../../base/notify'
+import { AccountType, User, LoginHistory, BaseRequest } from '../../../base'
 
 export interface SignupRequest extends BaseRequest{
   Account: string;
@@ -73,13 +72,11 @@ export interface UpdateUserResponse {
   Info: User;
 }
 
-export interface GetLoginHistoriesRequest extends BaseRequest{
-
-}
-export interface GetLoginHistoriesRequestContinuously extends BaseRequest{
+export interface GetLoginHistoriesRequest extends BaseRequest {
   offset: number
   limit: number
 }
+
 export interface GetLoginHistoriesResponse {
   Infos: Array<LoginHistory>
 }

@@ -3,8 +3,7 @@ import { useLocalUserStore } from '../../../local'
 import { doAction, doActionWithError } from '../../../action'
 import { API } from './const'
 import { 
-  GetLoginHistoriesRequest, 
-  GetLoginHistoriesRequestContinuously, 
+  GetLoginHistoriesRequest,
   GetLoginHistoriesResponse, 
   LoginRequest, 
   LoginResponse,
@@ -100,23 +99,6 @@ export const useFrontendUserStore = defineStore('frontend-user-v4', {
           done(resp.Infos, false)
         }, () => {
           done(undefined as unknown as Array<LoginHistory>, true)
-        }
-      )
-    },
-    getLoginHistoriesContinuously(req: GetLoginHistoriesRequestContinuously) {
-      doActionWithError<GetLoginHistoriesRequestContinuously, GetLoginHistoriesResponse>(
-        API.GET_LOGIN_HISTORIES,
-        req,
-        req.Message,
-        (resp: GetLoginHistoriesResponse): void => {
-          this.LoginHistories.push(...resp.Infos)
-          if (resp.Infos.length < req.limit) {
-            return
-          }
-          req.offset = req.offset + req.limit
-          this.getLoginHistoriesContinuously(req)
-        }, () => {
-          // NOTHING TODO
         }
       )
     }

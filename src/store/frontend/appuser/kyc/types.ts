@@ -1,4 +1,4 @@
-import { KYC, ImageType, EntityType } from '../../../base/appuser'
+import { KYC, ImageType, EntityType, DocumentType } from '../../../base/appuser'
 import { BaseRequest } from '../../../base/notify'
 
 export interface CreateKYCRequest extends BaseRequest {

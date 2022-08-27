@@ -61,11 +61,13 @@ export interface User {
 
 
 export interface LoginHistory {
+  AppID: string;
   ID: string;
+  UserID: string;
   ClientIP: string;
   UserAgent: string;
-  CreatedAt: number;
   Location: string;
+  CreatedAt: number;
 }
 
 export interface App {

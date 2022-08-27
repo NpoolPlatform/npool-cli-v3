@@ -85,4 +85,5 @@ export interface GetLoginHistoriesRequestContinuously extends BaseRequest{
 }
 export interface GetLoginHistoriesResponse {
   Infos: Array<LoginHistory>
+  Total: number
 }

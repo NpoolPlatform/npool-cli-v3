@@ -21,11 +21,14 @@ import { LoginHistory, User } from '../../../base'
 
 export const useFrontendUserStore = defineStore('frontend-user-v4', {
   state: () => ({
-    LoginHistories: [] as Array<LoginHistory>,
+    History: {
+      LoginHistories: [] as Array<LoginHistory>,
+      Total: 0
+    }
   }),
   getters: {
     loginHistories(): Array<LoginHistory>  {
-      return this.LoginHistories.sort((a,b) => a.CreatedAt > b.CreatedAt ? -1 : 1)
+      return this.History.LoginHistories.sort((a,b) => a.CreatedAt > b.CreatedAt ? -1 : 1)
     }
   },
   actions: {
@@ -96,7 +99,8 @@ export const useFrontendUserStore = defineStore('frontend-user-v4', {
         req,
         req.Message,
         (resp: GetLoginHistoriesResponse): void => {
-          this.LoginHistories.push(...resp.Infos)
+          this.History.LoginHistories.push(...resp.Infos)
+          this.History.Total = resp.Total
           done(resp.Infos, false)
         }, () => {
           done(undefined as unknown as Array<LoginHistory>, true)
@@ -109,7 +113,8 @@ export const useFrontendUserStore = defineStore('frontend-user-v4', {
         req,
         req.Message,
         (resp: GetLoginHistoriesResponse): void => {
-          this.LoginHistories.push(...resp.Infos)
+          this.History.LoginHistories.push(...resp.Infos)
+          this.History.Total = resp.Total
           if (resp.Infos.length < req.limit) {
             return
           }

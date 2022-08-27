@@ -4,7 +4,7 @@ import { BaseRequest } from '../../../base/notify'
 export interface SignupRequest extends BaseRequest{
   Account: string;
   PasswordHash: string;
-  AccountType: SignMethodType;
+  AccountType: AccountType;
   VerificationCode: string;
   InvitationCode: string;
 }
@@ -28,7 +28,7 @@ export interface LoginResponse {
 export interface LoginVerifyRequest extends BaseRequest {
   UserID: string;
   Account: string;
-  AccountType: AccountType,
+  AccountType: SignMethodType,
   Token: string;
   VerificationCode: string;
 }

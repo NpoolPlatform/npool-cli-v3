@@ -1,4 +1,4 @@
-import { AccountType, User, LoginHistory, BaseRequest } from '../../../base'
+import { AccountType, User, LoginHistory, BaseRequest, SignMethodType, SigninVerifyType } from '../../../base'
 
 export interface SignupRequest extends BaseRequest{
   Account: string;
@@ -47,8 +47,8 @@ export interface LogoutResponse {
 export interface UpdateUserRequest extends BaseRequest {
   Account?: string;
   NewAccount?:string;
-  AccountType?: string;
-  NewAccountType?: string;
+  AccountType?: SignMethodType;
+  NewAccountType?: SignMethodType;
   VerificationCode?: string;
   NewVerificationCode?:string;
   EmailAddress?: string;
@@ -64,7 +64,7 @@ export interface UpdateUserRequest extends BaseRequest {
   FirstName?: string;
   LastName?: string;
   IDNumber?: string;
-  SigninVerifyType?: string;
+  SigninVerifyType?: SigninVerifyType;
   PasswordHash?: string;
   OldPasswordHash?:string;
   SigninVerifyByGoogleAuth?: boolean;
@@ -75,6 +75,17 @@ export interface UpdateUserRequest extends BaseRequest {
 
 export interface UpdateUserResponse {
   Info: User;
+}
+
+export interface ResetUserRequest extends BaseRequest {
+  Account: string
+  AccountType: SignMethodType
+  VerificationCode: string
+  PasswordHash: string
+  RecoveryCode: string
+}
+
+export interface ResetUserResponse {
 }
 
 export interface GetLoginHistoriesRequest extends BaseRequest {

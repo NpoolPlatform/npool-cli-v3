@@ -11,6 +11,8 @@ import {
   LoginVerifyResponse, 
   LogoutRequest, 
   LogoutResponse, 
+  ResetUserRequest, 
+  ResetUserResponse, 
   SignupRequest, 
   SignupResponse, 
   UpdateUserRequest,
@@ -90,6 +92,17 @@ export const useFrontendUserStore = defineStore('frontend-user-v4', {
           done(resp.Info, false)
         }, () => {
           done(undefined as unknown as User, true)
+        })
+    },
+    resetUser (req: ResetUserRequest, done: (error: boolean) => void) {
+      doActionWithError<ResetUserRequest, ResetUserResponse>(
+        API.RESET_USER,
+        req,
+        req.Message,
+        (): void => {
+          done(false)
+        }, () => {
+          done(true)
         })
     },
     getLoginHistories(req: GetLoginHistoriesRequest, done: (histories: Array<LoginHistory>, error: boolean) => void) {

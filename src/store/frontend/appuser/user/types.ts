@@ -89,8 +89,8 @@ export interface ResetUserResponse {
 }
 
 export interface GetLoginHistoriesRequest extends BaseRequest {
-  offset: number
-  limit: number
+  Offset: number
+  Limit: number
 }
 
 export interface GetLoginHistoriesResponse {

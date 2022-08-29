@@ -14,3 +14,14 @@ export interface GetAppRolesResponse {
 export interface ChurchRoleState {
   Roles: Map<string, Array<Role>>
 }
+
+export interface CreateAppRoleRequest  extends BaseRequest {
+  TargetAppID: string;
+  RoleName: string;
+  Default?: boolean;
+  Description?: string;
+}
+
+export interface CreateAppRoleResponse {
+  Info: Role;
+}

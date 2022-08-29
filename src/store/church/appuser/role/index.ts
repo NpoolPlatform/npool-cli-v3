@@ -4,6 +4,8 @@ import { Role } from '../../../base'
 import { API } from './const'
 import {
   ChurchRoleState,
+  CreateAppRoleRequest,
+  CreateAppRoleResponse,
   GetAppRolesRequest,
   GetAppRolesResponse,
 } from './types'
@@ -29,6 +31,23 @@ export const useChurchRoleStore = defineStore('church-role-v3', {
           done(resp.Infos, false)
         }, () => {
           done([], true)
+        })
+    },
+    createAppRole (req: CreateAppRoleRequest, done: (roles: Role, error: boolean) => void) {
+      doActionWithError<CreateAppRoleRequest, CreateAppRoleResponse>(
+        API.CREATE_APP_ROLE,
+        req,
+        req.Message,
+        (resp: CreateAppRoleResponse): void => {
+          let roles = this.Roles.get(req.TargetAppID)
+          if (!roles) {
+            roles = []
+          }
+          roles.push(resp.Info)
+          this.Roles.set(req.TargetAppID, roles)
+          done(resp.Info, false)
+        }, () => {
+          done(undefined as unknown as Role, true)
         })
     }
   }

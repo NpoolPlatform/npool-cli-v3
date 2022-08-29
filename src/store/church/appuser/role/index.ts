@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { doActionWithError } from '../../../action'
-import { Role } from '../../../base'
+import { Role, AppRoleUser } from '../../../base'
 import { API } from './const'
 import {
   ChurchRoleState,
@@ -8,11 +8,14 @@ import {
   CreateAppRoleResponse,
   GetAppRolesRequest,
   GetAppRolesResponse,
+  GetAppRoleUsersRequest,
+  GetAppRoleUsersResponse,
 } from './types'
 
 export const useChurchRoleStore = defineStore('church-role-v3', {
   state: (): ChurchRoleState => ({
-    Roles: new Map<string, Array<Role>>()
+    Roles: new Map<string, Array<Role>>(),
+    AppRoleUsers: new Map<string, Array<AppRoleUser>>()
   }),
   getters: {},
   actions: {
@@ -49,6 +52,44 @@ export const useChurchRoleStore = defineStore('church-role-v3', {
         }, () => {
           done(undefined as unknown as Role, true)
         })
-    }
+    },
+    getAppRoleUsers (req: GetAppRoleUsersRequest, done: (roles: Array<AppRoleUser>, error: boolean) => void) {
+      doActionWithError<GetAppRoleUsersRequest, GetAppRoleUsersResponse>(
+        API.GET_APP_ROLE_USERS,
+        req,
+        req.Message,
+        (resp: GetAppRoleUsersResponse): void => {
+          let roleUsers = this.AppRoleUsers.get(req.TargetAppID)
+          if (!roleUsers) {
+            roleUsers = []
+          }
+          roleUsers.push(...resp.Infos)
+          this.AppRoleUsers.set(req.TargetAppID, roleUsers)
+          done(resp.Infos, false)
+        }, () => {
+          done([], true)
+        })
+    },
+    getAppRoleUsersContinuously (req: GetAppRoleUsersRequest, done: (error: boolean) => void) {
+      doActionWithError<GetAppRoleUsersRequest, GetAppRoleUsersResponse>(
+        API.GET_APP_ROLE_USERS,
+        req,
+        req.Message,
+        (resp: GetAppRoleUsersResponse): void => {
+          let roleUsers = this.AppRoleUsers.get(req.TargetAppID)
+          if (!roleUsers) {
+            roleUsers = []
+          }
+          roleUsers.push(...resp.Infos)
+          this.AppRoleUsers.set(req.TargetAppID, roleUsers)
+          if (resp.Infos.length < req.Limit) {
+            done(false)
+          }
+          req.Offset = req.Limit + req.Limit
+          this.getAppRoleUsers(req)
+        }, () => {
+          done(true)
+        })
+    },
   }
 })

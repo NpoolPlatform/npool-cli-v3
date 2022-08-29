@@ -150,3 +150,19 @@ export interface KYC {
 
   Message: string;
 }
+
+export interface AppRoleUser {
+  ID:           string;
+  CreatedBy:    string;
+  Role:         string;
+  Description:  string;
+  Default:      boolean;
+  AppID:        string;
+  AppName:      string;
+  AppLogo:      string;
+  CreatedAt:    number;
+  UserID:       string;
+  EmailAddress: string;
+  PhoneNO:      string;
+  Genesis:      boolean;
+}

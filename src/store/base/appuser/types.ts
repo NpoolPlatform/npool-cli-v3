@@ -5,7 +5,7 @@ import {
   RecaptchaType,
   SigninVerifyType,
   SignMethodType,
-  DocumentType 
+  DocumentType
 } from './const'
 
 export interface User {

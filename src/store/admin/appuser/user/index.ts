@@ -11,7 +11,14 @@ export const useAdminUserStore = defineStore('admin-user-v3', {
       Total: 0
     }
   }),
-  getters: {},
+  getters: {
+    getUserByID (): (ID:string) => User {
+      return (ID:string) => {
+        const index = this.Users.Users.findIndex((el) => el.ID === ID)
+        return index < 0 ? undefined as unknown as User : this.Users.Users[index]
+      }
+    }
+  },
   actions: {
     getUsers (req: GetUsersRequest, done: (error: boolean) => void) {
       doActionWithError<GetUsersRequest, GetUsersResponse>(

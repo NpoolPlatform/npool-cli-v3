@@ -36,6 +36,7 @@ export interface User {
   GoogleAuthVerified: boolean
   GoogleSecret: string
   HasGoogleSecret: boolean
+  GoogleOTPAuth: string
   SigninVerifyByGoogleAuth: boolean
 
   BanAppUserID: string

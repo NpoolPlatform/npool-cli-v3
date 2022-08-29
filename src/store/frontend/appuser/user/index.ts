@@ -3,8 +3,7 @@ import { useLocalUserStore } from '../../../local'
 import { doAction, doActionWithError } from '../../../action'
 import { API } from './const'
 import { 
-  GetLoginHistoriesRequest, 
-  GetLoginHistoriesRequestContinuously, 
+  GetLoginHistoriesRequest,
   GetLoginHistoriesResponse, 
   LoginRequest, 
   LoginResponse,
@@ -12,6 +11,8 @@ import {
   LoginVerifyResponse, 
   LogoutRequest, 
   LogoutResponse, 
+  ResetUserRequest, 
+  ResetUserResponse, 
   SignupRequest, 
   SignupResponse, 
   UpdateUserRequest,
@@ -93,6 +94,17 @@ export const useFrontendUserStore = defineStore('frontend-user-v4', {
           done(undefined as unknown as User, true)
         })
     },
+    resetUser (req: ResetUserRequest, done: (error: boolean) => void) {
+      doActionWithError<ResetUserRequest, ResetUserResponse>(
+        API.RESET_USER,
+        req,
+        req.Message,
+        (): void => {
+          done(false)
+        }, () => {
+          done(true)
+        })
+    },
     getLoginHistories(req: GetLoginHistoriesRequest, done: (histories: Array<LoginHistory>, error: boolean) => void) {
       doActionWithError<GetLoginHistoriesRequest, GetLoginHistoriesResponse>(
         API.GET_LOGIN_HISTORIES,
@@ -104,24 +116,6 @@ export const useFrontendUserStore = defineStore('frontend-user-v4', {
           done(resp.Infos, false)
         }, () => {
           done(undefined as unknown as Array<LoginHistory>, true)
-        }
-      )
-    },
-    getLoginHistoriesContinuously(req: GetLoginHistoriesRequestContinuously) {
-      doActionWithError<GetLoginHistoriesRequestContinuously, GetLoginHistoriesResponse>(
-        API.GET_LOGIN_HISTORIES,
-        req,
-        req.Message,
-        (resp: GetLoginHistoriesResponse): void => {
-          this.History.LoginHistories.push(...resp.Infos)
-          this.History.Total = resp.Total
-          if (resp.Infos.length < req.limit) {
-            return
-          }
-          req.offset = req.offset + req.limit
-          this.getLoginHistoriesContinuously(req)
-        }, () => {
-          // NOTHING TODO
         }
       )
     }

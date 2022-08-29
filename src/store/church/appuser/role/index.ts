@@ -84,10 +84,12 @@ export const useChurchRoleStore = defineStore('church-role-v3', {
           this.AppRoleUsers.set(req.TargetAppID, roleUsers)
           if (resp.Infos.length < req.Limit) {
             done(false)
+            return
           }
           req.Offset = req.Limit + req.Limit
-          this.getAppRoleUsers(req)
+          this.getAppRoleUsersContinuously(req, done)
         }, () => {
+          // TODO
           done(true)
         })
     },

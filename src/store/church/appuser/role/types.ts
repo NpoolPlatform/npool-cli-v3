@@ -17,10 +17,10 @@ export interface ChurchRoleState {
 }
 
 export interface CreateAppRoleRequest  extends BaseRequest {
-  TargetAppID: string;
-  RoleName: string;
-  Default?: boolean;
-  Description?: string;
+  TargetAppID: string
+  RoleName: string
+  Default?: boolean
+  Description?: string
 }
 
 export interface CreateAppRoleResponse {
@@ -28,12 +28,22 @@ export interface CreateAppRoleResponse {
 }
 
 export interface GetAppRoleUsersRequest extends BaseRequest {
-  TargetAppID: string;
-  RoleID: string;
-  Offset: number;
-  Limit: number;
+  TargetAppID: string
+  RoleID: string
+  Offset: number
+  Limit: number
 }
 
 export interface GetAppRoleUsersResponse {
   Infos: Array<AppRoleUser>
+}
+
+export interface CreateAppRoleUserRequest extends BaseRequest{
+  TargetAppID: string
+  TargetUserID: string
+  RoleID: string
+}
+
+export interface CreateAppRoleUserResponse{
+  Info: AppRoleUser
 }

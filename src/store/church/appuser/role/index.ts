@@ -6,6 +6,8 @@ import {
   ChurchRoleState,
   CreateAppRoleRequest,
   CreateAppRoleResponse,
+  CreateAppRoleUserRequest,
+  CreateAppRoleUserResponse,
   GetAppRolesRequest,
   GetAppRolesResponse,
   GetAppRoleUsersRequest,
@@ -89,8 +91,24 @@ export const useChurchRoleStore = defineStore('church-role-v3', {
           req.Offset = req.Limit + req.Limit
           this.getAppRoleUsersContinuously(req, done)
         }, () => {
-          // TODO
           done(true)
+        })
+    },
+    createAppRoleUser (req: CreateAppRoleUserRequest, done: (roles: Role, error: boolean) => void) {
+      doActionWithError<CreateAppRoleUserRequest, CreateAppRoleUserResponse>(
+        API.CREATE_APP_ROLE_USER,
+        req,
+        req.Message,
+        (resp: CreateAppRoleUserResponse): void => {
+          let roleUsers = this.AppRoleUsers.get(req.TargetAppID)
+          if (!roleUsers) {
+            roleUsers = []
+          }
+          roleUsers.push(resp.Info)
+          this.AppRoleUsers.set(req.TargetAppID, roleUsers)
+          done(resp.Info, false)
+        }, () => {
+          done(undefined as unknown as AppRoleUser, true)
         })
     },
   }

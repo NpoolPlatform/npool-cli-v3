@@ -52,3 +52,10 @@ export enum ImageType {
   BackImg = 'BackImg',
   SelfieImg = 'SelfieImg'
 }
+
+export enum KYCReviewState {
+  DefaultReviewState = 'DefaultReviewState',
+  Approved = 'Approved',
+  Wait ='Wait',
+  Rejected = 'Rejected'
+}

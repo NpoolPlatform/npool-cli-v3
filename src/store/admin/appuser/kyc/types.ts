@@ -1,10 +1,10 @@
-import { KYC, KYCState, ImageType, BaseRequest, ReqMessage } from '../../../base'
+import { ImageType, BaseRequest, ReqMessage, KYCReview, KYCReviewState } from '../../../base'
 export interface GetKycReviewsRequest extends BaseRequest{
   Offset: number
   Limit: number
 }
 export interface GetKycReviewsResponse {
-  Infos: Array<KYC>
+  Infos: Array<KYCReview>
   Total: number
 }
 
@@ -13,15 +13,15 @@ interface NotifyMessage {
 }
 
 export interface UpdateKycReviewRequest extends NotifyMessage{
-  LangID?: string;
+  LangID?: string
   ReviewID: string
-  State?: KYCState
+  State?: KYCReviewState
   Message: string
-  UserID?: string;
+  UserID?: string
 }
 
 export interface UpdateKycReviewResponse {
-  Info: KYC
+  Info: KYCReview
 }
 
 export interface GetUserKYCImageRequest extends BaseRequest {

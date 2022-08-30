@@ -5,7 +5,8 @@ import {
   RecaptchaType,
   SigninVerifyType,
   SignMethodType,
-  DocumentType
+  DocumentType,
+  KYCReviewState
 } from './const'
 
 export interface User {
@@ -149,6 +150,28 @@ export interface KYC {
   UpdatedAt: number;
 
   Message: string;
+}
+
+export interface KYCReview {
+  UserID:       string;
+  EmailAddress: string;
+  PhoneNO:      string;
+  KycID:        string;
+  DocumentType: DocumentType;
+  IDNumber:     string;
+  FrontImg:     string;
+  BackImg:      string;
+  SelfieImg:    string;
+  EntityType:   EntityType;
+  ReviewID:     string;
+  ObjectType:   string;
+  Domain:       string;
+  Reviewer:     string;
+  ReviewState:  KYCReviewState;
+  KycState:     KYCState;
+  Message:      string;
+  CreatedAt:    number;
+  UpdatedAt:    number;
 }
 
 export interface AppRoleUser {

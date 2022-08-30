@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { API } from './const'
-import { KYC, ImageType, } from '../../../base'
+import { ImageType, KYCReview, } from '../../../base'
 import {
   GetKycReviewsRequest,
   GetKycReviewsResponse,
@@ -16,14 +16,14 @@ import { KYCImage } from '../../../frontend/appuser' // error writing, need fix
 export const useAdminKycStore = defineStore('admin-kyc-v4', {
   state: () => ({
     KycReviews: {
-      KycReviews: [] as Array<KYC>,
+      KycReviews: [] as Array<KYCReview>,
       Total: 0
     },
     Images: new Map<string, Map<ImageType, KYCImage>>()
   }),
   getters: {},
   actions: {
-    getKycReviews (req: GetKycReviewsRequest, done: (reviews: Array<KYC>,error: boolean) => void) {
+    getKycReviews (req: GetKycReviewsRequest, done: (reviews: Array<KYCReview>,error: boolean) => void) {
       doActionWithError<GetKycReviewsRequest, GetKycReviewsResponse>(
         API.GET_KYCREVIEWS,
         req,
@@ -36,17 +36,17 @@ export const useAdminKycStore = defineStore('admin-kyc-v4', {
           done([], true)
         })
     },
-    updateKycReview (req: UpdateKycReviewRequest, done: (kycReview: KYC, error: boolean) => void) {
+    updateKycReview (req: UpdateKycReviewRequest, done: (kycReview: KYCReview, error: boolean) => void) {
       doActionWithError<UpdateKycReviewRequest, UpdateKycReviewResponse>(
         API.UPDATE_KYCREVIEW,
         req,
         req.NotifyMessage,
         (resp: UpdateKycReviewResponse): void => {
-          const index = this.KycReviews.KycReviews.findIndex((el) => el.ID === resp.Info.ID)
+          const index = this.KycReviews.KycReviews.findIndex((el) => el.KycID === resp.Info.KycID)
           this.KycReviews.KycReviews.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
           done(resp.Info, false)
         }, () => {
-          done(undefined as unknown as KYC, true)
+          done(undefined as unknown as KYCReview, true)
         })
     },
     getUserKYCImage (req: GetUserKYCImageRequest, kycID: string, done: () => void) {

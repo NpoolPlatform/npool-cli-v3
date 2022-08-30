@@ -10,7 +10,7 @@ import {
   UpdateKycReviewResponse
 } from './types'
 import { doActionWithError, doAction } from '../../../action'
-import { KYCImage } from '../../..//frontend/appuser' // error writing, need fix
+import { KYCImage } from '../../../frontend/appuser' // error writing, need fix
 
 
 export const useAdminKycStore = defineStore('admin-kyc-v4', {
@@ -31,13 +31,7 @@ export const useAdminKycStore = defineStore('admin-kyc-v4', {
         (resp: GetKycReviewsResponse): void => {
           this.KycReviews.KycReviews.push(...resp.Infos)
           this.KycReviews.Total = resp.Total
-
-          if (resp.Infos.length < req.Limit) {
-            done(false)
-            return
-          }
-          req.Offset = req.Limit + req.Offset
-          this.getKycReviews(req, done)
+          done(false)
         }, () => {
           done(true)
         })

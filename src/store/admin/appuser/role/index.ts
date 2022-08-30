@@ -35,13 +35,7 @@ export const useAdminRoleStore = defineStore('admin-role-v3', {
         (resp: GetRolesResponse): void => {
           this.Roles.Roles.push(...resp.Infos)
           this.Roles.Total = resp.Total
-
-          if (resp.Infos.length < req.Limit) {
-            done(false)
-            return
-          }
-          req.Offset = req.Limit + req.Offset
-          this.getRoles(req, done)
+          done(false)
         }, () => {
           done(true)
         })
@@ -54,12 +48,7 @@ export const useAdminRoleStore = defineStore('admin-role-v3', {
         (resp: GetRoleUsersResponse): void => {
           this.RoleUsers.RoleUsers = resp.Infos
           this.RoleUsers.Total = resp.Total
-          if (resp.Infos.length < req.Limit) {
-            done(false)
-            return
-          }
-          req.Offset = req.Limit + req.Offset
-          this.getRoleUsers(req, done)
+          done(false)
         }, () => {
           done(true)
         })

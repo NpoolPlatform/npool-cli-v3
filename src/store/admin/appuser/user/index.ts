@@ -28,12 +28,7 @@ export const useAdminUserStore = defineStore('admin-user-v3', {
         (resp: GetUsersResponse): void => {
           this.Users.Users.push(...resp.Infos)
           this.Users.Total = resp.Total
-          if (resp.Infos.length < req.Limit) {
-            done(false)
-            return
-          }
-          req.Offset = req.Limit + req.Offset
-          this.getUsers(req, done)
+          done(false)
         }, () => {
           done(true)
         })

@@ -20,7 +20,7 @@ export const useAdminUserStore = defineStore('admin-user-v3', {
     }
   },
   actions: {
-    getUsers (req: GetUsersRequest, done: (error: boolean) => void) {
+    getUsers (req: GetUsersRequest, done: (user: Array<User>, error: boolean) => void) {
       doActionWithError<GetUsersRequest, GetUsersResponse>(
         API.GET_USERS,
         req,
@@ -28,9 +28,9 @@ export const useAdminUserStore = defineStore('admin-user-v3', {
         (resp: GetUsersResponse): void => {
           this.Users.Users.push(...resp.Infos)
           this.Users.Total = resp.Total
-          done(false)
+          done(resp.Infos, false)
         }, () => {
-          done(true)
+          done([], true)
         })
     }
   }

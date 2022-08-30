@@ -27,7 +27,7 @@ export const useAdminRoleStore = defineStore('admin-role-v3', {
   }),
   getters: {},
   actions: {
-    getRoles (req: GetRolesRequest, done: (error: boolean) => void) {
+    getRoles (req: GetRolesRequest, done: (roles: Array<Role>, error: boolean) => void) {
       doActionWithError<GetRolesRequest, GetRolesResponse>(
         API.GET_ROLES,
         req,
@@ -35,12 +35,12 @@ export const useAdminRoleStore = defineStore('admin-role-v3', {
         (resp: GetRolesResponse): void => {
           this.Roles.Roles.push(...resp.Infos)
           this.Roles.Total = resp.Total
-          done(false)
+          done(resp.Infos, false)
         }, () => {
-          done(true)
+          done([], true)
         })
     },
-    getRoleUsers (req: GetRoleUsersRequest, done: (error: boolean) => void) {
+    getRoleUsers (req: GetRoleUsersRequest, done: (roleUsers: Array<AppRoleUser>, error: boolean) => void) {
       doActionWithError<GetRoleUsersRequest, GetRoleUsersResponse>(
         API.GET_ROLEUSERS,
         req,
@@ -48,9 +48,9 @@ export const useAdminRoleStore = defineStore('admin-role-v3', {
         (resp: GetRoleUsersResponse): void => {
           this.RoleUsers.RoleUsers = resp.Infos
           this.RoleUsers.Total = resp.Total
-          done(false)
+          done(resp.Infos, false)
         }, () => {
-          done(true)
+          done([], true)
         })
     },
     createRoleUser (req: CreateRoleUserRequest, done: (error: boolean) => void) {

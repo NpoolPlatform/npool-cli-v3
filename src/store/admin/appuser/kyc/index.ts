@@ -23,7 +23,7 @@ export const useAdminKycStore = defineStore('admin-kyc-v4', {
   }),
   getters: {},
   actions: {
-    getKycReviews (req: GetKycReviewsRequest, done: (error: boolean) => void) {
+    getKycReviews (req: GetKycReviewsRequest, done: (reviews: Array<KYC>,error: boolean) => void) {
       doActionWithError<GetKycReviewsRequest, GetKycReviewsResponse>(
         API.GET_KYCREVIEWS,
         req,
@@ -31,9 +31,9 @@ export const useAdminKycStore = defineStore('admin-kyc-v4', {
         (resp: GetKycReviewsResponse): void => {
           this.KycReviews.KycReviews.push(...resp.Infos)
           this.KycReviews.Total = resp.Total
-          done(false)
+          done(resp.Infos, false)
         }, () => {
-          done(true)
+          done([], true)
         })
     },
     updateKycReview (req: UpdateKycReviewRequest, done: (kycReview: KYC, error: boolean) => void) {

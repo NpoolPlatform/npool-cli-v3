@@ -32,7 +32,7 @@ export interface UpdateKYCRequest extends BaseRequest {
   KycID: string;
   IDNumber: string;
   FrontImg: string;
-  BackImg: string;
+  BackImg?: string;
   SelfieImg: string;
   DocumentType?: DocumentType;
 }

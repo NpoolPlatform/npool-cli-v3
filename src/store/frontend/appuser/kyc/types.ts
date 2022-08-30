@@ -34,6 +34,7 @@ export interface UpdateKYCRequest extends BaseRequest {
   FrontImg: string;
   BackImg: string;
   SelfieImg: string;
+  DocumentType?: DocumentType;
 }
 
 export interface UpdateKYCResponse {

@@ -8,6 +8,8 @@ import {
   CreateAppRoleResponse,
   CreateAppRoleUserRequest,
   CreateAppRoleUserResponse,
+  DeleteAppRoleUserRequest,
+  DeleteAppRoleUserResponse,
   GetAppRolesRequest,
   GetAppRolesResponse,
   GetAppRoleUsersRequest,
@@ -55,7 +57,7 @@ export const useChurchRoleStore = defineStore('church-role-v3', {
           done(undefined as unknown as Role, true)
         })
     },
-    getAppRoleUsers (req: GetAppRoleUsersRequest, done: (roles: Array<AppRoleUser>, error: boolean) => void) {
+    getAppRoleUsers (req: GetAppRoleUsersRequest, done: (users: Array<AppRoleUser>, error: boolean) => void) {
       doActionWithError<GetAppRoleUsersRequest, GetAppRoleUsersResponse>(
         API.GET_APP_ROLE_USERS,
         req,
@@ -72,29 +74,7 @@ export const useChurchRoleStore = defineStore('church-role-v3', {
           done([], true)
         })
     },
-    getAppRoleUsersContinuously (req: GetAppRoleUsersRequest, done: (error: boolean) => void) {
-      doActionWithError<GetAppRoleUsersRequest, GetAppRoleUsersResponse>(
-        API.GET_APP_ROLE_USERS,
-        req,
-        req.Message,
-        (resp: GetAppRoleUsersResponse): void => {
-          let roleUsers = this.AppRoleUsers.get(req.TargetAppID)
-          if (!roleUsers) {
-            roleUsers = []
-          }
-          roleUsers.push(...resp.Infos)
-          this.AppRoleUsers.set(req.TargetAppID, roleUsers)
-          if (resp.Infos.length < req.Limit) {
-            done(false)
-            return
-          }
-          req.Offset = req.Limit + req.Limit
-          this.getAppRoleUsersContinuously(req, done)
-        }, () => {
-          done(true)
-        })
-    },
-    createAppRoleUser (req: CreateAppRoleUserRequest, done: (roles: Role, error: boolean) => void) {
+    createAppRoleUser (req: CreateAppRoleUserRequest, done: (users: AppRoleUser, error: boolean) => void) {
       doActionWithError<CreateAppRoleUserRequest, CreateAppRoleUserResponse>(
         API.CREATE_APP_ROLE_USER,
         req,
@@ -109,6 +89,24 @@ export const useChurchRoleStore = defineStore('church-role-v3', {
           done(resp.Info, false)
         }, () => {
           done(undefined as unknown as AppRoleUser, true)
+        })
+    },
+    deleteAppRoleUser (req: DeleteAppRoleUserRequest, done: (error: boolean) => void) {
+      doActionWithError<DeleteAppRoleUserRequest, DeleteAppRoleUserResponse>(
+        API.DELETE_APP_ROLE_USER,
+        req,
+        req.Message,
+        (resp: DeleteAppRoleUserResponse): void => {
+          let roleUsers = this.AppRoleUsers.get(req.TargetAppID)
+          if (!roleUsers) {
+            roleUsers = []
+          }
+          const index = roleUsers.findIndex((el) => el.ID === resp.Info.ID)
+          roleUsers.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
+          this.AppRoleUsers.set(req.TargetAppID, roleUsers)
+          done(false)
+        }, () => {
+          done(true)
         })
     },
   }

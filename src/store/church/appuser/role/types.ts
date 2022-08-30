@@ -47,3 +47,12 @@ export interface CreateAppRoleUserRequest extends BaseRequest{
 export interface CreateAppRoleUserResponse{
   Info: AppRoleUser
 }
+
+export interface DeleteAppRoleUserRequest extends BaseRequest{
+  TargetAppID: string
+  RoleUserID: string
+}
+
+export interface DeleteAppRoleUserResponse{
+  Info: AppRoleUser
+}

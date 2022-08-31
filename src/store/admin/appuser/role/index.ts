@@ -46,26 +46,26 @@ export const useAdminRoleStore = defineStore('admin-role-v3', {
         req,
         req.Message,
         (resp: GetRoleUsersResponse): void => {
-          this.RoleUsers.RoleUsers = resp.Infos
+          this.RoleUsers.RoleUsers.push(...resp.Infos)
           this.RoleUsers.Total = resp.Total
           done(resp.Infos, false)
         }, () => {
           done([], true)
         })
     },
-    createRoleUser (req: CreateRoleUserRequest, done: (error: boolean) => void) {
+    createRoleUser (req: CreateRoleUserRequest, done: (roleUser: AppRoleUser, error: boolean) => void) {
       doActionWithError<CreateRoleUserRequest, CreateRoleUserResponse>(
         API.CREATE_ROLEUSER,
         req,
         req.Message,
         (resp: CreateRoleUserResponse): void => {
           this.RoleUsers.RoleUsers.splice(0, 0, resp.Info)
-          done(false)
+          done(resp.Info, false)
         }, () => {
-          done(true)
+          done(undefined as unknown as AppRoleUser, true)
         })
     },
-    deleteRoleUser (req: DeleteRoleUserRequest, done: (error: boolean) => void) {
+    deleteRoleUser (req: DeleteRoleUserRequest, done: (roleUser: AppRoleUser, error: boolean) => void) {
       doActionWithError<DeleteRoleUserRequest, DeleteRoleUserResponse>(
         API.DELETE_ROLEUSER,
         req,
@@ -73,9 +73,9 @@ export const useAdminRoleStore = defineStore('admin-role-v3', {
         (resp: DeleteRoleUserResponse): void => {
           const index = this.RoleUsers.RoleUsers.findIndex((el) => el.ID === resp.Info.ID)
           this.RoleUsers.RoleUsers.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
-          done(false)
+          done(resp.Info, false)
         }, () => {
-          done(true)
+          done(undefined as unknown as AppRoleUser, true)
         })
     }
   }

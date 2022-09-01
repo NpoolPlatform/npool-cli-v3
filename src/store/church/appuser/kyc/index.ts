@@ -60,9 +60,9 @@ export const useChurchKycStore = defineStore('church-kyc-v4', {
           done(undefined as unknown as KYCReview, true)
         })
     },
-    getAppKYCImage (req: GetAppKYCImageRequest, kycID: string, done: () => void) {
+    getAppUserKYCImage (req: GetAppKYCImageRequest, kycID: string, done: () => void) {
       doAction<GetAppKYCImageRequest, GetAppKYCImageResponse>(
-        API.GET_APP_KYCIMAGE,
+        API.GET_APP_USER_KYCIMAGE,
         req,
         req.Message,
         (resp: GetAppKYCImageResponse): void => {

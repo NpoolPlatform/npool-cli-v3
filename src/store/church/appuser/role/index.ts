@@ -3,6 +3,7 @@ import { doActionWithError } from '../../../action'
 import { Role, AppRoleUser } from '../../../base'
 import { API } from './const'
 import {
+  AppRoleAndUser,
   ChurchRoleState,
   CreateAppRoleRequest,
   CreateAppRoleResponse,
@@ -63,12 +64,12 @@ export const useChurchRoleStore = defineStore('church-role-v3', {
         req,
         req.Message,
         (resp: GetAppRoleUsersResponse): void => {
-          let roleUsers = this.AppRoleUsers.get(req.TargetAppID)
+          let roleUsers = this.AppRoleUsers.get(req.RoleID) // ONE APP HAVE MORE ROLE
           if (!roleUsers) {
             roleUsers = []
           }
           roleUsers.push(...resp.Infos)
-          this.AppRoleUsers.set(req.TargetAppID, roleUsers)
+          this.AppRoleUsers.set(req.RoleID, roleUsers)
           done(resp.Infos, false)
         }, () => {
           done([], true)
@@ -80,33 +81,33 @@ export const useChurchRoleStore = defineStore('church-role-v3', {
         req,
         req.Message,
         (resp: CreateAppRoleUserResponse): void => {
-          let roleUsers = this.AppRoleUsers.get(req.TargetAppID)
+          let roleUsers = this.AppRoleUsers.get(req.RoleID)
           if (!roleUsers) {
             roleUsers = []
           }
-          roleUsers.push(resp.Info)
-          this.AppRoleUsers.set(req.TargetAppID, roleUsers)
+          roleUsers.splice(0, 0, resp.Info)
+          this.AppRoleUsers.set(req.RoleID, roleUsers)
           done(resp.Info, false)
         }, () => {
           done(undefined as unknown as AppRoleUser, true)
         })
     },
-    deleteAppRoleUser (req: DeleteAppRoleUserRequest, done: (error: boolean) => void) {
+    deleteAppRoleUser (req: DeleteAppRoleUserRequest, done: (appRoleUser: AppRoleAndUser ,error: boolean) => void) {
       doActionWithError<DeleteAppRoleUserRequest, DeleteAppRoleUserResponse>(
         API.DELETE_APP_ROLE_USER,
         req,
         req.Message,
         (resp: DeleteAppRoleUserResponse): void => {
-          let roleUsers = this.AppRoleUsers.get(req.TargetAppID)
+          let roleUsers = this.AppRoleUsers.get(resp.Info.RoleID)
           if (!roleUsers) {
             roleUsers = []
           }
-          const index = roleUsers.findIndex((el) => el.ID === resp.Info.ID)
-          roleUsers.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
+          const index = roleUsers.findIndex((el) => el.UserID === resp.Info.UserID)
+          roleUsers.splice(index, 1)
           this.AppRoleUsers.set(req.TargetAppID, roleUsers)
-          done(false)
+          done(resp.Info, false)
         }, () => {
-          done(true)
+          done(undefined as unknown as AppRoleAndUser, true)
         })
     },
   }

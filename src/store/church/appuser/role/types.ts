@@ -53,6 +53,12 @@ export interface DeleteAppRoleUserRequest extends BaseRequest{
   RoleUserID: string
 }
 
+export interface AppRoleAndUser {
+  ID:     string;
+  AppID:  string;
+  RoleID: string;
+  UserID: string;
+}
 export interface DeleteAppRoleUserResponse{
-  Info: AppRoleUser
+  Info: AppRoleAndUser
 }

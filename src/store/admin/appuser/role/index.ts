@@ -69,7 +69,7 @@ export const useAdminRoleStore = defineStore('admin-role-v3', {
         req.Message,
         (resp: CreateRoleUserResponse): void => {
           const roleUsers = this.roleUsers(req.RoleID)
-          roleUsers.push(resp.Info)
+          roleUsers.splice(0, 0, resp.Info)
           this.RoleUsers.RoleUsers.set(req.RoleID, roleUsers)
           done(resp.Info, false)
         }, () => {

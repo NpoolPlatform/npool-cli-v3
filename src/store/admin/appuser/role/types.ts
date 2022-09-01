@@ -1,4 +1,4 @@
-import { Role, AppRoleUser, BaseRequest } from '../../../base'
+import { Role, AppRoleUser, BaseRequest, RoleUserRelation } from '../../../base'
 
 export interface GetRolesRequest extends BaseRequest{
   Offset: number
@@ -34,5 +34,5 @@ export interface DeleteRoleUserRequest extends BaseRequest{
 }
 
 export interface DeleteRoleUserResponse {
-  Info: AppRoleUser
+  Info: RoleUserRelation
 }

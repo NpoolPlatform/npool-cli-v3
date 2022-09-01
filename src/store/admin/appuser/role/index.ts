@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { API } from './const'
-import {  Role, AppRoleUser } from '../../../base'
+import {  Role, AppRoleUser, RoleUserRelation } from '../../../base'
 import { doActionWithError } from '../../../action'
 
 import {
@@ -21,11 +21,18 @@ export const useAdminRoleStore = defineStore('admin-role-v3', {
       Total: 0
     },
     RoleUsers: {
-      RoleUsers: [] as Array<AppRoleUser>,
+      RoleUsers: new Map<string, Array<AppRoleUser>>(),
       Total: 0
     }
   }),
-  getters: {},
+  getters: {
+    roleUsers() : (roleID: string) => Array<AppRoleUser> {
+      return (roleID: string) => {
+        const data = this.RoleUsers.RoleUsers.get(roleID)
+        return !data ? [] as Array<AppRoleUser> : data
+      }
+    }
+  },
   actions: {
     getRoles (req: GetRolesRequest, done: (roles: Array<Role>, error: boolean) => void) {
       doActionWithError<GetRolesRequest, GetRolesResponse>(
@@ -46,7 +53,9 @@ export const useAdminRoleStore = defineStore('admin-role-v3', {
         req,
         req.Message,
         (resp: GetRoleUsersResponse): void => {
-          this.RoleUsers.RoleUsers.push(...resp.Infos)
+          const roleUsers = this.roleUsers(req.RoleID)
+          roleUsers.push(...resp.Infos)
+          this.RoleUsers.RoleUsers.set(req.RoleID, roleUsers)
           this.RoleUsers.Total = resp.Total
           done(resp.Infos, false)
         }, () => {
@@ -59,23 +68,27 @@ export const useAdminRoleStore = defineStore('admin-role-v3', {
         req,
         req.Message,
         (resp: CreateRoleUserResponse): void => {
-          this.RoleUsers.RoleUsers.splice(0, 0, resp.Info)
+          const roleUsers = this.roleUsers(req.RoleID)
+          roleUsers.push(resp.Info)
+          this.RoleUsers.RoleUsers.set(req.RoleID, roleUsers)
           done(resp.Info, false)
         }, () => {
           done(undefined as unknown as AppRoleUser, true)
         })
     },
-    deleteRoleUser (req: DeleteRoleUserRequest, done: (roleUser: AppRoleUser, error: boolean) => void) {
+    deleteRoleUser (req: DeleteRoleUserRequest, done: (roleUser: RoleUserRelation, error: boolean) => void) {
       doActionWithError<DeleteRoleUserRequest, DeleteRoleUserResponse>(
         API.DELETE_ROLEUSER,
         req,
         req.Message,
         (resp: DeleteRoleUserResponse): void => {
-          const index = this.RoleUsers.RoleUsers.findIndex((el) => el.ID === resp.Info.ID)
-          this.RoleUsers.RoleUsers.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
+          const roleUsers = this.roleUsers(resp.Info.RoleID)
+          const index = roleUsers.findIndex((el) => el.UserID === resp.Info.UserID)
+          roleUsers.splice(index, 1)
+          this.RoleUsers.RoleUsers.set(resp.Info.RoleID, roleUsers)
           done(resp.Info, false)
         }, () => {
-          done(undefined as unknown as AppRoleUser, true)
+          done(undefined as unknown as RoleUserRelation, true)
         })
     }
   }

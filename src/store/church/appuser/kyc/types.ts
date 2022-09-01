@@ -26,12 +26,12 @@ export interface UpdateAppKycReviewResponse {
   Info: KYCReview
 }
 
-export interface GetAppUserKYCImageRequest extends BaseRequest {
+export interface GetAppKYCImageRequest extends BaseRequest {
   ImageType: ImageType
   TargetUserID: string
   TargetAppID: string
 }
 
-export interface GetAppUserKYCImageResponse {
+export interface GetAppKYCImageResponse {
   Info: string
 }

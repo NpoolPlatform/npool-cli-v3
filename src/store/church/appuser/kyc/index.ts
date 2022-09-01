@@ -4,8 +4,8 @@ import { ImageType, KYCReview, } from '../../../base'
 import {
   GetAppKycReviewsRequest,
   GetAppKycReviewsResponse,
-  GetAppUserKYCImageRequest,
-  GetAppUserKYCImageResponse,
+  GetAppKYCImageRequest,
+  GetAppKYCImageResponse,
   UpdateAppKycReviewRequest,
   UpdateAppKycReviewResponse
 } from './types'
@@ -60,12 +60,12 @@ export const useChurchKycStore = defineStore('church-kyc-v4', {
           done(undefined as unknown as KYCReview, true)
         })
     },
-    getAppUserKYCImage (req: GetAppUserKYCImageRequest, kycID: string, done: () => void) {
-      doAction<GetAppUserKYCImageRequest, GetAppUserKYCImageResponse>(
+    getAppUserKYCImage (req: GetAppKYCImageRequest, kycID: string, done: () => void) {
+      doAction<GetAppKYCImageRequest, GetAppKYCImageResponse>(
         API.GET_APP_KYCIMAGE,
         req,
         req.Message,
-        (resp: GetAppUserKYCImageResponse): void => {
+        (resp: GetAppKYCImageResponse): void => {
           let myImgs = this.Images.get(kycID)
           if (!myImgs) {
             myImgs = new Map<ImageType, KYCImage>()

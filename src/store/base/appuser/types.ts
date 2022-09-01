@@ -60,6 +60,8 @@ export interface User {
   InvitationCodeConfirmed: boolean
 
   LoginVerified: boolean
+
+  State: KYCState
 }
 
 
@@ -188,4 +190,11 @@ export interface AppRoleUser {
   EmailAddress: string;
   PhoneNO:      string;
   Genesis:      boolean;
+}
+
+export interface RoleUserRelation {
+  ID:     string;
+  AppID:  string;
+  RoleID: string;
+  UserID: string;
 }

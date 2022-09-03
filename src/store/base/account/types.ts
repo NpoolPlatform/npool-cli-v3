@@ -1,4 +1,4 @@
-export interface TransferAddress {
+export interface TransferAccount {
   ID:                 string;
   AppID:              string;
   UserID:             string;

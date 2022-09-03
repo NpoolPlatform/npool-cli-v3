@@ -1,8 +1,6 @@
 import { AccountType, BaseRequest, Transfer } from '../../../base'
 
 export interface CreateTransferRequest extends BaseRequest {
-  AppID:             string;
-  UserID:            string;
   Account:           string;
   AccountType:       AccountType;
   VerificationCode:  string;

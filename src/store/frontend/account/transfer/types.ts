@@ -4,8 +4,8 @@ export interface CreateTransferRequest extends BaseRequest {
   AppID:             string;
   UserID:            string;
   Account:           string;
-  AccountType:       string;
-  VerificationCode:  AccountType;
+  AccountType:       AccountType;
+  VerificationCode:  string;
   TargetAccount:     string;
   TargetAccountType: AccountType;
 }

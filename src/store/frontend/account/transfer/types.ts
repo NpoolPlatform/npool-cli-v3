@@ -1,6 +1,6 @@
-import { AccountType, Transfer } from '../../../base'
+import { AccountType, BaseRequest, Transfer } from '../../../base'
 
-export interface CreateTransferRequest {
+export interface CreateTransferRequest extends BaseRequest {
   AppID:             string;
   UserID:            string;
   Account:           string;
@@ -14,7 +14,7 @@ export interface CreateTransferResponse {
   Info: Transfer
 }
 
-export interface DeleteTransferRequest {
+export interface DeleteTransferRequest extends BaseRequest {
   TransferID: string;
 }
 
@@ -22,7 +22,7 @@ export interface DeleteTransferResponse {
   Info: Transfer
 }
 
-export interface GetTransfersRequest {
+export interface GetTransfersRequest extends BaseRequest {
   Offset: number;
   Limit: number;
 }

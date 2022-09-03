@@ -42,7 +42,10 @@ export const useFrontendTransferAddressStore = defineStore('frontend-transferadd
         req.Message,
         (resp: DeleteTransferAddressResponse): void => {
           const index = this.TransferAddress.TransferAddress.findIndex((el) => el.ID === resp.Info.ID)
-          this.TransferAddress.TransferAddress.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
+          if (index < 0) {
+            return 
+          }
+          this.TransferAddress.TransferAddress.splice(index, 1)
           this.TransferAddress.Total -= 1
           done(resp.Info, false)
         }, () => {

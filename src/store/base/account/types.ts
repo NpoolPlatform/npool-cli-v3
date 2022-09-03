@@ -1,4 +1,4 @@
-export interface Transfer {
+export interface TransferAddress {
   ID:                 string;
   AppID:              string;
   UserID:             string;
@@ -6,6 +6,20 @@ export interface Transfer {
   TargetEmailAddress: string;
   TargetPhoneNO:      string;
   CreatedAt:          number;
+  TargetUsername:     string;
+  TargetFirstName:    string;
+  TargetLastName:     string;
+}
+export interface Transfer {
+  CoinTypeID:         string;
+  CoinName:           string;
+  CoinLogo:           string;
+  CoinUnit:           string;
+  Amount:             string;
+  CreatedAt:          number;
+  TargetUserID:       string;
+  TargetEmailAddress: string;
+  TargetPhoneNO:      string;
   TargetUsername:     string;
   TargetFirstName:    string;
   TargetLastName:     string;

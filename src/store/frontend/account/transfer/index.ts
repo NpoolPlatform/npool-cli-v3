@@ -57,6 +57,3 @@ export const useFrontendTransferStore = defineStore('frontend-transfer-v4', {
     }
   }
 })
-
-export * from './const'
-export * from './types'

@@ -11,7 +11,7 @@ import { doActionWithError } from '../../../action'
 import { TransferAccount } from '../../../base'
 import { API } from './const'
 
-export const useFrontendTransferAccountStore = defineStore('frontend-transferAccount-v4', {
+export const useFrontendTransferAccountStore = defineStore('frontend-transferaccount-v4', {
   state: () => ({
     TransferAccounts: {
       TransferAccounts: [] as Array<TransferAccount>,

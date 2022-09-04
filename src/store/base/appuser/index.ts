@@ -7,13 +7,17 @@ export const useBaseUserStore = defineStore('base-user-v4', {
     displayName (): (user: User, locale: string) => string {
       return (user: User, locale: string) => {
         let username = user.EmailAddress;
+        let username1 = ''
         switch (locale) {
           case 'ja-JP':
-            username =  user.FirstName + ' ' + user.LastName
+            username1 =  user.FirstName + ' ' + user.LastName
             break
           default:
-            username = user.LastName + ' ' + user.FirstName
+            username1 = user.LastName + ' ' + user.FirstName
             break
+        }
+        if (username1.length) {
+          username = username1
         }
         if (!username?.length) {
             username = user.PhoneNO
@@ -25,13 +29,17 @@ export const useBaseUserStore = defineStore('base-user-v4', {
     displayName1 (): (emailAddress: string, phoneNO: string, firstName: string, lastName: string, locale: string) => string {
       return (emailAddress: string, phoneNO: string, firstName: string, lastName: string, locale: string) => {
         let username = emailAddress;
+        let username1 = ''
         switch (locale) {
           case 'ja-JP':
-            username =  firstName + ' ' + lastName
+            username1 =  firstName + ' ' + lastName
             break
           default:
-            username = lastName + ' ' + firstName
+            username1 = lastName + ' ' + firstName
             break
+        }
+        if (username1.length) {
+          username = username1
         }
         if (!username?.length) {
             username = phoneNO

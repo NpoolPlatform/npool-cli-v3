@@ -151,7 +151,7 @@ export interface KYC {
   CreatedAt: number;
   UpdatedAt: number;
 
-  Message: string;
+  ReviewMessage: string;
 }
 
 export interface KYCReview {

@@ -120,7 +120,7 @@ export const useAdminOrderStore = defineStore('admin-order-v4', {
     },
     updateUserOrder (req: UpdateUserOrderRequest, done: (order: Order, error: boolean) => void) {
       doActionWithError<UpdateUserOrderRequest, UpdateUserOrderResponse>(
-        API.CREATE_USER_ORDER,
+        API.UPDATE_USER_ORDER,
         req,
         req.Message,
         (resp: UpdateUserOrderResponse): void => {

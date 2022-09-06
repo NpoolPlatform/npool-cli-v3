@@ -30,6 +30,7 @@ interface CreateUserOrderResponse {
 
 interface UpdateUserOrderRequest extends BaseRequest {
  OrderID: string
+ Canceled: boolean
 }
 
 interface UpdateUserOrderResponse {

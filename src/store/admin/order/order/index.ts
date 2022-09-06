@@ -103,7 +103,7 @@ export const useAdminOrderStore = defineStore('admin-order-v4', {
         }
       )
     },
-    createUserOrder (req: CreateUserOrderRequest, handler: (orderID: string, error: boolean) => void) {
+    createUserOrder (req: CreateUserOrderRequest, done: (orderID: string, error: boolean) => void) {
       doActionWithError<CreateUserOrderRequest, CreateUserOrderResponse>(
         API.CREATE_USER_ORDER,
         req,
@@ -111,14 +111,14 @@ export const useAdminOrderStore = defineStore('admin-order-v4', {
         (resp: CreateUserOrderResponse): void => {
           this.Orders.splice(0, 0, resp.Info)
           this.Total += 1
-          handler(resp.Info.ID, false)
+          done(resp.Info.ID, false)
         },
         () => {
-          handler('', true)
+          done('', true)
         }
       )
     },
-    updateUserOrder (req: UpdateUserOrderRequest, handler: (order: Order, error: boolean) => void) {
+    updateUserOrder (req: UpdateUserOrderRequest, done: (order: Order, error: boolean) => void) {
       doActionWithError<UpdateUserOrderRequest, UpdateUserOrderResponse>(
         API.CREATE_USER_ORDER,
         req,
@@ -126,10 +126,10 @@ export const useAdminOrderStore = defineStore('admin-order-v4', {
         (resp: UpdateUserOrderResponse): void => {
           const index = this.Orders.findIndex((el) => el.ID === resp.Info.ID)
           this.Orders.splice(index, 1)
-          handler(resp.Info, false)
+          done(resp.Info, false)
         },
         () => {
-          handler({} as Order, true)
+          done({} as Order, true)
         }
       )
     }

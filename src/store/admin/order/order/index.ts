@@ -85,7 +85,7 @@ export const useAdminOrderStore = defineStore('admin-order-v4', {
     }
   },
   actions: {
-    getAppOrders (req: GetAppOrdersRequest, done: (error: boolean, count?: number) => void) {
+    getAppOrders (req: GetAppOrdersRequest, done: (orders: Array<Order>,error: boolean) => void) {
       doActionWithError<GetAppOrdersRequest, GetAppOrdersResponse>(
         API.GET_APP_ORDERS,
         req,
@@ -96,14 +96,14 @@ export const useAdminOrderStore = defineStore('admin-order-v4', {
             this.Orders.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, el)
           })
           this.Total = resp.Total
-          done(false, resp.Infos.length)
+          done(resp.Infos, false)
         },
         () => {
-          done(true)
+          done([], true)
         }
       )
     },
-    createUserOrder (req: CreateUserOrderRequest, done: (orderID: string, error: boolean) => void) {
+    createUserOrder (req: CreateUserOrderRequest, done: (order: Order, error: boolean) => void) {
       doActionWithError<CreateUserOrderRequest, CreateUserOrderResponse>(
         API.CREATE_USER_ORDER,
         req,
@@ -111,10 +111,10 @@ export const useAdminOrderStore = defineStore('admin-order-v4', {
         (resp: CreateUserOrderResponse): void => {
           this.Orders.splice(0, 0, resp.Info)
           this.Total += 1
-          done(resp.Info.ID, false)
+          done(resp.Info, false)
         },
         () => {
-          done('', true)
+          done({} as Order, true)
         }
       )
     },

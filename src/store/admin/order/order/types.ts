@@ -29,10 +29,10 @@ interface CreateUserOrderResponse {
 
 
 interface UpdateUserOrderRequest extends BaseRequest {
- ID: string
- TargetUserID: string
- PaymentID: string
- Canceled: boolean
+  TargetUserID: string
+  ID: string
+  PaymentID: string
+  Canceled: boolean
 }
 
 interface UpdateUserOrderResponse {

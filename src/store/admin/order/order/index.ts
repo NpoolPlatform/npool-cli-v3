@@ -125,7 +125,7 @@ export const useAdminOrderStore = defineStore('admin-order-v4', {
         req.Message,
         (resp: UpdateUserOrderResponse): void => {
           const index = this.Orders.findIndex((el) => el.ID === resp.Info.ID)
-          this.Orders.splice(index, 1)
+          this.Orders.splice(index, 1, resp.Info)
           done(resp.Info, false)
         },
         () => {

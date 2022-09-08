@@ -29,7 +29,6 @@ export interface UpdateAppResponse {
 }
 
 export interface CreateAppRequest extends BaseRequest {
-  ID?: string;
   CreatedBy?:         string;
   Name:               string;
   Logo:               string;

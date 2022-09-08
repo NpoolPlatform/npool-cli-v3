@@ -23,6 +23,7 @@ export interface User {
 
   Username: string
   AddressFields: Array<string>
+  AddressFieldsString: string
   Gender: string
   PostalCode: string
   Age: number

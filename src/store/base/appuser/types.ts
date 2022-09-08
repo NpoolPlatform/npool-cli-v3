@@ -35,11 +35,14 @@ export interface User {
   IDNumber: string
 
   SigninVerifyType: SigninVerifyType
+  SigninVerifyTypeStr: string
   GoogleAuthVerified: boolean
+  GoogleAuthVerifiedInt: number
   GoogleSecret: string
   HasGoogleSecret: boolean
   GoogleOTPAuth: string
   SigninVerifyByGoogleAuth: boolean
+  SigninVerifyByGoogleAuthInt: number
 
   BanAppUserID: string
   Banned: boolean
@@ -63,6 +66,7 @@ export interface User {
   LoginVerified: boolean
 
   State: KYCState
+  KycStateStr: string
 }
 
 

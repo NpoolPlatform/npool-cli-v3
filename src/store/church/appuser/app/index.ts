@@ -12,7 +12,13 @@ export const useChurchAppStore = defineStore('church-app-v4', {
     }
 
   }),
-  getters: {},
+  getters: {
+    getAppByID() {
+      return (appID:string) => {
+        return this.Apps.Apps.find((al) => al.ID === appID)
+      }
+    }
+  },
   actions: {
     getApps (req: GetAppsRequest, done: (apps: Array<App>, error: boolean) => void) {
       doActionWithError<GetAppsRequest, GetAppsResponse>(

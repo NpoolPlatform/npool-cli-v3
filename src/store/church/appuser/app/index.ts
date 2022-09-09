@@ -1,16 +1,32 @@
 import { doActionWithError } from '../../../action'
 import { defineStore } from 'pinia'
 import { API } from './const'
-import { App } from '../../../base'
-import { CreateAppRequest, CreateAppResponse, GetAppsRequest, GetAppsResponse, UpdateAppRequest, UpdateAppResponse } from './types'
+import { App, Recaptcha, SignMethod } from '../../../base'
+import { 
+  CreateAppRequest,
+  CreateAppResponse,
+  GetAppsRequest,
+  GetAppsResponse,
+  GetRecaptchasRequest,
+  GetRecaptchasResponse,
+  GetSignMethodsRequest,
+  GetSignMethodsResponse, 
+  UpdateAppRequest,
+  UpdateAppResponse 
+} from './types'
 
 export const useChurchAppStore = defineStore('church-app-v4', {
   state: () => ({
     Apps: {
       Apps: [] as Array<App>,
       Total: 0
+    },
+    Recaptchas: {
+      Recaptchas: [] as Array<Recaptcha>
+    },
+    SignMethods: {
+      SignMethods: [] as Array<SignMethod>
     }
-
   }),
   getters: {
     getAppByID() {
@@ -57,6 +73,30 @@ export const useChurchAppStore = defineStore('church-app-v4', {
           done(resp.Info, false)
         }, () => {
           done({} as App, true)
+        })
+    },
+    getRecaptchas (req: GetRecaptchasRequest, done: (recaptchas: Array<Recaptcha>, error: boolean) => void) {
+      doActionWithError<GetRecaptchasRequest, GetRecaptchasResponse>(
+        API.GET_APPS,
+        req,
+        req.Message,
+        (resp: GetRecaptchasResponse): void => {
+          this.Recaptchas.Recaptchas.push(...resp.Infos)
+          done(resp.Infos, false)
+        }, () => {
+          done([], true)
+        })
+    },
+    getSignMethods (req: GetSignMethodsRequest, done: (methods: Array<SignMethod>, error: boolean) => void) {
+      doActionWithError<GetSignMethodsRequest, GetSignMethodsResponse>(
+        API.GET_APPS,
+        req,
+        req.Message,
+        (resp: GetSignMethodsResponse): void => {
+          this.SignMethods.SignMethods.push(...resp.Infos)
+          done(resp.Infos, false)
+        }, () => {
+          done([], true)
         })
     },
   }

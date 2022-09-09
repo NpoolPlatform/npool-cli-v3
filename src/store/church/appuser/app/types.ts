@@ -1,4 +1,4 @@
-import { App, BaseRequest, RecaptchaType, SignMethodType } from '../../../base'
+import { App, BaseRequest, Recaptcha, RecaptchaType, SignMethod, SignMethodType } from '../../../base'
 
 export interface GetAppsRequest extends BaseRequest {
   Offset: number;
@@ -44,4 +44,18 @@ export interface CreateAppRequest extends BaseRequest {
 }
 export interface CreateAppResponse {
   Info: App;
+}
+
+export interface GetRecaptchasRequest extends BaseRequest {
+
+}
+export interface GetRecaptchasResponse {
+  Infos: Array<Recaptcha>
+}
+
+export interface GetSignMethodsRequest extends BaseRequest {
+
+}
+export interface GetSignMethodsResponse {
+  Infos: Array<SignMethod>
 }

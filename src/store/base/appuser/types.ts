@@ -203,3 +203,16 @@ export interface RoleUserRelation {
   RoleID: string;
   UserID: string;
 }
+
+export interface Recaptcha {
+  ID:        string;
+  Recaptcha: string;
+  Dashboard: string;
+}
+
+export interface SignMethod {
+  ID:       string;
+  Method:   string;
+  Icon:     string;
+  External: boolean;
+}

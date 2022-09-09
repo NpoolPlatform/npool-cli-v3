@@ -77,7 +77,7 @@ export const useChurchAppStore = defineStore('church-app-v4', {
     },
     getRecaptchas (req: GetRecaptchasRequest, done: (recaptchas: Array<Recaptcha>, error: boolean) => void) {
       doActionWithError<GetRecaptchasRequest, GetRecaptchasResponse>(
-        API.GET_APPS,
+        API.GET_RECAPTCHAS,
         req,
         req.Message,
         (resp: GetRecaptchasResponse): void => {
@@ -89,7 +89,7 @@ export const useChurchAppStore = defineStore('church-app-v4', {
     },
     getSignMethods (req: GetSignMethodsRequest, done: (methods: Array<SignMethod>, error: boolean) => void) {
       doActionWithError<GetSignMethodsRequest, GetSignMethodsResponse>(
-        API.GET_APPS,
+        API.GET_SIGNMETHODS,
         req,
         req.Message,
         (resp: GetSignMethodsResponse): void => {

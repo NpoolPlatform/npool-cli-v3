@@ -9,3 +9,11 @@ export interface CreateAppUserDepositRequest extends BaseRequest {
 export interface CreateAppUserDepositResponse {
   Info: Detail;
 }
+
+export interface GetAppUserGeneralsRequest extends BaseRequest {
+
+}
+
+export interface GetAppUserGeneralsResponse {
+
+}

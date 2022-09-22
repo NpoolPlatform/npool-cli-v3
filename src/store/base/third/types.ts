@@ -22,3 +22,12 @@ export interface EmailTemplate {
   Body: string;
   DefaultToUsername: string;
 }
+
+export interface SMSTemplate {
+  ID: string;
+  AppID: string;
+  LangID: string;
+  UsedFor: UsedFor;
+  Subject: string;
+  Message: string;
+}

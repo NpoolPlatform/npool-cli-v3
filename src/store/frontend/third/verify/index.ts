@@ -4,7 +4,7 @@ import { API } from './const'
 import { SendCodeResponse, SendCodeRequest } from './types'
 
 
-export const useFrontendThirdStore = defineStore('frontend-third-v4', {
+export const useFrontendVerifyStore = defineStore('frontend-verify-v4', {
   state: () => ({}),
   getters: {},
   actions: {

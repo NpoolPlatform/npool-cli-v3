@@ -30,7 +30,7 @@ export const useChurchSMSTemplateStore = defineStore('church-smstemplate-v4', {
     }
   },
   actions: {
-    createAppSMSTemplate (req: CreateAppSMSTemplateRequest, done: (emailTemplate: SMSTemplate, error: boolean) => void) {
+    createAppSMSTemplate (req: CreateAppSMSTemplateRequest, done: (smsTemplate: SMSTemplate, error: boolean) => void) {
       doActionWithError<CreateAppSMSTemplateRequest, CreateAppSMSTemplateResponse>(
         API.CREATE_APP_SMSTEMPLATE,
         req,
@@ -45,7 +45,7 @@ export const useChurchSMSTemplateStore = defineStore('church-smstemplate-v4', {
           done({} as SMSTemplate, true)
       })
     },
-    getAppSMSTemplates (req: GetAppSMSTemplatesRequest, done: (emailTemplates: Array<SMSTemplate>, error: boolean) => void) {
+    getAppSMSTemplates (req: GetAppSMSTemplatesRequest, done: (smsTemplates: Array<SMSTemplate>, error: boolean) => void) {
       doActionWithError<GetAppSMSTemplatesRequest, GetAppSMSTemplatesResponse>(
         API.GET_APP_SMSTEMPLATES,
         req,
@@ -60,7 +60,7 @@ export const useChurchSMSTemplateStore = defineStore('church-smstemplate-v4', {
           done([], true)
       })
     },
-    updateAppSMSTemplate (req: UpdateAppSMSTemplateRequest, done: (emailTemplate: SMSTemplate, error: boolean) => void) {
+    updateAppSMSTemplate (req: UpdateAppSMSTemplateRequest, done: (smsTemplate: SMSTemplate, error: boolean) => void) {
       doActionWithError<UpdateAppSMSTemplateRequest, UpdateAppSMSTemplateResponse>(
         API.UPDATE_APP_SMSTEMPLATE,
         req,
@@ -74,7 +74,7 @@ export const useChurchSMSTemplateStore = defineStore('church-smstemplate-v4', {
           done({} as SMSTemplate, true)
       })
     },
-    deleteAppSMSTemplate (req: DeleteAppSMSTemplatesRequest, done: (emailTemplate: SMSTemplate, error: boolean) => void) {
+    deleteAppSMSTemplate (req: DeleteAppSMSTemplatesRequest, done: (smsTemplate: SMSTemplate, error: boolean) => void) {
       doActionWithError<DeleteAppSMSTemplatesRequest, DeleteAppSMSTemplateResponse>(
         API.UPDATE_APP_SMSTEMPLATE,
         req,

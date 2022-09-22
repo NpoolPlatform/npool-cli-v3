@@ -27,7 +27,7 @@ export const useAdminEmailTemplateStore = defineStore('admin-emailtemplate-v4', 
           done({} as EmailTemplate, true)
       })
     },
-    getEmailTemplates (req: GetEmailTemplatesRequest, done: (EmailTemplates: Array<EmailTemplate>, error: boolean) => void) {
+    getEmailTemplates (req: GetEmailTemplatesRequest, done: (emailTemplates: Array<EmailTemplate>, error: boolean) => void) {
       doActionWithError<GetEmailTemplatesRequest, GetEmailTemplatesResponse>(
         API.GET_EMAILTEMPLATES,
         req,
@@ -40,7 +40,7 @@ export const useAdminEmailTemplateStore = defineStore('admin-emailtemplate-v4', 
           done([], true)
       })
     },
-    updateEmailTemplate (req: UpdateEmailTemplateRequest, done: (EmailTemplate: EmailTemplate, error: boolean) => void) {
+    updateEmailTemplate (req: UpdateEmailTemplateRequest, done: (emailTemplate: EmailTemplate, error: boolean) => void) {
       doActionWithError<UpdateEmailTemplateRequest, UpdateEmailTemplateResponse>(
         API.UPDATE_EMAILTEMPLATE,
         req,

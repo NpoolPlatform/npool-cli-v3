@@ -28,7 +28,7 @@ export const useChurchEmailTemplateStore = defineStore('church-emailtemplate-v4'
     }
   },
   actions: {
-    createEmailTemplate (req: CreateAppEmailTemplateRequest, done: (emailTemplate: EmailTemplate, error: boolean) => void) {
+    createAppEmailTemplate (req: CreateAppEmailTemplateRequest, done: (emailTemplate: EmailTemplate, error: boolean) => void) {
       doActionWithError<CreateAppEmailTemplateRequest, CreateAppEmailTemplateResponse>(
         API.CREATE_APP_EMAILTEMPLATE,
         req,
@@ -43,7 +43,7 @@ export const useChurchEmailTemplateStore = defineStore('church-emailtemplate-v4'
           done({} as EmailTemplate, true)
       })
     },
-    getEmailTemplates (req: GetAppEmailTemplatesRequest, done: (emailTemplates: Array<EmailTemplate>, error: boolean) => void) {
+    getAppEmailTemplates (req: GetAppEmailTemplatesRequest, done: (emailTemplates: Array<EmailTemplate>, error: boolean) => void) {
       doActionWithError<GetAppEmailTemplatesRequest, GetAppEmailTemplatesResponse>(
         API.GET_APP_EMAILTEMPLATES,
         req,
@@ -58,7 +58,7 @@ export const useChurchEmailTemplateStore = defineStore('church-emailtemplate-v4'
           done([], true)
       })
     },
-    updateEmailTemplate (req: UpdateAppEmailTemplateRequest, done: (emailTemplate: EmailTemplate, error: boolean) => void) {
+    updateAppEmailTemplate (req: UpdateAppEmailTemplateRequest, done: (emailTemplate: EmailTemplate, error: boolean) => void) {
       doActionWithError<UpdateAppEmailTemplateRequest, UpdateAppEmailTemplateResponse>(
         API.UPDATE_APP_EMAILTEMPLATE,
         req,

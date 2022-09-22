@@ -17,3 +17,7 @@ export interface ReqMessage {
 export interface BaseRequest {
   Message: ReqMessage
 }
+
+export interface MyRequest {
+  NotifyMessage: ReqMessage
+}

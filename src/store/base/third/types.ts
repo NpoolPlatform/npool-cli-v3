@@ -9,3 +9,16 @@ export interface Contact {
   UsedFor: UsedFor;
   Sender: string;
 }
+
+export interface EmailTemplate {
+  ID: string;
+  AppID: string;
+  LangID: string;
+  UsedFor: UsedFor;
+  Sender: string;
+  ReplyTos: string[];
+  CCTos: string[];
+  Subject: string;
+  Body: string;
+  DefaultToUsername: string;
+}

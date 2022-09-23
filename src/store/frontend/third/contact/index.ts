@@ -4,7 +4,7 @@ import { API } from './const'
 import { ContactViaEmailRequest, ContactViaEmailResponse } from './types'
 
 
-export const useAdminContactStore = defineStore('admin-contact-v4', {
+export const useFrontendContactStore = defineStore('frontend-contact-v4', {
   state: () => ({}),
   getters: {},
   actions: {

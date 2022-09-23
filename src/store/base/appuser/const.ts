@@ -6,7 +6,14 @@ export enum SigninVerifyType {
 
 export enum SignMethodType {
   Mobile = 'Mobile',
-  Email = 'Email'
+  Email = 'Email',
+  Twitter = 'Twitter',
+  Github = 'Github',
+  Facebook = 'Facebook',
+  Linkedin = 'Linkedin',
+  Wechat = 'Wechat',
+  Google = 'Google',
+  Username = 'Username'
 }
 
 export enum RecaptchaType {

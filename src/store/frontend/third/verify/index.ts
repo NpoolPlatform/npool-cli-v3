@@ -8,15 +8,15 @@ export const useFrontendVerifyStore = defineStore('frontend-verify-v4', {
   state: () => ({}),
   getters: {},
   actions: {
-    sendCode (req: SendCodeRequest, done: (code: null, error: boolean) => void) {
+    sendCode (req: SendCodeRequest, done: (error: boolean) => void) {
       doActionWithError<SendCodeRequest, SendCodeResponse>(
         API.SEND_CODE,
         req,
         req.Message,
         (): void => {
-          done(null, false)
+          done(false)
         }, () => {
-          done(null, true)
+          done(true)
       })
     },
   }

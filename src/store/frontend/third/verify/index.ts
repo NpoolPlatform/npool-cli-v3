@@ -1,12 +1,14 @@
 import { defineStore } from 'pinia'
 import { doAction } from '../../../action'
 import { API } from './const'
-import { SendCodeResponse, SendCodeRequest } from './types'
+import { SendCodeResponse, SendCodeRequest, GetGoogleTokenRequest } from './types'
 import { AccountType, NotifyType, UsedFor } from '../../../base'
 import { useI18n } from 'vue-i18n'
+import { useNotificationStore } from '../../../local'
 
 export const useFrontendVerifyStore = defineStore('frontend-verify-v4', {
   state: () => ({
+    GoogleToken: new Map<string, string>(),
     I18n: useI18n()
   }),
   getters: {},
@@ -55,6 +57,35 @@ export const useFrontendVerifyStore = defineStore('frontend-verify-v4', {
         (): void => {
           // TODO
         })
-    }
+    },
+    getGoogleToken (req: GetGoogleTokenRequest, done: (token: string) => void) {
+      const recaptcha = req.Recaptcha
+      const notification = useNotificationStore()
+      if (recaptcha) {
+        const { executeRecaptcha, recaptchaLoaded } = recaptcha
+        recaptchaLoaded()
+          .then((loaded: boolean) => {
+            if (loaded) {
+              void executeRecaptcha(req.Req)
+                .then((token: string) => {
+                  this.GoogleToken.set(req.Req, token)
+                  done(token)
+                })
+                .catch((err: Error) => {
+                  if (req.Message.Error) {
+                    req.Message.Error.Description = err.message
+                    notification.Notifications.push(req.Message.Error)
+                  }
+                })
+            }
+          })
+          .catch((err: Error) => {
+            if (req.Message.Error) {
+              req.Message.Error.Description = err.message
+              notification.Notifications.push(req.Message.Error)
+            }
+          })
+      }
+    },
   }
 })

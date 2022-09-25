@@ -16,6 +16,18 @@ export enum SignMethodType {
   Username = 'Username'
 }
 
+export const SignMethodTypes = [
+  SignMethodType.Mobile,
+  SignMethodType.Email,
+  SignMethodType.Twitter,
+  SignMethodType.Github,
+  SignMethodType.Facebook,
+  SignMethodType.Linkedin,
+  SignMethodType.Wechat,
+  SignMethodType.Google,
+  SignMethodType.Username,
+]
+
 export enum RecaptchaType {
   GoogleRecaptchaV3 = 'GoogleRecaptchaV3'
 }

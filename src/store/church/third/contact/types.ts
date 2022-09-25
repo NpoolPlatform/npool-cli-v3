@@ -22,3 +22,17 @@ export interface GetAppContactsResponse {
   Infos: Array<Contact>;
   Total: number;
 }
+
+export interface UpdateAppContactRequest extends BaseRequest {
+  TargetAppID: string;
+  ID: string;
+  UsedFor: UsedFor;
+  Account: string;
+  AccountType: SignMethodType;
+  Sender: string;
+  AppID: string;
+}
+
+export interface UpdateAppContactResponse {
+  Info: Contact;
+}

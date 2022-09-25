@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { Contact } from '../../../base'
 import { doActionWithError } from '../../../action'
 import { API } from './const'
-import { CreateAppContactRequest, CreateAppContactResponse, GetAppContactsRequest, GetAppContactsResponse} from './types'
+import { CreateAppContactRequest, CreateAppContactResponse, GetAppContactsRequest, GetAppContactsResponse, UpdateAppContactRequest, UpdateAppContactResponse} from './types'
 
 
 export const useChurchContactStore = defineStore('church-contact-v4', {
@@ -50,6 +50,21 @@ export const useChurchContactStore = defineStore('church-contact-v4', {
         }, () => {
           done([], true)
       })
-    }
+    },
+    updateAppContact (req: UpdateAppContactRequest, done: (contact: Contact, error: boolean) => void) {
+      doActionWithError<UpdateAppContactRequest, UpdateAppContactResponse>(
+        API.UPDATE_APP_CONTACT,
+        req,
+        req.Message,
+        (resp: UpdateAppContactResponse): void => {
+          const contacts = this.getContactsByAppID(req.TargetAppID)
+          const index = contacts.findIndex((el) => el.ID === resp.Info.ID)
+          contacts.splice(index, 1, resp.Info)
+          this.Contacts.Contacts.set(req.TargetAppID, contacts)
+          done(resp.Info, false)
+        }, () => {
+          done({} as Contact, true)
+      })
+    },
   }
 })

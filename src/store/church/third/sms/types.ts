@@ -28,6 +28,7 @@ export interface GetAppSMSTemplatesResponse {
 export interface UpdateAppSMSTemplateRequest extends MyRequest {
   TargetAppID: string;
   ID: string;
+  AppID: string;
   LangID: string;
   UsedFor: UsedFor;
   Subject: string;

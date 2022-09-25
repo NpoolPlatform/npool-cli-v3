@@ -30,6 +30,7 @@ export interface GetAppEmailTemplatesResponse {
 export interface UpdateAppEmailTemplateRequest extends BaseRequest {
   TargetAppID: string;
   ID: string;
+  AppID: string;
   LangID: string;
   UsedFor: UsedFor;
   Sender: string;

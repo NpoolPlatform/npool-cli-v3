@@ -76,7 +76,7 @@ export const useChurchSMSTemplateStore = defineStore('church-smstemplate-v4', {
     },
     deleteAppSMSTemplate (req: DeleteAppSMSTemplatesRequest, done: (smsTemplate: SMSTemplate, error: boolean) => void) {
       doActionWithError<DeleteAppSMSTemplatesRequest, DeleteAppSMSTemplateResponse>(
-        API.UPDATE_APP_SMSTEMPLATE,
+        API.DELETE_APP_SMSTEMPLATE,
         req,
         req.Message,
         (resp: DeleteAppSMSTemplateResponse): void => {

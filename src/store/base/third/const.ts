@@ -11,3 +11,15 @@ export enum UsedFor {
   SetTransferTargetUser = "SetTransferTargetUser",
   Transfer = "Transfer",
 }
+export const UsedFors = [
+  UsedFor.Contact,
+  UsedFor.SetWithdrawAddress,
+  UsedFor.Signin,
+  UsedFor.Signup,
+  UsedFor.Update,
+  UsedFor.Withdraw,
+  UsedFor.CreateInvitationCode,
+  UsedFor.SetCommission,
+  UsedFor.SetTransferTargetUser,
+  UsedFor.Transfer
+]

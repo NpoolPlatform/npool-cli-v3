@@ -86,6 +86,7 @@ export const useChurchSMSTemplateStore = defineStore('church-smstemplate-v4', {
           emailTemplates.splice(index, 1)
           this.SMSTemplates.SMSTemplates.set(req.TargetAppID, emailTemplates)
           this.SMSTemplates.Total -= 1
+          done(resp.Info, false)
         }, () => {
           done({} as SMSTemplate, true)
       })

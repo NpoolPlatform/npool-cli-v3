@@ -70,6 +70,7 @@ export const useChurchSMSTemplateStore = defineStore('church-smstemplate-v4', {
           const index = emailTemplates.findIndex((el) => el.ID === resp.Info.ID)
           emailTemplates.splice(index, 1, resp.Info)
           this.SMSTemplates.SMSTemplates.set(req.TargetAppID, emailTemplates)
+          done(resp.Info, false)
         }, () => {
           done({} as SMSTemplate, true)
       })

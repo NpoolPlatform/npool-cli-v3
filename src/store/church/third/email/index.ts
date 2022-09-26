@@ -68,6 +68,7 @@ export const useChurchEmailTemplateStore = defineStore('church-emailtemplate-v4'
           const index = emailTemplates.findIndex((el) => el.ID === resp.Info.ID)
           emailTemplates.splice(index, 1, resp.Info)
           this.EmailTemplates.EmailTemplates.set(req.TargetAppID, emailTemplates)
+          done(resp.Info, false)
         }, () => {
           done({} as EmailTemplate, true)
       })

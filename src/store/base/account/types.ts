@@ -24,3 +24,19 @@ export interface Transfer {
   TargetFirstName:    string;
   TargetLastName:     string;
 }
+
+export interface Account {
+  ID: string;
+  AppID: string;
+  UserID: string;
+  CoinTypeID: string;
+  CoinName: string;
+  CoinUnit: string;
+  CoinEnv: string;
+  CoinLogo: string;
+  AccountID: string;
+  Address: string;
+  UsedFor: string;
+  Labels: string[];
+  CreatedAt: number;
+}

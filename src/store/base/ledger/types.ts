@@ -10,6 +10,7 @@ export interface Detail {
   CreatedAt: number;
   Amount: string;
   IOExtra: string;
+  UserID: string;
 }
 
 export interface General {
@@ -21,4 +22,5 @@ export interface General {
   Locked: string;
   Outcoming: string;
   Spendable: string;
+  UserID: string;
 }

@@ -39,4 +39,6 @@ export interface Account {
   UsedFor: string;
   Labels: string[];
   CreatedAt: number;
+  PhoneNo: string;
+  EmailAddress: string;
 }

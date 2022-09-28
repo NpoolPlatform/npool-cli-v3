@@ -29,7 +29,7 @@ export const useChurchAccountStore = defineStore('church-account-v4', {
     }
   },
   actions: {
-    getAppAccounts(req: GetAppDepositAccountsRequest, done: (accounts: Array<Account>, error: boolean) => void) {
+    getAppDepositAccounts(req: GetAppDepositAccountsRequest, done: (accounts: Array<Account>, error: boolean) => void) {
       doActionWithError<GetAppDepositAccountsRequest, GetAppDepositAccountsResponse>(
         API.GET_APP_DEPOSITACCOUNTS,
         req,

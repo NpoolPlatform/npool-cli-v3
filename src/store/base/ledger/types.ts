@@ -11,7 +11,7 @@ export interface Detail {
   Amount: string;
   IOExtra: string;
   UserID: string;
-  PhoneNo: string;
+  PhoneNO: string;
   EmailAddress: string;
 }
 
@@ -25,6 +25,6 @@ export interface General {
   Outcoming: string;
   Spendable: string;
   UserID: string;
-  PhoneNo: string;
+  PhoneNO: string;
   EmailAddress: string;
 }

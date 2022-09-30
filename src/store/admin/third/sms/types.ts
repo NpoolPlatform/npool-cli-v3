@@ -2,7 +2,7 @@ import { UsedFor, SMSTemplate, MyRequest, BaseRequest } from '../../../base'
 
 
 export interface CreateSMSTemplateRequest extends MyRequest{
-  LangID: string;
+  TargetLangID: string;
   UsedFor: UsedFor;
   Subject: string;
   Message: string;
@@ -32,6 +32,7 @@ export interface GetSMSTemplatesResponse {
 
 export interface UpdateSMSTemplateRequest extends MyRequest {
   ID: string;
+  TargetLangID: string;
   Subject: string;
   Message: string;
 }

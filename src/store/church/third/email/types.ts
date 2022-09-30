@@ -2,7 +2,7 @@ import { UsedFor, BaseRequest, EmailTemplate } from '../../../base'
 
 export interface CreateAppEmailTemplateRequest extends BaseRequest {
   TargetAppID: string;
-  LangID: string;
+  TargetLangID: string;
   UsedFor: UsedFor;
   Sender: string;
   ReplyTos: string[];
@@ -29,6 +29,7 @@ export interface GetAppEmailTemplatesResponse {
 
 export interface UpdateAppEmailTemplateRequest extends BaseRequest {
   TargetAppID: string;
+  TargetLangID: string;
   ID: string;
   AppID: string;
   LangID: string;

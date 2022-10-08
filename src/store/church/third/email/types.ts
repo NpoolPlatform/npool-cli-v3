@@ -31,9 +31,6 @@ export interface UpdateAppEmailTemplateRequest extends BaseRequest {
   TargetAppID: string;
   TargetLangID: string;
   ID: string;
-  AppID: string;
-  LangID: string;
-  UsedFor: UsedFor;
   Sender: string;
   ReplyTos: string[];
   CCTos: string[];

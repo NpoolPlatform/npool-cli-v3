@@ -49,12 +49,12 @@ export interface Address {
   AccountID: string;
   Name: string;
   Message: string;
-  CreatedAt: number;
+  CreateAt: number;
   Labels: string[];
-  DeletedAt: number;
+  DeleteAt: number;
 }
 
-export interface Account {
+export interface WithdrawAccount {
   ID: string;
   CoinTypeID: string;
   Address: string;
@@ -66,5 +66,5 @@ export interface WithdrawAddress {
   Address: Address;
   State: string;
   Message: string;
-  Account: Account;
+  Account: WithdrawAccount;
 }

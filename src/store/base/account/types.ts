@@ -42,3 +42,29 @@ export interface Account {
   PhoneNO: string;
   EmailAddress: string;
 }
+
+export interface Address {
+  ID: string;
+  CoinTypeID: string;
+  AccountID: string;
+  Name: string;
+  Message: string;
+  CreatedAt: number;
+  Labels: string[];
+  DeletedAt: number;
+}
+
+export interface Account {
+  ID: string;
+  CoinTypeID: string;
+  Address: string;
+  CreateAt: number;
+  PlatformHoldPrivateKey: boolean;
+}
+
+export interface WithdrawAddress {
+  Address: Address;
+  State: string;
+  Message: string;
+  Account: Account;
+}

@@ -12,12 +12,14 @@ export enum KycState {
   Wait = 'Wait',
   Rejected ='Rejected'
 }
+// NEED RESTRUCTURE
 export enum ReviewState {
   DefaultReviewState = 'DefaultReviewState',
-  Approved = 'Approved',
-  Wait = 'Wait',
-  Rejected ='Rejected'
+  Approved = 'approved',
+  Wait = 'wait',
+  Rejected ='rejected'
 }
+
 export enum WithdrawTrigger {
   DefaultTriggerType = 'DefaultTriggerType',
   AutoReviewed = 'AutoReviewed',

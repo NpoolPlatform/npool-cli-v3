@@ -26,6 +26,8 @@ export const useFrontendWithdrawAddressStore = defineStore('frontend-withdrawadd
         req,
         req.Message,
         (resp: GetWithdrawAddressResponse): void => {
+          this.WithdrawAddress.WithdrawAddress = resp.Infos
+          this.WithdrawAddress.Total = resp.Total
           done(resp.Infos, false)
         }, () => {
           done([], true)
@@ -37,6 +39,8 @@ export const useFrontendWithdrawAddressStore = defineStore('frontend-withdrawadd
         req,
         req.NotifyMessage,
         (resp: SetWithdrawAddressResponse): void => {
+          this.WithdrawAddress.WithdrawAddress.push(resp.Info)
+          this.WithdrawAddress.Total += 1
           done(resp.Info, false)
         }, () => {
           done({} as WithdrawAddress, true)

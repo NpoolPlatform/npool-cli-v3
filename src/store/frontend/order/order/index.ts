@@ -88,8 +88,20 @@ export const useFrontendOrderStore = defineStore('frontend-order-v4', {
         }
         return true
       }
+    },
+    couponUsed () {
+      return (couponID: string) => {
+        const index = this.Orders.Orders.findIndex((el) => el.DiscountID === couponID)
+        return index > -1
+      }
+    },
+    specialOfferUsed () {
+      return (specialOfferID: string) => {
+        const index = this.Orders.Orders.findIndex((el) => el.SpecialOfferID === specialOfferID)
+        return index > -1
+      }
     }
-  },
+   },
   actions: {
     getOrders (req: GetOrdersRequest, done: (orders: Array<Order>, error: boolean) => void) {
       doActionWithError<GetOrdersRequest, GetOrdersResponse>(

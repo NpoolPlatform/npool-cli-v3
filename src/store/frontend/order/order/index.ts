@@ -100,6 +100,12 @@ export const useFrontendOrderStore = defineStore('frontend-order-v4', {
         const index = this.Orders.Orders.findIndex((el) => el.SpecialOfferID === specialOfferID)
         return index > -1
       }
+    },
+    fixAmountUsed () {
+      return (fixAmountID: string) => {
+        const index = this.Orders.Orders.findIndex((el) => el.FixAmountID === fixAmountID)
+        return index > -1
+      }
     }
    },
   actions: {

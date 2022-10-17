@@ -89,7 +89,7 @@ export const useFrontendOrderStore = defineStore('frontend-order-v4', {
         return true
       }
     },
-    couponUsed () {
+    discountUsed () {
       return (couponID: string) => {
         const index = this.Orders.Orders.findIndex((el) => el.DiscountID === couponID)
         return index > -1

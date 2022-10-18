@@ -4,7 +4,7 @@ import { doActionWithError } from '../../../action'
 import { GetGoodProfitsRequest, GetGoodProfitsResponse, GetIntervalProfitsRequest, GetIntervalProfitsResponse } from './types'
 import { GoodProfit, Profit } from '../../../base'
 
-export const useProfitStore = defineStore('frontend-profit-v4', {
+export const useFrontendProfitStore = defineStore('frontend-profit-v4', {
   state: () => ({
     GoodProfits: {
       GoodProfits: [] as Array<GoodProfit>,

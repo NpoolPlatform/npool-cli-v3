@@ -28,3 +28,24 @@ export interface General {
   PhoneNO: string;
   EmailAddress: string;
 }
+
+export interface GoodProfit {
+  GoodID:                string;
+  GoodName:              string;
+  GoodUnit:              string;
+  GoodServicePeriodDays: number;
+  Units:                 number;
+  CoinTypeID:            string;
+  CoinName:              string;
+  CoinLogo:              string;
+  CoinUnit:              string;
+  Incoming:              string;
+}
+
+export interface Profit {
+  CoinTypeID: string;
+  CoinName: string;
+  CoinLogo: string;
+  CoinUnit: string;
+  Incoming: string;
+}

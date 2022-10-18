@@ -29,6 +29,15 @@ export const useGeneralStore = defineStore('frontend-general-v4', {
     },
     generals() {
       return () => this.Generals.Generals.sort((a, b) => a.Spendable > b.Spendable ? -1 : 1)
+    },
+    getIntervalIncoming () {
+      return (intervalKey: string, coinTypeID: string) => {
+        const data = this.getIntervalGeneralsByKey(intervalKey)
+        let incoming = 0
+        data.filter((el) => el.CoinTypeID === coinTypeID)
+            .forEach((el) => incoming += Number(el.Incoming))
+        return incoming
+      }
     }
   },
   actions: {

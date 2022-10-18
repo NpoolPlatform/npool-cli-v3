@@ -38,6 +38,12 @@ export const useFrontendGeneralStore = defineStore('frontend-general-v4', {
             .forEach((el) => incoming += Number(el.Incoming))
         return incoming
       }
+    },
+    getBalanceByID () {
+      return (coinTypeID: string) => {
+        const general = this.Generals.Generals.find((el) => el.CoinTypeID === coinTypeID)
+        return !general? '0' : general.Spendable
+      }
     }
   },
   actions: {

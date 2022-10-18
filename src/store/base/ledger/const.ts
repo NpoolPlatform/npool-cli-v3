@@ -12,3 +12,9 @@ export enum IOSubType {
   Withdrawal = 'Withdrawal',
   Transfer = 'Transfer'
 }
+
+export enum IntervalGeneralKey {
+  All = 'All',
+  LastDay = 'LastDay',
+  LastMonth = 'LastMonty'
+}

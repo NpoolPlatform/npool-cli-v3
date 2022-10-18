@@ -9,7 +9,7 @@ import {
   GetIntervalGeneralsResponse,
 } from './types'
 
-export const useGeneralStore = defineStore('general', {
+export const useGeneralStore = defineStore('frontend-general-v4', {
   state: () => ({
     Generals: {
       Generals: [] as Array<General>,

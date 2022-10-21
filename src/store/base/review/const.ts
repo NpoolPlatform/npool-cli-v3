@@ -6,15 +6,22 @@ export enum WithdrawState {
   TransactionFail = 'TransactionFail',
   Successful = 'Successful',
 }
+
 export enum KycState {
   DefaultReviewState = 'DefaultReviewState',
   Approved = 'Approved',
   Wait = 'Wait',
   Rejected ='Rejected'
 }
-// NEED RESTRUCTURE
+
 export enum ReviewState {
   DefaultReviewState = 'DefaultReviewState',
+  Approved = 'Approved',
+  Wait = 'Wait',
+  Rejected ='Rejected'
+}
+
+export enum WithdrawAddressReviewState {
   Approved = 'approved',
   Wait = 'wait',
   Rejected ='rejected'

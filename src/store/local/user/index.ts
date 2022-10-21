@@ -9,6 +9,15 @@ export const useLocalUserStore = defineStore('local-user-v4', {
   getters: {
     logined (): boolean {
       return this.User && this.User.Logined && this.User.LoginVerified
+    },
+    findInvitationCode () : boolean {
+      return this.User && this.User.InvitationCode?.length > 0
+    },
+    findEmailAddress () : boolean {
+      return this.User && this.User.EmailAddress?.length > 0
+    },
+    findPhoneNO () : boolean {
+      return this.User && this.User.PhoneNO?.length > 0
     }
   },
   actions: {

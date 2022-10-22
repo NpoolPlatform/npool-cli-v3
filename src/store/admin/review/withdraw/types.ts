@@ -14,8 +14,8 @@ export interface UpdateWithdrawReviewResponse {
 }
 
 export interface GetWithdrawReviewsRequest extends BaseRequest{
-  offset: number;
-  limit: number;
+  Offset: number;
+  Limit: number;
 }
 export interface GetWithdrawReviewsResponse {
   Infos: Array<WithdrawReview>;

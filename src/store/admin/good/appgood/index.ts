@@ -1,29 +1,26 @@
 import { defineStore } from 'pinia'
+import { AppGood } from '../../../base'
+import { doActionWithError } from '../../../action'
 import { API } from './const'
 import {
-  CreateAppGoodRequest,
-  CreateAppGoodResponse,
+  GetAppGoodRequest,
+  GetAppGoodResponse,
   GetAppGoodsRequest,
   GetAppGoodsResponse,
   UpdateAppGoodRequest,
   UpdateAppGoodResponse
 } from './types'
-import { AppGood } from '../../../base'
-import { doActionWithError } from '../../../action'
 
-export const useChurchAppGoodStore = defineStore('church-appgood-v4', {
+export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
   state: () => ({
     AppGoods: {
-      AppGoods: new Map<string, Array<AppGood>>(),
+      AppGoods: [] as Array<AppGood>,
       Total: 0
     }
   }),
   getters: {
-    getGoodsByAppID () {
-      return (appID: string) => {
-        const data = this.AppGoods.AppGoods.get(appID)
-        return !data ? [] as Array<AppGood> : data
-      }
+    getGoodsByID () {
+      return (ID: string) => this.AppGoods.AppGoods.find((el) => el.ID === ID)
     }
   },
   actions: {
@@ -33,9 +30,7 @@ export const useChurchAppGoodStore = defineStore('church-appgood-v4', {
         req,
         req.Message,
         (resp: GetAppGoodsResponse): void => {
-          const data = this.getGoodsByAppID(req.TargetAppID)
-          data.push(...resp.Infos)
-          this.AppGoods.AppGoods.set(req.TargetAppID, data)
+          this.AppGoods.AppGoods.push(...resp.Infos)
           this.AppGoods.Total = resp.Total
           done(resp.Infos, false)
         }, () => {
@@ -48,29 +43,25 @@ export const useChurchAppGoodStore = defineStore('church-appgood-v4', {
         req,
         req.Message,
         (resp: UpdateAppGoodResponse): void => {
-          const data = this.getGoodsByAppID(req.TargetAppID)
-          const index = data.findIndex((el) => el.ID === resp.Info.ID)
-          data.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
-          this.AppGoods.AppGoods.set(req.TargetAppID, data)
+          const index = this.AppGoods.AppGoods.findIndex((el) => el.ID === resp.Info.ID)
+          this.AppGoods.AppGoods.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
           done(resp.Info, false)
         }, () => {
           done({} as AppGood, true)
         })
     },
-    createAppGood (req: CreateAppGoodRequest, done: (appGood: AppGood, error: boolean) => void) {
-      doActionWithError<CreateAppGoodRequest, CreateAppGoodResponse>(
-        API.CREATE_APPGOOD,
+    getAppGood (req: GetAppGoodRequest, done: (appGood: AppGood, error: boolean) => void) {
+      doActionWithError<GetAppGoodRequest, GetAppGoodResponse>(
+        API.GET_APPGOOD,
         req,
         req.Message,
-        (resp: CreateAppGoodResponse): void => {
-          const data = this.getGoodsByAppID(req.TargetAppID)
-          data.push(resp.Info)
-          this.AppGoods.AppGoods.set(req.TargetAppID, data)
-          this.AppGoods.Total += 1
+        (resp: GetAppGoodResponse): void => {
+          const index = this.AppGoods.AppGoods.findIndex((el) => el.ID === resp.Info.ID)
+          this.AppGoods.AppGoods.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
           done(resp.Info, false)
         }, () => {
           done({} as AppGood, true)
         })
-    }
+    },
   }
 })

@@ -1,4 +1,3 @@
-export * from './good'
 export * from './appgood'
-export * from './deviceinfo'
-export * from './vendorlocation'
+export * from './recommend'
+export * from './promotion'

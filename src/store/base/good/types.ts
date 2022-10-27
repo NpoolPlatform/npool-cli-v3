@@ -137,3 +137,34 @@ export interface VendorLocation {
   UpdatedAt: number;
   DeletedAt: number;
 }
+
+export interface Promotion {
+  ID: string;
+  AppID: string;
+  GoodID: string;
+  GoodName: string;
+  Message: string;
+  StartAt: number;
+  EndAt: number;
+  Price: string;
+  Posters: string[];
+  CreatedAt: number;
+  UpdatedAt: number;
+}
+
+export interface Recommend {
+  ID: string;
+  AppID: string;
+  GoodID: string;
+  GoodName: string;
+  RecommenderID: string;
+  RecommenderUsername: string;
+  RecommenderFirstName: string;
+  RecommenderLastName: string;
+  RecommenderEmailAddress: string;
+  RecommenderPhoneNo: string;
+  Message: string;
+  RecommendIndex: number;
+  CreatedAt: number;
+  UpdatedAt: number;
+}

@@ -19,8 +19,8 @@ export const useAdminPromotionStore = defineStore('admin-promotion-v4', {
     }
   }),
   getters: {
-    getGoodsByID () {
-      return (ID: string) => this.Promotions.Promotions.find((el) => el.ID === ID)
+    getGoodByID () {
+      return (goodID: string) => this.Promotions.Promotions.find((el) => el.GoodID === goodID)
     }
   },
   actions: {

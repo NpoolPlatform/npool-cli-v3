@@ -20,7 +20,7 @@ export const useAdminRecommendStore = defineStore('admin-recommend-v4', {
   }),
   getters: {
     getRecommendByID () {
-      return (ID: string) => this.Recommends.Recommends.find((el) => el.ID === ID)
+      return (goodID: string) => this.Recommends.Recommends.find((el) => el.GoodID === goodID)
     }
   },
   actions: {

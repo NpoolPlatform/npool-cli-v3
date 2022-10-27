@@ -19,8 +19,20 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
     }
   }),
   getters: {
-    getGoodsByID () {
-      return (ID: string) => this.AppGoods.AppGoods.find((el) => el.ID === ID)
+    getGoodByID () {
+      return (goodID: string) => this.AppGoods.AppGoods.find((el) => el.GoodID === goodID)
+    },
+    online() {
+      return (goodID: string) => {
+        const g = this.AppGoods.AppGoods.find((el) => el.GoodID === goodID)
+        return !g ? false : g.Online
+      }
+    },
+    visible() {
+      return (goodID: string) => {
+        const g = this.AppGoods.AppGoods.find((el) => el.GoodID === goodID)
+        return !g ? false : g.Visible
+      }
     }
   },
   actions: {

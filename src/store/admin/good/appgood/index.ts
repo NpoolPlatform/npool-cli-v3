@@ -33,6 +33,12 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
         const g = this.AppGoods.AppGoods.find((el) => el.GoodID === goodID)
         return !g ? false : g.Visible
       }
+    },
+    couldBuy() {
+      return (goodID: string, coinTypeID: string) => {
+        const g = this.getGoodByID(goodID)
+        return g?.CoinTypeID === coinTypeID && g.Visible && g.Online
+      }
     }
   },
   actions: {

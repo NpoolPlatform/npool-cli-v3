@@ -34,7 +34,7 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
         return !g ? false : g.Visible
       }
     },
-    couldBuy() {
+    canBuy() {
       return (goodID: string, coinTypeID: string) => {
         const g = this.getGoodByID(goodID)
         return g?.CoinTypeID === coinTypeID && g.Visible && g.Online
@@ -44,6 +44,17 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
       return (goodID: string) => {
         const g = this.getGoodByID(goodID) as AppGood
         return Math.min(g?.GoodTotal, g?.PurchaseLimit) 
+      }
+    },
+    goodPrice() {
+      return (g: AppGood) => {
+        return Number(g.Price)
+      }
+    },
+    getPriceByID() {
+      return (goodID: string) => {
+        const g = this.getGoodByID(goodID)
+        return Number(g?.Price)
       }
     }
   },

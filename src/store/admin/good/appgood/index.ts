@@ -48,7 +48,7 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
     },
     goodPrice() {
       return (g: AppGood) => {
-        return Number(g.Price).toFixed(4)
+        return Number(g?.Price).toFixed(4)
       }
     },
     getPriceByID() {

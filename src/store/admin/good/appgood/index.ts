@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { AppGood } from '../../../base'
+import { AppGood, GoodType } from '../../../base'
 import { doActionWithError } from '../../../action'
 import { API } from './const'
 import {
@@ -48,13 +48,18 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
     },
     goodPrice() {
       return (g: AppGood) => {
-        return Number(g?.Price).toFixed(4)
+        return !g ? '' : Number(g?.Price).toFixed(4)
       }
     },
     getPriceByID() {
       return (goodID: string) => {
         const g = this.getGoodByID(goodID)
         return Number(g?.Price)?.toFixed(4)
+      }
+    },
+    classic() {
+      return (g: AppGood) => {
+        return g.GoodType === GoodType.GoodTypeClassicMining
       }
     }
   },

@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { AppGood, GoodType } from '../../../base'
 import { doActionWithError } from '../../../action'
+import { useI18n } from 'vue-i18n'
 import { API } from './const'
 import {
   GetAppGoodRequest,
@@ -60,6 +61,20 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
     classic() {
       return (g: AppGood) => {
         return g.GoodType === GoodType.GoodTypeClassicMining
+      }
+    },
+    goodEffectiveDate() {
+      return (g: AppGood) => {
+        // eslint-disable-next-line @typescript-eslint/unbound-method
+        const { t, locale } = useI18n({ useScope: 'global' })
+        if (g.CoinPreSale) {
+          return t('MSG_TBA')
+        }
+        const now = new Date().getTime() / 1000
+        if (now < g.StartAt) {
+          return new Date(g.StartAt * 1000).toLocaleDateString(locale.value)
+        }
+        return t('MSG_EFFECTIVE_NEXT_DAY')
       }
     }
   },

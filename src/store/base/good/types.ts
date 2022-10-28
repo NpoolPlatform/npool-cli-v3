@@ -104,7 +104,7 @@ export interface AppGood {
   VoteCount: number;
   Rating: number;
   SupportCoins: GoodCoinInfo[];
-  GoodTotal: number;
+  Total: number;
   Locked: number;
   InService: number;
   Sold: number;

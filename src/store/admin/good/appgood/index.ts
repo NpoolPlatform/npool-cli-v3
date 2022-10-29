@@ -65,7 +65,9 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
     },
     goodEffectiveDate() {
       return (g: AppGood) => {
-        // eslint-disable-next-line @typescript-eslint/unbound-method
+        if(!g) {
+          return ''
+        }
         const { t, locale } = useI18n({ useScope: 'global' })
         if (g.CoinPreSale) {
           return t('MSG_TBA')

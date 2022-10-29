@@ -16,7 +16,8 @@ export interface Good {
   CoinUnit: string;
   CoinPreSale: boolean;
   CoinEnv: string;
-  CoinSpec: string;
+  CoinSpecs: string;
+  CoinHomePage: string;
   InheritFromGoodID: string;
   InheritFromGoodName: string;
   InheritFromGoodType: GoodType;
@@ -96,7 +97,8 @@ export interface AppGood {
   CoinUnit: string;
   CoinPreSale: boolean;
   CoinEnv: string;
-  CoinSpec: string;
+  CoinSpecs: string;
+  CoinHomePage: string;
   GoodType: GoodType;
   BenefitType: BenefitType;
   GoodName: string;

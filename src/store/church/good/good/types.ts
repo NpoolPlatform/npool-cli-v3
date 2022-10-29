@@ -13,7 +13,7 @@ export interface CreateGoodRequest extends BaseRequest {
   Title: string;
   Unit: string;
   UnitAmount: number;
-  SupportCoinTypeIDs: string[];
+  SupportCoinTypeIDs?: string[];
   DeliveryAt: number;
   StartAt: number;
   TestOnly: boolean;
@@ -58,7 +58,7 @@ export interface UpdateGoodRequest extends BaseRequest{
   Title: string;
   Unit: string;
   UnitAmount: number;
-  SupportCoinTypeIDs: string[];
+  SupportCoinTypeIDs?: string[];
   DeliveryAt: number;
   StartAt: number;
   TestOnly: boolean;

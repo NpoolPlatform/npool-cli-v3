@@ -52,7 +52,7 @@ export interface UpdateGoodRequest extends BaseRequest{
   DeviceInfoID: string;
   DurationDays: number;
   CoinTypeID: string;
-  InheritFromGoodID: string;
+  InheritFromGoodID?: string;
   VendorLocationID: string;
   Price: string;
   Title: string;
@@ -61,11 +61,11 @@ export interface UpdateGoodRequest extends BaseRequest{
   SupportCoinTypeIDs?: string[];
   DeliveryAt: number;
   StartAt: number;
-  TestOnly: boolean;
+  TestOnly?: boolean;
   Total: number;
-  Sold: number;
-  Posters: string[];
-  Labels: string[];
+  Sold?: number;
+  Posters?: string[];
+  Labels?: string[];
 }
 
 export interface UpdateGoodResponse {

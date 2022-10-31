@@ -42,9 +42,6 @@ export const useFrontendTransferAccountStore = defineStore('frontend-transferacc
         req.Message,
         (resp: DeleteTransferAccountResponse): void => {
           const index = this.TransferAccounts.TransferAccounts.findIndex((el) => el.ID === resp.Info.ID)
-          if (index < 0) {
-            return 
-          }
           this.TransferAccounts.TransferAccounts.splice(index, 1)
           this.TransferAccounts.Total -= 1
           done(resp.Info, false)

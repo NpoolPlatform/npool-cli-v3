@@ -25,6 +25,20 @@ export interface Transfer {
   TargetLastName:     string;
 }
 
+export enum AccountUsedFor {
+  DefaultAccountUsedFor = "DefaultAccountUsedFor",
+  GoodBenefit = "GoodBenefit",
+  UserBenefitHot = "UserBenefitHot",
+  UserBenefitCold = "UserBenefitCold",
+  PlatformBenefitCold = "PlatformBenefitCold",
+  GasProvider = "GasProvider",
+  UserWithdraw = "UserWithdraw",
+  UserDeposit = "UserDeposit",
+  GoodPayment = "GoodPayment",
+  PaymentCollector = "PaymentCollector",
+  UserDirectBenefit = "UserDirectBenefit",
+}
+
 export interface Account {
   ID: string;
   AppID: string;
@@ -36,11 +50,14 @@ export interface Account {
   CoinLogo: string;
   AccountID: string;
   Address: string;
-  UsedFor: string;
+  /** Only [UserWithdraw, UserDirectBenefit, UserDeposit] */
+  UsedFor: AccountUsedFor;
   Labels: string[];
   CreatedAt: number;
   PhoneNO: string;
   EmailAddress: string;
+  Active: boolean;
+  Blocked: boolean;
 }
 
 export interface Address {

@@ -12,19 +12,19 @@ import { API } from './const'
 export const useAdminUserAccountStore = defineStore('frontend-useraccount-v4', {
   state: () => ({
     UserAccounts: {
-      UserAccounts: new Map<AccountUsedFor, Array<Account>>(), 
+      UserAccounts: [] as Array<Account>, 
       Total: 0
     }
   }),
   getters: {
     getAccountsByKey() {
-      return (key: AccountUsedFor) => {
-        const data = this.UserAccounts.UserAccounts.get(key)
-        return !data ? [] as Array<Account> : data
-      }
+      return (key: AccountUsedFor) => this.UserAccounts.UserAccounts.filter((el) => el.UsedFor === key)
     },
     withdrawAddress(): Array<Account>  {
       return this.getAccountsByKey(AccountUsedFor.UserWithdraw).sort((a,b) => a.CreatedAt > b.CreatedAt ? -1 : 1)
+    },
+    depositAccounts(): Array<Account>  {
+      return this.getAccountsByKey(AccountUsedFor.UserDeposit).sort((a,b) => a.CreatedAt > b.CreatedAt ? -1 : 1)
     }
   },
   actions: {
@@ -34,11 +34,7 @@ export const useAdminUserAccountStore = defineStore('frontend-useraccount-v4', {
         req,
         req.Message,
         (resp: GetAppUserAccountsResponse): void => {
-          resp.Infos.forEach((el) => {
-            const data = this.getAccountsByKey(el.UsedFor)
-            data.push(el)
-            this.UserAccounts.UserAccounts.set(el.UsedFor, data)
-          })
+          this.UserAccounts.UserAccounts.push(...resp.Infos)
           this.UserAccounts.Total = resp.Total
           done(resp.Infos, false)
         }, () => {
@@ -51,9 +47,7 @@ export const useAdminUserAccountStore = defineStore('frontend-useraccount-v4', {
         req,
         req.Message,
         (resp: GetDepositAccountsResponse): void => {
-          const data = this.getAccountsByKey(AccountUsedFor.UserDeposit)
-          data.push(...resp.Infos)
-          this.UserAccounts.UserAccounts.set(AccountUsedFor.UserDeposit, data)
+          this.UserAccounts.UserAccounts.push(...resp.Infos)
           done(resp.Infos, false)
         }, () => {
           done([], true)

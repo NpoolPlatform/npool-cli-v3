@@ -88,6 +88,9 @@ export const useChurchOrderStore = defineStore('church-order-v4', {
         }
         return true
       }
+    },
+    orderPaymentTimeout() {
+      return (appID: string) => this.getOrdersByAppID(appID).filter((el) => el.State === OrderState.PAYMENT_TIMEOUT)
     }
   },
   actions: {

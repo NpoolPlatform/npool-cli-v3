@@ -19,6 +19,12 @@ export const useChurchUserStore = defineStore('church-user-v3', {
         const users = this.Users.get(appID) as Array<User>
         return (index === undefined || index < 0) ? undefined as unknown as User : users[index]
       }
+    },
+    getUsersByAppID () {
+      return (appID: string) => {
+        const data = this.Users.get(appID)
+        return !data? [] : data
+      }
     }
   },
   actions: {
@@ -28,12 +34,9 @@ export const useChurchUserStore = defineStore('church-user-v3', {
         req,
         req.Message,
         (resp: GetAppUsersResponse): void => {
-          let users = this.Users.get(req.TargetAppID)
-          if (!users) {
-            users = []
-          }
-          users.push(...resp.Infos)
-          this.Users.set(req.TargetAppID, users)
+          const data = this.getUsersByAppID(req.TargetAppID)
+          data.push(...resp.Infos)
+          this.Users.set(req.TargetAppID, data)
           done(resp.Infos, false)
         }, () => {
           done([], true)

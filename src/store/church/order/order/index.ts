@@ -102,6 +102,7 @@ export const useChurchOrderStore = defineStore('church-order-v4', {
         (resp: GetNAppOrdersResponse): void => {
           const data = this.getOrdersByAppID(req.TargetAppID)
           data.push(...resp.Infos)
+          this.Orders.Orders.set(req.TargetAppID, data)
           this.Orders.Total = resp.Total
           done(resp.Infos, false)
         },
@@ -118,7 +119,7 @@ export const useChurchOrderStore = defineStore('church-order-v4', {
         (resp: CreateAppUserOrderResponse): void => {
           const data = this.getOrdersByAppID(req.TargetAppID)
           data.splice(0, 0, resp.Info)
-          // this.Orders.Orders.set(req.TargetAppID, data)
+          this.Orders.Orders.set(req.TargetAppID, data)
           this.Orders.Total += 1
           done(resp.Info, false)
         },
@@ -136,7 +137,7 @@ export const useChurchOrderStore = defineStore('church-order-v4', {
           const data = this.getOrdersByAppID(req.TargetAppID)
           const index = data.findIndex((el) => el.ID === resp.Info.ID)
           data.splice(index, 1, resp.Info)
-          // this.Orders.Orders.set(req.TargetAppID, data)
+          this.Orders.Orders.set(req.TargetAppID, data)
           done(resp.Info, false)
         },
         () => {

@@ -24,6 +24,9 @@ export const useFrontendUserAccountStore = defineStore('frontend-useraccount-v4'
     withdrawAddress(): Array<Account> {
       return this.UserAccounts.UserAccounts.filter((el) => el.UsedFor === AccountUsedFor.UserWithdraw)
                                            .sort((a,b) => a.CreatedAt > b.CreatedAt ? -1 : 1)
+    },
+    getWithdrawAddressByID() {
+      return (coinTypeID: string) => this.withdrawAddress.find((el) => el.CoinTypeID === coinTypeID)
     }
   },
   actions: {

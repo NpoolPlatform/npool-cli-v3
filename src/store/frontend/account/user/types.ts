@@ -1,4 +1,4 @@
-import { AccountUsedFor, Account, BaseRequest } from '../../../base';
+import { AccountUsedFor, Account, BaseRequest, SignMethodType } from '../../../base';
 
 export interface CreateUserAccountRequest extends BaseRequest {
   /**
@@ -9,7 +9,10 @@ export interface CreateUserAccountRequest extends BaseRequest {
   CoinTypeID: string;
   Address: string;
   UsedFor: AccountUsedFor;
-  Labels: string[];
+  Labels?: string[];
+  Account: string;
+  AccountType: SignMethodType;
+  VerificationCode: string;
 }
 
 export interface CreateUserAccountResponse {

@@ -55,6 +55,7 @@ export interface GetDepositAccountRequest extends BaseRequest {
   AppID?: string;
   UserID?: string;
   CoinTypeID: string;
+  UsedFor?: AccountUsedFor; 
 }
 
 export interface GetDepositAccountResponse {

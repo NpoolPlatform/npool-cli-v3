@@ -11,7 +11,11 @@ export const useChurchGoodStore = defineStore('church-good-v4', {
       Total: 0
     }
   }),
-  getters: {},
+  getters: {
+    getGoodByID() {
+      return (goodID: string) => this.Goods.Goods.find((el) => el.ID === goodID)
+    }
+  },
   actions: {
     getGoods (req: GetGoodsRequest, done: (goods: Array<Good>, error: boolean) => void) {
       doActionWithError<GetGoodsRequest, GetGoodsResponse>(

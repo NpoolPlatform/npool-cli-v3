@@ -48,7 +48,7 @@ export const useChurchPlatformAccountStore = defineStore('church-platformaccount
     },
     createPlatformAccounts(req: CreatePlatformAccountRequest, done: (account: PlatformAccount, error: boolean) => void) {
       doActionWithError<CreatePlatformAccountRequest, CreatePlatformAccountResponse>(
-        API.UPDATE_PLATFORMACCOUNT,
+        API.CREATE_PLATFORMACCOUNT,
         req,
         req.Message,
         (resp: CreatePlatformAccountResponse): void => {

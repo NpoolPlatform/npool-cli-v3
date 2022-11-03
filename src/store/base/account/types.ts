@@ -85,3 +85,28 @@ export interface WithdrawAddress {
   Message: string;
   Account: WithdrawAccount;
 }
+
+export enum LockedBy {
+  DefaultLockedBy = "DefaultLockedBy",
+  Payment = "Payment",
+  Collecting = "Collecting",
+}
+
+export interface PlatformAccount {
+  ID: string;
+  CoinTypeID: string;
+  CoinName: string;
+  CoinUnit: string;
+  CoinEnv: string;
+  CoinLogo: string;
+  AccountID: string;
+  Address: string;
+  CollectingTID: string;
+  Active: boolean;
+  Locked: boolean;
+  LockedBy: LockedBy;
+  Blocked: boolean;
+  CreatedAt: number;
+  AvailableAt: number;
+  UpdatedAt: number;
+}

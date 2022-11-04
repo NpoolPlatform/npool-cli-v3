@@ -1,7 +1,7 @@
 import { doActionWithError } from '../../../action'
 import { defineStore } from 'pinia'
 import { API } from './const'
-import { PlatformAccount } from '../../../base'
+import { GoodBenefitAccount } from '../../../base'
 import { 
   GetGoodBenefitAccountsRequest,
   GetGoodBenefitAccountsResponse,
@@ -14,13 +14,13 @@ import {
 export const useChurchGoodBenefitAccountStore = defineStore('church-goodbenefitaccount-v4', {
   state: () => ({
     GoodBenefitAccounts: {
-      GoodBenefitAccounts:  [] as Array<PlatformAccount>,
+      GoodBenefitAccounts:  [] as Array<GoodBenefitAccount>,
       Total: 0
     }
   }),
   getters: {},
   actions: {
-    getGoodBenefitAccounts(req: GetGoodBenefitAccountsRequest, done: (gbAccounts: Array<PlatformAccount>, error: boolean) => void) {
+    getGoodBenefitAccounts(req: GetGoodBenefitAccountsRequest, done: (gbAccounts: Array<GoodBenefitAccount>, error: boolean) => void) {
       doActionWithError<GetGoodBenefitAccountsRequest, GetGoodBenefitAccountsResponse>(
         API.GET_GOODBENEFITACCOUNTS,
         req,
@@ -33,7 +33,7 @@ export const useChurchGoodBenefitAccountStore = defineStore('church-goodbenefita
           done([], true)
       })
     },
-    updateGoodBenefitAccounts(req: UpdateGoodBenefitAccountRequest, done: (gbAccount: PlatformAccount, error: boolean) => void) {
+    updateGoodBenefitAccounts(req: UpdateGoodBenefitAccountRequest, done: (gbAccount: GoodBenefitAccount, error: boolean) => void) {
       doActionWithError<UpdateGoodBenefitAccountRequest, UpdateGoodBenefitAccountResponse>(
         API.UPDATE_GOODBENEFITACCOUNT,
         req,
@@ -43,10 +43,10 @@ export const useChurchGoodBenefitAccountStore = defineStore('church-goodbenefita
           this.GoodBenefitAccounts.GoodBenefitAccounts.splice(index, 1, resp.Info)
           done(resp.Info, false)
         }, () => {
-          done({} as PlatformAccount, true)
+          done({} as GoodBenefitAccount, true)
       })
     },
-    createGoodBenefitAccounts(req: CreateGoodBenefitAccountRequest, done: (gbAccount: PlatformAccount, error: boolean) => void) {
+    createGoodBenefitAccounts(req: CreateGoodBenefitAccountRequest, done: (gbAccount: GoodBenefitAccount, error: boolean) => void) {
       doActionWithError<CreateGoodBenefitAccountRequest, CreateGoodBenefitAccountResponse>(
         API.CREATE_GOODBENEFITACCOUNT,
         req,
@@ -56,7 +56,7 @@ export const useChurchGoodBenefitAccountStore = defineStore('church-goodbenefita
           this.GoodBenefitAccounts.Total += 1
           done(resp.Info, false)
         }, () => {
-          done({} as PlatformAccount, true)
+          done({} as GoodBenefitAccount, true)
       })
     }
   }

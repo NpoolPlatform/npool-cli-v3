@@ -1,10 +1,10 @@
-import { BaseRequest, PlatformAccount } from '../../../base'
+import { BaseRequest, GoodBenefitAccount } from '../../../base'
 export interface CreateGoodBenefitAccountRequest extends BaseRequest {
   GoodID: string;
 }
 
 export interface CreateGoodBenefitAccountResponse {
-  Info: PlatformAccount;
+  Info: GoodBenefitAccount;
 }
 
 export interface GetGoodBenefitAccountsRequest  extends BaseRequest {
@@ -13,7 +13,7 @@ export interface GetGoodBenefitAccountsRequest  extends BaseRequest {
 }
 
 export interface GetGoodBenefitAccountsResponse {
-  Infos: PlatformAccount[];
+  Infos: GoodBenefitAccount[];
   Total: number;
 }
 
@@ -26,5 +26,5 @@ export interface UpdateGoodBenefitAccountRequest  extends BaseRequest {
 }
 
 export interface UpdateGoodBenefitAccountResponse {
-  Info: PlatformAccount;
+  Info: GoodBenefitAccount;
 }

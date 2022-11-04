@@ -92,7 +92,7 @@ export enum LockedBy {
   Collecting = "Collecting",
 }
 
-export interface PlatformAccount {
+export interface PaymentAccount {
   ID: string;
   CoinTypeID: string;
   CoinName: string;
@@ -109,4 +109,43 @@ export interface PlatformAccount {
   CreatedAt: number;
   AvailableAt: number;
   UpdatedAt: number;
+}
+
+export interface GoodBenefitAccount {
+  ID: string;
+  GoodID: string;
+  GoodName: string;
+  GoodUnit: string;
+  CoinTypeID: string;
+  CoinName: string;
+  CoinUnit: string;
+  CoinEnv: string;
+  CoinLogo: string;
+  AccountID: string;
+  Backup: true;
+  Address: string;
+  Active: boolean;
+  Locked: boolean;
+  LockedBy: LockedBy;
+  Blocked: boolean;
+  CreatedAt: number;
+  UpdatedAt: number;
+}
+
+export interface PlatformAccount {
+  ID: string;
+  CoinTypeID: string;
+  CoinName: string;
+  CoinUnit: string;
+  CoinEnv: string;
+  CoinLogo: string;
+  UsedFor: AccountUsedFor;
+  AccountID: string;
+  Address: string;
+  Backup: true;
+  Active: boolean;
+  Locked: boolean;
+  LockedBy: LockedBy;
+  Blocked: boolean;
+  CreatedAt: number;
 }

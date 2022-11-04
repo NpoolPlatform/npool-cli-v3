@@ -1,7 +1,7 @@
 import { doActionWithError } from '../../../action'
 import { defineStore } from 'pinia'
 import { API } from './const'
-import { PlatformAccount } from '../../../base'
+import { PaymentAccount } from '../../../base'
 import { 
   GetPaymentAccountsRequest,
   GetPaymentAccountsResponse,
@@ -12,13 +12,13 @@ import {
 export const useChurchPaymentAccountStore = defineStore('church-paymentaccount-v4', {
   state: () => ({
     PaymentAccounts: {
-      PaymentAccounts:  [] as Array<PlatformAccount>,
+      PaymentAccounts:  [] as Array<PaymentAccount>,
       Total: 0
     }
   }),
   getters: {},
   actions: {
-    getPaymentAccounts(req: GetPaymentAccountsRequest, done: (accounts: Array<PlatformAccount>, error: boolean) => void) {
+    getPaymentAccounts(req: GetPaymentAccountsRequest, done: (accounts: Array<PaymentAccount>, error: boolean) => void) {
       doActionWithError<GetPaymentAccountsRequest, GetPaymentAccountsResponse>(
         API.GET_PAYMENTACCOUNTS,
         req,
@@ -31,7 +31,7 @@ export const useChurchPaymentAccountStore = defineStore('church-paymentaccount-v
           done([], true)
       })
     },
-    updatePaymentAccounts(req: UpdatePaymentAccountRequest, done: (account: PlatformAccount, error: boolean) => void) {
+    updatePaymentAccounts(req: UpdatePaymentAccountRequest, done: (account: PaymentAccount, error: boolean) => void) {
       doActionWithError<UpdatePaymentAccountRequest, UpdatePaymentAccountResponse>(
         API.UPDATE_PAYMENTACCOUNT,
         req,
@@ -41,7 +41,7 @@ export const useChurchPaymentAccountStore = defineStore('church-paymentaccount-v
           this.PaymentAccounts.PaymentAccounts.splice(index, 1, resp.Info)
           done(resp.Info, false)
         }, () => {
-          done({} as PlatformAccount, true)
+          done({} as PaymentAccount, true)
       })
     }
   }

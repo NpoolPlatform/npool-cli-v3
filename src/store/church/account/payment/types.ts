@@ -1,11 +1,11 @@
-import { BaseRequest, PlatformAccount } from '../../../base'
+import { BaseRequest, PaymentAccount } from '../../../base'
 export interface GetPaymentAccountsRequest extends BaseRequest {
   Offset: number;
   Limit: number;
 }
 
 export interface GetPaymentAccountsResponse {
-  Infos: PlatformAccount[];
+  Infos: PaymentAccount[];
   Total: number;
 }
 
@@ -17,5 +17,5 @@ export interface UpdatePaymentAccountRequest extends BaseRequest {
 }
 
 export interface UpdatePaymentAccountResponse {
-  Info: PlatformAccount;
+  Info: PaymentAccount;
 }

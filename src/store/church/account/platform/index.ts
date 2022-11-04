@@ -33,7 +33,7 @@ export const useChurchPlatformAccountStore = defineStore('church-platformaccount
           done([], true)
       })
     },
-    updatePlatformAccounts(req: UpdatePlatformAccountRequest, done: (account: PlatformAccount, error: boolean) => void) {
+    updatePlatformAccount(req: UpdatePlatformAccountRequest, done: (account: PlatformAccount, error: boolean) => void) {
       doActionWithError<UpdatePlatformAccountRequest, UpdatePlatformAccountResponse>(
         API.UPDATE_PLATFORMACCOUNT,
         req,
@@ -46,7 +46,7 @@ export const useChurchPlatformAccountStore = defineStore('church-platformaccount
           done({} as PlatformAccount, true)
       })
     },
-    createPlatformAccounts(req: CreatePlatformAccountRequest, done: (account: PlatformAccount, error: boolean) => void) {
+    createPlatformAccount(req: CreatePlatformAccountRequest, done: (account: PlatformAccount, error: boolean) => void) {
       doActionWithError<CreatePlatformAccountRequest, CreatePlatformAccountResponse>(
         API.CREATE_PLATFORMACCOUNT,
         req,

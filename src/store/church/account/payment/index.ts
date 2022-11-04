@@ -31,7 +31,7 @@ export const useChurchPaymentAccountStore = defineStore('church-paymentaccount-v
           done([], true)
       })
     },
-    updatePaymentAccounts(req: UpdatePaymentAccountRequest, done: (account: PaymentAccount, error: boolean) => void) {
+    updatePaymentAccount(req: UpdatePaymentAccountRequest, done: (account: PaymentAccount, error: boolean) => void) {
       doActionWithError<UpdatePaymentAccountRequest, UpdatePaymentAccountResponse>(
         API.UPDATE_PAYMENTACCOUNT,
         req,

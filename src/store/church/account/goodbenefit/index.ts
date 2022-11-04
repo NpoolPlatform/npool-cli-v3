@@ -33,7 +33,7 @@ export const useChurchGoodBenefitAccountStore = defineStore('church-goodbenefita
           done([], true)
       })
     },
-    updateGoodBenefitAccounts(req: UpdateGoodBenefitAccountRequest, done: (gbAccount: GoodBenefitAccount, error: boolean) => void) {
+    updateGoodBenefitAccount(req: UpdateGoodBenefitAccountRequest, done: (gbAccount: GoodBenefitAccount, error: boolean) => void) {
       doActionWithError<UpdateGoodBenefitAccountRequest, UpdateGoodBenefitAccountResponse>(
         API.UPDATE_GOODBENEFITACCOUNT,
         req,
@@ -46,7 +46,7 @@ export const useChurchGoodBenefitAccountStore = defineStore('church-goodbenefita
           done({} as GoodBenefitAccount, true)
       })
     },
-    createGoodBenefitAccounts(req: CreateGoodBenefitAccountRequest, done: (gbAccount: GoodBenefitAccount, error: boolean) => void) {
+    createGoodBenefitAccount(req: CreateGoodBenefitAccountRequest, done: (gbAccount: GoodBenefitAccount, error: boolean) => void) {
       doActionWithError<CreateGoodBenefitAccountRequest, CreateGoodBenefitAccountResponse>(
         API.CREATE_GOODBENEFITACCOUNT,
         req,

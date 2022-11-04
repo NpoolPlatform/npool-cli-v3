@@ -39,6 +39,19 @@ export enum AccountUsedFor {
   UserDirectBenefit = "UserDirectBenefit",
 }
 
+export const AccountUsedFors =  [
+  AccountUsedFor.GoodBenefit,
+  AccountUsedFor.UserBenefitHot,
+  AccountUsedFor.UserBenefitCold,
+  AccountUsedFor.PlatformBenefitCold,
+  AccountUsedFor.GasProvider,
+  AccountUsedFor.UserWithdraw,
+  AccountUsedFor.UserDeposit,
+  AccountUsedFor.GoodPayment,
+  AccountUsedFor.PaymentCollector,
+  AccountUsedFor.UserDirectBenefit,
+]
+
 export interface Account {
   ID: string;
   AppID: string;

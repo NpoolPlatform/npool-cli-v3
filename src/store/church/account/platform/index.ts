@@ -1,7 +1,7 @@
 import { doActionWithError } from '../../../action'
 import { defineStore } from 'pinia'
 import { API } from './const'
-import { PlatformAccount } from '../../../base'
+import { AccountUsedFor, PlatformAccount } from '../../../base'
 import { 
   GetPlatformAccountsRequest,
   GetPlatformAccountsResponse,
@@ -18,7 +18,11 @@ export const useChurchPlatformAccountStore = defineStore('church-platformaccount
       Total: 0
     }
   }),
-  getters: {},
+  getters: {
+    getAccountsByKey() {
+      return (key: AccountUsedFor) => this.PlatformAccounts.PlatformAccounts.filter((el) => el.UsedFor === key)
+    }
+  },
   actions: {
     getPlatformAccounts(req: GetPlatformAccountsRequest, done: (accounts: Array<PlatformAccount>, error: boolean) => void) {
       doActionWithError<GetPlatformAccountsRequest, GetPlatformAccountsResponse>(

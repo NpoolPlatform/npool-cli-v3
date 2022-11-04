@@ -52,7 +52,7 @@ export const useAdminPromotionStore = defineStore('admin-promotion-v4', {
     },
     createPromotion (req: CreatePromotionRequest, done: (promotion: Promotion, error: boolean) => void) {
       doActionWithError<CreatePromotionRequest, CreatePromotionResponse>(
-        API.UPDATE_PROMOTION,
+        API.CREATE_PROMOTION,
         req,
         req.NotifyMessage,
         (resp: CreatePromotionResponse): void => {

@@ -38,7 +38,6 @@ export const useChurchUserAccountStore = defineStore('church-useraccount-v4', {
         const data = this.UserAccounts.UserAccounts.get(appID)
         return !data? [] as Array<Account> : data
       }
-      
     },
     withdrawAddress () {
       return (appID: string) => this.getUserAccountsByAppID(appID).filter((el) => el.UsedFor === AccountUsedFor.UserWithdraw)
@@ -68,9 +67,9 @@ export const useChurchUserAccountStore = defineStore('church-useraccount-v4', {
         req,
         req.Message,
         (resp: GetNAppUserAccountsResponse): void => {
-          const data = this.getDepositAccountsByAppID(req.TargetAppID)
+          const data = this.getUserAccountsByAppID(req.TargetAppID)
           data.push(...resp.Infos)
-          this.DepositAccounts.DepositAccounts.set(req.TargetAppID, data)
+          this.UserAccounts.UserAccounts.set(req.TargetAppID, data)
           done(resp.Infos, false)
         }, () => {
           done([], true)

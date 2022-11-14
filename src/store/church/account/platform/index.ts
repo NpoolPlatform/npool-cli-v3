@@ -56,7 +56,8 @@ export const useChurchPlatformAccountStore = defineStore('church-platformaccount
         req,
         req.Message,
         (resp: CreatePlatformAccountResponse): void => {
-          this.PlatformAccounts.PlatformAccounts.splice(0, 0, resp.Info)
+          const index =  this.PlatformAccounts.PlatformAccounts.findIndex((el) => el.ID === resp.Info.ID)
+          this.PlatformAccounts.PlatformAccounts.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
           done(resp.Info, false)
         }, () => {
           done({} as PlatformAccount, true)

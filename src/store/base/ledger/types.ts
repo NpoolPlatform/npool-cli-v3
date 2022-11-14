@@ -1,3 +1,4 @@
+import { WithdrawState } from '../review';
 import { IOSubType, IOType } from './const'
 
 export interface Detail {
@@ -48,4 +49,17 @@ export interface Profit {
   CoinLogo: string;
   CoinUnit: string;
   Incoming: string;
+}
+
+export interface Withdraw {
+  CoinTypeID: string;
+  CoinName: string;
+  CoinLogo: string;
+  CoinUnit: string;
+  Amount: string;
+  CreatedAt: number;
+  Address: string;
+  AddressLabels: string;
+  State: WithdrawState;
+  Message: string;
 }

@@ -23,3 +23,16 @@ export interface GetNAppUserAccountsResponse {
   Infos: Account[];
   Total: number;
 }
+
+export interface UpdateAppUserAccountRequest extends BaseRequest {
+  ID: string;
+  TargetAppID: string;
+  TargetUserID: string;
+  Active: boolean;
+  Blocked: boolean;
+  Labels?: string[];
+}
+
+export interface UpdateAppUserAccountResponse {
+  Info: Account
+}

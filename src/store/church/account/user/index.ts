@@ -6,7 +6,9 @@ import {
   GetAppDepositAccountsRequest,
   GetAppDepositAccountsResponse,
   GetNAppUserAccountsRequest,
-  GetNAppUserAccountsResponse
+  GetNAppUserAccountsResponse,
+  UpdateAppUserAccountRequest,
+  UpdateAppUserAccountResponse
 } from './types'
 
 export const useChurchUserAccountStore = defineStore('church-useraccount-v4', {
@@ -73,6 +75,21 @@ export const useChurchUserAccountStore = defineStore('church-useraccount-v4', {
           done(resp.Infos, false)
         }, () => {
           done([], true)
+      })
+    },
+    UpdateAppUserAccount(req: UpdateAppUserAccountRequest, done: (accounts: Account, error: boolean) => void) {
+      doActionWithError<UpdateAppUserAccountRequest, UpdateAppUserAccountResponse>(
+        API.UPDATE_APP_USERACCOUNT,
+        req,
+        req.Message,
+        (resp: UpdateAppUserAccountResponse): void => {
+          const data = this.getUserAccountsByAppID(req.TargetAppID)
+          const index = data.findIndex((el) => el.ID === resp.Info.ID)
+          data.splice(index, 1, resp.Info)
+          this.UserAccounts.UserAccounts.set(req.TargetAppID, data)
+          done(resp.Info, false)
+        }, () => {
+          done({} as Account, true)
       })
     }
   }

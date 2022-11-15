@@ -7,7 +7,7 @@ import {
   GetAppWithdrawsResponse
 } from './types'
 
-export const useChurchLedgerWithdrawDepositStore = defineStore('church-ledgerwithdraw-v4', {
+export const useChurchLedgerWithdrawStore = defineStore('church-ledgerwithdraw-v4', {
   state: () => ({
     Withdraws: {
       Withdraws: new Map<string, Array<Withdraw>>(),

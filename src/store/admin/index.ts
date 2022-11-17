@@ -4,4 +4,5 @@ export * from './order'
 export * from './third'
 export * from './review'
 export * from './good'
+export * from './chain'
 

@@ -33,7 +33,7 @@ export interface DeleteAppCoinResponse {
 export interface UpdateAppCoinRequest  extends BaseRequest{
   ID: string;
   AppID: string;
-  UserID: string;
+  UserID?: string;
   CoinTypeID: string;
   Name: string;
   Logo: string;
@@ -41,6 +41,8 @@ export interface UpdateAppCoinRequest  extends BaseRequest{
   WithdrawAutoReviewAmount: string;
   MarketValue: string;
   SettlePercent: number;
+  ProductPage: string;
+  Env?: string;
 }
 
 export interface UpdateAppCoinResponse {

@@ -1,4 +1,4 @@
-import { CoinDescription, CoinUsedFor as UsedFor } from '../../../base'
+import { CoinDescription, CoinDescriptionUsedFor as UsedFor } from '../../../base'
 import { BaseRequest, MyRequest } from '../../../base';
 
 export interface CreateCoinDescriptionRequest extends MyRequest {

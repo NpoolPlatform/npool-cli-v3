@@ -10,7 +10,7 @@ export interface AppCoin {
   Presale: boolean;
   ReservedAmount: string;
   ForPay: boolean;
-  Product_Page: boolean;
+  ProductPage: string;
   ENV: string;
   HomePage: string;
   Specs: string;
@@ -31,6 +31,8 @@ export interface AppCoin {
   SettleValue: string;
   SettlePercent: number;
   Setter: string;
+  Disabled: boolean;
+  CoinDisabled: boolean;
   CreatedAt: number;
   UpdatedAt: number;
 }
@@ -58,14 +60,20 @@ export interface Coin {
   LowFeeAmount: string;
   HotWalletAccountAmount: string;
   PaymentAccountCollectAmount: string;
+  Disabled: boolean;
   CreatedAt: number;
   UpdatedAt: number;
 }
 
-export enum CoinUsedFor {
+export enum CoinDescriptionUsedFor {
   DefaultUsedFor = "DefaultUsedFor",
   ProductPage = "ProductPage",
 }
+
+export const CoinDescriptionUsedFors = [
+  CoinDescriptionUsedFor.DefaultUsedFor,
+  CoinDescriptionUsedFor.ProductPage
+]
 
 export interface CoinDescription {
   ID: string;
@@ -76,7 +84,7 @@ export interface CoinDescription {
   CoinUnit: string;
   CoinENV: string;
   UsedForStr: string;
-  UsedFor: CoinUsedFor;
+  UsedFor: CoinDescriptionUsedFor;
   Title: string;
   Message: string;
   CreatedAt: number;

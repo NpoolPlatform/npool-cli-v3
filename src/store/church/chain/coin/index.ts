@@ -1,8 +1,6 @@
 import { defineStore } from 'pinia'
 import { API } from './const'
 import { 
-  CreateCoinRequest,
-  CreateCoinResponse,
   GetCoinsRequest,
   GetCoinsResponse,
   UpdateCoinRequest, 
@@ -47,19 +45,6 @@ export const useChurchCoinStore = defineStore('church-coin-v4', {
         (resp: UpdateCoinResponse): void => {
           const index = this.Coins.Coins.findIndex((el) => el.ID === resp.Info.ID)
           this.Coins.Coins.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
-          done(false, resp.Info)
-        }, () => {
-          done(true, {} as Coin)
-        })
-    },
-    createCoin (req: CreateCoinRequest, done: (error: boolean, coin: Coin) => void) {
-      doActionWithError<CreateCoinRequest, CreateCoinResponse>(
-        API.CREATE_COIN,
-        req,
-        req.Message,
-        (resp: CreateCoinResponse): void => {
-          this.Coins.Coins.push(resp.Info)
-          this.Coins.Total += 1
           done(false, resp.Info)
         }, () => {
           done(true, {} as Coin)

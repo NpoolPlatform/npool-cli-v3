@@ -10,6 +10,7 @@ export interface AppCoin {
   Presale: boolean;
   ReservedAmount: string;
   ForPay: boolean;
+  CoinForPay: boolean;
   ProductPage: string;
   ENV: string;
   HomePage: string;

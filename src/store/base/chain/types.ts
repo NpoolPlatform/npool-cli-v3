@@ -75,6 +75,16 @@ export const CoinDescriptionUsedFors = [
   CoinDescriptionUsedFor.ProductPage
 ]
 
+export enum CoinEnvironment {
+  Test = "test",
+  Main = "main"
+}
+
+export const CoinEnvironments = [
+  CoinEnvironment.Test,
+  CoinEnvironment.Main
+]
+
 export interface CoinDescription {
   ID: string;
   AppID: string;

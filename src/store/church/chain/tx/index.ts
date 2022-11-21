@@ -16,6 +16,9 @@ export const useChurchTxStore = defineStore('church-tx-v4', {
       return (ID: string) => {
         return this.Txs.Txs.find((el) => el.ID === ID)
       }
+    },
+    getTxsByAppID() {
+      return (appID: string) => this.Txs.Txs.filter((el) => el.AppID === appID)
     }
   },
   actions: {

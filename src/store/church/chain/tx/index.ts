@@ -12,14 +12,14 @@ export const useChurchTxStore = defineStore('church-tx-v4', {
     }
   }),
   getters: {
-    getCoinByID () {
+    getTxByID () {
       return (ID: string) => {
         return this.Txs.Txs.find((el) => el.ID === ID)
       }
     }
   },
   actions: {
-    getCoins (req: GetTxsRequest, done: (error: boolean, coins: Array<Tx>) => void) {
+    getTxs (req: GetTxsRequest, done: (error: boolean, txs: Array<Tx>) => void) {
       doActionWithError<GetTxsRequest, GetTxsResponse>(
         API.GET_TXS,
         req,

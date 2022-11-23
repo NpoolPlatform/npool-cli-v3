@@ -1,5 +1,5 @@
 export enum API {
-  CREATE_COINDESCRIPTION = '/chain/v1/create/coindescripiton',
-  GET_COINDESCRIPTIONS = '/chain/v1/get/coindescripitons',
-  UPDATE_COINDESCRIPTION = '/chain/v1/update/coindescripiton',
+  CREATE_COINDESCRIPTION = '/chain/v1/create/coindescription',
+  GET_COINDESCRIPTIONS = '/chain/v1/get/coindescriptions',
+  UPDATE_COINDESCRIPTION = '/chain/v1/update/coindescription',
 }

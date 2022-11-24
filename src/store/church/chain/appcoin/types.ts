@@ -42,6 +42,7 @@ export interface UpdateAppCoinRequest  extends BaseRequest{
   MarketValue: string;
   SettlePercent: number;
   ProductPage: string;
+  DailyRewardAmount: string;
   Env?: string;
 }
 

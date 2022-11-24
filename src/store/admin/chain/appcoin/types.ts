@@ -2,7 +2,6 @@ import { AppCoin } from '../../../base'
 import { BaseRequest } from '../../../base';
 
 export interface GetAppCoinsRequest extends BaseRequest {
-  TargetAppID: string;
   Offset: number;
   Limit: number;
 }
@@ -23,6 +22,7 @@ export interface UpdateAppCoinRequest  extends BaseRequest{
   WithdrawAutoReviewAmount: string;
   MarketValue: string;
   SettlePercent: number;
+  DailyRewardAmount: string;
 }
 
 export interface UpdateAppCoinResponse {

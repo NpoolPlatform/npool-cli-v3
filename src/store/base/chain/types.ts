@@ -12,6 +12,7 @@ export interface AppCoin {
   ForPay: boolean;
   CoinForPay: boolean;
   ProductPage: string;
+  DailyRewardAmount: string;
   ENV: string;
   HomePage: string;
   Specs: string;

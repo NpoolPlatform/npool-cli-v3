@@ -14,7 +14,7 @@ export interface GetAppCoinsResponse {
 export interface UpdateAppCoinRequest  extends BaseRequest{
   ID: string;
   AppID: string;
-  UserID: string;
+  UserID?: string;
   CoinTypeID: string;
   Name: string;
   Logo: string;

@@ -14,7 +14,7 @@ interface CreateUserOrderRequest extends BaseRequest {
   TargetUserID: string;
   GoodID: string;
   Units: number;
-  PaymentCoinID?: string;
+  PaymentCoinID: string;
   ParentOrderID?: string;
   PayWithBalanceAmount?: string;
   FixAmountID?: string;

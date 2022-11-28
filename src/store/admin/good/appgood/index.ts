@@ -120,5 +120,16 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
           done({} as AppGood, true)
         })
     },
+    getOne (req: GetAppGoodRequest, done: (appGood: AppGood, error: boolean) => void) {
+      doActionWithError<GetAppGoodRequest, GetAppGoodResponse>(
+        API.GET_APPGOOD,
+        req,
+        req.Message,
+        (resp: GetAppGoodResponse): void => {
+          done(resp.Info, false)
+        }, () => {
+          done({} as AppGood, true)
+        })
+    },
   }
 })

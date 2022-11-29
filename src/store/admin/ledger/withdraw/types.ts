@@ -1,4 +1,4 @@
-import { BaseRequest, Withdraw } from '../../base'
+import { BaseRequest, Withdraw } from '../../../base'
 
 
 export interface GetAppWithdrawsRequest extends BaseRequest {

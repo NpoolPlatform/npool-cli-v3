@@ -8,7 +8,7 @@ import {
   UpdateCoinDescriptionRequest, 
   UpdateCoinDescriptionResponse 
 } from './types'
-import { CoinDescription } from '../../../base'
+import { CoinDescription, CoinDescriptionUsedFor } from '../../../base'
 import { doActionWithError } from '../../../action'
 
 export const useAdminCoinDescriptionStore = defineStore('admin-coindescription-v4', {
@@ -20,8 +20,19 @@ export const useAdminCoinDescriptionStore = defineStore('admin-coindescription-v
   }),
   getters: {
     getCoinDescriptionByID () {
-      return (ID: string) => {
-        return this.CoinDescriptions.CoinDescriptions.find((el) => el.ID === ID)
+      return (id: string) => {
+        return this.CoinDescriptions.CoinDescriptions.find((el) => el.ID === id)
+      }
+    },
+    getCoinDescriptionsByCoinTypeID () {
+      return (coinTypeID: string) => {
+        return this.CoinDescriptions.CoinDescriptions.filter((el) => el.CoinTypeID === coinTypeID)
+      }
+    },
+    getCoinDescriptionByCoinUsedFor() {
+      return (coinTypeID: string, usedFor: CoinDescriptionUsedFor) => {
+        const descriptions =  this.getCoinDescriptionsByCoinTypeID(coinTypeID)
+        return descriptions.find((el) => el.UsedFor === usedFor)
       }
     }
   },

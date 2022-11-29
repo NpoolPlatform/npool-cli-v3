@@ -21,6 +21,11 @@ export const useAdminAppCoinStore = defineStore('admin-appcoin-v4', {
       return (coinTypeID: string) => {
         return this.AppCoins.AppCoins.find((el) => el.CoinTypeID === coinTypeID)
       }
+    },
+    getProductPage () {
+      return (coinTypeID: string) => {
+        return this.getCoinByID(coinTypeID)?.ProductPage
+      }
     }
   },
   actions: {

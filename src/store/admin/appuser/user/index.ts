@@ -13,10 +13,15 @@ export const useAdminUserStore = defineStore('admin-user-v3', {
   }),
   getters: {
     getUserByID (): (ID:string) => User {
-      return (ID:string) => {
+      return (ID: string) => {
         const index = this.Users.Users.findIndex((el) => el.ID === ID)
         return index < 0 ? undefined as unknown as User : this.Users.Users[index]
       }
+    },
+    getUsersByName (): (name: string) => Array<User> {
+      return (name: string) => this.Users.Users.filter((el) => el.ID?.toLowerCase()?.includes(name.toLowerCase()) || 
+                                                            el.EmailAddress?.toLowerCase()?.includes(name.toLowerCase()) || 
+                                                            el.PhoneNO?.toLowerCase()?.includes(name.toLocaleLowerCase()))
     }
   },
   actions: {

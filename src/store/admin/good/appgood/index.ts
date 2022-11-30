@@ -11,6 +11,7 @@ import {
   UpdateAppGoodRequest,
   UpdateAppGoodResponse
 } from './types'
+import { date } from 'quasar'
 
 export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
   state: () => ({
@@ -58,6 +59,12 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
         return Number(g?.Price)?.toFixed(4)
       }
     },
+    getPrice() {
+      return (goodID: string) => {
+        const g = this.getGoodByID(goodID)
+        return parseFloat(g?.Price as string)
+      }
+    },
     classic() {
       return (g: AppGood) => {
         return g.GoodType === GoodType.GoodTypeClassicMining
@@ -78,10 +85,19 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
         }
         return t('MSG_EFFECTIVE_NEXT_DAY')
       }
+    },
+    getStartTime() {
+      return (goodID: string) => {
+        const good = this.getGoodByID(goodID)
+        return date.formatDate(good?.StartAt as number * 1000, 'YYYY/MM/DD')
+      }
+    },
+    getFormatTime() {
+      return (timestamp: number) => date.formatDate(timestamp * 1000, 'YYYY/MM/DD')
     }
   },
   actions: {
-    getAppGoods (req: GetAppGoodsRequest, done: (appGoods: Array<AppGood>, error: boolean) => void) {
+    getAppGoods (req: GetAppGoodsRequest, done: (rows: Array<AppGood>, error: boolean) => void) {
       doActionWithError<GetAppGoodsRequest, GetAppGoodsResponse>(
         API.GET_APPGOODS,
         req,
@@ -94,7 +110,7 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
           done([], true)
         })
     },
-    updateAppGood (req: UpdateAppGoodRequest, done: (appGood: AppGood, error: boolean) => void) {
+    updateAppGood (req: UpdateAppGoodRequest, done: (row: AppGood, error: boolean) => void) {
       doActionWithError<UpdateAppGoodRequest, UpdateAppGoodResponse>(
         API.UPDATE_APPGOOD,
         req,
@@ -107,7 +123,7 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
           done({} as AppGood, true)
         })
     },
-    getAppGood (req: GetAppGoodRequest, done: (appGood: AppGood, error: boolean) => void) {
+    getAppGood (req: GetAppGoodRequest, done: (row: AppGood, error: boolean) => void) {
       doActionWithError<GetAppGoodRequest, GetAppGoodResponse>(
         API.GET_APPGOOD,
         req,
@@ -120,15 +136,15 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
           done({} as AppGood, true)
         })
     },
-    getOne (req: GetAppGoodRequest, done: (appGood: AppGood, error: boolean) => void) {
+    getOne (req: GetAppGoodRequest, done: (error: boolean, row: AppGood) => void) {
       doActionWithError<GetAppGoodRequest, GetAppGoodResponse>(
         API.GET_APPGOOD,
         req,
         req.Message,
         (resp: GetAppGoodResponse): void => {
-          done(resp.Info, false)
+          done(false, resp.Info)
         }, () => {
-          done({} as AppGood, true)
+          done(true, {} as AppGood)
         })
     },
   }

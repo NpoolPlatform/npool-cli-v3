@@ -35,6 +35,9 @@ export const useAdminAppCoinStore = defineStore('admin-appcoin-v4', {
     },
     getCurrentFee() {
       return (coinTypeID: string) => this.getCoinByID(coinTypeID)?.WithdrawFeeAmount
+    },
+    getAvailableCoins () {
+      return () => this.AppCoins.AppCoins.filter((el) => !el.Disabled && !el.CoinDisabled && el.ForPay && el.CoinForPay && !el.Presale)
     }
   },
   actions: {

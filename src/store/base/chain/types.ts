@@ -29,7 +29,7 @@ export interface AppCoin {
   HotWalletAccountAmount: string;
   PaymentAccountCollectAmount: string;
   WithdrawAutoReviewAmount: string;
-  StableUsd: boolean;
+  StableUSD: boolean;
   MarketValue: string;
   SettleValue: string;
   SettlePercent: number;
@@ -51,7 +51,7 @@ export interface Coin {
   ForPay: boolean;
   HomePage: string;
   Specs: string;
-  StableUsd: boolean;
+  StableUSD: boolean;
   FeeCoinTypeID: string;
   FeeCoinName: string;
   FeeCoinLogo: string;

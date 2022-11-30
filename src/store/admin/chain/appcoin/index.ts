@@ -38,6 +38,15 @@ export const useAdminAppCoinStore = defineStore('admin-appcoin-v4', {
     },
     getAvailableCoins () {
       return () => this.AppCoins.AppCoins.filter((el) => !el.Disabled && !el.CoinDisabled && el.ForPay && el.CoinForPay && !el.Presale)
+    },
+    haveCurrency() {
+      return (coinTypeID: string) => this.getCurrency(coinTypeID) === 0 || this.getCurrency(coinTypeID)?.toString()?.length === 0 ? false : true
+    },
+    getCurrency() {
+      return (coinTypeID: string) => {
+        const data = this.getCoinByID(coinTypeID)
+        return data?.SettlePercent
+      }
     }
   },
   actions: {

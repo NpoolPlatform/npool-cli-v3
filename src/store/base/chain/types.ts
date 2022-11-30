@@ -67,6 +67,8 @@ export interface Coin {
   UpdatedAt: number;
 }
 
+export const PriceCoinName = "USDT"
+
 export enum CoinDescriptionUsedFor {
   DefaultUsedFor = "DefaultUsedFor",
   ProductPage = "ProductPage",

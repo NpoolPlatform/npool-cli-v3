@@ -49,7 +49,7 @@ export const useAdminAppCoinStore = defineStore('admin-appcoin-v4', {
       }
     },
     stableCoin() {
-      return (coinTypeID: string) => this.getCoinByID(coinTypeID)?.StableUsd
+      return (coinTypeID: string) => this.getCoinByID(coinTypeID)?.StableUSD
     }
   },
   actions: {

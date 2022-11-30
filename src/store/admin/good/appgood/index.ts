@@ -26,31 +26,31 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
     },
     online() {
       return (goodID: string) => {
-        const g = this.AppGoods.AppGoods.find((el) => el.GoodID === goodID)
-        return !g ? false : g.Online
+        const good = this.getGoodByID(goodID)
+        return !good ? false : good.Online
       }
     },
     visible() {
       return (goodID: string) => {
-        const g = this.AppGoods.AppGoods.find((el) => el.GoodID === goodID)
-        return !g ? false : g.Visible
+        const good = this.AppGoods.AppGoods.find((el) => el.GoodID === goodID)
+        return !good ? false : good.Visible
       }
     },
     canBuy() {
       return (goodID: string, coinTypeID: string) => {
-        const g = this.getGoodByID(goodID)
-        return g?.CoinTypeID === coinTypeID && g.Visible && g.Online
+        const good = this.getGoodByID(goodID)
+        return good?.CoinTypeID === coinTypeID && good.Visible && good.Online
       }
     },
     total() {
       return (goodID: string) => {
-        const g = this.getGoodByID(goodID) as AppGood
-        return Math.min(g?.Total, g?.PurchaseLimit) 
+        const good = this.getGoodByID(goodID) as AppGood
+        return Math.min(good?.Total, good?.PurchaseLimit) 
       }
     },
     goodPrice() {
-      return (g: AppGood) => {
-        return !g ? '' : Number(g?.Price).toFixed(4)
+      return (good: AppGood) => {
+        return !good ? '' : Number(good?.Price).toFixed(4)
       }
     },
     getPriceByID() {
@@ -61,13 +61,13 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
     },
     getPrice() {
       return (goodID: string) => {
-        const g = this.getGoodByID(goodID)
-        return parseFloat(g?.Price as string)
+        const good = this.getGoodByID(goodID)
+        return parseFloat(good?.Price as string)
       }
     },
     classic() {
-      return (g: AppGood) => {
-        return g.GoodType === GoodType.GoodTypeClassicMining
+      return (good: AppGood) => {
+        return good.GoodType === GoodType.GoodTypeClassicMining
       }
     },
     goodEffectiveDate() {
@@ -94,6 +94,9 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
     },
     getFormatTime() {
       return (timestamp: number) => date.formatDate(timestamp * 1000, 'YYYY/MM/DD')
+    },
+    limit() {
+      return (good : AppGood) => Math.min(good.PurchaseLimit, good.Total)
     }
   },
   actions: {

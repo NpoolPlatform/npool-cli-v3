@@ -47,6 +47,9 @@ export const useAdminAppCoinStore = defineStore('admin-appcoin-v4', {
         const data = this.getCoinByID(coinTypeID)
         return data?.SettlePercent
       }
+    },
+    stableCoin() {
+      return (coinTypeID: string) => this.getCoinByID(coinTypeID)?.StableUsd
     }
   },
   actions: {

@@ -148,3 +148,25 @@ export interface Tx {
   CreatedAt: number;
   UpdatedAt: number;
 }
+
+export enum FeedType {
+  DefaultFeedType = "DefaultFeedType",
+  CoinGecko = "CoinGecko",
+  CoinBase = "CoinBase",
+}
+
+export interface Currency {
+  ID: string;
+  CoinTypeID: string;
+  CoinName: string;
+  CoinLogo: string;
+  CoinUnit: string;
+  CoinENV: string;
+  CreatedAt: number;
+  UpdatedAt: number;
+  MarketValueHigh: string;
+  MarketValueLow: string;
+  FeedTypeStr: string;
+  FeedType: FeedType;
+  FeedSource: string;
+}

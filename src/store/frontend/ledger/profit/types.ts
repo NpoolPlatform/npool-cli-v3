@@ -1,14 +1,33 @@
 import { BaseRequest, GoodProfit, Profit } from '../../../base'
 
 export interface GetGoodProfitsRequest extends BaseRequest {
-  StartAt?: number;
-  EndAt?: number;
   Offset: number;
   Limit: number;
 }
 
 export interface GetGoodProfitsResponse {
   Infos: Array<GoodProfit>;
+  Total: number;
+}
+
+export interface GetIntervalGoodProfitsRequest extends BaseRequest {
+  StartAt: number;
+  EndAt: number;
+  Offset: number;
+  Limit: number;
+}
+
+export interface GetIntervalGoodProfitsResponse {
+  Infos: Array<GoodProfit>;
+  Total: number;
+}
+export interface GetProfitsRequest extends BaseRequest {
+  Offset: number;
+  Limit: number;
+}
+
+export interface GetProfitsResponse {
+  Infos: Profit[];
   Total: number;
 }
 

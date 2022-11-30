@@ -47,7 +47,7 @@ export const useFrontendGeneralStore = defineStore('frontend-general-v4', {
     }
   },
   actions: {
-    getGenerals (req: GetGeneralsRequest, done: (generals: Array<General>, error: boolean) => void) {
+    getGenerals (req: GetGeneralsRequest, done: (error: boolean, rows: Array<General>) => void) {
       doActionWithError<GetGeneralsRequest, GetGeneralsResponse>(
         API.GET_GENERALS,
         req,
@@ -55,14 +55,14 @@ export const useFrontendGeneralStore = defineStore('frontend-general-v4', {
         (resp: GetGeneralsResponse): void => {
           this.Generals.Generals.push(...resp.Infos)
           this.Generals.Total = resp.Total
-          done(resp.Infos, false)
+          done(false, resp.Infos)
         },
         () => {
-          done([] as Array<General>, true)
+          done(true, [] as Array<General>)
         }
       )
     },
-    getIntervalGenerals (req: GetIntervalGeneralsRequest, intervalKey: string, done: (intervalGenerals: Array<General>, error: boolean) => void) {
+    getIntervalGenerals (req: GetIntervalGeneralsRequest, intervalKey: string, done: (error: boolean, rows: Array<General>) => void) {
       doActionWithError<GetIntervalGeneralsRequest, GetIntervalGeneralsResponse>(
         API.GET_INTERVALGENERALS,
         req,
@@ -72,10 +72,10 @@ export const useFrontendGeneralStore = defineStore('frontend-general-v4', {
           data.push(...resp.Infos)
           this.IntervalGenerals.IntervalGenerals.set(intervalKey, data)
           this.IntervalGenerals.Total = resp.Total
-          done(data, false)
+          done(false, resp.Infos)
         },
         () => {
-          done([] as Array<General>, true)
+          done(true, [] as Array<General>)
         }
       )
     }

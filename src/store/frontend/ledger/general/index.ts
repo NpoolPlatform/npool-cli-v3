@@ -30,7 +30,7 @@ export const useFrontendGeneralStore = defineStore('frontend-general-v4', {
     generals() {
       return () => this.Generals.Generals.sort((a, b) => a.Spendable > b.Spendable ? -1 : 1)
     },
-    getIntervalIncoming () {
+    getIntervalInComing () {
       return (intervalKey: string, coinTypeID: string) => {
         const data = this.getIntervalGeneralsByKey(intervalKey)
         let incoming = 0
@@ -39,9 +39,12 @@ export const useFrontendGeneralStore = defineStore('frontend-general-v4', {
         return incoming
       }
     },
+    getGeneralByCoinTypeID () {
+      return (coinTypeID: string) => this.Generals.Generals.find((el) => el.CoinTypeID === coinTypeID)
+    },
     getBalanceByID () {
       return (coinTypeID: string) => {
-        const general = this.Generals.Generals.find((el) => el.CoinTypeID === coinTypeID)
+        const general = this.getGeneralByCoinTypeID(coinTypeID)
         return !general? '0' : general.Spendable
       }
     }

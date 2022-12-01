@@ -26,6 +26,11 @@ export const useFrontendArchivementStore = defineStore('frontend-archivement-v4'
         const good = archivement.Archivements.find((el) => el.GoodID === goodID)
         return !good? 0 : good.CommissionPercent 
       }
+    },
+    subUsername() {
+      return (archivement: UserArchivement) => {
+        return archivement.EmailAddress.length > 0 ? archivement.EmailAddress : archivement.PhoneNO
+      }
     }
   },
   actions: {

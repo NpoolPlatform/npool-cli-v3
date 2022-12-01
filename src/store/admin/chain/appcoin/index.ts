@@ -28,10 +28,16 @@ export const useAdminAppCoinStore = defineStore('admin-appcoin-v4', {
       }
     },
     preSale() {
-      return (coinTypeID: string) => this.getCoinByID(coinTypeID)?.Presale
+      return (coinTypeID: string) => {
+        const coin = this.getCoinByID(coinTypeID)
+        return !coin? true : coin.Presale
+      }
     },
     forPay() {
-      return (coinTypeID: string) => this.getCoinByID(coinTypeID)?.CoinForPay
+      return (coinTypeID: string) => {
+        const coin = this.getCoinByID(coinTypeID)
+        return !coin? false : coin.ForPay || coin.CoinForPay
+      }
     },
     getCurrentFee() {
       return (coinTypeID: string) => this.getCoinByID(coinTypeID)?.WithdrawFeeAmount
@@ -53,8 +59,8 @@ export const useAdminAppCoinStore = defineStore('admin-appcoin-v4', {
     },
     disabled() {
       return (coinTypeID: string) => {
-        const row = this.getCoinByID(coinTypeID)
-        return !row? true : row.Disabled || row.CoinDisabled
+        const coin = this.getCoinByID(coinTypeID)
+        return !coin? true : coin.Disabled || coin.CoinDisabled
       }
     }
   },

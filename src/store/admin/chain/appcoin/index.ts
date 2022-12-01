@@ -50,6 +50,12 @@ export const useAdminAppCoinStore = defineStore('admin-appcoin-v4', {
     },
     stableCoin() {
       return (coinTypeID: string) => this.getCoinByID(coinTypeID)?.StableUSD
+    },
+    disabled() {
+      return (coinTypeID: string) => {
+        const row = this.getCoinByID(coinTypeID)
+        return !row? true : row.Disabled || row.CoinDisabled
+      }
     }
   },
   actions: {

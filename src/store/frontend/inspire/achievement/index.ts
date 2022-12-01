@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { UserArchivement } from '../../../base'
+import { GoodArchivement, UserArchivement } from '../../../base'
 import { doActionWithError } from '../../../action'
 import { API } from './const'
 import {
@@ -31,6 +31,75 @@ export const useFrontendArchivementStore = defineStore('frontend-archivement-v4'
       return (archivement: UserArchivement) => {
         return archivement.EmailAddress.length > 0 ? archivement.EmailAddress : archivement.PhoneNO
       }
+    },
+    getTotalCommission() {
+      return (userID: string) => {
+        let total = 0
+        this.getArchivementByUserID(userID)?.Archivements.forEach((el) => {
+          total += Number(el.TotalCommission)
+        })
+        return total
+      }
+    },
+    totalUnits () {
+      return (rows: Array<UserArchivement>, coinTypeID: string) => {
+        let total = 0
+        rows.forEach((el) => {
+          el.Archivements.filter((el) => el.CoinTypeID === coinTypeID).forEach((el) => {
+            total += el.TotalUnits
+          })
+        })
+        return total
+      }
+    },
+    totalAmount () {
+      return (rows: Array<UserArchivement>, coinTypeID: string) => {
+        let total = 0
+        rows.forEach((el) => {
+          el.Archivements.filter((el) => el.CoinTypeID === coinTypeID).forEach((el) => {
+            total += Number(el.TotalAmount)
+          })
+        })
+        return total
+      }
+    },
+    totalCommission () {
+      return (rows: Array<UserArchivement>, coinTypeID: string) => {
+        let total = 0
+        rows.forEach((el) => {
+          el.Archivements.filter((el) => el.CoinTypeID === coinTypeID).forEach((el) => {
+            total += Number(el.TotalCommission)
+          })
+        })
+        return total
+      }
+    },
+    userTotalUnits () {
+      return (rows: Array<GoodArchivement>, coinTypeID: string) => {
+        let total = 0
+        rows.filter((el) => el.CoinTypeID === coinTypeID).forEach((el) => {
+          total += el.TotalUnits
+        })
+        return total
+      } 
+    },
+    userTotalAmount () {
+      return (rows: Array<GoodArchivement>, coinTypeID: string) => {
+        let total = 0
+        rows.filter((el) => el.CoinTypeID === coinTypeID).forEach((el) => {
+          total += Number(el.TotalAmount)
+        })
+        return total
+      } 
+    },
+    userTotalCommission () {
+      return (rows: Array<GoodArchivement>, coinTypeID: string) => {
+        let total = 0
+        rows.filter((el) => el.CoinTypeID === coinTypeID).forEach((el) => {
+          total += Number(el.TotalCommission)
+        })
+        return total
+      } 
     }
   },
   actions: {

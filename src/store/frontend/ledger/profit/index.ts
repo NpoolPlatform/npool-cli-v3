@@ -36,7 +36,7 @@ export const useFrontendProfitStore = defineStore('frontend-profit-v4', {
         return !data ? [] as Array<GoodProfit> : data
       }
     },
-    getIntervalProfitIncoming() {
+    getIntervalProfitInComing() {
       return (intervalKey: string, coinTypeID: string) => {
         const data = this.getIntervalProfitsByKey(intervalKey)
         let incoming = 0
@@ -44,7 +44,7 @@ export const useFrontendProfitStore = defineStore('frontend-profit-v4', {
         return incoming
       }
     },
-    getIntervalGoodProfitIncoming() {
+    getIntervalGoodProfitInComing() {
       return (intervalKey: string, coinTypeID: string) => {
         const data = this.getIntervalGoodProfitsByKey(intervalKey)
         let incoming = 0

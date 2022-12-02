@@ -30,7 +30,7 @@ export const useFrontendArchivementStore = defineStore('frontend-archivement-v4'
     },
     subUsername() {
       return (referral: UserArchivement) => {
-        return referral.EmailAddress?.length > 0 ? referral?.EmailAddress : referral?.PhoneNO
+        return referral?.EmailAddress?.length > 0 ? referral?.EmailAddress : referral?.PhoneNO
       }
     },
     getTotalCommission() {

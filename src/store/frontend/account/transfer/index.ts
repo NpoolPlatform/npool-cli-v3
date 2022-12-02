@@ -19,7 +19,9 @@ export const useFrontendTransferAccountStore = defineStore('frontend-transferacc
     }
   }),
   getters: {
-    
+    transferAccounts () {
+      return () => this.TransferAccounts.TransferAccounts.sort((a, b) => a.CreatedAt > b.CreatedAt ? -1 : 1)
+    },
   },
   actions: {
     createTransfer (req: CreateTransferAccountRequest, done: (trans: TransferAccount, error: boolean) => void) {

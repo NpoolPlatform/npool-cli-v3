@@ -31,6 +31,13 @@ export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
         const data = this.Histories.Histories.get(coinTypeID)
         return !data? [] as Array<Currency> : data
       }
+    },
+    getUSDCurrency () {
+      return (coinTypeID: string) => {
+        const cur = this.getCurrency(coinTypeID)
+        if (!cur) return 1
+        return Number(cur.MarketValueLow)
+      }
     }
   },
   actions: {

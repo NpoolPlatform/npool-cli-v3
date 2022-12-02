@@ -6,6 +6,7 @@ import {
   GetGoodArchivementsRequest,
   GetGoodArchivementsResponse
 } from './types'
+import { date } from 'quasar'
 
 export const useFrontendArchivementStore = defineStore('frontend-archivement-v4', {
   state: () => ({
@@ -103,6 +104,16 @@ export const useFrontendArchivementStore = defineStore('frontend-archivement-v4'
     },
     notKolUsers() {
       return () => this.Archivements.Archivements.filter((el) => !el.Kol).sort((a, b) => a.CreatedAt > b.CreatedAt ? -1 : 1)
+    },
+    getJoinTime() {
+      return (referral: UserArchivement) => {
+        return date.formatDate(referral.InvitedAt * 1000, 'YYYY/MM/DD HH:mm:ss')?.split(' ')?.[1]
+      }
+    },
+    getJoinDate() {
+      return (referral: UserArchivement) => {
+        return date.formatDate(referral.InvitedAt * 1000, 'YYYY/MM/DD')
+      }
     }
   },
   actions: {

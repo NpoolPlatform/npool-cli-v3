@@ -23,14 +23,14 @@ export const useFrontendArchivementStore = defineStore('frontend-archivement-v4'
       return (userID: string) => this.Archivements.Archivements.filter((el) => el.UserID !== userID && el.Kol)
     },
     getInviterGoodPercent() {
-      return (archivement: UserArchivement, goodID: string) => {
-        const good = archivement.Archivements.find((el) => el.GoodID === goodID)
+      return (referral: UserArchivement, goodID: string) => {
+        const good = referral.Archivements.find((el) => el.GoodID === goodID)
         return !good? 0 : good.CommissionPercent 
       }
     },
     subUsername() {
-      return (archivement: UserArchivement) => {
-        return archivement.EmailAddress.length > 0 ? archivement.EmailAddress : archivement.PhoneNO
+      return (referral: UserArchivement) => {
+        return referral.EmailAddress?.length > 0 ? referral?.EmailAddress : referral?.PhoneNO
       }
     },
     getTotalCommission() {
@@ -103,7 +103,7 @@ export const useFrontendArchivementStore = defineStore('frontend-archivement-v4'
       } 
     },
     notKolUsers() {
-      return () => this.Archivements.Archivements.filter((el) => !el.Kol).sort((a, b) => a.CreatedAt > b.CreatedAt ? -1 : 1)
+      return () => this.Archivements?.Archivements?.filter((el) => !el.Kol).sort((a, b) => a.CreatedAt > b.CreatedAt ? -1 : 1)
     },
     getJoinTime() {
       return (referral: UserArchivement) => {

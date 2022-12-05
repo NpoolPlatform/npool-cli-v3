@@ -38,6 +38,13 @@ export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
       const data = this.LegalCurrencies.get(CoinType.USDTERC20) as Map<string, number>
       if (!data) return 1
       return data.get(CurrencyType.JPY) as number
+    },
+    getUSDCurrency () {
+      return (coinTypeID: string) => {
+        const cur = this.getCurrency(coinTypeID)
+        if (!cur) return 1
+        return Number(cur.MarketValueLow)
+      }
     }
   },
   actions: {

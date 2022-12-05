@@ -80,7 +80,7 @@ export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
       const url = API.GET_COIN_CURRENCIES + '?ids=' + CoinType.USDTERC20 + '&vs_currencies=' + req.CurrencyType
       doActionWithError<GetLegalCurrenciesRequest, Map<string, Map<string, number>>>(
         url,
-        req,
+        {} as GetLegalCurrenciesRequest,
         req.Message,
         (resp: Map<string, Map<string, number>>): void => {
           for (const [name, currencyMap] of Object.entries(resp)) {

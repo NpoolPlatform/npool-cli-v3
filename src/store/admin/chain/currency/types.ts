@@ -20,3 +20,7 @@ export interface GetHistoriesResponse {
   Infos: Currency[];
   Total: number;
 }
+
+export interface GetLegalCurrenciesRequest extends BaseRequest {
+  CoinName: string;
+}

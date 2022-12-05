@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia'
-import { API } from './const'
+import { API, CoinType } from './const'
 import { 
   GetCurrenciesRequest, 
   GetCurrenciesResponse, 
   GetHistoriesRequest, 
-  GetHistoriesResponse 
+  GetHistoriesResponse, 
+  GetLegalCurrenciesRequest
 } from './types'
 import { Currency } from '../../../base'
 import { doActionWithError } from '../../../action'
@@ -19,6 +20,7 @@ export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
       Histories: new Map<string, Array<Currency>>(),
       Total: 0
     },
+    LegalCurrencies: new Map<string, Map<string, number>>(),
   }),
   getters: {
     getCurrency () {
@@ -32,12 +34,10 @@ export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
         return !data? [] as Array<Currency> : data
       }
     },
-    getUSDCurrency () {
-      return (coinTypeID: string) => {
-        const cur = this.getCurrency(coinTypeID)
-        if (!cur) return 1
-        return Number(cur.MarketValueLow)
-      }
+    getJPYCurrency() {
+      const data = this.LegalCurrencies.get(CoinType.USDTERC20) as Map<string, number>
+      if (!data) return 1
+      return data.get('jpy')
     }
   },
   actions: {
@@ -68,6 +68,21 @@ export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
         }, () => {
           done(true, [] as Array<Currency>)
         })
+    },
+    getLegalCurrency(req: GetLegalCurrenciesRequest, done: (error: boolean) => void) {
+      const url = API.GET_COIN_CURRENCIES + '?ids=' + CoinType.USDTERC20 + '&vs_currencies=' + req.CoinName
+      doActionWithError<GetLegalCurrenciesRequest, Map<string, Map<string, number>>>(
+        url,
+        req,
+        req.Message,
+        (resp: Map<string, Map<string, number>>): void => {
+          for (const [name, currencyMap] of Object.entries(resp)) {
+            this.LegalCurrencies.set(name, currencyMap)
+          }
+          done(false)
+        }, () => {
+          done(true)
+        })
+      },
     }
-  }
 })

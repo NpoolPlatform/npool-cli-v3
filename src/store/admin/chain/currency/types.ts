@@ -1,4 +1,5 @@
 import { BaseRequest, Currency } from '../../../base';
+import { CurrencyType } from './const';
 
 export interface GetCurrenciesRequest extends BaseRequest {
   Offset: number;
@@ -22,5 +23,5 @@ export interface GetHistoriesResponse {
 }
 
 export interface GetLegalCurrenciesRequest extends BaseRequest {
-  CoinName: string;
+  CurrencyType: CurrencyType;
 }

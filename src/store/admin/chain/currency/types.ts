@@ -1,12 +1,5 @@
-import { BaseRequest, Currency } from '../../../base';
+import { BaseRequest, Currency, CurrencyType } from '../../../base';
 
-export enum CoinType {
-  USDTERC20 = 'tether'
-}
-export enum CurrencyType {
-  USD = 'usd',
-  JPY = 'jpy'
-}
 export interface GetCurrenciesRequest extends BaseRequest {
   Offset: number;
   Limit: number;

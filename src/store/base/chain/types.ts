@@ -172,3 +172,12 @@ export interface Currency {
   FeedType: FeedType;
   FeedSource: string;
 }
+
+
+export enum CoinType {
+  USDTERC20 = 'tether'
+}
+export enum CurrencyType {
+  USD = 'usd',
+  JPY = 'jpy'
+}

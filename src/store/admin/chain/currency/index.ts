@@ -6,11 +6,9 @@ import {
   GetHistoriesRequest, 
   GetHistoriesResponse, 
   GetLegalCurrenciesRequest,
-  CoinType, 
-  CurrencyType
 } from './types'
 import { doActionWithError } from '../../../action'
-import { Currency } from '../../../base'
+import { CoinType, Currency, CurrencyType } from '../../../base'
 
 export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
   state: () => ({

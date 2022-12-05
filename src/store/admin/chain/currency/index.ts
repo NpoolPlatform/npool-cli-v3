@@ -1,11 +1,13 @@
 import { defineStore } from 'pinia'
-import { API, CoinType, CurrencyType } from './const'
+import { API } from './const'
 import { 
   GetCurrenciesRequest, 
   GetCurrenciesResponse, 
   GetHistoriesRequest, 
   GetHistoriesResponse, 
-  GetLegalCurrenciesRequest
+  GetLegalCurrenciesRequest,
+  CoinType, 
+  CurrencyType
 } from './types'
 import { doActionWithError } from '../../../action'
 import { Currency } from '../../../base'

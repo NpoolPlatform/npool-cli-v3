@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { API, CoinType } from './const'
+import { API, CoinType, CurrencyType } from './const'
 import { 
   GetCurrenciesRequest, 
   GetCurrenciesResponse, 
@@ -7,8 +7,8 @@ import {
   GetHistoriesResponse, 
   GetLegalCurrenciesRequest
 } from './types'
-import { Currency } from '../../../base'
 import { doActionWithError } from '../../../action'
+import { Currency } from '../../../base'
 
 export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
   state: () => ({
@@ -37,7 +37,7 @@ export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
     getJPYCurrency() {
       const data = this.LegalCurrencies.get(CoinType.USDTERC20) as Map<string, number>
       if (!data) return 1
-      return data.get('jpy')
+      return data.get(CurrencyType.JPY)
     }
   },
   actions: {

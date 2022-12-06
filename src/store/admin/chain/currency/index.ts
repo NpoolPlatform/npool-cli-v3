@@ -7,7 +7,7 @@ import {
   GetHistoriesResponse, 
   GetLegalCurrenciesRequest,
 } from './types'
-import { doActionWithError } from '../../../action'
+import { doActionWithError, doGetWithError } from '../../../action'
 import { CoinType, Currency, CurrencyType } from '../../../base'
 
 export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
@@ -20,7 +20,7 @@ export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
       Histories: new Map<string, Array<Currency>>(),
       Total: 0
     },
-    LegalCurrencies: new Map<string, Map<string, number>>(),
+    LegalCurrencies: new Map<string, number>()
   }),
   getters: {
     getCurrency () {
@@ -35,9 +35,10 @@ export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
       }
     },
     getJPYCurrency() {
-      const data = this.LegalCurrencies.get(CoinType.USDTERC20) as Map<string, number>
-      if (!data) return 1
-      return data.get(CurrencyType.JPY) as number
+      return () => {
+        const data = this.LegalCurrencies.get(CurrencyType.JPY)
+        return !data ? 1 : data
+      }
     },
     getUSDCurrency () {
       return (coinTypeID: string) => {
@@ -76,20 +77,22 @@ export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
           done(true, [] as Array<Currency>)
         })
     },
-    getLegalCurrencies(req: GetLegalCurrenciesRequest, done: (error: boolean) => void) {
+    getLegalCurrencies (req: GetLegalCurrenciesRequest, done: (error: boolean) => void) {
       const url = API.GET_COIN_CURRENCIES + '?ids=' + CoinType.USDTERC20 + '&vs_currencies=' + req.CurrencyType
-      doActionWithError<GetLegalCurrenciesRequest, Map<string, Map<string, number>>>(
+      doGetWithError<GetLegalCurrenciesRequest, Map<string, Map<CurrencyType, number>>>(
         url,
         {} as GetLegalCurrenciesRequest,
         req.Message,
-        (resp: Map<string, Map<string, number>>): void => {
-          for (const [name, currencyMap] of Object.entries(resp)) {
-            this.LegalCurrencies.set(name, currencyMap)
-          }
+        (resp: Map<string, Map<CurrencyType, number>>): void => {
+          Object.entries(resp).forEach(([name, value]) => {
+            console.log(name)
+            Object.entries(value as Map<string, number>).forEach(([currency, amount]) => {
+              this.LegalCurrencies.set(currency, amount as number)
+            })
+          })
           done(false)
         }, () => {
           done(true)
         })
-      },
     }
 })

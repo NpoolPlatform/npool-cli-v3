@@ -95,4 +95,5 @@ export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
           done(true)
         })
     }
+  }
 })

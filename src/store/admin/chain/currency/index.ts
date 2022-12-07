@@ -46,6 +46,13 @@ export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
         if (!cur) return 1
         return Number(cur.MarketValueLow)
       }
+    },
+    expired () {
+      return () => {
+        if (this.Currencies.Currencies.length === 0) return false
+        const now = Math.ceil(new Date().getTime() / 1000)
+        return now - this.Currencies?.Currencies[0]?.UpdatedAt <= 10 * 60 ? false : true
+      }
     }
   },
   actions: {

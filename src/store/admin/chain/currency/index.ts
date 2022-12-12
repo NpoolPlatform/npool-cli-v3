@@ -28,6 +28,13 @@ export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
         return this.Currencies.Currencies.find((el) => el.CoinTypeID === coinTypeID)
       }
     },
+    haveCurrency () {
+      return (coinTypeID: string) => {
+        const currency = this.Currencies.Currencies.find((el) => el.CoinTypeID === coinTypeID)
+        if(!currency) return false
+        return Number(currency.MarketValueLow) === 0 ? false : true
+      }
+    },
     getHistoriesByID () {
       return (coinTypeID: string) => {
         const data = this.Histories.Histories.get(coinTypeID)

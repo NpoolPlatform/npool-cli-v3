@@ -44,6 +44,7 @@ export interface UpdateAppCoinRequest  extends BaseRequest{
   ProductPage: string;
   DailyRewardAmount: string;
   Env?: string;
+  Display?: boolean;
 }
 
 export interface UpdateAppCoinResponse {

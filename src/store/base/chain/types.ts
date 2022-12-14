@@ -37,6 +37,7 @@ export interface AppCoin {
   Disabled: boolean;
   CoinDisabled: boolean;
   CreatedAt: number;
+  Display: boolean;
   UpdatedAt: number;
 }
 

@@ -3,6 +3,8 @@ import { BaseRequest, GoodProfit, Profit } from '../../../base'
 export interface GetGoodProfitsRequest extends BaseRequest {
   Offset: number;
   Limit: number;
+  StartAt: number;
+  EndAt: number;
 }
 
 export interface GetGoodProfitsResponse {

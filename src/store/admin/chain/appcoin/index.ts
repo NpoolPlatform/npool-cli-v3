@@ -62,6 +62,12 @@ export const useAdminAppCoinStore = defineStore('admin-appcoin-v4', {
         const coin = this.getCoinByID(coinTypeID)
         return !coin? true : coin.Disabled || coin.CoinDisabled
       }
+    },
+    displayed() {
+      return (coinTypeID: string) => {
+        const coin = this.getCoinByID(coinTypeID)
+        return !coin? false : coin.Display
+      }
     }
   },
   actions: {

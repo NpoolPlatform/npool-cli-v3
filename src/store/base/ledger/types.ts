@@ -28,6 +28,7 @@ export interface General {
   UserID: string;
   PhoneNO: string;
   EmailAddress: string;
+  CoinDisabled: boolean;
 }
 
 export interface GoodProfit {

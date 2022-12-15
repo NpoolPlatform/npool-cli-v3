@@ -78,7 +78,6 @@ export enum CoinDescriptionUsedFor {
 }
 
 export const CoinDescriptionUsedFors = [
-  CoinDescriptionUsedFor.DefaultUsedFor,
   CoinDescriptionUsedFor.ProductPage
 ]
 

@@ -58,6 +58,13 @@ export const useFrontendProfitStore = defineStore('frontend-profit-v4', {
         this.GoodProfits.GoodProfits.filter((el) => el.CoinTypeID === coinTypeID).filter((el) => units += el.Units)
         return units
       }
+    },
+    getTotalIncoming () {
+      return (coinTypeID: string) => {
+        let incoming = 0
+        this.GoodProfits.GoodProfits.filter((el) => el.CoinTypeID === coinTypeID).filter((el) => incoming += Number(el.Incoming))
+        return incoming
+      }
     }
   },
   actions: {

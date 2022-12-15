@@ -29,6 +29,7 @@ export interface General {
   PhoneNO: string;
   EmailAddress: string;
   CoinDisabled: boolean;
+  CoinDisplay: boolean;
 }
 
 export interface GoodProfit {

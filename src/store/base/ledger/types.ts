@@ -61,7 +61,7 @@ export interface Withdraw {
   Amount: string;
   CreatedAt: number;
   Address: string;
-  AddressLabels: string;
+  AddressLabels: string[];
   State: WithdrawState;
   Message: string;
 }

@@ -63,9 +63,9 @@ export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
     }
   },
   actions: {
-    getCurrencies (req: GetCurrenciesRequest, done: (error: boolean, rows: Array<Currency>) => void) {
+    getCoinCurrencies (req: GetCurrenciesRequest, done: (error: boolean, rows: Array<Currency>) => void) {
       doActionWithError<GetCurrenciesRequest, GetCurrenciesResponse>(
-        API.GET_CURRENCIES,
+        API.GET_COINCURRENCIES,
         req,
         req.Message,
         (resp: GetCurrenciesResponse): void => {
@@ -76,9 +76,9 @@ export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
           done(true, [] as Array<Currency>)
         })
     },
-    getHistories (req: GetHistoriesRequest, done: (error: boolean, rows: Array<Currency>) => void) {
+    getCoinCurrencyHistories (req: GetHistoriesRequest, done: (error: boolean, rows: Array<Currency>) => void) {
       doActionWithError<GetHistoriesRequest, GetHistoriesResponse>(
-        API.GET_HISTORIES,
+        API.GET_COINCURRENCYHISTORIES,
         req,
         req.Message,
         (resp: GetHistoriesResponse): void => {

@@ -103,7 +103,7 @@ export const useFrontendArchivementStore = defineStore('frontend-archivement-v4'
       } 
     },
     notKolUsers() {
-      return () => this.Archivements?.Archivements?.filter((el) => !el.Kol).sort((a, b) => a.CreatedAt > b.CreatedAt ? -1 : 1)
+      return () => this.Archivements?.Archivements?.filter((el) => !el.Kol).sort((a, b) => a.InvitedAt > b.InvitedAt ? -1 : 1)
     },
     getJoinTime() {
       return (referral: UserArchivement) => {

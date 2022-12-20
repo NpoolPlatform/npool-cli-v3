@@ -151,12 +151,6 @@ export interface Tx {
   UpdatedAt: number;
 }
 
-export enum FeedType {
-  DefaultFeedType = "DefaultFeedType",
-  CoinGecko = "CoinGecko",
-  CoinBase = "CoinBase",
-}
-
 export interface Currency {
   ID: string;
   CoinTypeID: string;
@@ -177,7 +171,69 @@ export interface Currency {
 export enum CoinType {
   USDTERC20 = 'tether'
 }
+
 export enum CurrencyType {
   USD = 'usd',
   JPY = 'jpy'
+}
+
+export enum FiatType {
+  USD = 'USD',
+  JPY = 'JPY'
+}
+
+export interface FiatCurrencyType {
+  ID: string;
+  Name: string;
+  Logo: string;
+  /** @format int64 */
+  CreatedAt: number;
+  /** @format int64 */
+  UpdatedAt: number;
+}
+
+/** @default "DefaultFeedType" */
+export enum FeedType {
+  DefaultFeedType = 'DefaultFeedType',
+  CoinGecko = 'CoinGecko',
+  CoinBase = 'CoinBase',
+  StableUSDHardCode = 'StableUSDHardCode',
+}
+
+export interface FiatCurrency {
+  /** @inject_tag: sql:"id" */
+  ID: string;
+  /** @inject_tag: sql:"fiat_currency_type_id" */
+  FiatCurrencyTypeID: string;
+  /** @inject_tag: sql:"feed_type" */
+  FeedTypeStr: string;
+  FeedType: FeedType;
+  /** @inject_tag: sql:"fiat_currency_name" */
+  FiatCurrencyName: string;
+  /** @inject_tag: sql:"fiat_currency_name" */
+  FiatCurrencyLogo: string;
+  /** @inject_tag: sql:"market_value_high" */
+  MarketValueHigh: string;
+  /** @inject_tag: sql:"market_value_low" */
+  MarketValueLow: string;
+  /**
+   * @inject_tag: sql:"created_at"
+   * @format int64
+   */
+  CreatedAt: number;
+  /**
+   * @inject_tag: sql:"updated_at"
+   * @format int64
+   */
+  UpdatedAt: number;
+  /** @inject_tag: sql:"coin_type_id" */
+  CoinTypeID: string;
+  /** @inject_tag: sql:"coin_name" */
+  CoinName: string;
+  /** @inject_tag: sql:"coin_logo" */
+  CoinLogo: string;
+  /** @inject_tag: sql:"coin_unit" */
+  CoinUnit: string;
+  /** @inject_tag: sql:"coin_env" */
+  CoinENV: string;
 }

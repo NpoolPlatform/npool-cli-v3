@@ -93,11 +93,11 @@ export const useFrontendArchivementStore = defineStore('frontend-archivement-v4'
         return total
       } 
     },
-    userTotalCommission () {
+    userSuperiorCommission () {
       return (rows: Array<GoodArchivement>, coinTypeID: string) => {
         let total = 0
         rows.filter((el) => el.CoinTypeID === coinTypeID).forEach((el) => {
-          total += Number(el.TotalCommission)
+          total += Number(el.SuperiorCommission)
         })
         return total
       } 

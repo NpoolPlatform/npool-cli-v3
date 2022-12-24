@@ -26,6 +26,7 @@ export interface UpdateAppCoinRequest  extends BaseRequest{
   SettleTips: string[];
   DailyRewardAmount: string;
   Display?: boolean;
+  DisplayIndex: number;
 }
 
 export interface UpdateAppCoinResponse {

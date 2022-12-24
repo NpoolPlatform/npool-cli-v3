@@ -40,6 +40,7 @@ export interface AppCoin {
   CoinDisabled: boolean;
   CreatedAt: number;
   Display: boolean;
+  DisplayIndex: number;
   UpdatedAt: number;
 }
 

@@ -17,11 +17,13 @@ export interface UpdateAppCoinRequest  extends BaseRequest{
   UserID?: string;
   CoinTypeID: string;
   Name: string;
+  DisplayNames: string[];
   Logo: string;
   ForPay: boolean;
   WithdrawAutoReviewAmount: string;
   MarketValue: string;
   SettlePercent: number;
+  SettleTips: string[];
   DailyRewardAmount: string;
   Display?: boolean;
 }

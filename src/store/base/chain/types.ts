@@ -5,6 +5,7 @@ export interface AppCoin {
   AppID: string;
   CoinTypeID: string;
   Name: string;
+  DisplayNames: string[];
   Logo: string;
   Unit: string;
   Presale: boolean;
@@ -33,6 +34,7 @@ export interface AppCoin {
   MarketValue: string;
   SettleValue: string;
   SettlePercent: number;
+  SettleTips: string[];
   Setter: string;
   Disabled: boolean;
   CoinDisabled: boolean;

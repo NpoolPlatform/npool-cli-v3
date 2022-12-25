@@ -13,6 +13,7 @@ export interface TransferAccount {
 export interface Transfer {
   CoinTypeID:         string;
   CoinName:           string;
+  CoinDisplayNames:   string[];
   CoinLogo:           string;
   CoinUnit:           string;
   Amount:             string;
@@ -58,6 +59,7 @@ export interface Account {
   UserID: string;
   CoinTypeID: string;
   CoinName: string;
+  CoinDisplayNames: string[];
   CoinUnit: string;
   CoinEnv: string;
   CoinLogo: string;
@@ -109,6 +111,7 @@ export interface PaymentAccount {
   ID: string;
   CoinTypeID: string;
   CoinName: string;
+  CoinDisplayNames: string[];
   CoinUnit: string;
   CoinEnv: string;
   CoinLogo: string;
@@ -131,6 +134,7 @@ export interface GoodBenefitAccount {
   GoodUnit: string;
   CoinTypeID: string;
   CoinName: string;
+  CoinDisplayNames: string[];
   CoinUnit: string;
   CoinEnv: string;
   CoinLogo: string;
@@ -149,6 +153,7 @@ export interface PlatformAccount {
   ID: string;
   CoinTypeID: string;
   CoinName: string;
+  CoinDisplayNames: string[];
   CoinUnit: string;
   CoinEnv: string;
   CoinLogo: string;

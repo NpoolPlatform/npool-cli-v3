@@ -4,6 +4,7 @@ import { IOSubType, IOType } from './const'
 export interface Detail {
   CoinTypeID: string;
   CoinName: string;
+  DisplayNames: string[];
   CoinLogo: string;
   CoinUnit: string;
   IOType: IOType;
@@ -19,6 +20,7 @@ export interface Detail {
 export interface General {
   CoinTypeID: string;
   CoinName: string;
+  DisplayNames: string[];
   CoinLogo: string;
   CoinUnit: string;
   Incoming: string;
@@ -40,6 +42,7 @@ export interface GoodProfit {
   Units:                 number;
   CoinTypeID:            string;
   CoinName:              string;
+  DisplayNames:          string[];
   CoinLogo:              string;
   CoinUnit:              string;
   Incoming:              string;
@@ -48,6 +51,7 @@ export interface GoodProfit {
 export interface Profit {
   CoinTypeID: string;
   CoinName: string;
+  DisplayNames: string[];
   CoinLogo: string;
   CoinUnit: string;
   Incoming: string;
@@ -56,6 +60,7 @@ export interface Profit {
 export interface Withdraw {
   CoinTypeID: string;
   CoinName: string;
+  DisplayNames: string[];
   CoinLogo: string;
   CoinUnit: string;
   Amount: string;

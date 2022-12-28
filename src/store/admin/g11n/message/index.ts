@@ -58,7 +58,7 @@ export const useAdminMessageStore = defineStore('admin-message-v4', {
         req.NotifyMessage,
         (resp: DeleteMessageResponse): void => {
           const index = this.Messages.Messages.findIndex((el) => el.ID === resp.Info.ID)
-          this.Messages.Messages.splice(index, 1, resp.Info)
+          this.Messages.Messages.splice(index, 1)
           this.Messages.Total -= 1
           done(false, resp.Info)
         }, () => {

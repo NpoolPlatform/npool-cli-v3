@@ -28,7 +28,7 @@ export interface DeleteMessageResponse {
 }
 
 export interface GetMessagesRequest extends MyRequest {
-  Disabled: boolean;
+  Disabled?: boolean;
   Offset: number;
   Limit: number;
 }

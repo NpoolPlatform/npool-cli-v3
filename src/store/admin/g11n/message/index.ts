@@ -14,6 +14,7 @@ import {
 } from './types'
 import { doActionWithError } from '../../../action'
 import { Message } from '../../../base'
+import { useLocaleStore } from '../../../local/locale'
 
 export const useAdminMessageStore = defineStore('admin-message-v4', {
   state: () => ({
@@ -41,6 +42,9 @@ export const useAdminMessageStore = defineStore('admin-message-v4', {
         (resp: GetMessagesResponse): void => {
           this.Messages.Messages.push(...resp.Infos)
           this.Messages.Total = resp.Total
+
+          const locale = useLocaleStore()
+          locale.setLocaleMessages(this.Messages.Messages)
           done(false, resp.Infos)
         }, () => {
           done(true, [])

@@ -7,4 +7,5 @@ export * from './good'
 export * from './chain'
 export * from './inspire'
 export * from './ledger'
+export * from './g11n'
 

@@ -119,6 +119,11 @@ export interface AppGood {
   Commission: boolean;
   StartAt: number;
   CreatedAt: number;
+  SaleStartAt: number,
+  SaleEndAt: number,
+  ServiceStartAt: number,
+  TechnicalFeeRatio: number,
+  ElectricityFeeRatio: number,
 }
 
 export interface DeviceInfo {

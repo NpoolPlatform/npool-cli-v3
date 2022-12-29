@@ -23,6 +23,12 @@ export interface UpdateAppGoodRequest extends BaseRequest {
   DisplayIndex: number;
   PurchaseLimit: number;
   CommissionPercent: number;
+  SaleStartAt?: number;
+  SaleEndAt?: number;
+  ServiceStartAt?: number;
+  TechnicalFeeRatio?: number;
+  ElectricityFeeRatio?: number;
+  DailyRewardAmount?: string;
 }
 
 export interface UpdateAppGoodResponse {

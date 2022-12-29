@@ -60,7 +60,7 @@ export interface UpdateAppMessageRequest extends MyRequest {
   TargetAppID: string;
   TargetLangID: string;
   ID: string;
-  AppID: string;
+  AppID?: string;
   MessageID: string;
   Message: string;
   GetIndex: number;

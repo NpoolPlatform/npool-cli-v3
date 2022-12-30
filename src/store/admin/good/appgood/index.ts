@@ -99,10 +99,20 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
       return (good : AppGood) => Math.min(good?.PurchaseLimit, good?.Total)
     },
     getSaleEndDate () {
-      return (good: AppGood) => good.SaleEndAt === 0 ? '*' : date.formatDate(good.SaleEndAt * 1000, 'YYYY-MM-DD')
+      return (good: AppGood) => {
+        if (!good.SaleEndAt) {
+          return '*'
+        }
+        return good.SaleEndAt === 0 ? '*' : date.formatDate(good?.SaleEndAt * 1000, 'YYYY-MM-DD')
+      }
     },
     getSaleEndTime () {
-      return (good: AppGood) => good.SaleEndAt === 0 ? '*' : date.formatDate(good.SaleEndAt * 1000, 'HH:mm:ss')
+      return (good: AppGood) => {
+        if (!good.SaleEndAt) {
+          return '*'
+        }
+        return  good.SaleEndAt === 0 ? '*' : date.formatDate(good?.SaleEndAt * 1000, 'HH:mm:ss')
+      }
     }
   },
   actions: {

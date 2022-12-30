@@ -98,6 +98,14 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
     getPurchaseLimit() {
       return (good : AppGood) => Math.min(good?.PurchaseLimit, good?.Total)
     },
+    haveSale () {
+      return (good: AppGood) => {
+        if (!good.SaleEndAt) {
+          return false
+        }
+        return good.SaleEndAt === 0 ? false : true
+      }
+    },
     getSaleEndDate () {
       return (good: AppGood) => {
         if (!good.SaleEndAt) {

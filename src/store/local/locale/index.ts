@@ -17,7 +17,7 @@ export const useLocaleStore = defineStore('locale-lang-v4', {
         return
       }
       this.AppLang = lang
-      Cookies.set('X-Lang-ID', lang.ID, { expires: '4h', secure: true })
+      Cookies.set('X-Lang-ID', lang.LangID, { expires: '4h', secure: true })
       this.I18n.locale = lang.Lang
     },
     setLangs (langs: Array<AppLang>) {

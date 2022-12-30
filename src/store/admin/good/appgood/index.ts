@@ -100,7 +100,7 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
     },
     haveSale () {
       return (good: AppGood) => {
-        if (!good.SaleEndAt) {
+        if (!good?.SaleEndAt) {
           return false
         }
         return good.SaleEndAt === 0 ? false : true

@@ -121,7 +121,7 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
           return '*'
         }
         /* format to jst time */ 
-        return  good.SaleEndAt === 0 ? '*' : date.formatDate((good?.SaleEndAt + 60 * new Date().getTimezoneOffset() + 9 * 60 * 60) * 1000, 'HH:mm:ss')
+        return  good.SaleEndAt === 0 ? '*' : date.formatDate((good?.SaleEndAt + 60 * new Date().getTimezoneOffset() + 9 * 60 * 60) * 1000, 'HH:mm')
       }
     }
   },

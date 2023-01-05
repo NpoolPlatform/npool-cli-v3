@@ -111,7 +111,8 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
         if (!good.SaleEndAt) {
           return '*'
         }
-        return good.SaleEndAt === 0 ? '*' : date.formatDate(good?.SaleEndAt * 1000, 'YYYY-MM-DD')
+        /* format to jst time */ 
+        return good.SaleEndAt === 0 ? '*' : date.formatDate(good?.SaleEndAt + 60 * new Date().getTimezoneOffset() + 9 * 60 * 60, 'YYYY-MM-DD')
       }
     },
     getSaleEndTime () {
@@ -119,7 +120,8 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
         if (!good.SaleEndAt) {
           return '*'
         }
-        return  good.SaleEndAt === 0 ? '*' : date.formatDate(good?.SaleEndAt * 1000, 'HH:mm:ss')
+        /* format to jst time */ 
+        return  good.SaleEndAt === 0 ? '*' : date.formatDate(good?.SaleEndAt + 60 * new Date().getTimezoneOffset() + 9 * 60 * 60, 'HH:mm:ss')
       }
     }
   },

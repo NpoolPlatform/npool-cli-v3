@@ -6,7 +6,8 @@ import {
   SigninVerifyType,
   SignMethodType,
   DocumentType,
-  KYCReviewState
+  KYCReviewState,
+  CreateInvitationCodeWhen
 } from './const'
 
 export interface User {
@@ -99,6 +100,9 @@ export interface App {
   InvitationCodeMust: boolean
 
   CreatedAt: number
+
+  CreateInvitationCodeWhen: CreateInvitationCodeWhen
+  MaxTypedCouponsPerOrder: number
 }
 
 export interface Role {

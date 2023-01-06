@@ -78,3 +78,16 @@ export enum KYCReviewState {
   Wait ='Wait',
   Rejected = 'Rejected'
 }
+
+export enum CreateInvitationCodeWhen {
+  DefaultWhen = 'DefaultWhen',
+  Registration = 'Registration',
+  SetToKol ='SetToKol',
+  HasPaidOrder = 'HasPaidOrder'
+}
+
+export const CreateInvitationCodeWhens = [
+  CreateInvitationCodeWhen.Registration,
+  CreateInvitationCodeWhen.SetToKol,
+  CreateInvitationCodeWhen.HasPaidOrder,
+]

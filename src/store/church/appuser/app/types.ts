@@ -1,4 +1,4 @@
-import { App, BaseRequest, Recaptcha, RecaptchaType, SignMethod, SignMethodType } from '../../../base'
+import { App, BaseRequest, CreateInvitationCodeWhen, Recaptcha, RecaptchaType, SignMethod, SignMethodType } from '../../../base'
 
 export interface GetAppsRequest extends BaseRequest {
   Offset: number;
@@ -23,6 +23,8 @@ export interface UpdateAppRequest extends BaseRequest {
   KycEnable:          boolean;
   SigninVerifyEnable: boolean;
   InvitationCodeMust: boolean;
+  MaxTypedCouponsPerOrder?: number;
+  CreateInvitationCodeWhen?: CreateInvitationCodeWhen;
 }
 export interface UpdateAppResponse {
   Info: App;

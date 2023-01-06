@@ -97,3 +97,12 @@ export interface GetLoginHistoriesResponse {
   Infos: Array<LoginHistory>
   Total: number
 }
+
+export interface UpdateUserKolRequest extends BaseRequest {
+  TargetUserID: string
+  Kol:  boolean
+}
+
+export interface UpdateUserKolResponse {
+  Info: User
+}

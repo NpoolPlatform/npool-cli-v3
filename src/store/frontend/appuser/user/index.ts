@@ -15,6 +15,8 @@ import {
   ResetUserResponse, 
   SignupRequest, 
   SignupResponse, 
+  UpdateUserKolRequest, 
+  UpdateUserKolResponse, 
   UpdateUserRequest,
   UpdateUserResponse
 } from './types'
@@ -118,6 +120,18 @@ export const useFrontendUserStore = defineStore('frontend-user-v4', {
           done(undefined as unknown as Array<LoginHistory>, true)
         }
       )
-    }
+    },
+    updateUserKol(req: UpdateUserKolRequest, done: (error: boolean, row: User) => void) {
+      doActionWithError<UpdateUserKolRequest, UpdateUserKolResponse>(
+        API.UPDATE_USERKOL,
+        req,
+        req.Message,
+        (resp: UpdateUserKolResponse): void => {
+          done(false, resp.Info)
+        }, () => {
+          done(true, {} as User)
+        }
+      )
+    },
   }
 })

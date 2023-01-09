@@ -123,6 +123,12 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
         /* format to jst time */ 
         return  good.SaleEndAt === 0 ? '*' : date.formatDate((good?.SaleEndAt + 60 * new Date().getTimezoneOffset() + 9 * 60 * 60) * 1000, 'HH:mm')
       }
+    },
+    settleType () {
+      return (goodID: string) => {
+        const good = this.getGoodByID(goodID)
+        return good?.CommissionSettleType
+      }
     }
   },
   actions: {

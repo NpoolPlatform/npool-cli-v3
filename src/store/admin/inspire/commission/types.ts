@@ -17,6 +17,7 @@ export interface GetCommissionsResponse {
 export interface UpdateCommissionRequest extends BaseRequest {
   ID: string;
   Value: string;
+  SettleType?: SettleType;
   /** @format int64 */
   StartAt: number;
 }

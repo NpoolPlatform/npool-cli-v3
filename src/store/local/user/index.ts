@@ -18,6 +18,9 @@ export const useLocalUserStore = defineStore('local-user-v4', {
     },
     findPhoneNO () : boolean {
       return this.User && this.User.PhoneNO?.length > 0
+    },
+    isKol () : boolean {
+      return this.User && this.User?.Kol
     }
   },
   actions: {

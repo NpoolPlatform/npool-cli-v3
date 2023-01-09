@@ -60,6 +60,8 @@ export interface User {
 
   CreatedAt: number
 
+  Kol: boolean
+  
   InvitationCodeID: string
   InvitationCode: string
   InvitationCodeConfirmed: boolean

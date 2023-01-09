@@ -1,4 +1,4 @@
-import { BenefitType, GoodType } from './const';
+import { BenefitType, GoodType, SettleType } from './const';
 
 
 export interface Good {
@@ -69,6 +69,8 @@ export interface AppGood {
   Price: string;
   DisplayIndex: number;
   PurchaseLimit: number;
+  Commission: boolean;
+  CommissionSettleType: SettleType;
   CommissionPercent: number;
   PromotionStartAt: number;
   PromotionEndAt: number;
@@ -116,7 +118,6 @@ export interface AppGood {
   Sold: number;
   SubGoods: Good[];
   Must: boolean;
-  Commission: boolean;
   StartAt: number;
   CreatedAt: number;
   SaleStartAt: number;

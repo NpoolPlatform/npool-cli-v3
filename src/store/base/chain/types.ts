@@ -42,6 +42,7 @@ export interface AppCoin {
   Display: boolean;
   DisplayIndex: number;
   UpdatedAt: number;
+  MaxAmountPerWithdraw: string;
 }
 
 export interface Coin {

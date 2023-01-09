@@ -72,6 +72,7 @@ export interface AppGood {
   Commission: boolean;
   CommissionSettleType: SettleType;
   CommissionPercent: number;
+  BenefitIntervalHours: number;
   PromotionStartAt: number;
   PromotionEndAt: number;
   PromotionMessage: string;
@@ -112,6 +113,7 @@ export interface AppGood {
   VoteCount: number;
   Rating: number;
   SupportCoins: GoodCoinInfo[];
+  WaitStart: number;
   Total: number;
   Locked: number;
   InService: number;

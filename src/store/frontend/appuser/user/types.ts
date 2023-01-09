@@ -71,6 +71,7 @@ export interface UpdateUserRequest extends BaseRequest {
   GoogleAuthVerified?: boolean;
   InvitationCodeID?: string;
   InvitationCodeConfirmed?: boolean;
+  KolConfirmed?: boolean
 }
 
 export interface UpdateUserResponse {

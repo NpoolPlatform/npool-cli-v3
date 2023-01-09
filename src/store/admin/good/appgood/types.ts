@@ -1,4 +1,4 @@
-import { BaseRequest, AppGood } from '../../../base'
+import { BaseRequest, AppGood, SettleType } from '../../../base'
 
 
 export interface GetAppGoodsRequest extends BaseRequest {
@@ -33,6 +33,7 @@ export interface UpdateAppGoodRequest extends BaseRequest {
   TechnicalFeeRatio?: number;
   ElectricityFeeRatio?: number;
   DailyRewardAmount?: string;
+  CommissionSettleType?: SettleType;
 }
 
 export interface UpdateAppGoodResponse {

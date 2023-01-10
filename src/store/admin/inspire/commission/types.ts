@@ -5,7 +5,7 @@ export interface CreateUserCommissionRequest extends BaseRequest {
   GoodID: string;
   SettleType: SettleType;
   Value: string;
-  StartAT: string;
+  StartAt: string;
 }
 
 export interface CreateUserCommissionResponse {

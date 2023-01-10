@@ -17,6 +17,9 @@ export const useAdminWithdrawReviewStore = defineStore('admin-withdrawreview-v4'
     }
   }),
   getters: {
+    withdrawReviews () : Array<WithdrawReview> {
+      return this.WithdrawReviews.WithdrawReviews.sort((a, b) => b.State.localeCompare(a.State, 'zh-CN'))
+    },
     getWithdrawReviewsByID: (state) => {
       return (reviewID: string) => {
         const index = state.WithdrawReviews.WithdrawReviews.findIndex((el) => el.ReviewID == reviewID)

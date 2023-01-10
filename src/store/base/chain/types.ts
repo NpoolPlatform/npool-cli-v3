@@ -69,6 +69,7 @@ export interface Coin {
   LowFeeAmount: string;
   HotWalletAccountAmount: string;
   PaymentAccountCollectAmount: string;
+  MaxAmountPerWithdraw: string;
   Disabled: boolean;
   CreatedAt: number;
   UpdatedAt: number;

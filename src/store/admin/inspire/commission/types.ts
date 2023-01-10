@@ -1,17 +1,15 @@
 import { SettleType, Commission, BaseRequest } from '../../../base';
 
-export interface GetCommissionsRequest extends BaseRequest {
+export interface CreateUserCommissionRequest extends BaseRequest {
+  TargetUserID: string;
+  GoodID: string;
   SettleType: SettleType;
-  /** @format int32 */
-  Offset: number;
-  /** @format int32 */
-  Limit: number;
+  Value: string;
+  StartAT: string;
 }
 
-export interface GetCommissionsResponse {
-  Infos: Commission[];
-  /** @format int64 */
-  Total: number;
+export interface CreateUserCommissionResponse {
+  Info: Commission;
 }
 
 export interface UpdateCommissionRequest extends BaseRequest {

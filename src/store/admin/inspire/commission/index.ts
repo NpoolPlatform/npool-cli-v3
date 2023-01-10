@@ -4,7 +4,9 @@ import {
   UpdateCommissionRequest,
   UpdateCommissionResponse,
   GetAppCommissionsRequest,
-  GetAppCommissionsResponse
+  GetAppCommissionsResponse,
+  CreateUserCommissionRequest,
+  CreateUserCommissionResponse
 } from './types'
 import { doActionWithError } from '../../../action'
 import { Commission } from '../../../base'
@@ -41,6 +43,20 @@ export const useAdminCommissionStore = defineStore('admin-commission-v4', {
         (resp: UpdateCommissionResponse): void => {
           const index = this.Commissions.Commissions.findIndex((el) => el.UserID === resp.Info.UserID)
           this.Commissions.Commissions.splice(index, 1, resp.Info)
+          done(false, resp.Info)
+        }, () => {
+          done(true, {} as Commission)
+        }
+      )
+    },
+    createUserCommission (req: CreateUserCommissionRequest, done: (error: boolean, row: Commission) => void) {
+      doActionWithError<CreateUserCommissionRequest, CreateUserCommissionResponse>(
+        API.CREATE_USER_COMMISSION,
+        req,
+        req.Message,
+        (resp: CreateUserCommissionResponse): void => {
+          this.Commissions.Commissions.push(resp.Info)
+          this.Commissions.Total += 1
           done(false, resp.Info)
         }, () => {
           done(true, {} as Commission)

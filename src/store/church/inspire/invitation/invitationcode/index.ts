@@ -31,6 +31,7 @@ export const useChurchInvitationCodeStore = defineStore('church-invitationcode-v
         (resp: GetAppInvitationCodesResponse): void => {
           const data = this.getInvitationCodesByAppID(req.TargetAppID)
           data.push(...resp.Infos)
+          this.InvitationCodes.InvitationCodes.set(req.TargetAppID, data)
           this.InvitationCodes.Total = resp.Total
           done(false, resp.Infos)
         }, () => {

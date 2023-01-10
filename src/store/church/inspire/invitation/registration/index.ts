@@ -31,6 +31,7 @@ export const useChurchRegistrationStore = defineStore('church-registration-v4', 
         (resp: GetAppRegistrationsResponse): void => {
           const data = this.getRegistrationsByAppID(req.TargetAppID)
           data.push(...resp.Infos)
+          this.Registrations.Registrations.set(req.TargetAppID, data)
           this.Registrations.Total = resp.Total
           done(false, resp.Infos)
         }, () => {

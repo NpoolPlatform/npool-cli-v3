@@ -8,6 +8,7 @@ import {
 } from './types'
 import { doActionWithError } from '../../../../action'
 import { Registration } from '../../../../base'
+import { InvalidID } from '../../../../../const/const'
 
 export const useAdminRegistrationStore = defineStore('admin-registration-v4', {
   state: () => ({
@@ -19,6 +20,9 @@ export const useAdminRegistrationStore = defineStore('admin-registration-v4', {
   getters: {
     inviteeIDs () { // include self
       return (userID: string) => {
+        if (userID === InvalidID) {
+          return [] as Array<string>
+        }
         const ids =  this.Registrations.Registrations.filter((el) => el.InviterID === userID).map((el) => el.InviteeID)
         ids.push(userID)
         return ids

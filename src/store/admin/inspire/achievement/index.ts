@@ -10,7 +10,7 @@ import {
 export const useAdminArchivementStore = defineStore('admin-archivement-v4', {
   state: () => ({
     Archivements: {
-      Archivements: new Map<string, UserArchivement>(),
+      Archivements: new Map<string, Array<UserArchivement>>(),
       Total: 0
     }
   }),
@@ -18,8 +18,20 @@ export const useAdminArchivementStore = defineStore('admin-archivement-v4', {
     getArchivementByUserID () {
       return (userID: string) => {
         const data = this.Archivements.Archivements.get(userID)
-        return !data? {} as UserArchivement : data
+        return !data? [] as Array<UserArchivement> : data
       }
+    },
+    inviteeArchivements () {
+      return (userID: string) => {
+        const data = this.getArchivementByUserID(userID)
+        return data.filter((el) => el.InviterID === userID)
+      } 
+    },
+    inviterArchivements () {
+      return (userID: string) => {
+        const data = this.getArchivementByUserID(userID)
+        return data.filter((el) => el.UserID === userID)
+      } 
     },
     getArchivement () {
       return (userID: string) => {
@@ -28,13 +40,13 @@ export const useAdminArchivementStore = defineStore('admin-archivement-v4', {
     }
   },
   actions: {
-    getUserGoodArchivements (req: GetUserGoodArchivementsRequest, done: (error: boolean, rows: Array<UserArchivement>,) => void) {
+    getUserGoodArchivements (req: GetUserGoodArchivementsRequest, key: string, done: (error: boolean, rows: Array<UserArchivement>) => void) {
       doActionWithError<GetUserGoodArchivementsRequest, GetUserGoodArchivementsResponse>(
         API.GET_USER_GOODARCHIVEMENTS,
         req,
         req.Message,
         (resp: GetUserGoodArchivementsResponse): void => {
-          resp.Archivements.forEach((el) => this.Archivements.Archivements.set(el.UserID, el))
+          this.Archivements.Archivements.set(key, resp.Archivements)
           done(false, resp.Archivements)
         },
         () => {

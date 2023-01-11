@@ -46,7 +46,9 @@ export const useAdminArchivementStore = defineStore('admin-archivement-v4', {
         req,
         req.Message,
         (resp: GetUserGoodArchivementsResponse): void => {
-          this.Archivements.Archivements.set(key, resp.Archivements)
+          const data = this.getArchivementByUserID(key)
+          data.push(...resp.Archivements)
+          this.Archivements.Archivements.set(key, data)
           done(false, resp.Archivements)
         },
         () => {

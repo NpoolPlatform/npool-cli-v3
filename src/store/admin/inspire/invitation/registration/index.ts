@@ -17,9 +17,10 @@ export const useAdminRegistrationStore = defineStore('admin-registration-v4', {
     }
   }),
   getters: {
-    inviteeIDs () {
+    inviteeIDs () { // include self
       return (userID: string) => {
-        return this.Registrations.Registrations.filter((el) => el.InviterID === userID).map((el) => el.InviteeID)
+        const _ids = this.Registrations.Registrations.filter((el) => el.InviterID === userID).map((el) => el.InviteeID)
+        return _ids.push(userID)
       }
     }
   },

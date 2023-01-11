@@ -30,6 +30,7 @@ export interface AppCoin {
   HotWalletAccountAmount: string;
   PaymentAccountCollectAmount: string;
   WithdrawAutoReviewAmount: string;
+  LeastTransferAmount: string;
   StableUSD: boolean;
   MarketValue: string;
   SettleValue: string;
@@ -70,6 +71,7 @@ export interface Coin {
   HotWalletAccountAmount: string;
   PaymentAccountCollectAmount: string;
   MaxAmountPerWithdraw: string;
+  LeastTransferAmount: string;
   Disabled: boolean;
   CreatedAt: number;
   UpdatedAt: number;

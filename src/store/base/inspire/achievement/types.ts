@@ -18,6 +18,7 @@ export interface GoodArchivement {
 
 export interface UserArchivement {
   UserID: string;
+  InviterID: string;
   Username: string;
   EmailAddress: string;
   PhoneNO: string;

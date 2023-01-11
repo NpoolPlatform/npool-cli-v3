@@ -30,7 +30,7 @@ export const useAdminArchivementStore = defineStore('admin-archivement-v4', {
     inviterArchivements () {
       return (userID: string) => {
         const data = this.getArchivementByUserID(userID)
-        return data.filter((el) => el.UserID === userID)
+        return data.filter((el) => el.InviterID !== userID)
       } 
     },
     getArchivement () {

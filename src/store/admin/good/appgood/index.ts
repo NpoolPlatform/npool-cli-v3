@@ -104,7 +104,10 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
           return false
         }
         const now = Math.floor(Date.now() / 1000)
-        return (good.SaleEndAt === 0 || now > good.SaleEndAt) ? false : true
+        if (good?.SaleEndAt === 0 || now < good?.SaleStartAt || now > good?.SaleEndAt) {
+          return false
+        }
+        return true
       }
     },
     getSaleEndDate () {

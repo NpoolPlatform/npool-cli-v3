@@ -128,6 +128,7 @@ export interface AppGood {
   TechnicalFeeRatio: number;
   ElectricityFeeRatio: number;
   DailyRewardAmount: string;
+  Descriptions: string[];
 }
 
 export interface DeviceInfo {

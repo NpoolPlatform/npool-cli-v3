@@ -96,6 +96,7 @@ export interface AppGood {
   VendorLocationCountry: string;
   CoinTypeID: string;
   CoinLogo: string;
+  GoodBanner: string;
   CoinName: string;
   CoinUnit: string;
   CoinPreSale: boolean;

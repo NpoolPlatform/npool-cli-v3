@@ -35,6 +35,7 @@ export interface UpdateAppGoodRequest extends BaseRequest {
   DailyRewardAmount?: string;
   CommissionSettleType?: SettleType;
   Descriptions?: string[];
+  GoodBanner?: string;
 }
 
 export interface UpdateAppGoodResponse {

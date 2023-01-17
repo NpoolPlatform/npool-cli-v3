@@ -34,6 +34,7 @@ export interface UpdateAppGoodRequest extends BaseRequest {
   ElectricityFeeRatio?: number;
   DailyRewardAmount?: string;
   CommissionSettleType?: SettleType;
+  Descriptions?: string[];
 }
 
 export interface UpdateAppGoodResponse {

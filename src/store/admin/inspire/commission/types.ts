@@ -33,9 +33,16 @@ export interface GetAppCommissionsRequest extends BaseRequest {
   /** @format int32 */
   Limit: number;
 }
-
 export interface GetAppCommissionsResponse {
   Infos: Commission[];
   /** @format int64 */
   Total: number;
+}
+export interface CloneCommissionsRequest extends BaseRequest {
+  FromGoodID: string;
+  ToGoodID: string;
+}
+
+export interface CloneCommissionsResponse {
+  Info: Commission
 }

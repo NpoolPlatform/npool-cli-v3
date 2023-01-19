@@ -130,6 +130,7 @@ export interface AppGood {
   ElectricityFeeRatio: number;
   DailyRewardAmount: string;
   Descriptions: string[];
+  DisplayNames: string[];
 }
 
 export interface DeviceInfo {

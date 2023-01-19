@@ -36,6 +36,7 @@ export interface UpdateAppGoodRequest extends BaseRequest {
   CommissionSettleType?: SettleType;
   Descriptions?: string[];
   GoodBanner?: string;
+  DisplayNames?: string[];
 }
 
 export interface UpdateAppGoodResponse {

@@ -131,6 +131,7 @@ export interface AppGood {
   DailyRewardAmount: string;
   Descriptions: string[];
   DisplayNames: string[];
+  EstimatedDailyReward: string;
 }
 
 export interface DeviceInfo {

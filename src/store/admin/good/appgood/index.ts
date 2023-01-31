@@ -110,6 +110,21 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
         return true
       }
     },
+    getGoodBtnMsg() {
+      return (good: AppGood) => {
+        if (!good?.SaleEndAt) {
+          return ''
+        }
+        const now = Math.floor(Date.now() / 1000)
+        if (now < good?.SaleStartAt) {
+          return 'MSG_NOT_YET_AVAILABLE'
+        }
+        if (now > good?.SaleEndAt) {
+          return 'MSG_SOLD_OUT'
+        }
+        return 'MSG_PURCHASE'
+      }
+    },
     getSaleEndDate () {
       return (good: AppGood) => {
         if (!good.SaleEndAt) {

@@ -100,7 +100,7 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
     },
     haveSale () {
       return (good: AppGood) => {
-        if (!good?.SaleEndAt) {
+        if (!good) {
           return false
         }
         const now = Math.floor(Date.now() / 1000)
@@ -112,7 +112,7 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
     },
     getGoodBtnMsg() {
       return (good: AppGood) => {
-        if (!good?.SaleEndAt) {
+        if (!good) {
           return ''
         }
         const now = Math.floor(Date.now() / 1000)

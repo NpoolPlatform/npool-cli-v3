@@ -37,7 +37,6 @@ export interface UpdateAppGoodRequest extends BaseRequest {
   Descriptions?: string[];
   GoodBanner?: string;
   DisplayNames?: string[];
-  EstimatedDailyReward?: string;
 }
 
 export interface UpdateAppGoodResponse {

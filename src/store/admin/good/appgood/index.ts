@@ -157,7 +157,11 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
         req,
         req.Message,
         (resp: GetAppGoodsResponse): void => {
-          this.AppGoods.AppGoods.push(...resp.Infos)
+          resp.Infos.forEach((el) => {
+            if (!this.getGoodByID(el.GoodID)) {
+              this.AppGoods.AppGoods.push(el)
+            }
+          })
           this.AppGoods.Total = resp.Total
           done(resp.Infos, false)
         }, () => {

@@ -1,4 +1,5 @@
 import { SignMethodType } from '../appuser'
+import { EventType } from '../notif';
 import { UsedFor } from './const'
 
 export interface Contact {
@@ -30,4 +31,19 @@ export interface SMSTemplate {
   UsedFor: UsedFor;
   Subject: string;
   Message: string;
+}
+
+
+export interface NotifTemplate {
+  ID: string;
+  AppID: string;
+  LangID: string;
+  UsedFor: EventType;
+  Title: string;
+  Content: string;
+  Sender: string;
+  /** @format int64 */
+  CreatedAt: number;
+  /** @format int64 */
+  UpdatedAt: number;
 }

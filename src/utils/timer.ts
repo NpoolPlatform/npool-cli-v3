@@ -24,10 +24,14 @@ const formatTime = (timestamp: number, dateOnly?: boolean): string => {
   return date.formatDate(timestamp * 1000, 'YYYY/MM/DD HH:mm:ss')
 }
 
+const formatDate = (timestamp: number, format: string): string => {
+  return date.formatDate(timestamp * 1000, format)
+}
 const RemainZero = '00:00:00'
 
 export {
   remain,
   formatTime,
-  RemainZero
+  RemainZero,
+  formatDate
 }

@@ -10,7 +10,14 @@ export enum UsedFor {
   SetCommission = "SetCommission",
   SetTransferTargetUser = "SetTransferTargetUser",
   Transfer = "Transfer",
+  WithdrawalRequest = "WithdrawalRequest",
+  WithdrawalCompleted = "WithdrawalCompleted",
+  DepositReceived = "DepositReceived",
+  KYCApproved = "KYCApproved",
+  KYCRejected = "KYCRejected",
+  Announcement = "Announcement",
 }
+
 export const UsedFors = [
   UsedFor.Contact,
   UsedFor.SetWithdrawAddress,
@@ -21,5 +28,10 @@ export const UsedFors = [
   UsedFor.CreateInvitationCode,
   UsedFor.SetCommission,
   UsedFor.SetTransferTargetUser,
-  UsedFor.Transfer
+  UsedFor.WithdrawalRequest,
+  UsedFor.WithdrawalCompleted,
+  UsedFor.DepositReceived,
+  UsedFor.KYCApproved,
+  UsedFor.KYCRejected,
+  UsedFor.Announcement,
 ]

@@ -1,3 +1,4 @@
+import { UsedFor } from '../third'
 import { AnnouncementType, EventType, NotifChannel } from './const'
 
 export interface Announcement {
@@ -85,4 +86,14 @@ export interface AnnouncementUser {
   CreatedAt: number;
   /** @format int64 */
   UpdatedAt: number;
+}
+
+export interface TNotifChannel {
+  AppID: string;
+  ID: string;
+  AppName: string;
+  EventType: UsedFor;
+  Channels: NotifChannel;
+  /** @format int64 */
+  CreatedAt: number;
 }

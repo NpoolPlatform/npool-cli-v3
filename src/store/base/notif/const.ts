@@ -21,11 +21,13 @@ export enum NotifChannel {
   DefaultChannel = 'DefaultChannel',
   ChannelEmail = 'ChannelEmail',
   ChannelSMS = 'ChannelSMS',
+  ChannelFrontend = 'ChannelFrontend'
 }
 
 export const NotifChannels = [
   NotifChannel.ChannelEmail,
-  NotifChannel.ChannelSMS
+  NotifChannel.ChannelSMS,
+  NotifChannel.ChannelFrontend
 ]
 
 export enum AnnouncementType {

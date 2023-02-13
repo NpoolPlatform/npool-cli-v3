@@ -61,9 +61,7 @@ export const useFrontendNotifStore = defineStore('frontend-notif-v4', {
         (resp: GetNotifsResponse): void => {
           resp.Infos.forEach((el) => {
             const index = this.Notifs.Notifs.findIndex((al) => al.ID === el.ID)
-            if (index === -1) {
-              this.Notifs.Notifs.push(el)
-            }
+            if (index === -1) this.Notifs.Notifs.push(el)
           })
           this.Notifs.Total = resp.Total
           done(false, resp.Infos)

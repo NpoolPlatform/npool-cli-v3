@@ -32,6 +32,5 @@ const RemainZero = '00:00:00'
 export {
   remain,
   formatTime,
-  RemainZero,
-  formatDate
+  RemainZero
 }

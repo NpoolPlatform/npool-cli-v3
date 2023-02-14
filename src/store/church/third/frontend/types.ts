@@ -1,9 +1,9 @@
-import { BaseRequest, EventType, FrontendTemplate } from '../../../base'
+import { BaseRequest, FrontendTemplate, UsedFor } from '../../../base'
 
 export interface CreateAppFrontendTemplateRequest extends BaseRequest {
   TargetAppID: string;
   TargetLangID: string;
-  UsedFor: EventType;
+  UsedFor: UsedFor;
   Title: string;
   Content: string;
   Sender: string;
@@ -33,7 +33,7 @@ export interface UpdateAppFrontendTemplateRequest extends BaseRequest {
   TargetLangID: string;
   Title: string;
   Content: string;
-  UsedFor: EventType;
+  UsedFor: UsedFor;
   Sender: string;
 }
 

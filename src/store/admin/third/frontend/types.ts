@@ -1,4 +1,4 @@
-import { BaseRequest, EventType, FrontendTemplate, UsedFor } from '../../../base'
+import { BaseRequest, FrontendTemplate, UsedFor } from '../../../base'
 
 export interface CreateFrontendTemplateRequest extends BaseRequest {
   AppID: string;
@@ -37,11 +37,11 @@ export interface GetFrontendTemplatesResponse {
 
 export interface UpdateFrontendTemplateRequest extends BaseRequest {
   ID: string;
-  AppID: string;
+  AppID?: string;
   Title: string;
   Content: string;
   TargetLangID: string;
-  UsedFor: EventType;
+  UsedFor: UsedFor;
   Sender: string;
 }
 
@@ -51,7 +51,7 @@ export interface DeleteFrontendTemplateResponse {
 
 export interface DeleteFrontendTemplateRequest extends BaseRequest {
   ID: string;
-  UsedFor: EventType;
+  UsedFor: UsedFor;
 }
 
 export interface UpdateFrontendTemplateResponse {
@@ -61,7 +61,7 @@ export interface UpdateFrontendTemplateResponse {
 export interface CreateAppFrontendTemplateRequest extends BaseRequest {
   TargetAppID: string;
   TargetLangID: string;
-  UsedFor: EventType;
+  UsedFor: UsedFor;
   Title: string;
   Content: string;
   Sender: string;

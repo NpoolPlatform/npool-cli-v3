@@ -93,7 +93,7 @@ export interface TNotifChannel {
   ID: string;
   AppName: string;
   EventType: UsedFor;
-  Channels: NotifChannel;
+  Channel: NotifChannel;
   /** @format int64 */
   CreatedAt: number;
 }

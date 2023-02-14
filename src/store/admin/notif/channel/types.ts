@@ -1,13 +1,13 @@
 import { BaseRequest, NotifChannel, TNotifChannel, UsedFor } from '../../../base';
 
 
-export interface CreateNotifChannelRequest extends BaseRequest {
+export interface CreateNotifChannelsRequest extends BaseRequest {
   AppID?: string;
-  EventType: UsedFor;
-  Channels: NotifChannel[];
+  EventTypes: UsedFor[];
+  Channel: NotifChannel;
 }
 
-export interface CreateNotifChannelResponse {
+export interface CreateNotifChannelsResponse {
   Infos: TNotifChannel[];
 }
 

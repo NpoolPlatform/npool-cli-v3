@@ -10,7 +10,7 @@ export interface GetNotifResponse {
 
 export interface UpdateNotifsRequest extends BaseRequest{
   IDs: string[];
-  AlreadyRead: boolean;
+  Notified: boolean;
 }
 
 export interface UpdateNotifsResponse {

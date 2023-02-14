@@ -1,5 +1,5 @@
 import { UsedFor } from '../third'
-import { AnnouncementType, EventType, NotifChannel } from './const'
+import { AnnouncementType, NotifChannel } from './const'
 
 export interface Announcement {
   ID: string;
@@ -32,13 +32,14 @@ export interface Notif {
   EmailAddress: string;
   PhoneNO: string;
   Username: string;
-  EventType: EventType;
+  EventType: UsedFor;
   UseTemplate: boolean;
   Title: string;
   Content: string;
-  Channels: NotifChannel[];
-  AlreadyRead: boolean;
+  Channel: NotifChannel;
+  Notified: boolean;
   CreatedAt: number;
+  UpdatedAt: number;
 }
 
 export interface ReadState {

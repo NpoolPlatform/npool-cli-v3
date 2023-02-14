@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { EventType, Notif } from '../../../base'
+import { Notif } from '../../../base'
 import { doActionWithError } from '../../../action'
 import { API } from './const'
 
@@ -27,29 +27,10 @@ export const useFrontendNotifStore = defineStore('frontend-notif-v4', {
       }
     },
     unReads () : Array<Notif> {
-      return this.Notifs.Notifs.filter((el) => !el.AlreadyRead).sort((a, b) => a.CreatedAt > b.CreatedAt ? -1 : 0)
+      return this.Notifs.Notifs.filter((el) => !el.Notified).sort((a, b) => a.CreatedAt > b.CreatedAt ? -1 : 0)
     },
     notifs () : Array<Notif> {
       return this.Notifs.Notifs.sort((a, b) => a.CreatedAt > b.CreatedAt ? -1 : 0)
-    },
-    goWalletPage (): (row: Notif) => boolean {
-      return (row: Notif) => {
-        if (!row) {
-          return false
-        }
-        return row.EventType === EventType.DepositReceived ||
-              row.EventType === EventType.WithdrawalCompleted ||
-              row.EventType === EventType.WithdrawalRequest
-      }
-    },
-    goPersonPage (): (row: Notif) => boolean {
-      return (row: Notif) => {
-        if (!row) {
-          return false
-        }
-        return row.EventType === EventType.KYCApproved ||
-              row.EventType === EventType.KYCRejected
-      }
     }
   },
   actions: {

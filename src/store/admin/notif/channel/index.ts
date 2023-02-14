@@ -60,7 +60,7 @@ export const useAdminNotifChannelStore = defineStore('admin-notifchannel-v4', {
     },
     createNotifChannel (req: CreateNotifChannelsRequest, done: (error: boolean, rows: NotifChannel[]) => void) {
       doActionWithError<CreateNotifChannelsRequest, CreateNotifChannelsResponse>(
-        API.CREATE_NOTIFCHANNEL,
+        API.CREATE_NOTIFCHANNELS,
         req,
         req.Message,
         (resp: CreateNotifChannelsResponse): void => {

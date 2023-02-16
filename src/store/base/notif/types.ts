@@ -18,7 +18,7 @@ export interface Announcement {
   CreatedAt: number;
   /** if AlreadySend = true SendChannel valid */
   SendChannel: NotifChannel;
-  Channels: NotifChannel[];
+  Channel: NotifChannel;
   AnnouncementType: AnnouncementType
   /** @format int64 */
   EndAt: number;

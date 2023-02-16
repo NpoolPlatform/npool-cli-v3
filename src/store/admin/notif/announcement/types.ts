@@ -11,7 +11,7 @@ export interface CreateAnnouncementRequest extends BaseRequest {
   Title: string;
   Content: string;
   AnnouncementType: AnnouncementType;
-  Channels: NotifChannel[];
+  Channel: NotifChannel;
   /** @format int64 */
   EndAt: number;
 }
@@ -82,7 +82,7 @@ export interface UpdateAnnouncementRequest extends BaseRequest {
   ID: string;
   Title: string;
   Content: string;
-  Channels: NotifChannel[];
+  Channel: NotifChannel;
   AnnouncementType: AnnouncementType;
   /** @format int64 */
   EndAt: number;

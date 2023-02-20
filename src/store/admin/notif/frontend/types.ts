@@ -6,7 +6,6 @@ export interface CreateFrontendTemplateRequest extends BaseRequest {
   UsedFor: UsedFor;
   Title: string;
   Content: string;
-  Sender: string;
 }
 
 export interface CreateFrontendTemplateResponse {
@@ -42,7 +41,6 @@ export interface UpdateFrontendTemplateRequest extends BaseRequest {
   Content: string;
   TargetLangID: string;
   UsedFor: UsedFor;
-  Sender: string;
 }
 
 export interface DeleteFrontendTemplateResponse {
@@ -64,7 +62,6 @@ export interface CreateAppFrontendTemplateRequest extends BaseRequest {
   UsedFor: UsedFor;
   Title: string;
   Content: string;
-  Sender: string;
 }
 
 export interface CreateAppFrontendTemplateResponse {

@@ -40,7 +40,6 @@ export interface FrontendTemplate {
   UsedFor: UsedFor;
   Title: string;
   Content: string;
-  Sender: string;
   /** @format int64 */
   CreatedAt: number;
   /** @format int64 */

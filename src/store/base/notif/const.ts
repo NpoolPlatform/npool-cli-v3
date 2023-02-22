@@ -31,12 +31,12 @@ export const NotifChannels = [
 ]
 
 export enum AnnouncementType {
-  DefaultAnnouncementType = 'DefaultAnnouncementType',
-  AllUsers = 'AllUsers',
-  AppointUsers = 'AppointUsers',
+  DefaultType = 'DefaultType',
+  Broadcast = 'Broadcast',
+  Multicast = 'Multicast',
 }
 
 export const AnnouncementTypes = [
-  AnnouncementType.AllUsers,
-  AnnouncementType.AppointUsers
+  AnnouncementType.Broadcast,
+  AnnouncementType.Multicast
 ]

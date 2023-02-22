@@ -26,6 +26,9 @@ export const useAdminAnnouncementStore = defineStore('admin-announcement-v4', {
       return (id: string) => {
         return this.Announcements.Announcements.find((el) => el.ID === id)
       }
+    },
+    announcements: (state) : Array<Announcement> => {
+      return state.Announcements.Announcements.sort((a, b) => a.CreatedAt > b.CreatedAt ? -1 : 0)
     }
   },
   actions: {

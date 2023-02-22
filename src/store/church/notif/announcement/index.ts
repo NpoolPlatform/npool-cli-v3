@@ -20,6 +20,11 @@ export const useChurchAnnouncementStore = defineStore('church-announcement-v4', 
         const rows = this.Announcements.Announcements.get(appID)
         return !rows ? [] as Array<Announcement> : rows
       }
+    },
+    announcements () {
+      return (appID: string) => {
+        return this.getAnnouncementByAppID(appID).sort((a, b) => a.CreatedAt > b.CreatedAt ? -1 : 0)
+      }
     }
   },
   actions: {

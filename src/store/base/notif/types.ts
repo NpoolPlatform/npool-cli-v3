@@ -40,6 +40,8 @@ export interface Notif {
   Notified: boolean;
   CreatedAt: number;
   UpdatedAt: number;
+  LangID: string;
+  Lang: string;
 }
 
 export interface ReadState {

@@ -70,3 +70,19 @@ export interface Withdraw {
   State: WithdrawState;
   Message: string;
 }
+
+export interface MiningReward {
+  CoinTypeID: string;
+  CoinName: string;
+  CoinLogo: string;
+  CoinUnit: string;
+  IOType: IOType;
+  IOSubType: IOSubType;
+  RewardAmount: string;
+  RewardAmountPerUnit: string;
+  Extra: string;
+  GoodID: string;
+  OrderID: string;
+  Units: number;
+  CreatedAt: number;
+}

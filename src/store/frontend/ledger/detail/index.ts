@@ -1,16 +1,22 @@
 import { defineStore } from 'pinia'
 import { doActionWithError } from '../../../action'
-import { Detail } from '../../../base'
+import { Detail, MiningReward } from '../../../base'
 import { API } from './const'
 import {
   GetDetailsRequest,
   GetDetailsResponse,
+  GetMiningRewardsRequest,
+  GetMiningRewardsResponse,
 } from './types'
 
 export const useFrontendDetailStore = defineStore('frontend-detail-v4', {
   state: () => ({
     Details: {
       Details: [] as Array<Detail>,
+      Total: 0
+    },
+    MiningRewards: {
+      MiningRewards: [] as Array<MiningReward>,
       Total: 0
     },
   }),
@@ -32,6 +38,21 @@ export const useFrontendDetailStore = defineStore('frontend-detail-v4', {
         },
         () => {
           done(true, [] as Array<Detail>)
+        }
+      )
+    },
+    getMiningRewards (req: GetMiningRewardsRequest, done: (error: boolean, rows: Array<MiningReward>) => void) {
+      doActionWithError<GetMiningRewardsRequest, GetMiningRewardsResponse>(
+        API.GET_DETAILS,
+        req,
+        req.Message,
+        (resp: GetMiningRewardsResponse): void => {
+          this.MiningRewards.MiningRewards.push(...resp.Infos)
+          this.MiningRewards.Total = resp.Total
+          done(false, resp.Infos)
+        },
+        () => {
+          done(true, [] as Array<MiningReward>)
         }
       )
     }

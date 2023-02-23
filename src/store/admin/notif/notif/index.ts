@@ -36,7 +36,7 @@ export const useAdminNotifStore = defineStore('admin-notif-v4', {
     }
   },
   actions: {
-    getNotifs (req: GetAppNotifsRequest, done: (error: boolean, rows: Array<Notif>) => void) {
+    getAppNotifs (req: GetAppNotifsRequest, done: (error: boolean, rows: Array<Notif>) => void) {
       doActionWithError<GetAppNotifsRequest, GetAppNotifsResponse>(
         API.GET_APP_NOTIFS,
         req,

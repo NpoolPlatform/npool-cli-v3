@@ -39,7 +39,7 @@ export interface GoodProfit {
   GoodName:              string;
   GoodUnit:              string;
   GoodServicePeriodDays: number;
-  Units:                 number;
+  Units:                 string;
   CoinTypeID:            string;
   CoinName:              string;
   DisplayNames:          string[];
@@ -83,6 +83,6 @@ export interface MiningReward {
   Extra: string;
   GoodID: string;
   OrderID: string;
-  Units: number;
+  Units: string;
   CreatedAt: number;
 }

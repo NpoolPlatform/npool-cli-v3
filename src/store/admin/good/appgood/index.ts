@@ -45,7 +45,7 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
     total() {
       return (goodID: string) => {
         const good = this.getGoodByID(goodID) as AppGood
-        return Math.min(good?.Total, good?.PurchaseLimit) 
+        return Math.min(Number(good?.Total), good?.PurchaseLimit) 
       }
     },
     goodPrice() {
@@ -96,7 +96,7 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
       return (timestamp: number) => date.formatDate(timestamp * 1000, 'YYYY/MM/DD')
     },
     getPurchaseLimit() {
-      return (good : AppGood) => Math.min(good?.PurchaseLimit, good?.Total)
+      return (good : AppGood) => Math.min(good?.PurchaseLimit, Number(good?.Total))
     },
     haveSale () {
       return (good: AppGood) => {

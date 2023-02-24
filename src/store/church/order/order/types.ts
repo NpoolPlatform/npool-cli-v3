@@ -15,7 +15,7 @@ export interface CreateAppUserOrderRequest extends BaseRequest {
   TargetAppID: string;
   TargetUserID: string;
   GoodID: string;
-  Units: number;
+  Units: string;
   PaymentCoinID?: string;
   ParentOrderID?: string;
   PayWithBalanceAmount?: string;

@@ -12,7 +12,7 @@ export interface GetOrdersResponse {
 
 export interface CreateOrderRequest extends BaseRequest {
   GoodID: string;
-  Units: number;
+  Units: string;
   PaymentCoinID: string;
   ParentOrderID?: string;
   PayWithBalanceAmount?: string;

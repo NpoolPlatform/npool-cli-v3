@@ -47,7 +47,7 @@ export const useFrontendArchivementStore = defineStore('frontend-archivement-v4'
         let total = 0
         rows.forEach((el) => {
           el.Archivements.filter((el) => el.CoinTypeID === coinTypeID).forEach((el) => {
-            total += el.TotalUnits
+            total += Number(el.TotalUnits)
           })
         })
         return total
@@ -79,7 +79,7 @@ export const useFrontendArchivementStore = defineStore('frontend-archivement-v4'
       return (rows: Array<GoodArchivement>, coinTypeID: string) => {
         let total = 0
         rows.filter((el) => el.CoinTypeID === coinTypeID).forEach((el) => {
-          total += el.TotalUnits
+          total += Number(el.TotalUnits)
         })
         return total
       } 

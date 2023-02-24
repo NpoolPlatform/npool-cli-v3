@@ -18,7 +18,7 @@ export interface Order {
   GoodServicePeriodDays: number;
   GoodUnitPrice: string;
   GoodValue: string;
-  Units: number;
+  Units: string;
   PaymentID: string;
   PaymentCoinTypeID: string;
   PaymentCoinName: string;

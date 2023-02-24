@@ -13,7 +13,7 @@ interface GetAppOrdersResponse {
 interface CreateUserOrderRequest extends BaseRequest {
   TargetUserID: string;
   GoodID: string;
-  Units: number;
+  Units: string;
   PaymentCoinID: string;
   ParentOrderID?: string;
   PayWithBalanceAmount?: string;

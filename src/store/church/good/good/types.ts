@@ -17,10 +17,10 @@ export interface CreateGoodRequest extends BaseRequest {
   DeliveryAt: number;
   StartAt: number;
   TestOnly: boolean;
-  Total: number;
-  Locked: number;
-  InService: number;
-  Sold: number;
+  Total: string;
+  Locked?: string;
+  InService?: string;
+  Sold?: string;
   Posters: string[];
   Labels: string[];
 }
@@ -62,8 +62,8 @@ export interface UpdateGoodRequest extends BaseRequest{
   DeliveryAt: number;
   StartAt: number;
   TestOnly?: boolean;
-  Total: number;
-  Sold?: number;
+  Total: string;
+  Sold?: string;
   Posters?: string[];
   Labels?: string[];
 }

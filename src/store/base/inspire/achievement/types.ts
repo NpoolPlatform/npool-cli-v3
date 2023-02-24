@@ -7,8 +7,8 @@ export interface GoodArchivement {
   GoodName: string;
   GoodUnit: string;
   CommissionPercent: number;
-  TotalUnits: number;
-  SelfUnits: number;
+  TotalUnits: string;
+  SelfUnits: string;
   TotalAmount: string;
   SelfAmount: string;
   TotalCommission: string;

@@ -96,7 +96,10 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
       return (timestamp: number) => date.formatDate(timestamp * 1000, 'YYYY/MM/DD')
     },
     getPurchaseLimit() {
-      return (good : AppGood) => Math.min(good?.PurchaseLimit, Number(good?.Total) - Number(good?.InService) - Number(good?.Locked))
+      return (good : AppGood) => {
+        const min = Math.min(good?.PurchaseLimit, Number(good?.Total) - Number(good?.InService) - Number(good?.Locked))
+        return Math.floor(min)
+      }
     },
     haveSale () {
       return (good: AppGood) => {

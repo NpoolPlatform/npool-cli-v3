@@ -108,7 +108,7 @@ export const useFrontendOrderStore = defineStore('frontend-order-v4', {
       }
     },
     getPurchasedAmount:  (state) : number  =>  {
-      return state.Orders.Orders.filter((el) => el.State === OrderState.PAID || el.State === OrderState.IN_SERVICE || el.State === OrderState.EXPIRED)?.length
+      return state.Orders.Orders.filter((el) => el.State === OrderState.PAID || el.State === OrderState.IN_SERVICE || el.State === OrderState.EXPIRED || el.State === OrderState.WaitStart)?.length
     }
   },
   actions: {

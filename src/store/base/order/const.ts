@@ -22,5 +22,6 @@ enum OrderState {
   CANCELED = 'Canceled',
   IN_SERVICE = 'InService',
   EXPIRED = 'Expired',
+  WaitStart = 'WaitStart',
 }
 export { OrderTimeoutSeconds, OrderState, OrderType, OrderTypes }

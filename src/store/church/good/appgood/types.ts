@@ -45,6 +45,10 @@ export interface CreateAppGoodRequest extends BaseRequest{
   DisplayIndex: number;
   PurchaseLimit: number;
   CommissionPercent: number;
+  OpenPurchase?: boolean;
+  IntoProductPage?: boolean;
+  CancelableBefore?: number;
+  UserPurchaseLimit?: string;
 }
 
 export interface CreateAppGoodResponse {

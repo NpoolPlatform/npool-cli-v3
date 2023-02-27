@@ -37,6 +37,10 @@ export interface UpdateAppGoodRequest extends BaseRequest {
   Descriptions?: string[];
   GoodBanner?: string;
   DisplayNames?: string[];
+  OpenPurchase?: boolean;
+  IntoProductPage?: boolean;
+  CancelableBefore?: number;
+  UserPurchaseLimit?: string;
 }
 
 export interface UpdateAppGoodResponse {

@@ -132,6 +132,10 @@ export interface AppGood {
   DailyRewardAmount: string;
   Descriptions: string[];
   DisplayNames: string[];
+  OpenPurchase: boolean;
+  IntoProductPage: boolean;
+  CancelableBefore: number;
+  UserPurchaseLimit: string;
 }
 
 export interface DeviceInfo {

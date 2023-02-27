@@ -106,8 +106,11 @@ export const useFrontendOrderStore = defineStore('frontend-order-v4', {
         const index = this.Orders.Orders.findIndex((el) => el.FixAmountID === fixAmountID)
         return index > -1
       }
+    },
+    getPurchasedAmount:  (state) : number  =>  {
+      return state.Orders.Orders.filter((el) => el.State === OrderState.PAID || el.State === OrderState.IN_SERVICE || el.State === OrderState.EXPIRED)?.length
     }
-   },
+  },
   actions: {
     getOrders (req: GetOrdersRequest, done: (orders: Array<Order>, error: boolean) => void) {
       doActionWithError<GetOrdersRequest, GetOrdersResponse>(

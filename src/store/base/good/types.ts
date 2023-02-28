@@ -61,6 +61,19 @@ export interface GoodCoinInfo {
   CoinPreSale: boolean;
 }
 
+export enum CancelMode {
+  DefaultCancelMode = 'DefaultCancelMode',
+  CancellableBeforeStart = 'CancellableBeforeStart',
+  CancellableBeforeBenefit = 'CancellableBeforeBenefit',
+  UnCancellable = 'Uncancellable'
+}
+
+export const CancelModes = [
+  CancelMode.CancellableBeforeBenefit,
+  CancelMode.CancellableBeforeStart,
+  CancelMode.UnCancellable
+]
+
 export interface AppGood {
   ID: string;
   AppID: string;
@@ -132,10 +145,11 @@ export interface AppGood {
   DailyRewardAmount: string;
   Descriptions: string[];
   DisplayNames: string[];
-  OpenPurchase: boolean;
-  IntoProductPage: boolean;
-  CancelableBefore: number;
+  EnablePurchase: boolean;
+  EnableProductPage: boolean;
+  EnableCancel: boolean;
   UserPurchaseLimit: string;
+  CancelMode: CancelMode;
 }
 
 export interface DeviceInfo {

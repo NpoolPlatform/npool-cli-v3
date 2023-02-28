@@ -1,4 +1,4 @@
-import { BaseRequest, AppGood, SettleType } from '../../../base'
+import { BaseRequest, AppGood, SettleType, CancelMode } from '../../../base'
 
 
 export interface GetAppGoodsRequest extends BaseRequest {
@@ -37,10 +37,11 @@ export interface UpdateAppGoodRequest extends BaseRequest {
   Descriptions?: string[];
   GoodBanner?: string;
   DisplayNames?: string[];
-  OpenPurchase?: boolean;
-  IntoProductPage?: boolean;
-  CancelableBefore?: number;
+  EnablePurchase?: boolean;
+  EnableProductPage?: boolean;
+  EnableCancel?: boolean;
   UserPurchaseLimit?: string;
+  CancelMode?: CancelMode;
 }
 
 export interface UpdateAppGoodResponse {

@@ -147,7 +147,6 @@ export interface AppGood {
   DisplayNames: string[];
   EnablePurchase: boolean;
   EnableProductPage: boolean;
-  EnableCancel: boolean;
   UserPurchaseLimit: string;
   CancelMode: CancelMode;
 }

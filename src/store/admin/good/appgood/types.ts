@@ -39,7 +39,6 @@ export interface UpdateAppGoodRequest extends BaseRequest {
   DisplayNames?: string[];
   EnablePurchase?: boolean;
   EnableProductPage?: boolean;
-  EnableCancel?: boolean;
   UserPurchaseLimit?: string;
   CancelMode?: CancelMode;
 }

@@ -52,6 +52,11 @@ export interface Good {
   CreatedAt: number;
   UpdatedAt: number;
   DeletedAt: number;
+  EnablePurchase: boolean;
+  EnableProductPage: boolean;
+  UserPurchaseLimit: string;
+  CancelMode: CancelMode;
+  CancellableBeforeStart: number;
 }
 
 export interface GoodCoinInfo {
@@ -152,6 +157,7 @@ export interface AppGood {
   EnableProductPage: boolean;
   UserPurchaseLimit: string;
   CancelMode: CancelMode;
+  CancellableBeforeStart: number;
 }
 
 export interface DeviceInfo {

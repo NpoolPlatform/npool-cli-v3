@@ -1,4 +1,4 @@
-import { BaseRequest, AppGood } from '../../../base'
+import { BaseRequest, AppGood, CancelMode } from '../../../base'
 
 
 
@@ -29,6 +29,8 @@ export interface UpdateAppGoodRequest extends BaseRequest {
   TechnicalFeeRatio?: number;
   ElectricityFeeRatio?: number;
   DailyRewardAmount?: string;
+  CancelMode?: CancelMode;
+  CancellableBeforeStart?: number;
 }
 
 export interface UpdateAppGoodResponse {
@@ -48,6 +50,7 @@ export interface CreateAppGoodRequest extends BaseRequest{
   OpenPurchase?: boolean;
   IntoProductPage?: boolean;
   CancelableBefore?: number;
+  CancellableBeforeStart?: number;
   UserPurchaseLimit?: string;
 }
 

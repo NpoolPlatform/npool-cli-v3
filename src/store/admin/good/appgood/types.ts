@@ -43,6 +43,7 @@ export interface UpdateAppGoodRequest extends BaseRequest {
   EnableProductPage?: boolean;
   UserPurchaseLimit?: string;
   CancelMode?: CancelMode;
+  CancellableBeforeStart?: number;
 }
 
 export interface UpdateAppGoodResponse {

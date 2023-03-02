@@ -23,6 +23,7 @@ export interface UpdateAppGoodRequest extends BaseRequest {
   Online: boolean;
   Visible: boolean;
   GoodName: string;
+  ProductPage?: string;
   Price: string;
   DisplayIndex: number;
   PurchaseLimit: number;
@@ -35,6 +36,7 @@ export interface UpdateAppGoodRequest extends BaseRequest {
   DailyRewardAmount?: string;
   CommissionSettleType?: SettleType;
   Descriptions?: string[];
+  DisplayColors?: string[];
   GoodBanner?: string;
   DisplayNames?: string[];
   EnablePurchase?: boolean;

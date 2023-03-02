@@ -29,6 +29,7 @@ export interface Good {
   VendorLocationAddress: string;
   GoodType: GoodType;
   BenefitType: BenefitType;
+  ProductPage: string;
   Price: string;
   Title: string;
   Unit: string;
@@ -120,6 +121,7 @@ export interface AppGood {
   GoodType: GoodType;
   BenefitType: BenefitType;
   GoodName: string;
+  ProductPage: string;
   Unit: string;
   UnitAmount: number;
   TestOnly: boolean;
@@ -145,6 +147,7 @@ export interface AppGood {
   DailyRewardAmount: string;
   Descriptions: string[];
   DisplayNames: string[];
+  DisplayColors: string[];
   EnablePurchase: boolean;
   EnableProductPage: boolean;
   UserPurchaseLimit: string;

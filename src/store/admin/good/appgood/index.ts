@@ -42,12 +42,6 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
         return good?.CoinTypeID === coinTypeID && good.Visible && good.Online
       }
     },
-    total() {
-      return (goodID: string) => {
-        const good = this.getGoodByID(goodID) as AppGood
-        return Math.min(Number(good?.Total), good?.PurchaseLimit) 
-      }
-    },
     goodPrice() {
       return (good: AppGood) => {
         return !good ? '' : Number(good?.Price).toFixed(4)
@@ -122,7 +116,7 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
         if (now < good?.SaleStartAt) {
           return 'MSG_NOT_YET_AVAILABLE'
         }
-        if (now > good?.SaleEndAt) {
+        if (now > good?.SaleEndAt || this.getPurchaseLimit(good) <= 0) {
           return 'MSG_SOLD_OUT'
         }
         return 'MSG_PURCHASE'

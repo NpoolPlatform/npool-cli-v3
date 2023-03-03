@@ -54,6 +54,7 @@ export interface Good {
   DeletedAt: number;
   EnablePurchase: boolean;
   EnableProductPage: boolean;
+  EnableSetCommission: boolean;
   UserPurchaseLimit: string;
   CancelMode: CancelMode;
   CancellableBeforeStart: number;
@@ -155,6 +156,7 @@ export interface AppGood {
   DisplayColors: string[];
   EnablePurchase: boolean;
   EnableProductPage: boolean;
+  EnableSetCommission: boolean;
   UserPurchaseLimit: string;
   CancelMode: CancelMode;
   CancellableBeforeStart: number;

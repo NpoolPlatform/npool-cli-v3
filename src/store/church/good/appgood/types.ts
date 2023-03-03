@@ -31,6 +31,10 @@ export interface UpdateAppGoodRequest extends BaseRequest {
   DailyRewardAmount?: string;
   CancelMode?: CancelMode;
   CancellableBeforeStart?: number;
+  EnablePurchase?: boolean;
+  EnableProductPage?: boolean;
+  EnableSetCommission?: boolean;
+  UserPurchaseLimit?: string;
 }
 
 export interface UpdateAppGoodResponse {
@@ -52,6 +56,10 @@ export interface CreateAppGoodRequest extends BaseRequest{
   CancelableBefore?: number;
   CancellableBeforeStart?: number;
   UserPurchaseLimit?: string;
+  EnablePurchase?: boolean;
+  EnableProductPage?: boolean;
+  EnableSetCommission?: boolean;
+  CancelMode?: CancelMode;
 }
 
 export interface CreateAppGoodResponse {

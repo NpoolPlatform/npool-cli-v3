@@ -1,4 +1,4 @@
-import { BaseRequest, Good } from '../../../base'
+import { BaseRequest, CancelMode, Good } from '../../../base'
 
 
 export interface CreateGoodRequest extends BaseRequest {
@@ -23,6 +23,13 @@ export interface CreateGoodRequest extends BaseRequest {
   Sold?: string;
   Posters: string[];
   Labels: string[];
+  EnablePurchase?: boolean;
+  EnableProductPage?: boolean;
+  EnableSetCommission?: boolean;
+  PurchaseLimit?: string;
+  UserPurchaseLimit?: string;
+  CancelMode?: CancelMode;
+  CancellableBeforeStart?: number;
 }
 
 export interface CreateGoodResponse {
@@ -66,6 +73,12 @@ export interface UpdateGoodRequest extends BaseRequest{
   Sold?: string;
   Posters?: string[];
   Labels?: string[];
+  EnablePurchase?: boolean;
+  EnableProductPage?: boolean;
+  EnableSetCommission?: boolean;
+  UserPurchaseLimit?: string;
+  CancelMode?: CancelMode;
+  CancellableBeforeStart?: number;
 }
 
 export interface UpdateGoodResponse {

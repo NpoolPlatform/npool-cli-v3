@@ -113,12 +113,13 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
           return 'MSG_SOLD_OUT'
         }
         const now = Math.floor(Date.now() / 1000)
-        if (now < good?.SaleStartAt) {
-          return 'MSG_NOT_YET_AVAILABLE'
-        }
         if (now > good?.SaleEndAt || this.getPurchaseLimit(good) <= 0) {
           return 'MSG_SOLD_OUT'
         }
+        if (now < good?.SaleStartAt) {
+          return 'MSG_NOT_YET_AVAILABLE'
+        }
+        
         return 'MSG_PURCHASE'
       }
     },

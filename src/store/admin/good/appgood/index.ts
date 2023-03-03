@@ -145,7 +145,13 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
         const good = this.getGoodByID(goodID)
         return good?.CommissionSettleType
       }
-    }
+    },
+    enableSetCommission() {
+      return (goodID: string) => {
+        const good = this.AppGoods.AppGoods.find((el) => el.GoodID === goodID)
+        return !good ? false : good.EnableSetCommission
+      }
+    },
   },
   actions: {
     getAppGoods (req: GetAppGoodsRequest, done: (rows: Array<AppGood>, error: boolean) => void) {

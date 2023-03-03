@@ -113,7 +113,8 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
           return 'MSG_SOLD_OUT'
         }
         const now = Math.floor(Date.now() / 1000)
-        if (now > good?.SaleEndAt || this.getPurchaseLimit(good) <= 0) {
+        const extra = Number(good?.Total) - Number(good?.InService) - Number(good?.Locked) - Number(good?.WaitStart)
+        if (now > good?.SaleEndAt || extra <= 0) {
           return 'MSG_SOLD_OUT'
         }
         if (now < good?.SaleStartAt) {

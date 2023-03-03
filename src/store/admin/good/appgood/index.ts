@@ -95,6 +95,16 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
         return Math.floor(min)
       }
     },
+    getStock() {
+      return (good : AppGood) => {
+        return Number(good?.Total) - Number(good?.InService) - Number(good?.Locked)- Number(good?.WaitStart)
+      }
+    },
+    haveStock() {
+      return (good : AppGood) => {
+        return this.getStock(good) <= 0
+      }
+    },
     haveSale () {
       return (good: AppGood) => {
         if (!good) {

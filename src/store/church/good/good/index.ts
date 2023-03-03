@@ -23,7 +23,11 @@ export const useChurchGoodStore = defineStore('church-good-v4', {
         req,
         req.Message,
         (resp: GetGoodsResponse): void => {
-          this.Goods.Goods.push(...resp.Infos)
+          resp.Infos.forEach((el) => {
+            if (!this.getGoodByID(el.ID)) {
+              this.Goods.Goods.push(el)
+            }
+          })
           this.Goods.Total = resp.Total
           done(resp.Infos, false)
         }, () => {

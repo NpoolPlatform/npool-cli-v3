@@ -102,7 +102,7 @@ export const useAdminAppGoodStore = defineStore('admin-appgood-v4', {
     },
     haveStock() {
       return (good : AppGood) => {
-        return this.getStock(good) <= 0
+        return this.getStock(good) > 0
       }
     },
     haveSale () {

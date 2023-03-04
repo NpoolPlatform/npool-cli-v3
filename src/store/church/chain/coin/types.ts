@@ -1,6 +1,16 @@
 import { Coin } from '../../../base'
 import { BaseRequest } from '../../../base';
 
+export interface CreateCoinRequest extends BaseRequest{
+  Name: string;
+  Unit: string;
+  ENV: string;
+}
+
+export interface CreateCoinResponse {
+  Info: Coin;
+}
+
 export interface GetCoinsRequest extends BaseRequest{
   Offset: number;
   Limit: number;

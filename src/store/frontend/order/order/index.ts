@@ -108,7 +108,13 @@ export const useFrontendOrderStore = defineStore('frontend-order-v4', {
       }
     },
     getPurchasedAmount() {
-      return (goodID: string) => this.Orders.Orders.filter((el) => el.GoodID === goodID && (el.State === OrderState.PAID || el.State === OrderState.IN_SERVICE || el.State === OrderState.EXPIRED || el.State === OrderState.WaitStart))?.length
+      return (goodID: string) => {
+        let sum = 0
+        this.Orders.Orders.filter((el) => el.GoodID === goodID && (el.State === OrderState.PAID || el.State === OrderState.IN_SERVICE || el.State === OrderState.EXPIRED || el.State === OrderState.WAIT_START)).forEach((el) => {
+          sum += Number(el.Units)
+        })
+        return sum
+      }
     }
   },
   actions: {

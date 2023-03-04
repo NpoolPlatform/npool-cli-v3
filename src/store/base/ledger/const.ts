@@ -10,7 +10,9 @@ export enum IOSubType {
   TechniqueFeeCommission = 'TechniqueFeeCommission',
   Deposit = 'Deposit',
   Withdrawal = 'Withdrawal',
-  Transfer = 'Transfer'
+  Transfer = 'Transfer',
+  CommissionRevoke = 'CommissionRevoke',
+  OrderRevoke = 'OrderRevoke'
 }
 
 export enum IntervalGeneralKey {

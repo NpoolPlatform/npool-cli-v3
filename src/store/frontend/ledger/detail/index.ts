@@ -43,7 +43,7 @@ export const useFrontendDetailStore = defineStore('frontend-detail-v4', {
     },
     getMiningRewards (req: GetMiningRewardsRequest, done: (error: boolean, rows: Array<MiningReward>) => void) {
       doActionWithError<GetMiningRewardsRequest, GetMiningRewardsResponse>(
-        API.GET_DETAILS,
+        API.GET_MININGREWARDS,
         req,
         req.Message,
         (resp: GetMiningRewardsResponse): void => {

@@ -215,3 +215,14 @@ export interface Recommend {
   CreatedAt: number;
   UpdatedAt: number;
 }
+
+export interface AppDefaultGood {
+  ID: string;
+  AppID: string;
+  GoodID: string;
+  CoinTypeID: string;
+  /** @format int64 */
+  CreatedAt: number;
+  /** @format int64 */
+  UpdatedAt: number;
+}

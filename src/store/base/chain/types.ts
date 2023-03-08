@@ -44,6 +44,7 @@ export interface AppCoin {
   DisplayIndex: number;
   UpdatedAt: number;
   MaxAmountPerWithdraw: string;
+  DefaultGoodID: string;
 }
 
 export interface Coin {

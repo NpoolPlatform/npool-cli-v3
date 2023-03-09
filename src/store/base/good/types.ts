@@ -221,6 +221,7 @@ export interface AppDefaultGood {
   AppID: string;
   GoodID: string;
   CoinTypeID: string;
+  CoinUnit: string;
   /** @format int64 */
   CreatedAt: number;
   /** @format int64 */

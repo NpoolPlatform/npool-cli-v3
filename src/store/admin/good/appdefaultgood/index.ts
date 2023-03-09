@@ -22,6 +22,13 @@ export const useAdminAppDefaultGoodStore = defineStore('admin-appdefaultgood-v4'
     getAppDefaultGoodByID () {
       return (id: string) => this.AppDefaultGoods.AppDefaultGoods.find((el) => el.ID === id)
     },
+    getGoodIDByCoinUnit () {
+      return (unit: string) => {
+        const row = this.AppDefaultGoods.AppDefaultGoods.find((el) => el.CoinUnit === unit)
+        return !row ? undefined as unknown as string : row.GoodID
+      }
+    },
+    
   },
   actions: {
     getAppDefaultGoods (req: GetAppDefaultGoodsRequest, done: (rows: Array<AppDefaultGood>, error: boolean) => void) {

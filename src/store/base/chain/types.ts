@@ -73,6 +73,7 @@ export interface Coin {
   PaymentAccountCollectAmount: string;
   MaxAmountPerWithdraw: string;
   LeastTransferAmount: string;
+  DefaultGoodID: string;
   Disabled: boolean;
   CreatedAt: number;
   UpdatedAt: number;

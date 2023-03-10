@@ -27,8 +27,7 @@ export const useAdminAppDefaultGoodStore = defineStore('admin-appdefaultgood-v4'
         const row = this.AppDefaultGoods.AppDefaultGoods.find((el) => el.CoinUnit === unit)
         return !row ? undefined as unknown as string : row.GoodID
       }
-    },
-    
+    }
   },
   actions: {
     getAppDefaultGoods (req: GetAppDefaultGoodsRequest, done: (rows: Array<AppDefaultGood>, error: boolean) => void) {
@@ -42,7 +41,8 @@ export const useAdminAppDefaultGoodStore = defineStore('admin-appdefaultgood-v4'
           done(resp.Infos, false)
         }, () => {
           done([], true)
-        })
+        }
+      )
     },
     createAppDefaultGood (req: CreateAppDefaultGoodRequest, done: (row: AppDefaultGood, error: boolean) => void) {
       doActionWithError<CreateAppDefaultGoodRequest, CreateAppDefaultGoodResponse>(
@@ -55,7 +55,8 @@ export const useAdminAppDefaultGoodStore = defineStore('admin-appdefaultgood-v4'
           done(resp.Info, false)
         }, () => {
           done({} as AppDefaultGood, true)
-        })
+        }
+      )
     },
     deleteAppDefaultGood (req: DeleteAppDefaultGoodRequest, done: (row: AppDefaultGood, error: boolean) => void) {
       doActionWithError<DeleteAppDefaultGoodRequest, DeleteAppDefaultGoodResponse>(
@@ -68,7 +69,8 @@ export const useAdminAppDefaultGoodStore = defineStore('admin-appdefaultgood-v4'
           done(resp.Info, false)
         }, () => {
           done({} as AppDefaultGood, true)
-        })
+        }
+      )
     }
   }
 })

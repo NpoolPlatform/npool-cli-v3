@@ -68,7 +68,13 @@ export const useAdminAppCoinStore = defineStore('admin-appcoin-v4', {
         const coin = this.getCoinByID(coinTypeID)
         return !coin? false : coin.Display
       }
-    }
+    },
+    getGoodIDByCoinUnit() {
+      return (unit: string) => {
+        const row = this.AppCoins.AppCoins.find((el) => el.Unit === unit)
+        return !row ? undefined as unknown as string : row.DefaultGoodID
+      }
+    },
   },
   actions: {
     getAppCoins (req: GetAppCoinsRequest, done: (error: boolean, appCoins: Array<AppCoin>) => void) {

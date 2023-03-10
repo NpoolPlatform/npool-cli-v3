@@ -1,5 +1,6 @@
 export * from './good'
 export * from './appgood'
+export * from './appdefaultgood'
 export * from './deviceinfo'
 export * from './vendorlocation'
 export * from './promotion'

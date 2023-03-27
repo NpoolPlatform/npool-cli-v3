@@ -106,6 +106,9 @@ export interface App {
 
   CreateInvitationCodeWhen: CreateInvitationCodeWhen
   MaxTypedCouponsPerOrder: number
+
+  Maintaining: boolean
+  CommitButtonTargets: string[]
 }
 
 export interface Role {

@@ -2,7 +2,7 @@ import { BaseRequest } from '../../../base';
 
 export interface ReconcileRequest extends BaseRequest {
   AppID?: string;
-  UserID: string;
+  TargetUserID: string;
   GoodID: string;
 }
 

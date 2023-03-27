@@ -9,6 +9,8 @@ import {
   CreateAppDefaultGoodResponse,
   DeleteAppDefaultGoodRequest,
   DeleteAppDefaultGoodResponse,
+  UpdateAppDefaultGoodRequest,
+  UpdateAppDefaultGoodResponse,
 } from './types'
 
 export const useAdminAppDefaultGoodStore = defineStore('admin-appdefaultgood-v4', {
@@ -64,6 +66,20 @@ export const useAdminAppDefaultGoodStore = defineStore('admin-appdefaultgood-v4'
         req,
         req.Message,
         (resp: DeleteAppDefaultGoodResponse): void => {
+          const index = this.AppDefaultGoods.AppDefaultGoods.findIndex((el) => el.ID === resp.Info.ID)
+          this.AppDefaultGoods.AppDefaultGoods.splice(index, 1)
+          done(resp.Info, false)
+        }, () => {
+          done({} as AppDefaultGood, true)
+        }
+      )
+    },
+    updateAppDefaultGood (req: UpdateAppDefaultGoodRequest, done: (row: AppDefaultGood, error: boolean) => void) {
+      doActionWithError<UpdateAppDefaultGoodRequest, UpdateAppDefaultGoodResponse>(
+        API.UPDATE_APP_DEFAULT_GOOD,
+        req,
+        req.Message,
+        (resp: UpdateAppDefaultGoodResponse): void => {
           const index = this.AppDefaultGoods.AppDefaultGoods.findIndex((el) => el.ID === resp.Info.ID)
           this.AppDefaultGoods.AppDefaultGoods.splice(index, 1)
           done(resp.Info, false)

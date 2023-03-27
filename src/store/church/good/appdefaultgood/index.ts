@@ -6,7 +6,9 @@ import {
   GetAppDefaultGoodsRequest,
   GetAppDefaultGoodsResponse,
   DeleteAppDefaultGoodRequest,
-  DeleteAppDefaultGoodResponse
+  DeleteAppDefaultGoodResponse,
+  UpdateAppDefaultGoodRequest,
+  UpdateAppDefaultGoodResponse
 } from './types'
 import { AppDefaultGood } from '../../../base'
 import { doActionWithError } from '../../../action'
@@ -72,6 +74,22 @@ export const useChurchAppDefaultGoodStore = defineStore('church-appdefaultgood-v
           done(false, resp.Info)
         }, () => {
           done(true, {} as AppDefaultGood)
+        }
+      )
+    },
+    updateAppDefaultGood (req: UpdateAppDefaultGoodRequest, done: (row: AppDefaultGood, error: boolean) => void) {
+      doActionWithError<UpdateAppDefaultGoodRequest, UpdateAppDefaultGoodResponse>(
+        API.UPDATE_APP_DEFAULT_GOOD,
+        req,
+        req.Message,
+        (resp: UpdateAppDefaultGoodResponse): void => {
+          const rows = this.getGoodsByAppID(req.TargetAppID)
+          const index = rows.findIndex((el) => el.ID === resp.Info.ID)
+          rows.splice(index, 1)
+          this.AppDefaultGoods.AppDefaultGoods.set(req.TargetAppID, rows)
+          done(resp.Info, false)
+        }, () => {
+          done({} as AppDefaultGood, true)
         }
       )
     }

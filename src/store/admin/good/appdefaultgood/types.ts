@@ -10,6 +10,16 @@ export interface CreateAppDefaultGoodResponse {
   Info: AppDefaultGood;
 }
 
+export interface UpdateAppDefaultGoodRequest extends BaseRequest{
+  ID: string;
+  GoodID: string;
+  AppID: string;
+}
+
+export interface UpdateAppDefaultGoodResponse {
+  Info: AppDefaultGood;
+}
+
 export interface DeleteAppDefaultGoodRequest extends BaseRequest{
   ID: string;
   AppID?: string;

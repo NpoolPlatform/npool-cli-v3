@@ -43,6 +43,8 @@ export enum SettleMode {
 export enum SettleType {
   DefaultSettleType = 'DefaultSettleType',
   GoodOrderPercent = 'GoodOrderPercent',
+  GoodOrderValuePercent = 'GoodOrderValuePercent',
+  TechniqueFeePercent = 'TechniqueFeePercent',
   LimitedOrderPercent = 'LimitedOrderPercent',
   AmountThreshold = 'AmountThreshold',
   NoCommission = 'NoCommission',
@@ -50,7 +52,9 @@ export enum SettleType {
 
 export const SettleTypes = [
   SettleType.GoodOrderPercent,
+  SettleType.GoodOrderValuePercent,
   SettleType.LimitedOrderPercent,
   SettleType.AmountThreshold,
-  SettleType.NoCommission
+  SettleType.NoCommission,
+  SettleType.TechniqueFeePercent
 ]

@@ -41,6 +41,8 @@ export interface GetAppCommissionsResponse {
 export interface CloneCommissionsRequest extends BaseRequest {
   FromGoodID: string;
   ToGoodID: string;
+  Value: string;
+  SettleType: SettleType;
 }
 
 export interface CloneCommissionsResponse {

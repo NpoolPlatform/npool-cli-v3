@@ -12,7 +12,7 @@ export interface GetAppsResponse {
 export interface UpdateAppRequest extends BaseRequest {
   ID:                 string;
   CreatedBy?:          string;
-  Name:               string;
+  Name?:               string;
   Logo:               string;
   Description:        string;
   Banned?:             boolean;
@@ -25,6 +25,8 @@ export interface UpdateAppRequest extends BaseRequest {
   InvitationCodeMust: boolean;
   MaxTypedCouponsPerOrder?: number;
   CreateInvitationCodeWhen?: CreateInvitationCodeWhen;
+  Maintaining?: boolean;
+  CommitButtonTargets?: string[];
 }
 export interface UpdateAppResponse {
   Info: App;

@@ -27,7 +27,7 @@ export interface AppCoin {
   CollectFeeAmount: string;
   HotWalletFeeAmount: string;
   LowFeeAmount: string;
-  LowLowFeeAmount: string;
+  HotLowFeeAmount: string;
   HotWalletAccountAmount: string;
   PaymentAccountCollectAmount: string;
   WithdrawAutoReviewAmount: string;
@@ -70,7 +70,7 @@ export interface Coin {
   CollectFeeAmount: string;
   HotWalletFeeAmount: string;
   LowFeeAmount: string;
-  LowLowFeeAmount: string;
+  HotLowFeeAmount: string;
   HotWalletAccountAmount: string;
   PaymentAccountCollectAmount: string;
   MaxAmountPerWithdraw: string;

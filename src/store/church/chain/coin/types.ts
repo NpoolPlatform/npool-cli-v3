@@ -34,6 +34,7 @@ export interface UpdateCoinRequest extends BaseRequest {
   CollectFeeAmount: string;
   HotWalletFeeAmount: string;
   LowFeeAmount: string;
+  HotLowFeeAmount?: string;
   HotWalletAccountAmount: string;
   PaymentAccountCollectAmount: string;
   LeastTransferAmount?: string;

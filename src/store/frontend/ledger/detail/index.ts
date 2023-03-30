@@ -23,6 +23,11 @@ export const useFrontendDetailStore = defineStore('frontend-detail-v4', {
   getters: {
     details (): Array<Detail> {
       return this.Details.Details.sort((a, b) => a.CreatedAt > b.CreatedAt ? -1 : 1)
+    },
+    getMiningRewardsByOrderID () {
+      return (orderID: string) => {
+        return this.MiningRewards.MiningRewards.filter((el) => el.OrderID === orderID).reduce((prev, curr) => prev + Number(curr.RewardAmount), 0)
+      }
     }
   },
   actions: {

@@ -81,7 +81,7 @@ export const useAdminAppDefaultGoodStore = defineStore('admin-appdefaultgood-v4'
         req.Message,
         (resp: UpdateAppDefaultGoodResponse): void => {
           const index = this.AppDefaultGoods.AppDefaultGoods.findIndex((el) => el.ID === resp.Info.ID)
-          this.AppDefaultGoods.AppDefaultGoods.splice(index, 1)
+          this.AppDefaultGoods.AppDefaultGoods.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
           done(resp.Info, false)
         }, () => {
           done({} as AppDefaultGood, true)

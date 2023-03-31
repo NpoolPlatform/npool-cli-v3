@@ -85,7 +85,7 @@ export const useChurchAppDefaultGoodStore = defineStore('church-appdefaultgood-v
         (resp: UpdateAppDefaultGoodResponse): void => {
           const rows = this.getGoodsByAppID(req.TargetAppID)
           const index = rows.findIndex((el) => el.ID === resp.Info.ID)
-          rows.splice(index, 1)
+          rows.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
           this.AppDefaultGoods.AppDefaultGoods.set(req.TargetAppID, rows)
           done(resp.Info, false)
         }, () => {

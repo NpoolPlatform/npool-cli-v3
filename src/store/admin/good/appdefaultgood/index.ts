@@ -12,6 +12,7 @@ import {
   UpdateAppDefaultGoodRequest,
   UpdateAppDefaultGoodResponse,
 } from './types'
+import { InvalidID } from 'src/const/const'
 
 export const useAdminAppDefaultGoodStore = defineStore('admin-appdefaultgood-v4', {
   state: () => ({
@@ -27,7 +28,7 @@ export const useAdminAppDefaultGoodStore = defineStore('admin-appdefaultgood-v4'
     getGoodIDByCoinUnit () {
       return (unit: string) => {
         const row = this.AppDefaultGoods.AppDefaultGoods.find((el) => el.CoinUnit === unit)
-        return !row ? undefined as unknown as string : row.GoodID
+        return !row ? InvalidID : row.GoodID
       }
     }
   },

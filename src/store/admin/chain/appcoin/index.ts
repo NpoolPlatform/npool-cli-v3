@@ -8,6 +8,7 @@ import {
 } from './types'
 import { AppCoin } from '../../../base'
 import { doActionWithError } from '../../../action'
+import { InvalidID } from 'src/const/const'
 
 export const useAdminAppCoinStore = defineStore('admin-appcoin-v4', {
   state: () => ({
@@ -72,7 +73,7 @@ export const useAdminAppCoinStore = defineStore('admin-appcoin-v4', {
     getGoodIDByCoinUnit() {
       return (unit: string) => {
         const row = this.AppCoins.AppCoins.find((el) => el.Unit === unit)
-        return !row ? undefined as unknown as string : row.DefaultGoodID
+        return !row ? InvalidID : row.DefaultGoodID
       }
     },
   },

@@ -11,7 +11,7 @@ export const useFrontendProfitStore = defineStore('frontend-profit-v4', {
       Total: 0
     },
     IntervalGoodProfits: {
-      IntervalGoodProfits: new Map<string, Array<Profit>>(),
+      IntervalGoodProfits: new Map<string, Array<GoodProfit>>(),
       Total: 0
     },
     Profits: {
@@ -49,6 +49,14 @@ export const useFrontendProfitStore = defineStore('frontend-profit-v4', {
         const data = this.getIntervalGoodProfitsByKey(intervalKey)
         let incoming = 0
         data.filter((el) => el.CoinTypeID === coinTypeID).forEach((el) => incoming += Number(el.Incoming))
+        return incoming
+      }
+    },
+    getGoodIntervalGoodProfitInComing() {
+      return (intervalKey: string, coinTypeID: string, goodID:string) => {
+        const data = this.getIntervalGoodProfitsByKey(intervalKey)
+        let incoming = 0
+        data.filter((el) => el.GoodID === goodID && el.CoinTypeID === coinTypeID).forEach((el) => incoming += Number(el.Incoming))
         return incoming
       }
     },

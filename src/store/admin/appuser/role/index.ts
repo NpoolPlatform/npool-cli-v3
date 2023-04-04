@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { API } from './const'
-import {  Role, AppRoleUser, RoleUserRelation } from '../../../base'
+import { Role, AppRoleUser, RoleUserRelation } from '../../../base'
 import { doActionWithError } from '../../../action'
 
 import {
@@ -11,7 +11,9 @@ import {
   GetRolesRequest,
   GetRolesResponse,
   GetRoleUsersRequest,
-  GetRoleUsersResponse
+  GetRoleUsersResponse,
+  UpdateRoleRequest,
+  UpdateRoleResponse
 } from './types'
 
 export const useAdminRoleStore = defineStore('admin-role-v3', {
@@ -90,6 +92,18 @@ export const useAdminRoleStore = defineStore('admin-role-v3', {
         }, () => {
           done(undefined as unknown as RoleUserRelation, true)
         })
+    },
+    updateRole(req: UpdateRoleRequest, done: (error: boolean, row: Role) => void) {
+      doActionWithError<UpdateRoleRequest, UpdateRoleResponse>(
+        API.UPDATE_ROLE,
+        req,
+        req.Message,
+        (resp: UpdateRoleResponse): void => {
+          done(false, resp.Info)
+        }, () => {
+          done(true, {} as Role)
+        }
+      )
     }
   }
 })

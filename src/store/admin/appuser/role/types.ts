@@ -36,3 +36,11 @@ export interface DeleteRoleUserRequest extends BaseRequest{
 export interface DeleteRoleUserResponse {
   Info: RoleUserRelation
 }
+
+export interface UpdateRoleRequest extends BaseRequest {
+  Info: Role
+}
+
+export interface UpdateRoleResponse {
+  Info: Role
+}

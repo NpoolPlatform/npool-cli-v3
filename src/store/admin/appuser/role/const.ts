@@ -4,4 +4,5 @@ export enum API {
   GET_ROLEUSERS = '/appuser/v1/get/roleusers',
   CREATE_ROLEUSER = '/appuser/v1/create/roleuser',
   DELETE_ROLEUSER = '/appuser/v1/delete/roleuser',
+  UPDATE_ROLE = '/appuser/v1/update/role',
 }

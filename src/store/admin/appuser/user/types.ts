@@ -37,11 +37,3 @@ export interface UpdateAppUserKolRequest extends BaseRequest {
 export interface UpdateAppUserKolResponse {
   Info: User
 }
-
-export interface UpdateRoleRequest extends BaseRequest {
-  Info: Role
-}
-
-export interface UpdateRoleResponse {
-  Info: Role
-}

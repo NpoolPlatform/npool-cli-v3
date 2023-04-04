@@ -52,7 +52,7 @@ export const useFrontendProfitStore = defineStore('frontend-profit-v4', {
         return incoming
       }
     },
-    getGoodIntervalGoodProfitInComing() {
+    getGoodIntervalProfitInComing() {
       return (intervalKey: string, coinTypeID: string, goodID:string) => {
         const data = this.getIntervalGoodProfitsByKey(intervalKey)
         let incoming = 0

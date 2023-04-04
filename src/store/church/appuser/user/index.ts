@@ -4,6 +4,8 @@ import { User } from '../../../base'
 import { API } from './const'
 import {
   ChurchUserState,
+  CreateAppUserRequest,
+  CreateAppUserResponse,
   GetAppUsersRequest,
   GetAppUsersResponse
 } from './types'
@@ -40,6 +42,20 @@ export const useChurchUserStore = defineStore('church-user-v3', {
           done(resp.Infos, false)
         }, () => {
           done([], true)
+        })
+    },
+    createAppUser (req: CreateAppUserRequest, done: (user: User, error: boolean) => void) {
+      doActionWithError<CreateAppUserRequest, CreateAppUserResponse>(
+        API.GET_APP_USERS,
+        req,
+        req.Message,
+        (resp: CreateAppUserResponse): void => {
+          const data = this.getUsersByAppID(req.TargetAppID)
+          data.push(resp.Info)
+          this.Users.set(req.TargetAppID, data)
+          done(resp.Info, false)
+        }, () => {
+          done({} as User, true)
         })
     }
   }

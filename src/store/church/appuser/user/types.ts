@@ -11,6 +11,17 @@ export interface GetAppUsersResponse {
   Infos: Array<User>
 }
 
+export interface CreateAppUserRequest extends BaseRequest {
+  TargetAppID: string
+  EmailAddress: string
+  PhoneNO: string
+  PasswordHash: string
+}
+
+export interface CreateAppUserResponse {
+  Info: User
+}
+
 export interface ChurchUserState {
   Users: Map<string, Array<User>>
 }

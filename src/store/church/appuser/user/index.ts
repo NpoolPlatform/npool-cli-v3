@@ -46,7 +46,7 @@ export const useChurchUserStore = defineStore('church-user-v3', {
     },
     createAppUser (req: CreateAppUserRequest, done: (user: User, error: boolean) => void) {
       doActionWithError<CreateAppUserRequest, CreateAppUserResponse>(
-        API.GET_APP_USERS,
+        API.CREATE_APP_USER,
         req,
         req.Message,
         (resp: CreateAppUserResponse): void => {

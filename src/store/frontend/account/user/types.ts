@@ -9,6 +9,7 @@ export interface CreateUserAccountRequest extends BaseRequest {
   CoinTypeID: string;
   Address: string;
   UsedFor: AccountUsedFor;
+  Memo?: string;
   Labels?: string[];
   Account: string;
   AccountType: SignMethodType;

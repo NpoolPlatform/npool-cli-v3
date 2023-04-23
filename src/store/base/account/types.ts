@@ -64,6 +64,7 @@ export interface Account {
   CoinEnv: string;
   CoinLogo: string;
   AccountID: string;
+  Memo: string;
   Address: string;
   /** Only [UserWithdraw, UserDirectBenefit, UserDeposit] */
   UsedFor: AccountUsedFor;

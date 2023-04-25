@@ -39,6 +39,7 @@ export interface UpdateCoinRequest extends BaseRequest {
   PaymentAccountCollectAmount: string;
   LeastTransferAmount?: string;
   Env?: string;
+  NeedMemo?: boolean;
 }
 
 export interface UpdateCoinResponse {

@@ -46,6 +46,7 @@ export interface AppCoin {
   UpdatedAt: number;
   MaxAmountPerWithdraw: string;
   DefaultGoodID: string;
+  NeedMemo: boolean;
 }
 
 export interface Coin {
@@ -76,6 +77,7 @@ export interface Coin {
   MaxAmountPerWithdraw: string;
   LeastTransferAmount: string;
   DefaultGoodID: string;
+  NeedMemo: boolean;
   Disabled: boolean;
   CreatedAt: number;
   UpdatedAt: number;

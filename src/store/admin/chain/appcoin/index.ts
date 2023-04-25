@@ -76,6 +76,12 @@ export const useAdminAppCoinStore = defineStore('admin-appcoin-v4', {
         return !row ? InvalidID : row.DefaultGoodID
       }
     },
+    needMemo() {
+      return (coinTypeID: string) => {
+        const row = this.getCoinByID(coinTypeID)
+        return !row? false : row.NeedMemo
+      }
+    }
   },
   actions: {
     getAppCoins (req: GetAppCoinsRequest, done: (error: boolean, appCoins: Array<AppCoin>) => void) {

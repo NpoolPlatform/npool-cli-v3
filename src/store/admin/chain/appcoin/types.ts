@@ -27,6 +27,7 @@ export interface UpdateAppCoinRequest  extends BaseRequest{
   DailyRewardAmount: string;
   Display?: boolean;
   DisplayIndex: number;
+  NeedMemo: boolean;
 }
 
 export interface UpdateAppCoinResponse {

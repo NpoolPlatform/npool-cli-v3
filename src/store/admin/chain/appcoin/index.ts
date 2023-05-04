@@ -37,7 +37,7 @@ export const useAdminAppCoinStore = defineStore('admin-appcoin-v4', {
     forPay() {
       return (coinTypeID: string) => {
         const coin = this.getCoinByID(coinTypeID)
-        return !coin? false : coin.ForPay || coin.CoinForPay
+        return !coin? false : coin.ForPay && coin.CoinForPay
       }
     },
     getCurrentFee() {

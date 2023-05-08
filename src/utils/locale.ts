@@ -8,7 +8,7 @@ export const useLocaleStringStore = defineStore('local-localestring-v4', {
         if (round) {
           _num = Math.round(_num)
         }
-        return _num.toLocaleString()
+        return _num.toLocaleString("en-US", {maximumFractionDigits: 4 })
       }
     }
   }

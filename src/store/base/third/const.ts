@@ -24,6 +24,7 @@ export const UsedFors = [
   UsedFor.SetWithdrawAddress,
   UsedFor.Signin,
   UsedFor.Signup,
+  UsedFor.AffiliateSignup,
   UsedFor.Update,
   UsedFor.Withdraw,
   UsedFor.CreateInvitationCode,

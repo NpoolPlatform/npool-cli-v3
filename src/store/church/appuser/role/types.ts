@@ -50,7 +50,7 @@ export interface CreateAppRoleUserResponse{
 
 export interface DeleteAppRoleUserRequest extends BaseRequest{
   TargetAppID: string
-  RoleUserID: string
+  TargetUserID: string
 }
 
 export interface AppRoleAndUser {

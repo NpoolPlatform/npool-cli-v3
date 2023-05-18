@@ -1,6 +1,7 @@
 export enum UsedFor {
   DefaultUsedFor = "DefaultUsedFor",
   Signup = "Signup",
+  AffiliateSignup = "AffiliateSignup",
   Signin = "Signin",
   Update = "Update",
   Contact = "Contact",

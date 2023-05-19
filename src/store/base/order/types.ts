@@ -12,6 +12,7 @@ export interface Order {
   CoinName: string;
   CoinLogo: string;
   CoinUnit: string;
+  CoinPresale: boolean;
   GoodID: string;
   GoodName: string;
   GoodUnit: string;

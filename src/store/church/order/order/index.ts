@@ -101,7 +101,10 @@ export const useChurchOrderStore = defineStore('church-order-v4', {
         req.Message,
         (resp: GetNAppOrdersResponse): void => {
           const data = this.getOrdersByAppID(req.TargetAppID)
-          data.push(...resp.Infos)
+          resp.Infos.forEach((el) => {
+            const row = data.find((dl) => dl.ID === el.ID)
+            if (!row) data.push(el)
+          })
           this.Orders.Orders.set(req.TargetAppID, data)
           this.Orders.Total = resp.Total
           done(resp.Infos, false)

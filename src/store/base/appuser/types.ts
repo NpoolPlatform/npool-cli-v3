@@ -71,6 +71,8 @@ export interface User {
 
   State: KYCState
   KycStateStr: string
+
+  SelectedLangID: string
 }
 
 

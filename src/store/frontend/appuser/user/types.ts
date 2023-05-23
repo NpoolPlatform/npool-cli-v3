@@ -72,6 +72,7 @@ export interface UpdateUserRequest extends BaseRequest {
   InvitationCodeID?: string;
   InvitationCodeConfirmed?: boolean;
   KolConfirmed?: boolean
+  SelectedLangID?: string
 }
 
 export interface UpdateUserResponse {

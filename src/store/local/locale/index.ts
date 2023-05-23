@@ -22,7 +22,8 @@ export const useLocaleStore = defineStore('locale-lang-v4', {
     },
     setLangs (langs: Array<AppLang>) {
       const langID = Cookies.get('X-Lang-ID')
-      if (langID && langID?.length > 0)  {
+      const userID = Cookies.get('X-User-ID')
+      if (!userID && langID && langID?.length > 0)  {
         const _lang = langs.find((el) => el.LangID === langID)
         if (_lang) {
           this.setLang(_lang)

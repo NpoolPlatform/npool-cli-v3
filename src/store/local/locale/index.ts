@@ -21,15 +21,15 @@ export const useLocaleStore = defineStore('locale-lang-v4', {
       this.I18n.locale = lang.Lang
     },
     setLangs (langs: Array<AppLang>) {
-      const langID = Cookies.get('X-Lang-ID')
-      const userID = Cookies.get('X-User-ID')
-      if (!userID && langID && langID?.length > 0)  {
-        const _lang = langs.find((el) => el.LangID === langID)
-        if (_lang) {
-          this.setLang(_lang)
-          return
-        } 
-      }
+      // const langID = Cookies.get('X-Lang-ID')
+      // const userID = Cookies.get('X-User-ID')
+      // if (!userID && langID && langID?.length > 0)  {
+      //   const _lang = langs.find((el) => el.LangID === langID)
+      //   if (_lang) {
+      //     this.setLang(_lang)
+      //     return
+      //   } 
+      // }
       let flag = false
       langs.forEach((el) => {
         if (el.Main) {

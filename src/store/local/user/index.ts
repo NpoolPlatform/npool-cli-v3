@@ -1,10 +1,6 @@
 import { defineStore } from 'pinia'
 import { Cookies } from 'quasar'
 import { User } from '../../base'
-import { useAdminAppLangStore } from '../../admin'
-import { useLocaleStore } from '../locale'
-const lang = useAdminAppLangStore()
-const locale = useLocaleStore()
 
 export const useLocalUserStore = defineStore('local-user-v4', {
   state: () => ({
@@ -34,15 +30,6 @@ export const useLocalUserStore = defineStore('local-user-v4', {
       if (user) {
         Cookies.set('X-User-ID', user.ID, { expires: '4h', secure: true })
         Cookies.set('X-App-Login-Token', user.LoginToken, { expires: '4h', secure: true })
-        
-        if(user?.SelectedLangID?.length > 0) {
-          const _lang = lang.AppLangs.AppLangs.find((el) => el.LangID === user?.SelectedLangID)
-          if(!_lang) {
-            console.log('LangID Not Found', user?.SelectedLangID)
-            return
-          }
-          locale.setLang(_lang)
-        }
       }
     },
     restUser() {

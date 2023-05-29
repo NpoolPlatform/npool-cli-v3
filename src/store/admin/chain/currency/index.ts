@@ -50,7 +50,7 @@ export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
     getUSDCurrency () {
       return (coinTypeID: string) => {
         const cur = this.getCurrency(coinTypeID)
-        if (!cur) return 1
+        if (!cur) return 0
         return Number(cur.MarketValueLow)
       }
     },

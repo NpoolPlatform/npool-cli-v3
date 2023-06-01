@@ -71,3 +71,4 @@ export const useFiatStore = defineStore('fiat-v4', {
 
 export * from './currency/feed'
 export * from './currency/history'
+export * from './types'

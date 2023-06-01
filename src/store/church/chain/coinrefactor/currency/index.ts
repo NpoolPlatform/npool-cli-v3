@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { API } from './const'
 import {
-  Currency,
+  CoinCurrency,
   GetCoinCurrenciesRequest,
   GetCoinCurrenciesResponse,
   GetCurrencyRequest,
@@ -12,14 +12,14 @@ import { doActionWithError } from '../../../../action'
 export const useCurrenciesStore = defineStore('currency-v4', {
   state: () => ({
     CoinCurrencies: {
-      CoinCurrencies: [] as Array<Currency>,
+      CoinCurrencies: [] as Array<CoinCurrency>,
       Total: 0
     }
   }),
   getters: {
   },
   actions: {
-    getCurrencies (req: GetCoinCurrenciesRequest, done: (error: boolean, rows: Array<Currency>) => void) {
+    getCurrencies (req: GetCoinCurrenciesRequest, done: (error: boolean, rows: Array<CoinCurrency>) => void) {
       doActionWithError<GetCoinCurrenciesRequest, GetCoinCurrenciesResponse>(
         API.GET_CURRENCIES,
         req,
@@ -29,11 +29,11 @@ export const useCurrenciesStore = defineStore('currency-v4', {
           this.CoinCurrencies.Total = resp.Total
           done(false, resp.Infos)
         }, () => {
-          done(true, [] as Array<Currency>)
+          done(true, [] as Array<CoinCurrency>)
         }
       )
     },
-    getCurrency (req: GetCurrencyRequest, done: (error: boolean, row: Currency) => void) {
+    getCurrency (req: GetCurrencyRequest, done: (error: boolean, row: CoinCurrency) => void) {
       doActionWithError<GetCurrencyRequest, GetCurrencyResponse>(
         API.GET_CURRENCY,
         req,
@@ -43,7 +43,7 @@ export const useCurrenciesStore = defineStore('currency-v4', {
           this.CoinCurrencies.Total += 1
           done(false, resp.Info)
         }, () => {
-          done(true, {} as Currency)
+          done(true, {} as CoinCurrency)
         }
       )
     }
@@ -52,3 +52,4 @@ export const useCurrenciesStore = defineStore('currency-v4', {
 
 export * from './feed'
 export * from './history'
+export * from './types'

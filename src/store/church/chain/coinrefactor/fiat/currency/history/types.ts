@@ -1,6 +1,6 @@
 import { BaseRequest, CurrencyFeedType } from '../../../../../../base'
 
-export interface Currency {
+export interface CoinFiatCurrency {
   /**
    * @inject_tag: sql:"id"
    * @format int64
@@ -54,7 +54,7 @@ export interface GetCoinFiatCurrenciesRequest extends BaseRequest {
 }
 
 export interface GetCoinFiatCurrenciesResponse {
-  Infos: Currency[];
+  Infos: CoinFiatCurrency[];
   /** @format int64 */
   Total: number;
 }

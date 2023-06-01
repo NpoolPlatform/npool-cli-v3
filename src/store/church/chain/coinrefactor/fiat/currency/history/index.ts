@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { API } from './const'
 import {
-  Currency,
+  CoinFiatCurrency,
   GetCoinFiatCurrenciesRequest,
   GetCoinFiatCurrenciesResponse
 } from './types'
@@ -10,13 +10,13 @@ import { doActionWithError } from '../../../../../../action'
 export const useCoinFiatCurrencyHistoryStore = defineStore('coinfiatcurrencyhistory-v4', {
   state: () => ({
     Histories: {
-      Histories: [] as Array<Currency>,
+      Histories: [] as Array<CoinFiatCurrency>,
       Total: 0
     }
   }),
   getters: {},
   actions: {
-    getCoinFiatCurrencyHistories (req: GetCoinFiatCurrenciesRequest, done: (error: boolean, rows: Array<Currency>) => void) {
+    getCoinFiatCurrencyHistories (req: GetCoinFiatCurrenciesRequest, done: (error: boolean, rows: Array<CoinFiatCurrency>) => void) {
       doActionWithError<GetCoinFiatCurrenciesRequest, GetCoinFiatCurrenciesResponse>(
         API.GET_COIN_FIAT_CURRENCY_HISTORIES,
         req,
@@ -26,7 +26,7 @@ export const useCoinFiatCurrencyHistoryStore = defineStore('coinfiatcurrencyhist
           this.Histories.Total = resp.Total
           done(false, resp.Infos)
         }, () => {
-          done(true, [] as Array<Currency>)
+          done(true, [] as Array<CoinFiatCurrency>)
         }
       )
     }

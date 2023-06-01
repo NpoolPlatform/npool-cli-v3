@@ -1,18 +1,5 @@
-import { BaseRequest, CurrencyFeedType } from '../../../../../base'
-
-export interface Currency {
-  ID: string;
-  CoinTypeID: string;
-  CoinName: string;
-  CoinLogo: string;
-  CoinUnit: string;
-  CoinENV: string;
-  CreatedAt: number;
-  UpdatedAt: number;
-  MarketValueHigh: string;
-  MarketValueLow: string;
-  FeedType: CurrencyFeedType;
-}
+import { BaseRequest } from '../../../../../base'
+import { CoinCurrency } from '../types'
 
 export interface GetCurrencyHistoriesRequest extends BaseRequest {
   CoinTypeIDs: string[];
@@ -27,7 +14,7 @@ export interface GetCurrencyHistoriesRequest extends BaseRequest {
 }
 
 export interface GetCurrencyHistoriesResponse extends BaseRequest {
-  Infos: Currency[];
+  Infos: CoinCurrency[];
   /** @format int64 */
   Total: number;
 }

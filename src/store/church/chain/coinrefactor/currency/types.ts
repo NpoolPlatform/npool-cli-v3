@@ -1,6 +1,5 @@
 import { BaseRequest, CurrencyFeedType } from '../../../../base'
-
-export interface Currency {
+export interface CoinCurrency {
   ID: string;
   CoinTypeID: string;
   CoinName: string;
@@ -23,7 +22,7 @@ export interface GetCurrencyRequest extends BaseRequest {
 }
 
 export interface GetCurrencyResponse {
-  Info: Currency;
+  Info: CoinCurrency;
   /** @format int64 */
   Total: number;
 }
@@ -41,7 +40,8 @@ export interface GetCoinCurrenciesRequest extends BaseRequest {
 }
 
 export interface GetCoinCurrenciesResponse {
-  Infos: Currency[];
+  Infos: CoinCurrency[];
   /** @format int64 */
   Total: number;
 }
+

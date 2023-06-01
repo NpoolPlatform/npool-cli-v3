@@ -1,6 +1,6 @@
 import { BaseRequest, CurrencyFeedType } from '../../../../../base'
 
-export interface Currency {
+export interface FiatCurrency {
   /** @inject_tag: sql:"id" */
   ID: string;
   /** @inject_tag: sql:"fiat_id" */
@@ -42,7 +42,7 @@ export interface GetHistoriesRequest extends BaseRequest {
 }
 
 export interface GetHistoriesResponse {
-  Infos: Currency[];
+  Infos: FiatCurrency[];
   /** @format int64 */
   Total: number;
 }

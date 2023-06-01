@@ -1,4 +1,4 @@
-import { BaseRequest } from '../../base'
+import { BaseRequest } from '../../../base'
 
 export interface Fiat {
   /** @inject_tag: sql:"id" */

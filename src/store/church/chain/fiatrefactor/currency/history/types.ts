@@ -1,24 +1,12 @@
-import { CurrencyFeedType } from '../../../../state'
-import { BaseRequest } from '../../../../../base'
+import { BaseRequest, CurrencyFeedType } from '../../../../../base'
 
 export interface Currency {
-  /**
-   * @inject_tag: sql:"id"
-   * @format int64
-   */
-  ID: number;
-  /** @inject_tag: sql:"coin_type_id" */
-  CoinTypeID: string;
-  /** @inject_tag: sql:"coin_name" */
-  CoinName: string;
-  /** @inject_tag: sql:"coin_logo" */
-  CoinLogo: string;
-  /** @inject_tag: sql:"coin_unit" */
-  CoinUnit: string;
-  /** @inject_tag: sql:"coin_env" */
-  CoinENV: string;
+  /** @inject_tag: sql:"id" */
+  ID: string;
   /** @inject_tag: sql:"fiat_id" */
   FiatID: string;
+  /** @inject_tag: sql:"feed_type" */
+  FeedType: CurrencyFeedType;
   /** @inject_tag: sql:"fiat_name" */
   FiatName: string;
   /** @inject_tag: sql:"fiat_logo" */
@@ -29,7 +17,6 @@ export interface Currency {
   MarketValueHigh: string;
   /** @inject_tag: sql:"market_value_low" */
   MarketValueLow: string;
-  FeedType: CurrencyFeedType;
   /**
    * @inject_tag: sql:"created_at"
    * @format int64
@@ -42,8 +29,8 @@ export interface Currency {
   UpdatedAt: number;
 }
 
-export interface GetCoinFiatCurrenciesRequest extends BaseRequest {
-  CoinTypeIDs: string[];
+export interface GetHistoriesRequest extends BaseRequest {
+  FiatIDs: string[];
   /** @format int64 */
   StartAt: number;
   /** @format int64 */
@@ -54,7 +41,7 @@ export interface GetCoinFiatCurrenciesRequest extends BaseRequest {
   Limit: number;
 }
 
-export interface GetCoinFiatCurrenciesResponse {
+export interface GetHistoriesResponse {
   Infos: Currency[];
   /** @format int64 */
   Total: number;

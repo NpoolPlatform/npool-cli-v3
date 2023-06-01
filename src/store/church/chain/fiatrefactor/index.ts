@@ -9,7 +9,7 @@ import {
   UpdateFiatRequest,
   UpdateFiatResponse
 } from './types'
-import { doActionWithError } from '../../action'
+import { doActionWithError } from '../../../action'
 
 export const useFiatStore = defineStore('fiat-v4', {
   state: () => ({

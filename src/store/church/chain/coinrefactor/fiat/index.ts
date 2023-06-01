@@ -9,7 +9,7 @@ import {
   DeleteCoinFiatRequest,
   DeleteCoinFiatResponse
 } from './types'
-import { doActionWithError } from '../../../action'
+import { doActionWithError } from '../../../../action'
 
 export const useCoinFiatStore = defineStore('coinCoinFiat-v4', {
   state: () => ({

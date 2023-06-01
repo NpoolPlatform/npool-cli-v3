@@ -5,7 +5,7 @@ import {
   GetCoinFiatCurrenciesRequest,
   GetCoinFiatCurrenciesResponse
 } from './types'
-import { doActionWithError } from '../../../../../action'
+import { doActionWithError } from '../../../../../../action'
 
 export const useCoinFiatCurrencyHistoryStore = defineStore('coinfiatcurrencyhistory-v4', {
   state: () => ({

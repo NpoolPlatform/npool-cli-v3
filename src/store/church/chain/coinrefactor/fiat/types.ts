@@ -1,5 +1,4 @@
-import { BaseRequest } from '../../../base'
-import { CurrencyFeedType } from '../../state';
+import { BaseRequest, CurrencyFeedType } from '../../../../base'
 
 export interface CoinFiat {
   /**

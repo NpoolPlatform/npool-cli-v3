@@ -1,5 +1,4 @@
-import { BaseRequest } from '../../../base'
-import { CurrencyFeedType } from '../../state'
+import { BaseRequest, CurrencyFeedType } from '../../../../../base'
 
 export interface Currency {
   ID: string;
@@ -15,21 +14,7 @@ export interface Currency {
   FeedType: CurrencyFeedType;
 }
 
-export interface GetCurrencyRequest extends BaseRequest {
-  CoinTypeID: string;
-  /** @format int64 */
-  StartAt: number;
-  /** @format int64 */
-  EndAt: number;
-}
-
-export interface GetCurrencyResponse {
-  Info: Currency;
-  /** @format int64 */
-  Total: number;
-}
-
-export interface GetCoinCurrenciesRequest extends BaseRequest {
+export interface GetCurrencyHistoriesRequest extends BaseRequest {
   CoinTypeIDs: string[];
   /** @format int64 */
   StartAt: number;
@@ -41,7 +26,7 @@ export interface GetCoinCurrenciesRequest extends BaseRequest {
   Limit: number;
 }
 
-export interface GetCoinCurrenciesResponse {
+export interface GetCurrencyHistoriesResponse extends BaseRequest {
   Infos: Currency[];
   /** @format int64 */
   Total: number;

@@ -213,6 +213,13 @@ export enum FeedType {
   StableUSDHardCode = 'StableUSDHardCode',
 }
 
+export enum CurrencyFeedType {
+  DefaultFeedType = 'DefaultFeedType',
+  CoinGecko = 'CoinGecko',
+  CoinBase = 'CoinBase',
+  StableUSDHardCode = 'StableUSDHardCode',
+}
+
 export interface FiatCurrency {
   /** @inject_tag: sql:"id" */
   ID: string;

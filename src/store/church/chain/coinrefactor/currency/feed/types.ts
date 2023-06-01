@@ -1,5 +1,4 @@
-import { CurrencyFeedType } from '../../../state'
-import { BaseRequest } from '../../../../base'
+import { BaseRequest, CurrencyFeedType } from '../../../../../base'
 
 export interface Feed {
   ID: string;

@@ -7,7 +7,7 @@ import {
   GetCurrencyRequest,
   GetCurrencyResponse
 } from './types'
-import { doActionWithError } from '../../../action'
+import { doActionWithError } from '../../../../action'
 
 export const useCurrenciesStore = defineStore('currency-v4', {
   state: () => ({

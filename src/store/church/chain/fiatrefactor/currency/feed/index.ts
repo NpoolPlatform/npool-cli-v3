@@ -9,9 +9,9 @@ import {
   UpdateFeedRequest,
   UpdateFeedResponse
 } from './types'
-import { doActionWithError } from '../../../../action'
+import { doActionWithError } from '../../../../../action'
 
-export const useCoinFeedStore = defineStore('coinfeed-v4', {
+export const useFiatFeedStore = defineStore('fiatfeed-v4', {
   state: () => ({
     Feeds: {
       Feeds: [] as Array<Feed>,
@@ -68,3 +68,4 @@ export const useCoinFeedStore = defineStore('coinfeed-v4', {
     }
   }
 })
+

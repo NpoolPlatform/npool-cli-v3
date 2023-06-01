@@ -14,8 +14,7 @@ export const useCoinFiatCurrencyHistoryStore = defineStore('coinfiatcurrencyhist
       Total: 0
     }
   }),
-  getters: {
-  },
+  getters: {},
   actions: {
     getCoinFiatCurrencyHistories (req: GetCoinFiatCurrenciesRequest, done: (error: boolean, rows: Array<Currency>) => void) {
       doActionWithError<GetCoinFiatCurrenciesRequest, GetCoinFiatCurrenciesResponse>(

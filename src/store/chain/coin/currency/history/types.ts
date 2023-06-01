@@ -1,4 +1,4 @@
-import { CurrencyFeedType } from '../../../types'
+import { CurrencyFeedType } from '../../../state'
 import { BaseRequest } from '../../../../base'
 
 export interface Currency {

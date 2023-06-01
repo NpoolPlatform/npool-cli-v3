@@ -49,3 +49,6 @@ export const useCurrenciesStore = defineStore('currency-v4', {
     }
   }
 })
+
+export * from './feed'
+export * from './history'

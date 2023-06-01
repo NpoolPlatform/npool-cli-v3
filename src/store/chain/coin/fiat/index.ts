@@ -65,3 +65,5 @@ export const useCoinFiatStore = defineStore('coinCoinFiat-v4', {
     }
   }
 })
+
+export * from './currency/history'

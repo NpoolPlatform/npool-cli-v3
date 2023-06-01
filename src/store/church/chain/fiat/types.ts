@@ -1,4 +1,4 @@
-import { BaseRequest, FiatCurrency, FiatCurrencyType } from '../../../base'
+import { BaseRequest, OldFiatCurrency as FiatCurrency, FiatCurrencyType } from '../../../base'
 
 export interface CreateFiatCurrencyTypeRequest extends BaseRequest {
   Name: string;

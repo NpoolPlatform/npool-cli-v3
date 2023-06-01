@@ -1,6 +1,6 @@
 import { BaseRequest, CurrencyFeedType } from '../../../../../base'
 
-export interface Feed {
+export interface CoinFeed {
   ID: string;
   CoinTypeID: string;
   CoinName: string;
@@ -21,7 +21,7 @@ export interface CreateFeedRequest extends BaseRequest {
 }
 
 export interface CreateFeedResponse {
-  Info: Feed;
+  Info: CoinFeed;
 }
 
 export interface GetFeedsRequest extends BaseRequest {
@@ -32,7 +32,7 @@ export interface GetFeedsRequest extends BaseRequest {
 }
 
 export interface GetFeedsResponse {
-  Infos: Feed[];
+  Infos: CoinFeed[];
   /** @format int64 */
   Total: number;
 }
@@ -44,5 +44,5 @@ export interface UpdateFeedRequest extends BaseRequest {
 }
 
 export interface UpdateFeedResponse {
-  Info: Feed;
+  Info: CoinFeed;
 }

@@ -33,3 +33,5 @@ export const useCoinCurrencyHistoryStore = defineStore('coincurrencyhistory-v4',
     }
   }
 })
+
+export * from './types'

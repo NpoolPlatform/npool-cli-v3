@@ -32,3 +32,4 @@ export const useCoinFiatCurrencyHistoryStore = defineStore('coinfiatcurrencyhist
     }
   }
 })
+export * from './types'

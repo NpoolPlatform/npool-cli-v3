@@ -1,6 +1,6 @@
 import { BaseRequest, CurrencyFeedType } from '../../../../../base'
 
-export interface Feed {
+export interface FiatFeed {
   /** @inject_tag: sql:"id" */
   ID: string;
   /** @inject_tag: sql:"fiat_id" */
@@ -29,35 +29,35 @@ export interface Feed {
   UpdatedAt: number;
 }
 
-export interface CreateFeedRequest extends BaseRequest {
+export interface CreateFiatFeedRequest extends BaseRequest {
   FiatID: string;
   FeedType: CurrencyFeedType;
   FeedFiatName: string;
 }
 
-export interface CreateFeedResponse {
-  Info: Feed;
+export interface CreateFiatFeedResponse {
+  Info: FiatFeed;
 }
 
-export interface GetFeedsRequest extends BaseRequest {
+export interface GetFiatFeedsRequest extends BaseRequest {
   /** @format int32 */
   Offset: number;
   /** @format int32 */
   Limit: number;
 }
 
-export interface GetFeedsResponse {
-  Infos: Feed[];
+export interface GetFiatFeedsResponse {
+  Infos: FiatFeed[];
   /** @format int64 */
   Total: number;
 }
 
-export interface UpdateFeedRequest extends BaseRequest {
+export interface UpdateFiatFeedRequest extends BaseRequest {
   ID: string;
   FeedFiatName: string;
   Disabled: boolean;
 }
 
-export interface UpdateFeedResponse {
-  Info: Feed;
+export interface UpdateFiatFeedResponse {
+  Info: FiatFeed;
 }

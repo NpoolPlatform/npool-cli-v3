@@ -32,3 +32,4 @@ export const useFiatCurrencyHistoryStore = defineStore('fiatcurrencyhistory-v4',
     }
   }
 })
+export * from './types'

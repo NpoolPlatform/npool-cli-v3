@@ -3,7 +3,7 @@ import { API } from './const'
 import {
   CreateFeedRequest,
   CreateFeedResponse,
-  Feed,
+  CoinFeed,
   GetFeedsRequest,
   GetFeedsResponse,
   UpdateFeedRequest,
@@ -14,7 +14,7 @@ import { doActionWithError } from '../../../../../action'
 export const useCoinFeedStore = defineStore('coinfeed-v4', {
   state: () => ({
     Feeds: {
-      Feeds: [] as Array<Feed>,
+      Feeds: [] as Array<CoinFeed>,
       Total: 0
     }
   }),
@@ -24,7 +24,7 @@ export const useCoinFeedStore = defineStore('coinfeed-v4', {
     }
   },
   actions: {
-    getFeeds (req: GetFeedsRequest, done: (error: boolean, rows: Array<Feed>) => void) {
+    getFeeds (req: GetFeedsRequest, done: (error: boolean, rows: Array<CoinFeed>) => void) {
       doActionWithError<GetFeedsRequest, GetFeedsResponse>(
         API.GET_FEEDS,
         req,
@@ -34,11 +34,11 @@ export const useCoinFeedStore = defineStore('coinfeed-v4', {
           this.Feeds.Total = resp.Total
           done(false, resp.Infos)
         }, () => {
-          done(true, [] as Array<Feed>)
+          done(true, [] as Array<CoinFeed>)
         }
       )
     },
-    createFeed (req: CreateFeedRequest, done: (error: boolean, row: Feed) => void) {
+    createFeed (req: CreateFeedRequest, done: (error: boolean, row: CoinFeed) => void) {
       doActionWithError<CreateFeedRequest, CreateFeedResponse>(
         API.CREATE_FEED,
         req,
@@ -48,11 +48,11 @@ export const useCoinFeedStore = defineStore('coinfeed-v4', {
           this.Feeds.Total += 1
           done(false, resp.Info)
         }, () => {
-          done(true, {} as Feed)
+          done(true, {} as CoinFeed)
         }
       )
     },
-    updateFeed (req: UpdateFeedRequest, done: (error: boolean, row: Feed) => void) {
+    updateFeed (req: UpdateFeedRequest, done: (error: boolean, row: CoinFeed) => void) {
       doActionWithError<UpdateFeedRequest, UpdateFeedResponse>(
         API.UPDATE_FEED,
         req,
@@ -62,9 +62,11 @@ export const useCoinFeedStore = defineStore('coinfeed-v4', {
           this.Feeds.Feeds.splice(index, 1, resp.Info)
           done(false, resp.Info)
         }, () => {
-          done(true, {} as Feed)
+          done(true, {} as CoinFeed)
         }
       )
     }
   }
 })
+
+export * from './types'

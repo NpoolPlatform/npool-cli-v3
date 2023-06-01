@@ -220,7 +220,7 @@ export enum CurrencyFeedType {
   StableUSDHardCode = 'StableUSDHardCode',
 }
 
-export interface FiatCurrency {
+export interface OldFiatCurrency {
   /** @inject_tag: sql:"id" */
   ID: string;
   /** @inject_tag: sql:"fiat_currency_type_id" */

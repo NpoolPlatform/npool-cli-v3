@@ -1,4 +1,5 @@
-import { BaseRequest, OldFiatCurrency as FiatCurrency } from '../../../base'
+import { FiatCurrency } from '../../../church/chain/fiatrefactor'
+import { BaseRequest } from '../../../base'
 
 export interface GetCoinFiatCurrenciesRequest extends BaseRequest {
   FiatCurrencyTypeIDs: string[];
@@ -29,7 +30,7 @@ export interface GetHistoriesResponse {
 }
 
 export interface GetFiatCurrencyRequest extends BaseRequest {
-  FiatCurrencyTypeName: string;
+  FiatName: string;
 }
 
 export interface GetFiatCurrencyResponse {

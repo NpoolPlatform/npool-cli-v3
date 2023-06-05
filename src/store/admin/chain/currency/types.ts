@@ -9,7 +9,7 @@ export interface GetCurrencyResponse {
 }
 
 export interface GetCurrenciesRequest extends BaseRequest {
-  CoinTypeIDs: string[];
+  CoinTypeIDs?: string[];
   Offset: number;
   Limit: number;
 }

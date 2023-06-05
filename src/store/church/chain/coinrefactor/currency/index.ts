@@ -25,6 +25,10 @@ export const useCurrenciesStore = defineStore('currency-v4', {
         req,
         req.Message,
         (resp: GetCoinCurrenciesResponse): void => {
+          resp.Infos.forEach((el) => {
+            const index = this.CoinCurrencies.CoinCurrencies.findIndex((cl) => cl.ID === el.ID)
+            this.CoinCurrencies.CoinCurrencies.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, el)
+          })
           this.CoinCurrencies.CoinCurrencies.push(...resp.Infos)
           this.CoinCurrencies.Total = resp.Total
           done(false, resp.Infos)

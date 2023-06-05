@@ -9,8 +9,7 @@ import {
   GetFiatCurrencyResponse
 } from './types'
 import { doActionWithError } from '../../../action'
-import { FiatCurrency } from '../../../church/chain/fiatrefactor'
-import { FiatType } from '../../../base'
+import { FiatType, FiatCurrency } from '../../../base'
 
 export const useAdminFiatCurrencyStore = defineStore('admin-fiatcurrency-v4', {
   state: () => ({

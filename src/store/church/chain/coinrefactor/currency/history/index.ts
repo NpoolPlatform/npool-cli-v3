@@ -5,7 +5,7 @@ import {
   GetCurrencyHistoriesResponse
 } from './types'
 import { doActionWithError } from '../../../../../action'
-import { CoinCurrency } from '../types'
+import { CoinCurrency } from '../../../../../base'
 
 export const useCoinCurrencyHistoryStore = defineStore('coincurrencyhistory-v4', {
   state: () => ({

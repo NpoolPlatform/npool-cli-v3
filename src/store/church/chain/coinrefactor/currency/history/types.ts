@@ -1,5 +1,4 @@
-import { BaseRequest } from '../../../../../base'
-import { CoinCurrency } from '../types'
+import { BaseRequest, CoinCurrency } from '../../../../../base'
 
 export interface GetCurrencyHistoriesRequest extends BaseRequest {
   CoinTypeIDs: string[];

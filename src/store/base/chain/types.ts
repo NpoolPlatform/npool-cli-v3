@@ -164,23 +164,6 @@ export interface Tx {
   UpdatedAt: number;
 }
 
-export interface Currency {
-  ID: string;
-  CoinTypeID: string;
-  CoinName: string;
-  CoinLogo: string;
-  CoinUnit: string;
-  CoinENV: string;
-  CreatedAt: number;
-  UpdatedAt: number;
-  MarketValueHigh: string;
-  MarketValueLow: string;
-  FeedTypeStr: string;
-  FeedType: FeedType;
-  FeedSource: string;
-}
-
-
 export enum CoinType {
   USDTERC20 = 'tether'
 }
@@ -218,4 +201,31 @@ export enum CurrencyFeedType {
   CoinGecko = 'CoinGecko',
   CoinBase = 'CoinBase',
   StableUSDHardCode = 'StableUSDHardCode',
+}
+
+export interface CoinCurrency {
+  ID: string;
+  CoinTypeID: string;
+  CoinName: string;
+  CoinLogo: string;
+  CoinUnit: string;
+  CoinENV: string;
+  CreatedAt: number;
+  UpdatedAt: number;
+  MarketValueHigh: string;
+  MarketValueLow: string;
+  FeedType: CurrencyFeedType;
+}
+
+export interface FiatCurrency {
+  ID: string;
+  FiatID: string;
+  FeedType: CurrencyFeedType;
+  FiatName: string;
+  FiatLogo: string;
+  FiatUnit: string;
+  MarketValueHigh: string;
+  MarketValueLow: string;
+  CreatedAt: number;
+  UpdatedAt: number;
 }

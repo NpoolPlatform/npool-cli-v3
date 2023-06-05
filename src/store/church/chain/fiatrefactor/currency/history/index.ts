@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia'
 import { API } from './const'
 import {
-  FiatCurrency,
   GetHistoriesRequest,
   GetHistoriesResponse
 } from './types'
 import { doActionWithError } from '../../../../../action'
+import { FiatCurrency } from '../../../../../base'
 
 export const useFiatCurrencyHistoryStore = defineStore('fiatcurrencyhistory-v4', {
   state: () => ({

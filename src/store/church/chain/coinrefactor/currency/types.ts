@@ -1,17 +1,4 @@
-import { BaseRequest, CurrencyFeedType } from '../../../../base'
-export interface CoinCurrency {
-  ID: string;
-  CoinTypeID: string;
-  CoinName: string;
-  CoinLogo: string;
-  CoinUnit: string;
-  CoinENV: string;
-  CreatedAt: number;
-  UpdatedAt: number;
-  MarketValueHigh: string;
-  MarketValueLow: string;
-  FeedType: CurrencyFeedType;
-}
+import { BaseRequest, CoinCurrency } from '../../../../base'
 
 export interface GetCurrencyRequest extends BaseRequest {
   CoinTypeID: string;

@@ -25,7 +25,7 @@ export const useAdminFiatCurrencyStore = defineStore('admin-fiatcurrency-v4', {
   getters: {
     getJPYCurrency () {
       return () => {
-        const data = this.CoinFiatCurrencies.CoinFiatCurrencies.find((el) => el.FiatName === FiatType.JPY)
+        const data = this.CoinFiatCurrencies.CoinFiatCurrencies.find((el) => el?.FiatName === FiatType.JPY)
         return !data ? Number('NaN') : Number(data.MarketValueHigh)
       }
     }

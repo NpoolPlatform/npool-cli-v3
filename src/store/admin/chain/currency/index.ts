@@ -80,7 +80,7 @@ export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
         }
       )
     },
-    getCurrency (req: GetCurrencyRequest, done: (error: boolean, row: CoinCurrency) => void) {
+    getCoinCurrency (req: GetCurrencyRequest, done: (error: boolean, row: CoinCurrency) => void) {
       doActionWithError<GetCurrencyRequest, GetCurrencyResponse>(
         API.GET_CURRENCY,
         req,

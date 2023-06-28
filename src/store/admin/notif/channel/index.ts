@@ -4,8 +4,8 @@ import { TNotifChannel as NotifChannel } from '../../../base'
 import {
   GetAppNotifChannelsRequest,
   GetAppNotifChannelsResponse,
-  CreateNotifChannelsRequest,
-  CreateNotifChannelsResponse,
+  CreateNotifChannelRequest,
+  CreateNotifChannelResponse,
   DeleteNotifChannelRequest,
   DeleteNotifChannelResponse,
 } from './types'
@@ -58,17 +58,17 @@ export const useAdminNotifChannelStore = defineStore('admin-notifchannel-v4', {
         }
       )
     },
-    createNotifChannel (req: CreateNotifChannelsRequest, done: (error: boolean, rows: NotifChannel[]) => void) {
-      doActionWithError<CreateNotifChannelsRequest, CreateNotifChannelsResponse>(
-        API.CREATE_NOTIFCHANNELS,
+    createNotifChannel (req: CreateNotifChannelRequest, done: (error: boolean, row?: NotifChannel) => void) {
+      doActionWithError<CreateNotifChannelRequest, CreateNotifChannelResponse>(
+        API.CREATE_NOTIFCHANNEL,
         req,
         req.Message,
-        (resp: CreateNotifChannelsResponse): void => {
-          this.NotifChannels.NotifChannels.push(...resp.Infos)
+        (resp: CreateNotifChannelResponse): void => {
+          this.NotifChannels.NotifChannels.push(resp.Info)
           this.NotifChannels.Total += 1
-          done(false, resp.Infos)
+          done(false, resp.Info)
         }, () => {
-          done(true, [] as Array<NotifChannel>)
+          done(true)
         }
       )
     }

@@ -17,6 +17,7 @@ export enum UsedFor {
   KYCApproved = "KYCApproved",
   KYCRejected = "KYCRejected",
   Announcement = "Announcement",
+  GoodBenefit = "GoodBenefit",
 }
 
 export const UsedFors = [
@@ -36,4 +37,5 @@ export const UsedFors = [
   UsedFor.KYCApproved,
   UsedFor.KYCRejected,
   UsedFor.Announcement,
+  UsedFor.GoodBenefit,
 ]

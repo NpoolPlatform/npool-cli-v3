@@ -50,7 +50,7 @@ export const useAdminAnnouncementUserStore = defineStore('admin-announcementuser
         }
       )
     },
-    CreateAnnouncementUser (req: CreateAnnouncementUserRequest, done: (error: boolean, row?: AnnouncementUser) => void) {
+    createAnnouncementUser (req: CreateAnnouncementUserRequest, done: (error: boolean, row?: AnnouncementUser) => void) {
       doActionWithError<CreateAnnouncementUserRequest, CreateAnnouncementUserResponse>(
         API.CREATE_ANNOUNCEMENTUSER,
         req,

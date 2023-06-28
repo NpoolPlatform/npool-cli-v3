@@ -30,13 +30,15 @@ export const NotifChannels = [
   NotifChannel.ChannelFrontend
 ]
 
-export enum AnnouncementType {
+export enum NotifType {
   DefaultType = 'DefaultType',
   Broadcast = 'Broadcast',
   Multicast = 'Multicast',
+  Unicast = 'Unicast'
 }
 
-export const AnnouncementTypes = [
-  AnnouncementType.Broadcast,
-  AnnouncementType.Multicast
+export const NotifTypes = [
+  NotifType.Broadcast,
+  NotifType.Multicast,
+  NotifType.Unicast
 ]

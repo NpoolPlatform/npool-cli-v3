@@ -1,5 +1,5 @@
 import { UsedFor } from '../third'
-import { AnnouncementType, NotifChannel } from './const'
+import { NotifType, NotifChannel } from './const'
 
 export interface Announcement {
   ID: string;
@@ -19,7 +19,7 @@ export interface Announcement {
   /** if AlreadySend = true SendChannel valid */
   SendChannel: NotifChannel;
   Channel: NotifChannel;
-  AnnouncementType: AnnouncementType
+  AnnouncementType: NotifType
   /** @format int64 */
   EndAt: number;
 }
@@ -84,7 +84,7 @@ export interface AnnouncementUser {
   Username: string;
   Title: string;
   Content: string;
-  AnnouncementType: AnnouncementType;
+  NotifType: NotifType;
   /** @format int64 */
   CreatedAt: number;
   /** @format int64 */
@@ -99,4 +99,22 @@ export interface TNotifChannel {
   Channel: NotifChannel;
   /** @format int64 */
   CreatedAt: number;
+}
+
+export interface NotifUser {
+  ID: string;
+  EventType: UsedFor;
+  AppID: string;
+  AppName: string;
+  UserID: string;
+  EmailAddress: string;
+  PhoneNO: string;
+  Username: string;
+  Title: string;
+  Content: string;
+  NotifType: NotifType;
+  /** @format int64 */
+  CreatedAt: number;
+  /** @format int64 */
+  UpdatedAt: number;
 }

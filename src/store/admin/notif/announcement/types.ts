@@ -1,6 +1,6 @@
 import { 
   Announcement, 
-  AnnouncementType, 
+  NotifType, 
   BaseRequest, 
   NotifChannel 
 } from '../../../base'
@@ -10,7 +10,7 @@ export interface CreateAnnouncementRequest extends BaseRequest {
   TargetLangID: string;
   Title: string;
   Content: string;
-  AnnouncementType: AnnouncementType;
+  AnnouncementType: NotifType;
   Channel: NotifChannel;
   /** @format int64 */
   EndAt: number;
@@ -83,7 +83,7 @@ export interface UpdateAnnouncementRequest extends BaseRequest {
   Title: string;
   Content: string;
   Channel: NotifChannel;
-  AnnouncementType: AnnouncementType;
+  AnnouncementType: NotifType;
   /** @format int64 */
   EndAt: number;
 }

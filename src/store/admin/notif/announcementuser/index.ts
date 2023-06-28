@@ -3,8 +3,8 @@ import { API } from './const'
 import {
   GetAppAnnouncementUsersRequest,
   GetAppAnnouncementUsersResponse,
-  CreateAnnouncementUsersRequest,
-  CreateAnnouncementUsersResponse,
+  CreateAnnouncementUserRequest,
+  CreateAnnouncementUserResponse,
   DeleteAnnouncementUserRequest,
   DeleteAnnouncementUserResponse,
 } from './types'
@@ -37,7 +37,7 @@ export const useAdminAnnouncementUserStore = defineStore('admin-announcementuser
     },
     deleteAnnouncementUser (req: DeleteAnnouncementUserRequest, done: (error: boolean, row: AnnouncementUser) => void) {
       doActionWithError<DeleteAnnouncementUserRequest, DeleteAnnouncementUserResponse>(
-        API.DELETE_ANNOUNCEMENTUSERS,
+        API.DELETE_ANNOUNCEMENTUSER,
         req,
         req.Message,
         (resp: DeleteAnnouncementUserResponse): void => {
@@ -50,17 +50,17 @@ export const useAdminAnnouncementUserStore = defineStore('admin-announcementuser
         }
       )
     },
-    createAnnouncementUsers (req: CreateAnnouncementUsersRequest, done: (error: boolean, rows: Array<AnnouncementUser>) => void) {
-      doActionWithError<CreateAnnouncementUsersRequest, CreateAnnouncementUsersResponse>(
-        API.CREATE_ANNOUNCEMENTUSERS,
+    CreateAnnouncementUser (req: CreateAnnouncementUserRequest, done: (error: boolean, row?: AnnouncementUser) => void) {
+      doActionWithError<CreateAnnouncementUserRequest, CreateAnnouncementUserResponse>(
+        API.CREATE_ANNOUNCEMENTUSER,
         req,
         req.Message,
-        (resp: CreateAnnouncementUsersResponse): void => {
-          this.AnnouncementUsers.AnnouncementUsers.push(...resp.Infos)
+        (resp: CreateAnnouncementUserResponse): void => {
+          this.AnnouncementUsers.AnnouncementUsers.push(resp.Info)
           this.AnnouncementUsers.Total += 1
-          done(false, resp.Infos)
+          done(false, resp.Info)
         }, () => {
-          done(true, [] as Array<AnnouncementUser>)
+          done(true)
         }
       )
     }

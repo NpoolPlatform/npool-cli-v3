@@ -1,17 +1,18 @@
 import { AnnouncementUser, BaseRequest } from '../../../base'
 
-export interface CreateAnnouncementUsersRequest extends BaseRequest {
+export interface CreateAnnouncementUserRequest extends BaseRequest {
   AppID?: string;
-  UserIDs: string[];
+  TargetUserID: string;
   AnnouncementID: string;
 }
 
-export interface CreateAnnouncementUsersResponse {
-  Infos: Array<AnnouncementUser>
+export interface CreateAnnouncementUserResponse {
+  Info: AnnouncementUser
 }
 
 export interface DeleteAnnouncementUserRequest extends BaseRequest {
   ID: string;
+  AppID: string;
 }
 
 export interface DeleteAnnouncementUserResponse {

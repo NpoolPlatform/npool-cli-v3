@@ -2,6 +2,7 @@ import { OrderState } from './const';
 
 export interface Order {
   ID: string;
+  AppID: string;
   ParentOrderID: string;
   ParentOrderGoodID: string;
   ParentOrderGoodName: string;
@@ -12,6 +13,7 @@ export interface Order {
   CoinName: string;
   CoinLogo: string;
   CoinUnit: string;
+  CoinPresale: boolean;
   GoodID: string;
   GoodName: string;
   GoodUnit: string;

@@ -49,7 +49,7 @@ const validateMobileNO = (no: string) => {
 }
 
 const validateUsername = (username: string) => {
-  const reg = /^[a-zA-Z0-9][[a-zA-Z0-9_-]{3,15}$/
+  const reg = /^[a-zA-Z0-9\u3040-\u31ff][[a-zA-Z0-9_\\-\\.\u3040-\u31ff]{3,32}$/
   return reg.test(username)
 }
 

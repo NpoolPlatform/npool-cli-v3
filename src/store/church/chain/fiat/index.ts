@@ -1,71 +1,74 @@
 import { defineStore } from 'pinia'
 import { API } from './const'
 import {
-  GetFiatCurrencyTypesRequest,
-  GetFiatCurrencyTypesResponse,
-  UpdateFiatCurrencyTypeRequest,
-  UpdateFiatCurrencyTypeResponse,
-  CreateFiatCurrencyTypeRequest,
-  CreateFiatCurrencyTypeResponse
+  CreateFiatRequest,
+  CreateFiatResponse,
+  Fiat,
+  GetFiatsRequest,
+  GetFiatsResponse,
+  UpdateFiatRequest,
+  UpdateFiatResponse
 } from './types'
 import { doActionWithError } from '../../../action'
-import { FiatCurrencyType } from '../../../base'
 
-export const useChurchFiatCurrencyStore = defineStore('church-fiatcurrency-v4', {
+export const useFiatStore = defineStore('fiat-v4', {
   state: () => ({
-    FiatCurrencyTypes: {
-      FiatCurrencyTypes: [] as Array<FiatCurrencyType>,
+    Fiats: {
+      Fiats: [] as Array<Fiat>,
       Total: 0
     }
   }),
   getters: {
-    getFiatCurrencyTypeByName () {
-      return (name: string) => {
-        return this.FiatCurrencyTypes.FiatCurrencyTypes.find((el) => el.Name === name)
-      }
+    fiats () {
+      return () => this.Fiats.Fiats.sort((a, b) => a.CreatedAt > b.CreatedAt ? -1 : 1)
     }
   },
   actions: {
-    getFiatCurrencyTypes (req: GetFiatCurrencyTypesRequest, done: (error: boolean, rows: Array<FiatCurrencyType>) => void) {
-      doActionWithError<GetFiatCurrencyTypesRequest, GetFiatCurrencyTypesResponse>(
-        API.GET_FIATCURRENCYTYPES,
+    getFiats (req: GetFiatsRequest, done: (error: boolean, rows: Array<Fiat>) => void) {
+      doActionWithError<GetFiatsRequest, GetFiatsResponse>(
+        API.GET_FIATS,
         req,
         req.Message,
-        (resp: GetFiatCurrencyTypesResponse): void => {
-          this.FiatCurrencyTypes.FiatCurrencyTypes.push(...resp.Infos)
-          this.FiatCurrencyTypes.Total = resp.Total
+        (resp: GetFiatsResponse): void => {
+          this.Fiats.Fiats.push(...resp.Infos)
+          this.Fiats.Total = resp.Total
           done(false, resp.Infos)
         }, () => {
-          done(true, [] as Array<FiatCurrencyType>)
+          done(true, [] as Array<Fiat>)
         }
       )
     },
-    updateFiatCurrencyType (req: UpdateFiatCurrencyTypeRequest, done: (error: boolean, row: FiatCurrencyType) => void) {
-      doActionWithError<UpdateFiatCurrencyTypeRequest, UpdateFiatCurrencyTypeResponse>(
-        API.UPDATE_FIATCURRENCYTYPE,
+    createFiat (req: CreateFiatRequest, done: (error: boolean, row: Fiat) => void) {
+      doActionWithError<CreateFiatRequest, CreateFiatResponse>(
+        API.CREATE_FIAT,
         req,
         req.Message,
-        (resp: UpdateFiatCurrencyTypeResponse): void => {
-          const index = this.FiatCurrencyTypes.FiatCurrencyTypes.findIndex((el) => el.ID === resp.Info.ID)
-          this.FiatCurrencyTypes.FiatCurrencyTypes.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, resp.Info)
+        (resp: CreateFiatResponse): void => {
+          this.Fiats.Fiats.push(resp.Info)
+          this.Fiats.Total += 1
           done(false, resp.Info)
         }, () => {
-          done(true, {} as FiatCurrencyType)
+          done(true, {} as Fiat)
         }
       )
     },
-    createFiatCurrencyType (req: CreateFiatCurrencyTypeRequest, done: (error: boolean, row: FiatCurrencyType) => void) {
-      doActionWithError<CreateFiatCurrencyTypeRequest, CreateFiatCurrencyTypeResponse>(
-        API.CREATE_FIATCURRENCYTYPE,
+    updateFiat (req: UpdateFiatRequest, done: (error: boolean, row: Fiat) => void) {
+      doActionWithError<UpdateFiatRequest, UpdateFiatResponse>(
+        API.UPDATE_FIAT,
         req,
         req.Message,
-        (resp: CreateFiatCurrencyTypeResponse): void => {
-          this.FiatCurrencyTypes.FiatCurrencyTypes.push(resp.Info)
+        (resp: UpdateFiatResponse): void => {
+          const index = this.Fiats.Fiats.findIndex((el) => el.ID === resp.Info.ID)
+          this.Fiats.Fiats.splice(index, 1, resp.Info)
           done(false, resp.Info)
         }, () => {
-          done(true, {} as FiatCurrencyType)
+          done(true, {} as Fiat)
         }
       )
     }
   }
 })
+
+export * from './currency/feed'
+export * from './currency/history'
+export * from './types'

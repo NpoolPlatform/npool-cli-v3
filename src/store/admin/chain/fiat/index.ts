@@ -9,7 +9,7 @@ import {
   GetFiatCurrencyResponse
 } from './types'
 import { doActionWithError } from '../../../action'
-import { FiatCurrency, FiatType } from '../../../base'
+import { FiatType, FiatCurrency } from '../../../base'
 
 export const useAdminFiatCurrencyStore = defineStore('admin-fiatcurrency-v4', {
   state: () => ({
@@ -25,8 +25,14 @@ export const useAdminFiatCurrencyStore = defineStore('admin-fiatcurrency-v4', {
   getters: {
     getJPYCurrency () {
       return () => {
-        const data = this.CoinFiatCurrencies.CoinFiatCurrencies.find((el) => el.FiatCurrencyName === FiatType.JPY)
-        return !data ? Number('NaN') : Number(data.MarketValueHigh)
+        const row = this.CoinFiatCurrencies.CoinFiatCurrencies.find((el) => el?.FiatName === FiatType.JPY)
+        return !row ? Number('NaN') : Number(row.MarketValueHigh)
+      }
+    },
+    haveJPYCurrency() {
+      return () => {
+        const row = this.CoinFiatCurrencies.CoinFiatCurrencies.find((el) => el?.FiatName === FiatType.JPY)
+        return !row? false : true
       }
     }
   },

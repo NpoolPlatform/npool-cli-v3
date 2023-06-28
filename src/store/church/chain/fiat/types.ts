@@ -1,67 +1,49 @@
-import { BaseRequest, FiatCurrency, FiatCurrencyType } from '../../../base'
+import { BaseRequest } from '../../../base'
 
-export interface CreateFiatCurrencyTypeRequest extends BaseRequest {
+export interface Fiat {
+  /** @inject_tag: sql:"id" */
+  ID: string;
+  /** @inject_tag: sql:"name" */
   Name: string;
+  /** @inject_tag: sql:"logo" */
+  Logo: string;
+  /** @inject_tag: sql:"unit" */
+  Unit: string;
+  /** @inject_tag: sql:"created_at" */
+  CreatedAt: number;
+  /** @inject_tag: sql:"updated_at" */
+  UpdatedAt: number;
+}
+export interface CreateFiatRequest extends BaseRequest {
+  Name: string;
+  Unit: string;
+  Logo: string;
 }
 
-export interface CreateFiatCurrencyTypeResponse {
-  Info: FiatCurrencyType;
+export interface CreateFiatResponse {
+  Info: Fiat;
 }
 
-export interface GetFiatCurrencyTypesRequest extends BaseRequest {
+export interface GetFiatsRequest extends BaseRequest {
   /** @format int32 */
   Offset: number;
   /** @format int32 */
   Limit: number;
 }
 
-export interface GetFiatCurrencyTypesResponse {
-  Infos: FiatCurrencyType[];
+export interface GetFiatsResponse {
+  Infos: Fiat[];
   /** @format int64 */
   Total: number;
 }
 
-export interface UpdateFiatCurrencyTypeRequest extends BaseRequest {
+export interface UpdateFiatRequest extends BaseRequest {
   ID: string;
   Name: string;
+  Unit: string;
+  Logo: string;
 }
 
-export interface UpdateFiatCurrencyTypeResponse {
-  Info: FiatCurrencyType;
-}
-
-export interface GetCoinFiatCurrenciesRequest extends BaseRequest {
-  FiatCurrencyTypeIDs: string[];
-  CoinTypeIDs: string[];
-}
-
-export interface GetCoinFiatCurrenciesResponse {
-  Infos: FiatCurrency[];
-  Total: number;
-}
-
-export interface GetHistoriesRequest extends BaseRequest {
-  FiatCurrencyTypeID: string;
-  /** @format int32 */
-  Offset: number;
-  /** @format int32 */
-  Limit: number;
-  /** @format int64 */
-  StartAt: number;
-  /** @format int64 */
-  EndAt: number;
-}
-
-export interface GetHistoriesResponse {
-  Infos: FiatCurrency[];
-  /** @format int64 */
-  Total: number;
-}
-
-export interface GetFiatCurrencyRequest extends BaseRequest {
-  FiatCurrencyTypeName: string;
-}
-
-export interface GetFiatCurrencyResponse {
-  Info: FiatCurrency;
+export interface UpdateFiatResponse {
+  Info: Fiat;
 }

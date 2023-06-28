@@ -1,23 +1,22 @@
 import { defineStore } from 'pinia'
 import { API } from './const'
 import { 
-  GetCurrenciesRequest, 
-  GetCurrenciesResponse, 
-  GetHistoriesRequest, 
-  GetHistoriesResponse, 
-  GetLegalCurrenciesRequest,
+  GetCurrenciesRequest,
+  GetCurrenciesResponse,
+  GetCurrencyRequest,
+  GetCurrencyResponse
 } from './types'
-import { doActionWithError, doGetWithError } from '../../../action'
-import { CoinType, Currency, CurrencyType } from '../../../base'
+import { doActionWithError } from '../../../action'
+import { CurrencyType, CoinCurrency } from '../../../base'
 
 export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
   state: () => ({
     Currencies: {
-      Currencies: [] as Array<Currency>,
+      Currencies: [] as Array<CoinCurrency>,
       Total: 0
     },
     Histories: {
-      Histories: new Map<string, Array<Currency>>(),
+      Histories: new Map<string, Array<CoinCurrency>>(),
       Total: 0
     },
     LegalCurrencies: new Map<string, number>()
@@ -38,7 +37,7 @@ export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
     getHistoriesByID () {
       return (coinTypeID: string) => {
         const data = this.Histories.Histories.get(coinTypeID)
-        return !data? [] as Array<Currency> : data
+        return !data? [] as Array<CoinCurrency> : data
       }
     },
     getJPYCurrency() {
@@ -50,7 +49,7 @@ export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
     getUSDCurrency () {
       return (coinTypeID: string) => {
         const cur = this.getCurrency(coinTypeID)
-        if (!cur) return 1
+        if (!cur) return 0
         return Number(cur.MarketValueLow)
       }
     },
@@ -63,51 +62,37 @@ export const useAdminCurrencyStore = defineStore('admin-currency-v4', {
     }
   },
   actions: {
-    getCoinCurrencies (req: GetCurrenciesRequest, done: (error: boolean, rows: Array<Currency>) => void) {
+    getCurrencies (req: GetCurrenciesRequest, done: (error: boolean, rows: Array<CoinCurrency>) => void) {
       doActionWithError<GetCurrenciesRequest, GetCurrenciesResponse>(
-        API.GET_COINCURRENCIES,
+        API.GET_CURRENCIES,
         req,
         req.Message,
         (resp: GetCurrenciesResponse): void => {
+          resp.Infos.forEach((el) => {
+            const index = this.Currencies.Currencies.findIndex((cl) => cl.ID === el.ID)
+            this.Currencies.Currencies.splice(index < 0 ? 0 : index, index < 0 ? 0 : 1, el)
+          })
           this.Currencies.Currencies.push(...resp.Infos)
           this.Currencies.Total = resp.Total
           done(false, resp.Infos)
         }, () => {
-          done(true, [] as Array<Currency>)
-        })
+          done(true, [] as Array<CoinCurrency>)
+        }
+      )
     },
-    getCoinCurrencyHistories (req: GetHistoriesRequest, done: (error: boolean, rows: Array<Currency>) => void) {
-      doActionWithError<GetHistoriesRequest, GetHistoriesResponse>(
-        API.GET_COINCURRENCYHISTORIES,
+    getCoinCurrency (req: GetCurrencyRequest, done: (error: boolean, row: CoinCurrency) => void) {
+      doActionWithError<GetCurrencyRequest, GetCurrencyResponse>(
+        API.GET_CURRENCY,
         req,
         req.Message,
-        (resp: GetHistoriesResponse): void => {
-          const data = this.getHistoriesByID(req.CoinTypeID)
-          data.push(...resp.Infos)
-          this.Histories.Histories.set(req.CoinTypeID, data)
-          this.Currencies.Total = resp.Total
-          done(false, resp.Infos)
+        (resp: GetCurrencyResponse): void => {
+          this.Currencies.Currencies.push(resp.Info)
+          this.Currencies.Total += 1
+          done(false, resp.Info)
         }, () => {
-          done(true, [] as Array<Currency>)
-        })
-    },
-    getLegalCurrencies (req: GetLegalCurrenciesRequest, done: (error: boolean) => void) {
-      const url = API.GET_COIN_CURRENCIES + '?ids=' + CoinType.USDTERC20 + '&vs_currencies=' + req.CurrencyType
-      doGetWithError<GetLegalCurrenciesRequest, Map<string, Map<CurrencyType, number>>>(
-        url,
-        {} as GetLegalCurrenciesRequest,
-        req.Message,
-        (resp: Map<string, Map<CurrencyType, number>>): void => {
-          Object.entries(resp).forEach(([name, value]) => {
-            console.log(name)
-            Object.entries(value as Map<string, number>).forEach(([currency, amount]) => {
-              this.LegalCurrencies.set(currency, amount as number)
-            })
-          })
-          done(false)
-        }, () => {
-          done(true)
-        })
+          done(true, {} as CoinCurrency)
+        }
+      )
     }
   }
 })

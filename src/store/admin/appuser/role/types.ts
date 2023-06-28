@@ -22,6 +22,7 @@ export interface GetRoleUsersResponse {
 
 export interface CreateRoleUserRequest extends BaseRequest{
   TargetUserID: string
+  AppID?: string
   RoleID: string
 }
 
@@ -30,7 +31,8 @@ export interface CreateRoleUserResponse {
 }
 
 export interface DeleteRoleUserRequest extends BaseRequest{
-  RoleUserID: string
+  ID: string
+  TargetUserID: string
 }
 
 export interface DeleteRoleUserResponse {

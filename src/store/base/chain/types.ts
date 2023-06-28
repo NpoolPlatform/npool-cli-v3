@@ -164,23 +164,6 @@ export interface Tx {
   UpdatedAt: number;
 }
 
-export interface Currency {
-  ID: string;
-  CoinTypeID: string;
-  CoinName: string;
-  CoinLogo: string;
-  CoinUnit: string;
-  CoinENV: string;
-  CreatedAt: number;
-  UpdatedAt: number;
-  MarketValueHigh: string;
-  MarketValueLow: string;
-  FeedTypeStr: string;
-  FeedType: FeedType;
-  FeedSource: string;
-}
-
-
 export enum CoinType {
   USDTERC20 = 'tether'
 }
@@ -213,40 +196,36 @@ export enum FeedType {
   StableUSDHardCode = 'StableUSDHardCode',
 }
 
-export interface FiatCurrency {
-  /** @inject_tag: sql:"id" */
+export enum CurrencyFeedType {
+  DefaultFeedType = 'DefaultFeedType',
+  CoinGecko = 'CoinGecko',
+  CoinBase = 'CoinBase',
+  StableUSDHardCode = 'StableUSDHardCode',
+}
+
+export interface CoinCurrency {
   ID: string;
-  /** @inject_tag: sql:"fiat_currency_type_id" */
-  FiatCurrencyTypeID: string;
-  /** @inject_tag: sql:"feed_type" */
-  FeedTypeStr: string;
-  FeedType: FeedType;
-  /** @inject_tag: sql:"fiat_currency_name" */
-  FiatCurrencyName: string;
-  /** @inject_tag: sql:"fiat_currency_name" */
-  FiatCurrencyLogo: string;
-  /** @inject_tag: sql:"market_value_high" */
-  MarketValueHigh: string;
-  /** @inject_tag: sql:"market_value_low" */
-  MarketValueLow: string;
-  /**
-   * @inject_tag: sql:"created_at"
-   * @format int64
-   */
-  CreatedAt: number;
-  /**
-   * @inject_tag: sql:"updated_at"
-   * @format int64
-   */
-  UpdatedAt: number;
-  /** @inject_tag: sql:"coin_type_id" */
   CoinTypeID: string;
-  /** @inject_tag: sql:"coin_name" */
   CoinName: string;
-  /** @inject_tag: sql:"coin_logo" */
   CoinLogo: string;
-  /** @inject_tag: sql:"coin_unit" */
   CoinUnit: string;
-  /** @inject_tag: sql:"coin_env" */
   CoinENV: string;
+  CreatedAt: number;
+  UpdatedAt: number;
+  MarketValueHigh: string;
+  MarketValueLow: string;
+  FeedType: CurrencyFeedType;
+}
+
+export interface FiatCurrency {
+  ID: string;
+  FiatID: string;
+  FeedType: CurrencyFeedType;
+  FiatName: string;
+  FiatLogo: string;
+  FiatUnit: string;
+  MarketValueHigh: string;
+  MarketValueLow: string;
+  CreatedAt: number;
+  UpdatedAt: number;
 }

@@ -29,7 +29,7 @@ export interface GetHistoriesResponse {
 }
 
 export interface GetFiatCurrencyRequest extends BaseRequest {
-  FiatCurrencyTypeName: string;
+  FiatName: string;
 }
 
 export interface GetFiatCurrencyResponse {

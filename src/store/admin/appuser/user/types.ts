@@ -29,11 +29,12 @@ export interface GetRoleUsersResponse {
   Total: number
 }
 
-export interface UpdateAppUserKolRequest extends BaseRequest {
+export interface UpdateAppUserRequest extends BaseRequest {
   TargetUserID: string
-  Kol:  boolean
+  Kol?:  boolean
+  EmailAddress?: string
 }
 
-export interface UpdateAppUserKolResponse {
+export interface UpdateAppUserResponse {
   Info: User
 }

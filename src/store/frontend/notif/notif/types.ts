@@ -8,9 +8,13 @@ export interface GetNotifResponse {
   Info: Notif;
 }
 
+interface _NotifReq {
+  ID: string
+  Notified?: boolean
+}
+
 export interface UpdateNotifsRequest extends BaseRequest{
-  IDs: string[];
-  Notified: boolean;
+  Infos: Array<_NotifReq>
 }
 
 export interface UpdateNotifsResponse {

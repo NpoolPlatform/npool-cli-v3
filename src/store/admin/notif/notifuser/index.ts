@@ -50,7 +50,7 @@ export const useAdminNotifUserStore = defineStore('admin-notifuser-v4', {
         }
       )
     },
-    CreateNotifUser (req: CreateNotifUserRequest, done: (error: boolean, row?: NotifUser) => void) {
+    createNotifUser (req: CreateNotifUserRequest, done: (error: boolean, row?: NotifUser) => void) {
       doActionWithError<CreateNotifUserRequest, CreateNotifUserResponse>(
         API.CREATE_NOTIFUSER,
         req,

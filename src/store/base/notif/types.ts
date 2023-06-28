@@ -84,7 +84,7 @@ export interface AnnouncementUser {
   Username: string;
   Title: string;
   Content: string;
-  NotifType: NotifType;
+  AnnouncementType: NotifType;
   /** @format int64 */
   CreatedAt: number;
   /** @format int64 */

@@ -23,7 +23,7 @@ export const useAdminNotifUserStore = defineStore('admin-notifuser-v4', {
   actions: {
     getAppNotifUsers (req: GetAppNotifUsersRequest, done: (error: boolean, rows: Array<NotifUser>) => void) {
       doActionWithError<GetAppNotifUsersRequest, GetAppNotifUsersResponse>(
-        API.GET_APP_NOTIFUSERS,
+        API.GET_NOTIFUSERS,
         req,
         req.Message,
         (resp: GetAppNotifUsersResponse): void => {

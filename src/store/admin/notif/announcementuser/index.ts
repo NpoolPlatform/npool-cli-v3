@@ -23,7 +23,7 @@ export const useAdminAnnouncementUserStore = defineStore('admin-announcementuser
   actions: {
     getAppAnnouncementUsers (req: GetAppAnnouncementUsersRequest, done: (error: boolean, rows: Array<AnnouncementUser>) => void) {
       doActionWithError<GetAppAnnouncementUsersRequest, GetAppAnnouncementUsersResponse>(
-        API.GET_APP_ANNOUNCEMENTUSERS,
+        API.GET_ANNOUNCEMENTUSERS,
         req,
         req.Message,
         (resp: GetAppAnnouncementUsersResponse): void => {

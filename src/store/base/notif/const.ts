@@ -31,10 +31,9 @@ export const NotifChannels = [
 ]
 
 export enum NotifType {
-  DefaultType = 'DefaultType',
-  Broadcast = 'Broadcast',
-  Multicast = 'Multicast',
-  Unicast = 'Unicast'
+  Broadcast = 'NotifBroadcast',
+  Multicast = 'NotifMulticast',
+  Unicast = 'NotifUnicast'
 }
 
 export const NotifTypes = [

@@ -14,6 +14,8 @@ interface _NotifReq {
 }
 
 export interface UpdateNotifsRequest extends BaseRequest{
+  AppID: string
+  UserID: string
   Infos: Array<_NotifReq>
 }
 

@@ -21,6 +21,7 @@ export interface Announcement {
   Channel: NotifChannel;
   AnnouncementType: NotifType
   /** @format int64 */
+  StartAt: number;
   EndAt: number;
 }
 

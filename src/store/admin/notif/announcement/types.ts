@@ -85,6 +85,7 @@ export interface UpdateAnnouncementRequest extends BaseRequest {
   Channel: NotifChannel;
   AnnouncementType: NotifType;
   /** @format int64 */
+  StartAt: number;
   EndAt: number;
 }
 

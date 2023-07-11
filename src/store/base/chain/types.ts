@@ -79,6 +79,7 @@ export interface Coin {
   DefaultGoodID: string;
   NeedMemo: boolean;
   Disabled: boolean;
+  CheckNewAddressBalance: boolean;
   CreatedAt: number;
   UpdatedAt: number;
 }

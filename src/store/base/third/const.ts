@@ -18,6 +18,12 @@ export enum UsedFor {
   KYCRejected = "KYCRejected",
   Announcement = "Announcement",
   GoodBenefit1 = "GoodBenefit1",
+  UpdatePassword = "UpdatePassword",
+  UpdateMobile = "UpdateMobile",
+  UpdateEmail = "UpdateEmail",
+  UpdateGoogleAuth = "UpdateGoogleAuth",
+  NewDeviceDetected = "NewDeviceDetected",
+  OrderCompleted = "OrderCompleted"
 }
 
 export const UsedFors = [
@@ -38,4 +44,10 @@ export const UsedFors = [
   UsedFor.KYCRejected,
   UsedFor.Announcement,
   UsedFor.GoodBenefit1,
+  UsedFor.UpdatePassword,
+  UsedFor.UpdateMobile,
+  UsedFor.UpdateEmail,
+  UsedFor.UpdateGoogleAuth,
+  UsedFor.NewDeviceDetected,
+  UsedFor.OrderCompleted,
 ]

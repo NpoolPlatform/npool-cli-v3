@@ -22,7 +22,7 @@ export enum UsedFor {
   UpdateMobile = "UpdateMobile",
   UpdateEmail = "UpdateEmail",
   UpdateGoogleAuth = "UpdateGoogleAuth",
-  NewDeviceDetected = "NewDeviceDetected",
+  NewLogin = "NewLogin",
   OrderCompleted = "OrderCompleted"
 }
 

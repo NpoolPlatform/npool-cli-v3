@@ -48,6 +48,6 @@ export const UsedFors = [
   UsedFor.UpdateMobile,
   UsedFor.UpdateEmail,
   UsedFor.UpdateGoogleAuth,
-  UsedFor.NewDeviceDetected,
+  UsedFor.NewLogin,
   UsedFor.OrderCompleted,
 ]
